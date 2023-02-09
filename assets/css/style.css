@@ -1,0 +1,35 @@
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+      .header {
+        position: absolute;
+        top: 20px;
+        left: 30%;
+        z-index: 1;
+        color: white;
+      }
+
+      .btnStart {
+        font: bold 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        background-color: #1e7bbe;
+        font-size: 1.1rem;
+        color: white;
+        border: none;
+        width: 200px;
+        display: block;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 3px;
+      }
+
+      .btnStart:hover {
+        background-color: #4ea0da;
+      }
