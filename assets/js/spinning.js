@@ -64,14 +64,12 @@ map.on('moveend', () => {
     spinGlobe();
 });
 
-document.getElementById('btnStart').addEventListener('click', (e) => {
+document.getElementById('btnPlay').addEventListener('click', (e) => {
     spinEnabled = !spinEnabled;
     if (spinEnabled) {
         spinGlobe();
-        e.target.innerHTML = 'Pause rotation';
     } else {
         map.stop(); // Immediately end ongoing animation
-        e.target.innerHTML = 'Start rotation';
     }
 });
 
