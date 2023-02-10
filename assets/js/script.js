@@ -5,12 +5,8 @@ const map = new mapboxgl.Map({
  container: 'map',
  style: 'mapbox://styles/szilvi1/cldvz9vlb000y01qrbvjld10b', // use my own style
  projection: 'globe', // Display the map as a globe
- zoom: 1,
+ zoom: 1.5,
  center: [30, 40],
-});
-
-map.on('style.load', () => {
- map.setFog({}); // make Earth's atmosphere lighter
 });
 
 $(document).ready(function () {
