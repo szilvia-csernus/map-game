@@ -1,8 +1,7 @@
-// Rotating globe is inspired by mapbox.com Mabpbox GLJ Examples
-
+// Original rotating globe function is borrowed from mapbox.com Mabpbox GLJ Examples. 
 
 // Rotation speed 
-const secondsPerRevolution = 300;
+const secondsPerRevolution = 200;
 
 // Above zoom level 5, do not rotate.
 const maxSpinZoom = 5;
@@ -64,13 +63,27 @@ map.on('moveend', () => {
     spinGlobe();
 });
 
-document.getElementById('btnPlay').addEventListener('click', (e) => {
+const playBtn = document.getElementById('btnPlay');
+playBtn.addEventListener('click', (e) => {
     spinEnabled = !spinEnabled;
     if (spinEnabled) {
         spinGlobe();
     } else {
         map.stop(); // Immediately end ongoing animation
     }
+    const europeBtn = document.createElement('button');
+    europeBtn.setAttribute('class', 'continentBtn');
+    europeBtn.setAttribute('id', 'europeBtn');
+    europeBtn.textContent = 'Europe';
+    playBtn.remove();
+    document.getElementsByClassName('mainCanvas')[0].appendChild(europeBtn)
+    $('#europeBtn').click(function() {
+        console.log('click');
+        map.flyTo({
+            center: [15, 45],
+            zoom: 3.5
+        })
+    })
 });
 
 spinGlobe();

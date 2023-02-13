@@ -4,8 +4,6 @@ html {
   font-family: Nunito;
 }
 
-
-
 body {
   margin: 0;
   padding: 0;
@@ -32,7 +30,7 @@ body {
   align-items: center;
   width: 100vw;
   margin: auto;
-  color: rgb(210, 161, 246);
+  color:   rgb(244, 163, 138);
   text-shadow: 4px 4px 10px #0e3c5e;;
   letter-spacing: .15rem;
 }
@@ -46,7 +44,6 @@ body {
 
 .mainCanvas {
   position: absolute;
-  top: 0;
   bottom: 0;
   width: 100vw;
   z-index: 3;
@@ -55,13 +52,13 @@ body {
   align-items: flex-end;
 }
 
-.btnPlay {
+.btnPlay, .continentBtn {
   background-color: #1e7bbe;
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: .15rem;
   color: white;
-  border: 4px solid  rgb(202, 145, 244);
+  border: 4px solid rgb(245, 143, 226);
   display: block;
   cursor: pointer;
   padding: .7rem 3rem;
@@ -72,7 +69,11 @@ body {
   transition: opacity 1s ease-in 3s;
 }
 
-.btnPlay:hover {
+.continentBtn {
+  opacity: 1;
+}
+
+.btnPlay:hover, .continentBtn:hover {
   background-color: #4ea0da;
 }
 

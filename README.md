@@ -316,6 +316,9 @@ Please view [TESTING.md](TESTING.md) for more information on testing.
 <br><br>
 
 # Credits
+* Simplified country boundaries in geojson format:
+https://github.com/johan/world.geo.json/blob/master/countries.geo.json
+
 <br>
 
 ## Images

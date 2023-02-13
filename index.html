@@ -2,34 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Map It!</title>
+    <title>map it!</title>
     <meta name="author" content="Szilvia Csernus" />
     <meta name="description" content="Map It! - Interactive game" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
-    /> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Convergence&family=Nunito+Sans:wght@400;700&family=Roboto+Mono&family=Righteous&display=swap" rel="stylesheet">
+    />
+    <!-- <meta name="viewport" content="initial-scale=1,maximum-scale=1" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Convergence&family=Nunito+Sans:wght@400;700&family=Roboto+Mono&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css"
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+    
+    
+    <!-- Experiment with choropleth map (doesn't work) -->
+    <!-- <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+    <link
+    href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css"
+    rel="stylesheet"
+    /> -->
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
     <div id="map" class="map"></div>
     <header class="header">
-      <h1 class="mainTitle">map it</h1>
+      <h1 class="mainTitle">map it!</h1>
     </header>
     <div class="mainCanvas">
       <button id="btnPlay" class="btnPlay">PLAY</button>
     </div>
+    <!-- Experiment with choropleth map (doesn't work) -->
+    <!-- <div class="map-overlay" id="features">
+      <h2>Country name</h2>
+      <div id="pd"><p>Hover over the map!</p></div>
+    </div>
+    <div class="map-overlay" id="legend"></div> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/spinning.js"></script>
+    <script src="./assets/js/game.js"></script>
   </body>
 </html>
