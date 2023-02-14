@@ -75,6 +75,7 @@ map.on('load', () => {
     map.addSource('countries', {
         type: 'geojson',
         data: '../../assets/data/countries-new.geojson',
+        generateId: true
     });
 
 
@@ -88,8 +89,8 @@ map.on('load', () => {
             'fill-opacity': [
                 'case',
                 ['boolean', ['feature-state', 'hover'], false],
-                1,
-                0.5
+                0.5,
+                0
             ]
         }
     });
@@ -147,44 +148,54 @@ map.on('load', () => {
 
     // When the user moves their mouse over the state-fill layer, we'll update the
     // feature state for the feature under the mouse.
+    
 
     let hoveredStateId = null;
-    map.on('mouseover', 'country-fill', (e) => {
-        console.log(e.features[0].properties.name)
+
+    map.on('mousemove', 'country-fill', (e) => {
+        map.getCanvas().style.cursor = 'pointer';
+        console.log(e.features[0].properties.name, e.features[0].id, hoveredStateId)
         if (e.features.length > 0) {
-            if (hoveredStateId !== null) {
+            if (hoveredStateId) {
+                
                 map.setFeatureState({
-                    id: hoveredStateId,
                     source: 'countries',
-                   
+                    id: hoveredStateId
                 }, {
                     hover: false
                 });
-            }
-            hoveredStateId = e.features[0].properties.name;
+            } 
+            
+            hoveredStateId = e.features[0].id;
             map.setFeatureState({
-                id: hoveredStateId,
                 source: 'countries',
-               
+                id: hoveredStateId
             }, {
                 hover: true
             });
+        
         }
     });
 
     // When the mouse leaves the state-fill layer, update the feature state of the
     // previously hovered feature.
     map.on('mouseleave', 'country-fill', () => {
-        if (hoveredStateId !== null) {
+        console.log(hoveredStateId)
+        if (hoveredStateId) {
+            // map.removeFeatureState({
+            //     source: 'countries',
+            //     id: hoveredStateId
+            // }, );
             map.setFeatureState({
                 source: 'countries',
-                
                 id: hoveredStateId
             }, {
                 hover: false
             });
+            hoveredStateId = null;
         }
-        hoveredStateId = null;
+       
+        map.getCanvas().style.cursor = '';
     });
 
 });
