@@ -77,12 +77,19 @@ playBtn.addEventListener('click', (e) => {
     europeBtn.textContent = 'Europe';
     playBtn.remove();
     document.getElementsByClassName('mainCanvas')[0].appendChild(europeBtn)
+    // $('#europeBtn').click(function() {
+    //     console.log('click');
+    //     map.flyTo({
+    //         center: [15, 45],
+    //         zoom: 3.5,
+    //         pitch: 45
+    //     })
+    // })
     $('#europeBtn').click(function() {
         console.log('click');
-        map.flyTo({
-            center: [15, 45],
-            zoom: 3.5
-        })
+        map.fitBounds([
+            [-11.034908,31.142452],[46.661510,68.865250]
+        ])
     })
 });
 
