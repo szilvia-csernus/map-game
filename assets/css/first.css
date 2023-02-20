@@ -30,7 +30,7 @@ html, body, section, article, h1, h2, p, a {
     text-align: center;
     margin: auto;
     width: 100vw;
-    font-size: clamp(4rem, 2.2222rem + 8.8889vw, 10rem);
+    font-size: clamp(5rem, 3.5185rem + 7.4074vw, 10rem);
     font-weight: bold;
     color: white;
     
@@ -72,9 +72,9 @@ html, body, section, article, h1, h2, p, a {
     bottom: 30vh;
     background-color: rgba(26, 70, 132, 0.8);
     font-family: Nunito Sans;
-    font-size: clamp(1.2rem, 0.963rem + 1.1852vw, 2rem);
+    font-size: clamp(1.3rem, 1.0926rem + 1.037vw, 2rem);
     font-weight: 700;
-    letter-spacing: .3rem;
+    letter-spacing: .2rem;
     color: white;
     border: 4px solid #D65DB1;
     cursor: pointer;
