@@ -13,7 +13,7 @@ html, body, section, article, h1, h2, p, a {
   }
   
   html {
-    font-family: Nunito;
+    font-family: Righteous;
   }
   
   body {
@@ -30,12 +30,12 @@ html, body, section, article, h1, h2, p, a {
     text-align: center;
     margin: auto;
     width: 100vw;
-    font-size: clamp(3rem, 5rem, 7rem);
+    font-size: clamp(4rem, 2.2222rem + 8.8889vw, 10rem);
     font-weight: bold;
     color: white;
     
     text-shadow: 4px 4px 15px #0e3c5e;;
-    letter-spacing: .15rem;
+    letter-spacing: .4rem;
   }
 
   
@@ -71,10 +71,10 @@ html, body, section, article, h1, h2, p, a {
     position: relative;
     bottom: 30vh;
     background-color: rgba(26, 70, 132, 0.8);
-    font-family: Nunito;
-    font-size: 1.3rem;
+    font-family: Nunito Sans;
+    font-size: clamp(1.2rem, 0.963rem + 1.1852vw, 2rem);
     font-weight: 700;
-    letter-spacing: .15rem;
+    letter-spacing: .3rem;
     color: white;
     border: 4px solid #D65DB1;
     cursor: pointer;
@@ -100,6 +100,6 @@ html, body, section, article, h1, h2, p, a {
   @media screen and (min-height: 900px) {
     
     .btnPlay, .continentBtn{
-      font-size: 1.4rem;
+      font-size: 1.7rem;
     }
   }
