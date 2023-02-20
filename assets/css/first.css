@@ -1,0 +1,105 @@
+/* ----- RESET ------- */
+
+html, body, section, article, h1, h2, p, a {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    font: inherit;
+    text-align: inherit;
+    text-decoration: inherit;
+    color: inherit;
+    background: transparent;
+  }
+  
+  html {
+    font-family: Nunito;
+  }
+  
+  body {
+    background-color:  #1a4684;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .header {
+    position: absolute;
+    left: 0;
+    top: 35vh;
+    z-index: 1;
+    text-align: center;
+    margin: auto;
+    width: 100vw;
+    font-size: clamp(3rem, 5rem, 7rem);
+    font-weight: bold;
+    color: white;
+    
+    text-shadow: 4px 4px 15px #0e3c5e;;
+    letter-spacing: .15rem;
+  }
+
+  
+  
+  .animate-appear {
+    animation: appear 1s ease-in;
+  }
+  
+  @keyframes appear {
+    from {
+      opacity: 0;   
+    }
+    to {
+      opacity: 1;   
+    }
+  }
+   
+  .mainTitle {
+    margin: 0;
+  }
+  
+  .mainCanvas {
+    position: absolute;
+    bottom: 4vh;
+    width: 100vw;
+    z-index: 1;
+    text-align: center;
+    margin: auto;
+
+  }
+  
+  .btnPlay, .continentBtn {
+    position: relative;
+    bottom: 30vh;
+    background-color: rgba(26, 70, 132, 0.8);
+    font-family: Nunito;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: .15rem;
+    color: white;
+    border: 4px solid #D65DB1;
+    cursor: pointer;
+    padding: .7rem 3rem;
+    border-radius: 2rem;
+    box-shadow: 4px 4px 15px #0e3c5e;
+    transition: opacity 1s ease-in 1.5s;
+  }
+  
+  .animate-button {
+    animation: move-down 1.5s ease-in;
+    animation-fill-mode: forwards;
+  }
+
+  .continentBtn {
+    bottom: 0;
+  }
+  
+  .btnPlay:hover, .continentBtn:hover {
+    background-color: rgb(26, 70, 132);
+  }
+  
+  @media screen and (min-height: 900px) {
+    
+    .btnPlay, .continentBtn{
+      font-size: 1.4rem;
+    }
+  }

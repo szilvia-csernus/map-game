@@ -1,3 +1,5 @@
+const map = createMapObject();
+console.log(map);
 // Original rotating globe function is borrowed from mapbox.com Mabpbox GLJ Examples. 
 
 // Rotation speed 
@@ -11,7 +13,7 @@ const slowSpinZoom = 3;
 let userInteracting = false;
 let spinEnabled = true;
 
-function spinGlobe() {
+function spinGlobe(map) {
     const zoom = map.getZoom();
     if (spinEnabled && !userInteracting && zoom < maxSpinZoom) {
         let distancePerSecond = 360 / secondsPerRevolution;
@@ -93,4 +95,4 @@ playBtn.addEventListener('click', (e) => {
     })
 });
 
-spinGlobe();
+spinGlobe(map);
