@@ -1,13 +1,55 @@
 /* ----- RESET ------- */
 
+html, body, section, article, h1, h2, p, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  color: inherit;
+  background: transparent;
+}
+
 html {
   font-family: Nunito;
 }
 
 body {
+  background-color:  #1a4684;
+  height: 100vh;
   margin: 0;
-  padding: 0;
-  background-color: #135482;
+}
+
+.header {
+  position: absolute;
+  left: 0;
+  top: 35vh;
+  z-index: 1;
+  text-align: center;
+  margin: auto;
+  width: 100vw;
+  font-size: clamp(3rem, 5rem, 7rem);
+  font-weight: bold;
+  color: white;
+  text-shadow: 4px 4px 10px #0e3c5e;;
+  letter-spacing: .15rem;
+  animation: move-up 1.5s ease-in;
+  animation-fill-mode: forwards;
+  
+}
+
+@keyframes move-up {
+  0% {
+    opacity: 0;   
+  }
+  
+  100% {
+    opacity: 1;
+    transform: translateY(-35vh) scale(0.6, 0.6) ;
+
+  }
 }
 
 .map {
@@ -17,29 +59,11 @@ body {
   width: 100%;
   height: 180%;
   opacity: 0;
-  transition: opacity 1s ease-in;
-}
-
-.header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100vw;
-  margin: auto;
-  color:   rgb(244, 163, 138);
-  text-shadow: 4px 4px 10px #0e3c5e;;
-  letter-spacing: .15rem;
+  transition: opacity .5s ease-in 1.5s;
 }
 
 .mainTitle {
-  font-size: 3.5rem;
-  font-family: 'Convergence';
-  /* opacity: 0;
-  transition: opacity 3s ease-in; */
+  margin: 0;
 }
 
 .mainCanvas {
@@ -53,12 +77,12 @@ body {
 }
 
 .btnPlay, .continentBtn {
-  background-color: #1e7bbe;
+  background-color: rgba(26, 70, 132, 0.6);
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: .15rem;
   color: white;
-  border: 4px solid rgb(245, 143, 226);
+  border: 4px solid #D65DB1;
   display: block;
   cursor: pointer;
   padding: .7rem 3rem;
@@ -66,7 +90,7 @@ body {
   border-radius: 2rem;
   box-shadow: 4px 4px 10px #0e3c5e;
   opacity: 0;
-  transition: opacity 1s ease-in .5s;
+  transition: opacity 1s ease-in 1.5s;
 }
 
 .continentBtn {
@@ -74,7 +98,7 @@ body {
 }
 
 .btnPlay:hover, .continentBtn:hover {
-  background-color: #4ea0da;
+  opacity: 1;
 }
 
 .makeVisible {
@@ -85,11 +109,6 @@ body {
   .map {
     height: auto;
   }
-
-  .mainTitle {
-    font-size: 4rem;   
-  }
-
 }
 
 @media screen and (min-height: 900px) {

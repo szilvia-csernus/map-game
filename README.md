@@ -1,7 +1,6 @@
 # Main title
 
-
-<br><br>
+> Map-based game building on country knowledge.
 
 ---
 
@@ -318,6 +317,12 @@ Please view [TESTING.md](TESTING.md) for more information on testing.
 # Credits
 * Simplified country boundaries in geojson format:
 https://github.com/johan/world.geo.json/blob/master/countries.geo.json
+
+* Flag-icons in svg format in an npm package:
+https://www.npmjs.com/package/flag-icons
+
+* Country info (inc. capital) in an npm package:
+https://www.npmjs.com/package/world-infohttps://www.npmjs.com/package/world-info
 
 <br>
 
