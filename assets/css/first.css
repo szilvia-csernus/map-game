@@ -17,8 +17,8 @@ html, body, section, article, h1, h2, p, a, button {
   }
   
   body {
-    /* display: flex;
-    justify-content: center; */
+    display: flex;
+    justify-content: center;
     background-color: #0e3c5e;
     height: 100vh;
     margin: 0;

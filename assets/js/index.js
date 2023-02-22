@@ -19,18 +19,10 @@ const loadJQuery = () => {
     document.body.appendChild(scriptJQuery);
 }
 
-const loadMapGL = () => {
+window.addEventListener('DOMContentLoaded', (event) => {
     const scriptMapGL = document.createElement('script');
     scriptMapGL.src = 'https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js?optimize=true';
     scriptMapGL.setAttribute('onload', 'loadJQuery()');
     scriptMapGL.defer = true;
     document.body.appendChild(scriptMapGL);
-}
-
-window.addEventListener('DOMContentLoaded', (event) => {
-    const cssMain = document.createElement('link');
-    cssMain.setAttribute('href', '../assets/css/style.css');
-    cssMain.setAttribute('rel', "stylesheet");
-    cssMain.setAttribute('onload', 'loadMapGL()');
-    document.body.appendChild(cssMain);
 })
