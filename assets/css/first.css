@@ -1,6 +1,6 @@
 /* ----- RESET ------- */
 
-html, body, section, article, h1, h2, p, a {
+html, body, section, article, h1, h2, p, a, button {
     margin: 0;
     border: 0;
     padding: 0;
@@ -17,9 +17,12 @@ html, body, section, article, h1, h2, p, a {
   }
   
   body {
-    background-color:  #1a4684;
+    /* display: flex;
+    justify-content: center; */
+    background-color: #0e3c5e;
     height: 100vh;
     margin: 0;
+    /* color: hsla(0, 0%, 71%, 0.5) */
   }
   
   .header {
@@ -37,11 +40,9 @@ html, body, section, article, h1, h2, p, a {
     text-shadow: 4px 4px 15px #0e3c5e;;
     letter-spacing: .4rem;
   }
-
-  
   
   .animate-appear {
-    animation: appear 1s ease-in;
+    animation: appear 1.5s ease-in;
   }
   
   @keyframes appear {
@@ -57,22 +58,22 @@ html, body, section, article, h1, h2, p, a {
     margin: 0;
   }
   
-  .mainCanvas {
+  .playBtnCanvas {
     position: absolute;
     bottom: 4vh;
     width: 100vw;
     z-index: 1;
     text-align: center;
     margin: auto;
-
   }
   
   .btnPlay, .continentBtn {
+    display: inline;
     position: relative;
     bottom: 30vh;
     background-color: rgba(26, 70, 132, 0.8);
     font-family: Nunito Sans;
-    font-size: clamp(1.3rem, 1.0926rem + 1.037vw, 2rem);
+    font-size: clamp(1.3rem, 1.1519rem + 0.7407vw, 1.8rem);
     font-weight: 700;
     letter-spacing: .2rem;
     color: white;

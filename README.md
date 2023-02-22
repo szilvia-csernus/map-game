@@ -324,6 +324,9 @@ https://www.npmjs.com/package/flag-icons
 * Country info (inc. capital) in an npm package:
 https://www.npmjs.com/package/world-infohttps://www.npmjs.com/package/world-info
 
+* Clamp() calculator:
+https://grizhlie-clamp-calculator.netlify.app/
+
 <br>
 
 ## Images
