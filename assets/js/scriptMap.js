@@ -259,14 +259,6 @@ const replacePlayBtnToContinentBtns = (callback) => {
     callback()
 }
 
-// $('#europeBtn').click(function() {
-//     console.log('click');
-//     map.fitBounds([
-//         [-11.034908,31.142452],[46.661510,68.865250]
-//     ])
-// })
-
-
 
 const addClickListenersToContinentBtns = (map) => {   
 
