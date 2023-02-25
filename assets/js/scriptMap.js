@@ -16,27 +16,35 @@ const mapColours = {
     7: "#FF9671", // orange
 }
 
+let map;
+
 // Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool.
-const createMapObject = () => {
-    mapboxgl.accessToken =
-        'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/szilvi1/cldvz9vlb000y01qrbvjld10b', // add "?optimize=true" at the end if want to improve performance
-        projection: 'globe', // Display the map as a globe
-        zoom: initialZoom(),
-        minZoom: 1.5,
-        maxZoom: 5,
-        center: [30, 40],
-        dragPan: false,
-        scrollZoom: false,
-        boxZoom: false,
-        dragRotate: false,
-        keyboard: false,
-        doubleClickZoom: false,
-        touchZoomRotate: false
-    });
-    return map
+const createMapObject = (callback) => {
+    const promise = new Promise(() => {
+            mapboxgl.accessToken =
+                'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/szilvi1/cldvz9vlb000y01qrbvjld10b', // add "?optimize=true" at the end if want to improve performance
+                projection: 'globe', // Display the map as a globe
+                zoom: initialZoom(),
+                minZoom: 1.5,
+                maxZoom: 5,
+                center: [30, 40],
+                dragPan: false,
+                scrollZoom: false,
+                boxZoom: false,
+                dragRotate: false,
+                keyboard: false,
+                doubleClickZoom: false,
+                touchZoomRotate: false
+            });
+
+            map.on('load', callback)
+        }
+
+    )
+    return promise
 }
 
 // add tileset source for country boundaries, region and country name data
@@ -205,22 +213,6 @@ const addRotate = (map, callback) => {
         userInteracting = true;
     });
 
-    // // Restart spinning the globe when interaction is complete
-    // map.on('mouseup', () => {
-    //     userInteracting = false;
-    //     spinGlobe();
-    // });
-
-    // These events account for cases where the mouse has moved
-    // off the map, so 'mouseup' will not be fired.
-    // map.on('dragend', () => {
-    //     userInteracting = false;
-    //     spinGlobe();
-    // });
-    // map.on('pitchend', () => {
-    //     userInteracting = false;
-    //     spinGlobe();
-    // });
     map.on('rotateend', () => {
         userInteracting = false;
         spinGlobe();
@@ -246,7 +238,9 @@ const addRotate = (map, callback) => {
     spinGlobe();
 }
 
-const replacePlayBtnToContinentBtns = (callback) => {
+const showContinentBtns = (callback) => {
+    $('.mainTitle').fadeOut('fast').text('Choose a continent!').fadeIn('slow');
+
     $('#btnPlay').remove();
 
     $('body').append('<div class="continentCanvas"></div>')
@@ -260,7 +254,7 @@ const replacePlayBtnToContinentBtns = (callback) => {
 }
 
 
-const addClickListenersToContinentBtns = (map) => {   
+const addClickListenersToContinentBtns = (map) => {
 
     const addFlyOnClick = (button, region, center, zoom = 4) => {
         button.click(function () {
@@ -274,7 +268,7 @@ const addClickListenersToContinentBtns = (map) => {
 
             // set hoverable filter for region and blur filter outside region
             map.setFilter('country-hover', ['==', ['get', 'region'], region]);
-            addBlurLayer(map);
+            !map.getLayer('country-blur') && addBlurLayer(map);
             map.setFilter('country-blur', ['!=', ['get', 'region'], region])
         })
     }
@@ -292,7 +286,7 @@ const addIntroAnimation = () => {
     $('.map').addClass('animate-appear-map');
 }
 
-addIntroAnimation();
-const map = createMapObject();
 
-addRotate(map, () => replacePlayBtnToContinentBtns(() => addClickListenersToContinentBtns(map)))
+createMapObject(addIntroAnimation)
+
+    .then(addRotate(map, () => showContinentBtns(() => addClickListenersToContinentBtns(map))))
