@@ -1,4 +1,4 @@
-// add tileset source for country boundaries, region and country name data
+/**  adds tileset source for country boundaries, region and country name data */
 const addTilesetSource = (map) => {
     
     map.addSource('country-boundaries', {
@@ -18,8 +18,7 @@ const addTilesetSource = (map) => {
 
 };
 
-// Adding interactive layer to the map. 
-
+/** adds interactive layer to the map.  */
 const addHoverLayer = (map) => {
 
 // select region's countries to be hoverable
@@ -125,8 +124,7 @@ map.on('mouseleave', `country-hover`, () => {
 };
 
 const removePlayBtn = () => {
-    $('.mainTitle').fadeOut('fast').text('Choose a continent!').fadeIn('slow');
-
+    $('.mainTitle').fadeIn('slow').text('Choose a continent!').addClass('question');
     $('#btnPlay').remove();
 }
 

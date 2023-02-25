@@ -18,7 +18,7 @@ const mapColours = {
 
 // Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool.
 const createMapObject = (callback) => {
-    
+
     mapboxgl.accessToken =
         'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
     const map = new mapboxgl.Map({

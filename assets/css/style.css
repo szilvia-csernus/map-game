@@ -1,3 +1,5 @@
+/* ------------ Main landing page -------------  */
+
 .animate-header {
   animation: move-up .5s ease-in;
   animation-fill-mode: forwards;
@@ -48,6 +50,26 @@
   }
 }
 
+/* if screen is higher than 750px then place globe in the middle of screen */
+@media screen and (min-height: 750px) {
+  .map {
+    height: auto;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .animate-button {
+    transform: translateY(30vh)
+  }
+
+  .animate-header {
+    transform: translateY(-35vh) scale(0.6, 0.6);
+    /* color: hsla(208, 66%, 35%, 0.498); */
+  }
+}
+
+/* ----------- Continent buttons ----------- */
+
 .continentCanvas {
   position: absolute;
   bottom: 0;
@@ -59,7 +81,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 1rem;
+  gap: 1rem 0;
 
 }
 
@@ -84,20 +106,11 @@
   order: 4
 }
 
-/* if screen is higher than 750px then place globe in the middle of screen */
-@media screen and (min-height: 750px) {
-  .map {
-    height: auto;
-  }
-}
+/* ------------- Game -------------- */
 
-@media (prefers-reduced-motion) {
-  .animate-button {
-    transform: translateY(30vh)
-  }
-
-  .animate-header {
-    transform: translateY(-35vh) scale(0.6, 0.6);
-    /* color: hsla(208, 66%, 35%, 0.498); */
-  }
+.question {
+  font-family: Nunito Sans;
+  font-weight: bold;
+  font-size: clamp(4rem, 3.4074rem + 2.963vw, 6rem);
+  letter-spacing: 0;
 }
