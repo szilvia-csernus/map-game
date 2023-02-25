@@ -5,19 +5,19 @@
     <title>map it!</title>
     <meta name="author" content="Szilvia Csernus" />
     <meta name="description" content="Map It! - Interactive game" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=6" />
-    <!-- <meta
+    <meta
       name="viewport"
-      content="initial-scale=1,maximum-scale=1,user-scalable=no"
-    /> -->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" /> -->
+      content="width=device-width, initial-scale=1.0, maximum-scale=6"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Convergence:wght@500;700&family=Nunito+Sans:wght@400;700&family=Roboto+Mono:wght@500;700&family=Righteous&display=swap"
       rel="stylesheet"
     />
-    
+
     <link rel="stylesheet" href="./assets/css/first.css" />
+    <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
+    <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin />
     
   </head>
   <body>
@@ -29,15 +29,23 @@
       <button id="btnPlay" class="btnPlay">PLAY</button>
     </div>
 
+    <script
+      src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"
+      crossorigin 
+    ></script>
+
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css"
-      rel="stylesheet"
+      rel="stylesheet" crossorigin 
     />
- 
-    <link rel="stylesheet" href="./assets/css/style.css"/>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
- 
-    <script src="./assets/js/index.js"></script>
-   
+
+    <link rel="stylesheet" href="./assets/css/style.css" defer />
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      defer
+    ></script>
+
+    <script src="./assets/js/scriptMap.js" defer></script>
   </body>
 </html>

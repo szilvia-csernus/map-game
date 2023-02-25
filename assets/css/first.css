@@ -22,7 +22,6 @@ html, body, section, article, h1, h2, p, a, button {
     background-color: #0e3c5e;
     height: 100vh;
     margin: 0;
-    /* color: hsla(0, 0%, 71%, 0.5) */
   }
   
   .header {
@@ -36,14 +35,13 @@ html, body, section, article, h1, h2, p, a, button {
     font-size: clamp(5rem, 3.5185rem + 7.4074vw, 10rem);
     font-weight: bold;
     color: white;
-    
     text-shadow: 4px 4px 15px #0e3c5e;;
     letter-spacing: .4rem;
   }
   
-  .animate-appear {
-    animation: appear 1.5s ease-in;
-  }
+  /* .animate-appear {
+    animation: appear 1s ease-in;
+  } */
   
   @keyframes appear {
     from {
@@ -77,17 +75,12 @@ html, body, section, article, h1, h2, p, a, button {
     font-weight: 700;
     letter-spacing: .2rem;
     color: white;
-    border: 4px solid #D65DB1;
+    border: 4px solid #FF9671;
     cursor: pointer;
     padding: .7rem 3rem;
     border-radius: 2rem;
     box-shadow: 4px 4px 15px #0e3c5e;
     transition: opacity 1s ease-in 1.5s;
-  }
-  
-  .animate-button {
-    animation: move-down 1.5s ease-in;
-    animation-fill-mode: forwards;
   }
 
   .continentBtn {
