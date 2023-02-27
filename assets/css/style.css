@@ -20,7 +20,7 @@
 @keyframes move-down {
   0% {}
   100% {
-    transform: translateY(30vh) ;
+    transform: translateY(29vh) ;
   }
 }
 
@@ -38,10 +38,10 @@
 }
 
 .animate-appear-map {
-  animation: appear-map .2s ease-in .2s forwards;
+  animation: appear .2s ease-in .2s forwards;
 }
 
-@keyframes appear-map {
+@keyframes appear {
   from {
     opacity: 0;   
   }

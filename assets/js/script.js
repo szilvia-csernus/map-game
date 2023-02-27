@@ -26,8 +26,8 @@ const createMapObject = (callback) => {
         style: 'mapbox://styles/szilvi1/cldvz9vlb000y01qrbvjld10b', // add "?optimize=true" at the end if want to improve performance
         projection: 'globe', // Display the map as a globe
         zoom: initialZoom(),
-        minZoom: 1.5,
-        maxZoom: 5,
+        minZoom: 1,
+        maxZoom: 6,
         center: [30, 40],
         dragPan: false,
         scrollZoom: false,
@@ -42,7 +42,7 @@ const createMapObject = (callback) => {
 
 }
 
-const addRotate = (map, callback) => {
+const addRotation = (map, callback) => {
     // Starter code for rotating globe function is provided by mapbox.com in Mabpbox GLJS Examples. 
 
     // Rotation speed 
@@ -113,11 +113,21 @@ const addIntroAnimation = () => {
     $('.map').addClass('animate-appear-map');
 }
 
+let game;
+
+const startGame = (map) => {
+        addRotation(map, () => {
+             // import game.js only once
+            if (!game) {
+                game = import('./game.js');
+                }
+            game.then(module => {
+                module.game(map);
+            })
+        });
+}
+
 createMapObject((map) => {
     addIntroAnimation();
-    addRotate(map, () => {
-        import('./game.js').then(module => {
-            module.game(map);
-        })
-    });
+    startGame(map);
 })
