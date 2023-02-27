@@ -20,12 +20,11 @@ const addTilesetSource = (map) => {
 
 /** adds interactive layer to the map.  */
 const addHoverLayer = (map) => {
-
-// select region's countries to be hoverable
-map.addLayer({
+    // select region's countries to be hoverable
+    map.addLayer({
     id: 'country-hover',
-    minzoom: 1.5,
-    maxzoom: 5.5,
+    minzoom: 1,
+    maxzoom: 7,
     paint: {
         'fill-color': [
             'case',
@@ -37,15 +36,15 @@ map.addLayer({
     source: "country-boundaries",
     'source-layer': "country_boundaries",
     type: "fill"
-})
+    })
 }
 
 const addBlurLayer = (map) => {
 // add a blur to countries outside the region
 map.addLayer({
     id: `country-blur`,
-    minzoom: 1.5,
-    maxzoom: 5.5,
+    minzoom: 1,
+    maxzoom: 7,
     paint: {
         'fill-color': "hsla(208, 66%, 35%, 0.6)"
     },
@@ -62,7 +61,7 @@ let hoveredStateId = null;
 
 map.on('mousemove', `country-hover`, (e) => {
     map.getCanvas().style.cursor = 'pointer';
-    console.log(e.features[0].properties.subregion)
+    console.log(e.features[0].properties.name_en, e.features[0].properties.iso_3166_1, e.features[0].properties.iso_3166_1_alpha_3, e.features[0].properties.wikidata_id)
     if (e.features.length > 0) {
         if (hoveredStateId) {
 
@@ -139,7 +138,6 @@ const showContinentBtns = () => {
     $('.continentCanvas').append('<button id="americasBtn" class="continentBtn">Americas</button>');
 }
 
-
 const addClickListenersToContinentBtns = (map) => {
 
     const addFlyOnClick = (button, region, center, zoom = 4) => {
@@ -162,9 +160,9 @@ const addClickListenersToContinentBtns = (map) => {
     addHoverLayer(map);
      
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
-    addFlyOnClick($('#asiaBtn'), 'Asia', [84.090042, 42.298643], 3)
+    addFlyOnClick($('#asiaBtn'), 'Asia', [84.090042, 42.298643], 2.8)
     addFlyOnClick($('#africaBtn'), 'Africa', [17.015762, 8.895926], 3)
-    addFlyOnClick($('#americasBtn'), 'Americas', [-70.582352, -3.374284], 3)
+    addFlyOnClick($('#americasBtn'), 'Americas', [-70.582352, -3.374284], 2.5)
 }
 
 export const game = (map) => {

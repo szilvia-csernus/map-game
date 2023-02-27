@@ -315,8 +315,11 @@ Please view [TESTING.md](TESTING.md) for more information on testing.
 <br><br>
 
 # Credits
-* Simplified country boundaries in geojson format:
-https://github.com/johan/world.geo.json/blob/master/countries.geo.json
+
+* Data for capital cities:
+https://github.com/mledoze/countries
+https://codebeautify.org/online-json-editor/5aa491
+https://ctftime.org/writeup/16139
 
 * Flag-icons in svg format in an npm package:
 https://www.npmjs.com/package/flag-icons
