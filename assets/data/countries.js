@@ -1,4 +1,4 @@
-{
+export const data = {
 	"EH": {
 		"countryName": "Western Sahara",
 		"capitalName": "El-AaiÃºn",
@@ -929,4 +929,5 @@
 		"capitalName": "Harare",
 		"coordinates": ["31.033333", "-17.816666666666666"]
 	}
-}
+};
+
