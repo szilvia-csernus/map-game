@@ -1,0 +1,25 @@
+{
+  "name": "map-game",
+  "version": "1.0.0",
+  "description": "simple game based on map knowledge",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szilvia-csernus/map-game.git"
+  },
+  "keywords": [
+    "map",
+    "countries",
+    "capitals",
+    "game"
+  ],
+  "author": "Szilvia Csernus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szilvia-csernus/map-game/issues"
+  },
+  "homepage": "https://github.com/szilvia-csernus/map-game#readme"
+}

@@ -29,7 +29,7 @@
   top: 0;
   bottom: 0;
   width: 100%;
-  height: 130%;
+  height: 120%;
   opacity: 0;
 }
 
@@ -64,7 +64,7 @@
 
   .animate-header {
     transform: translateY(-35vh) scale(0.6, 0.6);
-    /* color: hsla(208, 66%, 35%, 0.498); */
+    /* color: #3aa956; */
   }
 }
 
@@ -109,7 +109,6 @@
 /* ------------- Game -------------- */
 
 .question {
-  font-family: Nunito Sans;
   font-weight: bold;
   font-size: clamp(4rem, 3.4074rem + 2.963vw, 6rem);
   letter-spacing: 0;

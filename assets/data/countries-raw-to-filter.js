@@ -1821,7 +1821,7 @@ const countries = [
 		CapitalLatitude: ' D.C.',
 		CapitalLongitude: '38.883333',
 		CountryCode: '-77.000000',
-		ContinentName: 'US',
+		ContinentName: 'North America',
 	},
 	{
 		CountryName: 'Uruguay',
@@ -1963,7 +1963,8 @@ const countries = [
 
 // filter and transform data
 const filterCountries = () => {
-	let countriesObject = {};
+	// I aligned the names of the subcathegories to the 'region' data coming from Mapbox
+	let countriesObject = {Africa: {}, Europe: {}, Asia: {}, Americas: {}, rest: {}};
 	countries.map((country) => {
 		if (
 			country['CountryCode'] != 'NULL' &&
@@ -1992,17 +1993,48 @@ const filterCountries = () => {
 			country['CountryCode'] != 'AG' && // Antigua and Barbuda
 			country['CountryCode'] != 'AW' && // Aruba
 			country['CountryCode'] != 'MF' && // Saint Martin
+			country['CountryCode'] != 'SM' && // San Marino
 			country['CountryCode'].length < 4 && // wrong data
 			!(
 				parseInt(country['CapitalLatitude']) === 0 &&
 				parseInt(country['CapitalLongitude']) === 0
 			)
 		) {
-			countriesObject[country['CountryCode']] = {
+			if (country['ContinentName'] === 'Africa') {
+			countriesObject.Africa[country['CountryCode']] = {
 				countryName: country['CountryName'],
 				capitalName: country['CapitalName'],
-				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']],
-			};
+				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
+			}
+		} else if (country['ContinentName'] === 'Europe') {
+			countriesObject.Europe[country['CountryCode']] = {
+
+				countryName: country['CountryName'],
+				capitalName: country['CapitalName'],
+				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
+			}
+		} else if (country['ContinentName'] === 'North America' ||
+		country['ContinentName'] === 'South America' ||
+		country['ContinentName'] === 'Central America') {
+			countriesObject.Americas[country['CountryCode']] = {
+				countryName: country['CountryName'],
+				capitalName: country['CapitalName'],
+				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
+			}
+		} else if (country['ContinentName'] === 'Asia') {
+			countriesObject.Asia[country['CountryCode']] = {
+				countryName: country['CountryName'],
+				capitalName: country['CapitalName'],
+				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
+			}
+		} else {
+			countriesObject.rest[country['CountryCode']] = {
+				region: country['ContinentName'],
+				countryName: country['CountryName'],
+				capitalName: country['CapitalName'],
+				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
+			}
+		}
 		}
 	});
 	return countriesObject;
@@ -2010,7 +2042,7 @@ const filterCountries = () => {
 
 const data = JSON.stringify(filterCountries());
 const fs = require('fs');
-fs.writeFile('countries.json', data, (err) => {
+fs.writeFile('./assets/data/countries.json', data, (err) => {
 	if (err) {
 		console.err(err);
 	} else {
