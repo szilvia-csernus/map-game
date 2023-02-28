@@ -17,7 +17,6 @@ const addTilesetSource = (map) => {
     map["boxZoom"].enable();
     map["dragRotate"].enable();
     map["keyboard"].enable();
-    map["doubleClickZoom"].enable();
     map["touchZoomRotate"].enable();
 
 };
@@ -134,14 +133,27 @@ const addBlurLayer = (map) => {
 }
 
 /** add select layer to the map */
-const addSelectLayer = (map, countryCode) =>  {
+const addSelectLayer = (map, countryCode) => {
     map.addLayer({
         filter: ['==', ['get', 'iso_3166_1'], countryCode],
-        id: `country-select`,
+        id: `country-select-line`,
         minzoom: 1,
         maxzoom: 7,
         paint: {
-            'fill-color': "#2ec62e"
+            'line-color': "#2ec62e",
+            'line-width': 2
+        },
+        source: "country-boundaries",
+        'source-layer': "country_boundaries",
+        type: "line"
+    });
+    map.addLayer({
+        filter: ['==', ['get', 'iso_3166_1'], countryCode],
+        id: `country-select-fill`,
+        minzoom: 1,
+        maxzoom: 7,
+        paint: {
+            'fill-color': "#fff",
         },
         source: "country-boundaries",
         'source-layer': "country_boundaries",
@@ -149,17 +161,78 @@ const addSelectLayer = (map, countryCode) =>  {
     });
 }
 
+const removeSelectLayer = (map) => {
+    // remove other country selection if there is any
+    map.getLayer('country-select-fill') && map.removeLayer('country-select-fill');
+    map.getLayer('country-select-line') && map.removeLayer('country-select-line');
+}
+
+const addFeedbackLayer = (map, countryCode) => {
+    map.addLayer({
+        filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+        id: 'country-feedback-line',
+        minzoom: 1,
+        maxzoom: 7,
+        paint: {
+            'line-color': "#fff",
+            'line-width': 2
+        },
+        source: "country-boundaries",
+        'source-layer': "country_boundaries",
+        type: "line"
+    });
+    if (countryCode === clickedCountryCode) {
+        map.addLayer({
+            filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+            id: 'country-feedback-fill',
+            minzoom: 1,
+            maxzoom: 7,
+            paint: {
+                'fill-color': "#3aa956"
+            },
+            source: "country-boundaries",
+            'source-layer': "country_boundaries",
+            type: "fill"
+        });
+    } else {
+        map.addLayer({
+            filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+            id: 'country-feedback-fill',
+            minzoom: 1,
+            maxzoom: 7,
+            paint: {
+                'fill-color': "#a93a42"
+            },
+            source: "country-boundaries",
+            'source-layer': "country_boundaries",
+            type: "fill"
+        });
+    }
+}
+
+const removeFeedbackLayer = (map) => {
+    // remove other country selection if there is any
+    map.getLayer('country-feedback-fill') && map.removeLayer('country-feedback-fill');
+    map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
+}
+
+
 const addSelectEventListener = (map, countryCode) => {
-   
+
     map.on('click', e => {
-        // remove other country selection if any
-        map.getLayer('country-select') && map.setLayer('country-select', null);
-        addSelectLayer(map, countryCode)
+        // remove previously set layer
+        removeSelectLayer(map);
+        addSelectLayer(map, clickedCountryCode)
+    })
+
+    map.on('dblclick', e => {
+        removeFeedbackLayer(map);
+        addFeedbackLayer(map, countryCode)
     })
 }
 
 const removePlayBtn = () => {
-    $('.mainTitle').fadeIn('slow').text('Choose a continent!').addClass('question');
+    $('.mainTitle').fadeIn('slow').text('choose a continent').addClass('question');
     $('#btnPlay').remove();
 }
 
@@ -191,16 +264,17 @@ const addClickListenersToContinentBtns = (map) => {
             !map.getLayer('country-blur') && addBlurLayer(map);
             map.setFilter('country-blur', ['!=', ['get', 'region'], region]);
             // add event listeners to the filtered region of the map
-            addEventListeners(map);
+            addEventListeners(map)
+            startRound(map, region);
         })
     }
     addTilesetSource(map);
     addHoverLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
-    addFlyOnClick($('#asiaBtn'), 'Asia', [84.090042, 42.298643], 2.8)
+    addFlyOnClick($('#asiaBtn'), 'Asia', [77.367783, 32.174450], 2.8)
     addFlyOnClick($('#africaBtn'), 'Africa', [17.015762, 8.895926], 3)
-    addFlyOnClick($('#americasBtn'), 'Americas', [-84.811020,11.632733], 2)
+    addFlyOnClick($('#americasBtn'), 'Americas', [-84.811020, 11.632733], 2)
 }
 
 export const game = (map) => {
@@ -209,7 +283,10 @@ export const game = (map) => {
     addClickListenersToContinentBtns(map);
 }
 
-const countryCodesArray = Object.keys(data);
+// const europe = Object.keys(data['europe']);
+// const africa = Object.keys(data['africa']);
+// const americas = Object.keys(data['americas']);
+// const asia = Object.keys(data['asia']);
 
 // const countriesArray = () => {
 //     const countries = [];
@@ -227,6 +304,18 @@ const countryCodesArray = Object.keys(data);
 // const capitals = capitalsArray()
 
 const getRandomCountryCode = (countries) => {
-    let randomCountryCodeIndex = Math.floor(Math.random * countryCodesArray.length);
+    let randomCountryCodeIndex = Math.floor(Math.random() * countries.length);
     return countries[randomCountryCodeIndex]
+}
+
+const startRound = (map, region) => {
+    const codes = Object.keys(data[region]);
+    console.log(codes)
+    const randomCode = getRandomCountryCode(codes);
+    console.log(randomCode)
+    const country = data[region][randomCode].countryName;
+    console.log(country);
+    $('.mainTitle').fadeIn('slow').text(`Find ${country} on the map!`).addClass('question');
+    $('.continentCanvas').remove();
+    addSelectEventListener(map, randomCode)
 }
