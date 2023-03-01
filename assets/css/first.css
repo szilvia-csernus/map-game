@@ -21,6 +21,9 @@ html, body, section, article, h1, h2, p, a, button {
     --transparent-bg-color: rgba(26, 70, 132, 0.8);
     --main-font-color: white;
     --secondary-font-color: #0e3c5e;
+    --button-font-size: clamp(1.3rem, 1.1519rem + 0.7407vw, 1.8rem);
+    --header-font-size: clamp(3rem, 2.4074rem + 2.963vw, 5rem);
+    --question-font-size: clamp(2rem, 1.7037rem + 1.4815vw, 3rem);;
     --orange: #FF9671;
     --violet: #845EC2;
     --peach: #F7C8A8;
@@ -45,34 +48,33 @@ html, body, section, article, h1, h2, p, a, button {
   .header {
     position: absolute;
     left: 0;
-    top: 35vh;
+    /* top: 35vh; */
+    top: 2vh;
     z-index: 1;
     text-align: center;
     margin: auto;
     width: 100vw;
-    font-size: clamp(5rem, 3.5185rem + 7.4074vw, 10rem);
+    font-size: var(--header-font-size);
     font-weight: bold;
     color: var(--main-font-color);
     text-shadow: 4px 4px 15px var(--primary-color);;
-    letter-spacing: .4rem;
+    /* letter-spacing: .4rem; */
   }
   
-  /* .animate-appear {
-    animation: appear 1s ease-in;
-  } */
-  
-  /* @keyframes appear {
+  @keyframes appear {
     from {
       opacity: 0;   
     }
     to {
       opacity: 1;   
     }
-  } */
+  }
    
   .mainTitle {
     margin: 0;
     font-family: var(--main-font-family);
+    opacity: 1;
+    /* animation: appear .2s ease-in forwards */
   }
   
   .playBtnCanvas {
@@ -87,10 +89,8 @@ html, body, section, article, h1, h2, p, a, button {
   .btnPlay, .continentBtn {
     display: inline;
     position: relative;
-    bottom: 29vh;
     background-color: var(--transparent-bg-color);
-    font-family: Nunito Sans;
-    font-size: clamp(1.3rem, 1.1519rem + 0.7407vw, 1.8rem);
+    font-size: var(--button-font-size);
     font-weight: 700;
     letter-spacing: .2rem;
     color: var(--main-font-color);
@@ -99,20 +99,21 @@ html, body, section, article, h1, h2, p, a, button {
     padding: .7rem 3rem;
     border-radius: 2rem;
     box-shadow: 4px 4px 15px var(--primary-color);
-    transition: opacity 1s ease-in 1.5s;
+    opacity: 1;
+    /* animation: appear .2s ease-in forwards */
   }
 
-  .continentBtn {
+  /* .continentBtn {
     bottom: 0;
-  }
+  } */
   
   .btnPlay:hover, .continentBtn:hover {
     background-color: var(--primary-color-hover);
   }
   
-  @media screen and (min-height: 900px) {
+  /* @media screen and (min-height: 900px) {
     
     .btnPlay, .continentBtn{
       font-size: 1.7rem;
     }
-  }
+  } */
