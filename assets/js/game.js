@@ -232,7 +232,7 @@ const addSelectEventListener = (map, countryCode) => {
 }
 
 const removePlayBtn = () => {
-    $('.mainTitle').fadeIn('slow').text('choose a continent').addClass('question');
+    $('.mainTitle').fadeIn('slow').text('Choose a continent!').addClass('question');
     $('#btnPlay').remove();
 }
 

@@ -3,7 +3,7 @@ const initialZoom = () => {
         return 1
     } else if (window.innerWidth < 800) {
         return 1.5
-    } else return 1.8
+    } else return 1.7
 }
 
 const mapColours = {
