@@ -1,10 +1,12 @@
-const initialZoom = () => {
+export const initialZoom = () => {
     if (window.innerWidth < 415) {
         return 1
     } else if (window.innerWidth < 800) {
         return 1.5
     } else return 1.7
 }
+
+export const initialCenter = [30, 40];
 
 const mapColours = {
     1: "#845EC2", // violet
@@ -28,7 +30,7 @@ const createMapObject = (callback) => {
         zoom: initialZoom(),
         minZoom: 1,
         maxZoom: 6,
-        center: [30, 40],
+        center: initialCenter,
         dragPan: false,
         scrollZoom: false,
         boxZoom: false,
@@ -38,9 +40,22 @@ const createMapObject = (callback) => {
         touchZoomRotate: false
     });
 
-    map.on('load', () => callback(map))
+    map.on('load', () => {
+        addTilesetSource(map);
+        callback(map)
+    })
 
 }
+
+const addTilesetSource = (map) => {
+
+    map.addSource('country-boundaries', {
+        type: 'vector',
+        url: 'mapbox://mapbox.country-boundaries-v1',
+        generateId: true
+    })
+
+};
 
 const addRotation = (map, callback) => {
     // Starter code for rotating globe function is provided by mapbox.com in Mabpbox GLJS Examples. 
@@ -92,7 +107,7 @@ const addRotation = (map, callback) => {
         spinGlobe();
     });
 
-    $('#btnPlay').click(function () {
+    $('.playBtn').click(function () {
         spinEnabled = !spinEnabled;
         if (spinEnabled) {
             spinGlobe();
@@ -108,23 +123,21 @@ const addRotation = (map, callback) => {
 }
 
 const addIntroAnimation = () => {
-    $('header').addClass('animate-header');
-    $('.btnPlay').addClass('animate-button');
     $('.map').addClass('animate-appear-map');
 }
 
 let game;
 
-const startGame = (map) => {
-        addRotation(map, () => {
-             // import game.js only once
-            if (!game) {
-                game = import('./game.js');
-                }
-            game.then(module => {
-                module.game(map);
-            })
-        });
+export const startGame = (map) => {
+    addRotation(map, () => {
+        // import game.js only once
+        if (!game) {
+            game = import('./game.js');
+        }
+        game.then(module => {
+            module.game(map);
+        })
+    });
 }
 
 createMapObject((map) => {

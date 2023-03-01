@@ -338,7 +338,9 @@ https://grizhlie-clamp-calculator.netlify.app/
 
 ## Icons
 <br>
-
+* Mute - Sound icons:
+https://www.svgrepo.com/svg/441980/mute
+https://www.svgrepo.com/svg/442013/sound
 
 
 <br><br>
