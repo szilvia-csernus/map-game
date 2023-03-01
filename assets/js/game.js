@@ -2,24 +2,14 @@ import {
     data
 } from '../data/countries.js'
 
+import {
+    initialCenter,
+    initialZoom,
+    startGame
+} from './script.js'
+
+
 /**  adds tileset source for country boundaries, region and country name data */
-const addTilesetSource = (map) => {
-
-    map.addSource('country-boundaries', {
-        type: 'vector',
-        url: 'mapbox://mapbox.country-boundaries-v1',
-        generateId: true
-    })
-
-    // Set scroll and drag functions
-    map["dragPan"].enable();
-    map["scrollZoom"].enable();
-    map["boxZoom"].enable();
-    map["dragRotate"].enable();
-    map["keyboard"].enable();
-    map["touchZoomRotate"].enable();
-
-};
 
 let clickedCountryCode = null;
 const addEventListeners = (map) => {
@@ -55,11 +45,6 @@ const addEventListeners = (map) => {
             }, {
                 hover: true
             });
-            // console.log(map.getFeatureState({
-            //     source: 'country-boundaries',
-            //     sourceLayer: 'country_boundaries',
-            //     id: hoveredStateId
-            // }))
 
         }
     });
@@ -98,22 +83,33 @@ const addEventListeners = (map) => {
 /** adds interactive layer to the map.  */
 const addHoverLayer = (map) => {
     // select region's countries to be hoverable
-    map.addLayer({
-        id: 'country-hover',
-        minzoom: 1,
-        maxzoom: 7,
-        paint: {
-            'fill-color': [
-                'case',
-                ['boolean', ['feature-state', 'hover'], false],
-                "#fff", // paint it white on hover
-                "hsla(0, 0%, 100%, 0)"
-            ]
-        },
-        source: "country-boundaries",
-        'source-layer': "country_boundaries",
-        type: "fill"
-    })
+    if (!map.getLayer('country-hover')) {
+        map.addLayer({
+            id: 'country-hover',
+            minzoom: 1,
+            maxzoom: 7,
+            paint: {
+                'fill-color': [
+                    'case',
+                    ['boolean', ['feature-state', 'hover'], false],
+                    "#fff", // paint it white on hover
+                    "hsla(0, 0%, 100%, 0)"
+                ]
+            },
+            source: "country-boundaries",
+            'source-layer': "country_boundaries",
+            type: "fill"
+        })
+    }
+
+}
+
+/** remove hover layer and its filters if they exist */
+const removeHoverLayer = (map) => {
+    if (map.getLayer('country-hover')) {
+        map.setFilter('country-hover', null);
+        map.removeLayer('country-hover');
+    }
 
 }
 
@@ -130,6 +126,15 @@ const addBlurLayer = (map) => {
         'source-layer': "country_boundaries",
         type: "fill"
     })
+}
+
+/** remove blur layer and its filters if they exist */
+const removeBlurLayer = (map) => {
+    if (map.getLayer('country-blur')) {
+        map.setFilter('country-blur', null);
+        map.removeLayer('country-blur');
+
+    }
 }
 
 /** add select layer to the map */
@@ -161,8 +166,8 @@ const addSelectLayer = (map, countryCode) => {
     });
 }
 
+/** remove other country selection if there is any */
 const removeSelectLayer = (map) => {
-    // remove other country selection if there is any
     map.getLayer('country-select-fill') && map.removeLayer('country-select-fill');
     map.getLayer('country-select-line') && map.removeLayer('country-select-line');
 }
@@ -210,12 +215,11 @@ const addFeedbackLayer = (map, countryCode) => {
     }
 }
 
+/** remove other country selection if there is any */
 const removeFeedbackLayer = (map) => {
-    // remove other country selection if there is any
     map.getLayer('country-feedback-fill') && map.removeLayer('country-feedback-fill');
     map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
 }
-
 
 const addSelectEventListener = (map, countryCode) => {
 
@@ -232,12 +236,85 @@ const addSelectEventListener = (map, countryCode) => {
 }
 
 const removePlayBtn = () => {
-    $('.mainTitle').fadeIn('slow').text('Choose a continent!').addClass('question');
-    $('#btnPlay').remove();
+    $('.playBtnCanvas').remove();
+}
+
+const enableMapInteraction = (map) => {
+     // Set scroll and drag functions
+     map["dragPan"].enable();
+     map["scrollZoom"].enable();
+     map["boxZoom"].enable();
+     map["dragRotate"].enable();
+     map["keyboard"].enable();
+     map["touchZoomRotate"].enable();
+}
+
+const disableMapInteraction = (map) => {
+    map["dragPan"].disable();
+    map["scrollZoom"].disable();
+    map["boxZoom"].disable();
+    map["dragRotate"].disable();
+    map["keyboard"].disable();
+    map["touchZoomRotate"].disable();
+}
+
+const resetMap = (map) => {
+
+    removeHoverLayer(map);
+    removeBlurLayer(map);
+    removeSelectLayer(map);
+    removeFeedbackLayer(map);
+
+    disableMapInteraction(map);
+
+    map.flyTo({
+        center: [30,40],
+        zoom: 1,
+        essential: true
+    })
+}
+
+const updateElements = () => {
+    $('.continentCanvas').remove();
+
+    // reset main title
+    $('.mainTitle').empty().addClass('mainTitleReAppear');
+    const title = document.createElement('h1');
+    title.textContent = 'map it!';
+    $('.mainTitle').append(title);
+
+    // re-set Play button
+    const playBtnCanvas = document.createElement('div');
+    playBtnCanvas.setAttribute('class', 'playBtnCanvas');
+    const playBtn = document.createElement('button');
+    playBtn.setAttribute('class', 'playBtn');
+    playBtn.textContent = 'PLAY';
+    document.body.appendChild(playBtnCanvas);
+    playBtnCanvas.appendChild(playBtn);
+
+    $('.exitBtn').remove();
+
+}
+
+const reStartGame = (map) => {
+    updateElements();
+    resetMap(map);
+    startGame(map);
+}
+
+const addExitBtn = (map) => {
+    const exitBtn = document.createElement('button');
+    exitBtn.setAttribute('class', 'exitBtn');
+    exitBtn.textContent = 'Exit';
+    exitBtn.addEventListener('click', () => reStartGame(map))
+    $('.utilities').append(exitBtn);
+}
+
+const showChooseContinentTitle = () => {
+    $('.mainTitle h1').fadeIn('slow').text('Choose a continent!').addClass('choose');
 }
 
 const showContinentBtns = () => {
-
     $('body').append('<div class="continentCanvas"></div>')
 
     // add continent buttons
@@ -253,7 +330,8 @@ const addClickListenersToContinentBtns = (map) => {
         button.click(function () {
             map.flyTo({
                 center,
-                zoom
+                zoom,
+                essential: true
             })
             // clear previous filters if any
             map.setFilter('country-hover', null);
@@ -264,11 +342,11 @@ const addClickListenersToContinentBtns = (map) => {
             !map.getLayer('country-blur') && addBlurLayer(map);
             map.setFilter('country-blur', ['!=', ['get', 'region'], region]);
             // add event listeners to the filtered region of the map
-            addEventListeners(map)
+            addEventListeners(map);
+            enableMapInteraction(map);
             startRound(map, region);
         })
     }
-    addTilesetSource(map);
     addHoverLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
@@ -279,29 +357,11 @@ const addClickListenersToContinentBtns = (map) => {
 
 export const game = (map) => {
     removePlayBtn();
+    addExitBtn(map);
+    showChooseContinentTitle();
     showContinentBtns();
     addClickListenersToContinentBtns(map);
 }
-
-// const europe = Object.keys(data['europe']);
-// const africa = Object.keys(data['africa']);
-// const americas = Object.keys(data['americas']);
-// const asia = Object.keys(data['asia']);
-
-// const countriesArray = () => {
-//     const countries = [];
-//     Object.values(data).forEach(data => countries.push(data['countryName']))
-//     return countries
-// }
-
-// const capitalsArray = () => {
-//     const capitals = [];
-//     Object.values(data).forEach(data => capitals.push(data['capitalName']))
-//     return capitals
-// }
-
-// const countries = countriesArray();
-// const capitals = capitalsArray()
 
 const getRandomCountryCode = (countries) => {
     let randomCountryCodeIndex = Math.floor(Math.random() * countries.length);
@@ -315,7 +375,15 @@ const startRound = (map, region) => {
     console.log(randomCode)
     const country = data[region][randomCode].countryName;
     console.log(country);
-    $('.mainTitle').fadeIn('slow').text(`Find ${country} on the map!`).addClass('question');
-    $('.continentCanvas').remove();
+    $('.continentCanvas').empty();
+
+
+    const countryLabel = document.createElement('p');
+    $('.mainTitle h1').fadeIn('slow').removeClass('choose').text(`Find the country on the map!`).addClass('question');
+    countryLabel.id = 'countryLabel';
+
+    $('.mainTitle').append(countryLabel)
+    $('#countryLabel').addClass('country').addClass(`country${region}`).text(country).fadeIn('slow');
+
     addSelectEventListener(map, randomCode)
 }

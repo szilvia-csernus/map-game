@@ -2,6 +2,8 @@
 
 html, body, section, article, h1, h2, p, a, button {
     margin: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
     border: 0;
     padding: 0;
     outline: 0;
@@ -15,19 +17,24 @@ html, body, section, article, h1, h2, p, a, button {
   /* ----- DEFAULTS ------ */
 
   :root {
-    --main-font-family: 'Nunito Sans', sans-serif;
-    --primary-color: #0e2b5e;
+    --main-font-family: 'Nunito';
+    --primary-color: rgb(14, 43, 94);
     --primary-color-hover: rgb(26, 70, 132);
-    --transparent-bg-color: rgba(26, 70, 132, 0.8);
+    --transparent-bg-color: rgba(14, 43, 94, 0.8);
     --main-font-color: white;
-    --secondary-font-color: #0e3c5e;
-    --button-font-size: clamp(1.3rem, 1.1519rem + 0.7407vw, 1.8rem);
-    --header-font-size: clamp(3rem, 2.4074rem + 2.963vw, 5rem);
-    --question-font-size: clamp(2rem, 1.7037rem + 1.4815vw, 3rem);;
+    --secondary-bg-color: white;
+    --secondary-font-color: rgb(14, 60, 94);
+    --button-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
+    --title-font-size: clamp(3rem, 2.8519rem + 0.7407vw, 3.5rem);
+    --question-font-size: clamp(1.8rem, 1.7407rem + 0.2963vw, 2rem);
+    --country-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
+    --utilities-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
+    /* --light-grey: rgb(240, 240, 240);
+    --ocean: rgb(86, 179, 220); */
     --orange: #FF9671;
     --violet: #845EC2;
     --peach: #F7C8A8;
-    --fuchia: #FF6F91;
+    --fuchsia: #FF6F91;
     --pink: #f475b4;
     --magenta: #D65DB1;
     --yellow: #FFC75F;
@@ -35,6 +42,7 @@ html, body, section, article, h1, h2, p, a, button {
   
   html {
     font-family: var(--main-font-family);
+    box-sizing: border-box;
   }
   
   body {
@@ -48,17 +56,14 @@ html, body, section, article, h1, h2, p, a, button {
   .header {
     position: absolute;
     left: 0;
-    /* top: 35vh; */
     top: 2vh;
     z-index: 1;
-    text-align: center;
+    /* text-align: center; */
     margin: auto;
     width: 100vw;
-    font-size: var(--header-font-size);
-    font-weight: bold;
-    color: var(--main-font-color);
-    text-shadow: 4px 4px 15px var(--primary-color);;
-    /* letter-spacing: .4rem; */
+    display: grid;
+    grid-template-columns: 5.5rem 1fr 5.5rem;
+    gap: 0;
   }
   
   @keyframes appear {
@@ -69,12 +74,37 @@ html, body, section, article, h1, h2, p, a, button {
       opacity: 1;   
     }
   }
+
+  .utilities {
+    
+  }
+
+  .sound {
+    /* width: 3rem;
+    height: 3rem;
+    color: var(--main-font-color) */
+    order: 3;
+  }
+  
    
   .mainTitle {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
     margin: 0;
+    font-weight: bold;
+    color: var(--main-font-color);
+    text-shadow: 0 0 15px var(--primary-color);
     font-family: var(--main-font-family);
+    font-size: var(--title-font-size);
+    order: 2;
     opacity: 1;
-    /* animation: appear .2s ease-in forwards */
+  }
+
+  .mainTitleReAppear {
+    opacity: 0;
+    animation: appear .2s ease-in forwards
   }
   
   .playBtnCanvas {
@@ -86,7 +116,7 @@ html, body, section, article, h1, h2, p, a, button {
     margin: auto;
   }
   
-  .btnPlay, .continentBtn {
+  .playBtn, .continentBtn {
     display: inline;
     position: relative;
     background-color: var(--transparent-bg-color);
@@ -102,18 +132,8 @@ html, body, section, article, h1, h2, p, a, button {
     opacity: 1;
     /* animation: appear .2s ease-in forwards */
   }
-
-  /* .continentBtn {
-    bottom: 0;
-  } */
   
-  .btnPlay:hover, .continentBtn:hover {
+  .playBtn:hover, .continentBtn:hover {
     background-color: var(--primary-color-hover);
   }
   
-  /* @media screen and (min-height: 900px) {
-    
-    .btnPlay, .continentBtn{
-      font-size: 1.7rem;
-    }
-  } */
