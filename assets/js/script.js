@@ -31,6 +31,7 @@ const createMapObject = (callback) => {
         minZoom: 1,
         maxZoom: 6,
         center: initialCenter,
+        attributionControl: false,
         dragPan: false,
         scrollZoom: false,
         boxZoom: false,
@@ -38,7 +39,10 @@ const createMapObject = (callback) => {
         keyboard: false,
         doubleClickZoom: false,
         touchZoomRotate: false
-    });
+    }).addControl(new mapboxgl.AttributionControl({
+        customAttribution: 'App and map design by &copy; Szilvia Csernusne Berczes'
+        }));;
+
 
     map.on('load', () => {
         addTilesetSource(map);
