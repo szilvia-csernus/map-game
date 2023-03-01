@@ -172,6 +172,7 @@ const removeSelectLayer = (map) => {
     map.getLayer('country-select-line') && map.removeLayer('country-select-line');
 }
 
+/** this layer renders the country green/red according to the answer given */
 const addFeedbackLayer = (map, countryCode) => {
     map.addLayer({
         filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
@@ -268,10 +269,11 @@ const resetMap = (map) => {
     disableMapInteraction(map);
 
     map.flyTo({
-        center: [30,40],
-        zoom: 1,
+        center: initialCenter,
+        zoom: initialZoom(),
         essential: true
     })
+    
 }
 
 const updateElements = () => {
@@ -299,7 +301,7 @@ const updateElements = () => {
 const reStartGame = (map) => {
     updateElements();
     resetMap(map);
-    startGame(map);
+    setTimeout(() => startGame(map), 1000);
 }
 
 const addExitBtn = (map) => {
