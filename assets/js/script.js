@@ -40,7 +40,7 @@ const createMapObject = (callback) => {
         doubleClickZoom: false,
         touchZoomRotate: false
     }).addControl(new mapboxgl.AttributionControl({
-        customAttribution: 'App and map design by &copy; Szilvia Csernusne Berczes'
+        customAttribution: 'App development and map design by &copy; Szilvia Csernus'
         }));;
 
 
@@ -62,28 +62,17 @@ const addTilesetSource = (map) => {
 };
 
 const addRotation = (map, callback) => {
-    // Starter code for rotating globe function is provided by mapbox.com in Mabpbox GLJS Examples. 
+    // Base code for rotating globe function is provided by mapbox.com in Mabpbox GLJS Examples. 
 
     // Rotation speed 
     const secondsPerRevolution = 180;
 
-    // Above zoom level 4, do not rotate.
-    const maxSpinZoom = 4;
-    // Rotate at intermediate speeds between zoom levels 3 and 5.
-    const slowSpinZoom = 3;
-
-    let userInteracting = false;
     let spinEnabled = true;
 
     function spinGlobe() {
         const zoom = map.getZoom();
-        if (spinEnabled && !userInteracting && zoom < maxSpinZoom) {
+        if (spinEnabled) {
             let distancePerSecond = 360 / secondsPerRevolution;
-            if (zoom > slowSpinZoom) {
-                // Slow spinning at higher zooms
-                const zoomDif = (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
-                distancePerSecond *= zoomDif;
-            }
             const center = map.getCenter();
             center.lng -= distancePerSecond;
             // Smoothly animate the map over one second.
@@ -96,13 +85,8 @@ const addRotation = (map, callback) => {
         }
     }
 
-    // Pause spinning on interaction
-    map.on('mousedown', () => {
-        userInteracting = true;
-    });
-
     map.on('rotateend', () => {
-        userInteracting = false;
+        // userInteracting = false;
         spinGlobe();
     });
 
@@ -113,14 +97,9 @@ const addRotation = (map, callback) => {
 
     $('.playBtn').click(function () {
         spinEnabled = !spinEnabled;
-        if (spinEnabled) {
-            spinGlobe();
-        } else {
-            map.stop(); // Immediately end ongoing animation
-        }
-
+        map.stop(); // Immediately end ongoing animation
+        
         callback();
-
     });
 
     spinGlobe();
