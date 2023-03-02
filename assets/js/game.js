@@ -1,17 +1,13 @@
 import {
-    data
-} from '../data/countries.js'
-
-import {
-    initialCenter,
     initialZoom,
     startGame
 } from './script.js'
 
+import { startRound, removeSelectLayer, removeFeedbackLayer } from './round.js';
 
 /**  adds tileset source for country boundaries, region and country name data */
 
-let clickedCountryCode = null;
+export let clickedCountryCode = null;
 const addEventListeners = (map) => {
     let hoveredStateId = null;
 
@@ -137,105 +133,6 @@ const removeBlurLayer = (map) => {
     }
 }
 
-/** add select layer to the map */
-const addSelectLayer = (map, countryCode) => {
-    map.addLayer({
-        filter: ['==', ['get', 'iso_3166_1'], countryCode],
-        id: `country-select-line`,
-        minzoom: 1,
-        maxzoom: 7,
-        paint: {
-            'line-color': "#2ec62e",
-            'line-width': 2
-        },
-        source: "country-boundaries",
-        'source-layer': "country_boundaries",
-        type: "line"
-    });
-    map.addLayer({
-        filter: ['==', ['get', 'iso_3166_1'], countryCode],
-        id: `country-select-fill`,
-        minzoom: 1,
-        maxzoom: 7,
-        paint: {
-            'fill-color': "#fff",
-        },
-        source: "country-boundaries",
-        'source-layer': "country_boundaries",
-        type: "fill"
-    });
-}
-
-/** remove other country selection if there is any */
-const removeSelectLayer = (map) => {
-    map.getLayer('country-select-fill') && map.removeLayer('country-select-fill');
-    map.getLayer('country-select-line') && map.removeLayer('country-select-line');
-}
-
-/** this layer renders the country green/red according to the answer given */
-const addFeedbackLayer = (map, countryCode) => {
-    map.addLayer({
-        filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
-        id: 'country-feedback-line',
-        minzoom: 1,
-        maxzoom: 7,
-        paint: {
-            'line-color': "#fff",
-            'line-width': 2
-        },
-        source: "country-boundaries",
-        'source-layer': "country_boundaries",
-        type: "line"
-    });
-    if (countryCode === clickedCountryCode) {
-        map.addLayer({
-            filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
-            id: 'country-feedback-fill',
-            minzoom: 1,
-            maxzoom: 7,
-            paint: {
-                'fill-color': "#3aa956"
-            },
-            source: "country-boundaries",
-            'source-layer': "country_boundaries",
-            type: "fill"
-        });
-    } else {
-        map.addLayer({
-            filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
-            id: 'country-feedback-fill',
-            minzoom: 1,
-            maxzoom: 7,
-            paint: {
-                'fill-color': "#a93a42"
-            },
-            source: "country-boundaries",
-            'source-layer': "country_boundaries",
-            type: "fill"
-        });
-    }
-}
-
-/** remove other country selection if there is any */
-const removeFeedbackLayer = (map) => {
-    map.getLayer('country-feedback-fill') && map.removeLayer('country-feedback-fill');
-    map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
-}
-
-const addSelectEventListener = (map, countryCode) => {
-
-    map.on('click', e => {
-        // remove previously set layer
-        removeSelectLayer(map);
-        addSelectLayer(map, clickedCountryCode)
-    })
-
-    map.on('dblclick', e => {
-        removeFeedbackLayer(map);
-        addFeedbackLayer(map, countryCode)
-    })
-}
-
 const removePlayBtn = () => {
     $('.playBtnCanvas').remove();
 }
@@ -268,9 +165,9 @@ const resetMap = (map) => {
 
     disableMapInteraction(map);
 
-    map.flyTo({
-        center: initialCenter,
+    map.easeTo({
         zoom: initialZoom(),
+        duration: 1000,
         essential: true
     })
     
@@ -330,9 +227,10 @@ const addClickListenersToContinentBtns = (map) => {
 
     const addFlyOnClick = (button, region, center, zoom = 4) => {
         button.click(function () {
-            map.flyTo({
+            map.easeTo({
                 center,
                 zoom,
+                duration: 1000,
                 essential: true
             })
             // clear previous filters if any
@@ -365,27 +263,3 @@ export const game = (map) => {
     addClickListenersToContinentBtns(map);
 }
 
-const getRandomCountryCode = (countries) => {
-    let randomCountryCodeIndex = Math.floor(Math.random() * countries.length);
-    return countries[randomCountryCodeIndex]
-}
-
-const startRound = (map, region) => {
-    const codes = Object.keys(data[region]);
-    console.log(codes)
-    const randomCode = getRandomCountryCode(codes);
-    console.log(randomCode)
-    const country = data[region][randomCode].countryName;
-    console.log(country);
-    $('.continentCanvas').empty();
-
-
-    const countryLabel = document.createElement('p');
-    $('.mainTitle h1').fadeIn('slow').removeClass('choose').text(`Find the country on the map!`).addClass('question');
-    countryLabel.id = 'countryLabel';
-
-    $('.mainTitle').append(countryLabel)
-    $('#countryLabel').addClass('country').addClass(`country${region}`).text(country).fadeIn('slow');
-
-    addSelectEventListener(map, randomCode)
-}
