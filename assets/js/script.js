@@ -6,8 +6,6 @@ export const initialZoom = () => {
     } else return 1.7
 }
 
-export const initialCenter = [30, 40];
-
 const mapColours = {
     1: "#845EC2", // violet
     2: "#F7C8A8", // peach
@@ -30,7 +28,7 @@ const createMapObject = (callback) => {
         zoom: initialZoom(),
         minZoom: 1,
         maxZoom: 6,
-        center: initialCenter,
+        center: [30, 40],
         attributionControl: false,
         dragPan: false,
         scrollZoom: false,
@@ -63,12 +61,11 @@ const addTilesetSource = (map) => {
 
 const addRotation = (map, callback) => {
     // Base code for rotating globe function is provided by mapbox.com in Mabpbox GLJS Examples. 
-
     // Rotation speed 
     const secondsPerRevolution = 180;
 
     let spinEnabled = true;
-
+    
     function spinGlobe() {
         const zoom = map.getZoom();
         if (spinEnabled) {
@@ -85,19 +82,12 @@ const addRotation = (map, callback) => {
         }
     }
 
-    map.on('rotateend', () => {
-        // userInteracting = false;
-        spinGlobe();
-    });
-
     // When animation is complete, start spinning if there is no ongoing interaction
-    map.on('moveend', () => {
-        spinGlobe();
-    });
+    map.on('moveend', () => spinGlobe());
 
     $('.playBtn').click(function () {
         spinEnabled = !spinEnabled;
-        map.stop(); // Immediately end ongoing animation
+        // map.stop(); // Immediately end ongoing animation
         
         callback();
     });
