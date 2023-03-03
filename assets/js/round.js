@@ -89,33 +89,60 @@ export const removeFeedbackLayer = (map) => {
     map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
 }
 
-
 /** add select- and feedback layers and remove previous ones */
 const setSelectEventListeners = (map, countryCode, callback) => {
     
-    map.on('click', () => {
-        removeSelectLayer(map);
-        console.log(clickedCountryCode)
-        addSelectLayer(map, clickedCountryCode);
-    })
+    // map.on('click', () => {
+    //     removeSelectLayer(map);
+    //     console.log('click', clickedCountryCode)
+    //     addSelectLayer(map, clickedCountryCode);
+    // })
 
-    const setDblClickFeedbackLayer = () => {
-        removeFeedbackLayer(map);
-        addFeedbackLayer(map, countryCode)
-        callback()
-        return map.off('dblclick', setDblClickFeedbackLayer)
-    }
+    // const setDblClickFeedbackLayer = () => {
+    //     removeFeedbackLayer(map);
+    //     addFeedbackLayer(map, countryCode)
+    //     console.log('doubleclick', clickedCountryCode)
+    //     callback()
+    //     // cleans up event listener after it's initiated
+    //     return map.off('dblclick', setDblClickFeedbackLayer)
+    // }
 
-    map.on('dblclick', setDblClickFeedbackLayer)
+    // map.on('dblclick', setDblClickFeedbackLayer)
 
     const setTapHoldFeedbackLayer = () => {
+        console.log('callback fired')
+        removeSelectLayer(map);
         removeFeedbackLayer(map);
         addFeedbackLayer(map, countryCode)
         callback()
-        return map.off('taphold', setTapHoldFeedbackLayer)
+        
     }
 
-    map.on('taphold', setTapHoldFeedbackLayer)
+    const touchStartFunction = (startEvent) => {
+        console.log('start', startEvent.originalEvent.timeStamp)
+
+        const touchEndFunction = (endEvent) => {
+            console.log('end', endEvent.originalEvent.timeStamp)
+
+            // if user's tap is longer than 500ms then initiate the feedback layer
+            if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 500) {
+                // console.log('taphold', clickedCountryCode)
+                // remember that this calls a recursive function!
+                setTapHoldFeedbackLayer();
+                
+            } else {
+                // console.log('tap', clickedCountryCode)
+                map.once('touchstart', touchStartFunction)
+                removeFeedbackLayer(map)
+                removeSelectLayer(map);
+                addSelectLayer(map, clickedCountryCode);
+            }
+        }
+        map.once('touchend', touchEndFunction);
+    }
+
+    map.once('touchstart', touchStartFunction) 
+    
 }
 
 const getRandomCountryCode = (countries) => {
