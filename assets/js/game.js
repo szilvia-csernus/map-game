@@ -66,9 +66,12 @@ const addEventListeners = (map) => {
 
     map.on('click', 'country-hover', (e) => {
         clickedCountryCode = e.features[0].properties.iso_3166_1;
-        console.log(clickedCountryCode)
     })
-
+    
+    map.on('touchstart', 'country-hover', (e) => {
+        clickedCountryCode = e.features[0].properties.iso_3166_1;
+    })
+    
     // return (map.getFeatureState({
     //     source: 'country-boundaries',
     //     sourceLayer: 'country_boundaries',
