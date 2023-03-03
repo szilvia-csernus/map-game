@@ -52,18 +52,18 @@ html, body, section, article, h1, h2, p, a, button {
     height: 100vh;
     margin: 0;
   }
-  
-  .header {
+
+  .title {
     position: absolute;
-    left: 0;
-    top: 2vh;
+    top: 4vh;
     z-index: 1;
-    /* text-align: center; */
-    margin: auto;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 5.5rem 1fr 5.5rem;
-    gap: 0;
+    font-weight: bold;
+    color: var(--main-font-color);
+    text-shadow: 0 0 15px var(--primary-color);
+    font-family: var(--main-font-family);
+    font-size: var(--title-font-size);
+    opacity: 0;
+    animation: appear .5s ease-in forwards;
   }
   
   @keyframes appear {
@@ -76,36 +76,26 @@ html, body, section, article, h1, h2, p, a, button {
   }
 
   .home {
-    
-  }
-
-  .score {
-    /* width: 3rem;
-    height: 3rem;
-    color: var(--main-font-color) */
-    order: 3;
-  }
-  
-   
-  .mainTitle {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    margin: 0;
+    display: none;
+    position: absolute;
+    top: 2vh;
+    left: 2vw;
+    z-index: 1;
     font-weight: bold;
     color: var(--main-font-color);
     text-shadow: 0 0 15px var(--primary-color);
     font-family: var(--main-font-family);
-    font-size: var(--title-font-size);
-    order: 2;
-    opacity: 1;
+    font-size: var(--utilities-font-size);
   }
 
-  .mainTitleReAppear {
+  .home-appear {
+    display: inline;
+  }
+
+  /* .mainTitleReAppear {
     opacity: 0;
     animation: appear .2s ease-in forwards
-  }
+  } */
   
   .playBtnCanvas {
     position: absolute;

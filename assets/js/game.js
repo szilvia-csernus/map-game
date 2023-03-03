@@ -133,7 +133,6 @@ const removeBlurLayer = (map) => {
     if (map.getLayer('country-blur')) {
         map.setFilter('country-blur', null);
         map.removeLayer('country-blur');
-
     }
 }
 
@@ -181,10 +180,8 @@ const updateElements = () => {
     $('.continentCanvas').remove();
 
     // reset main title
-    $('.mainTitle').empty().addClass('mainTitleReAppear');
-    const title = document.createElement('h1');
-    title.textContent = 'map it!';
-    $('.mainTitle').append(title);
+    $('h1').empty().addClass('mainTitleReAppear').text('map it!');
+    
 
     // re-set Play button
     const playBtnCanvas = document.createElement('div');
@@ -195,7 +192,7 @@ const updateElements = () => {
     document.body.appendChild(playBtnCanvas);
     playBtnCanvas.appendChild(playBtn);
 
-    $('.exitBtn').remove();
+    $('.home').removeClass('.home-appear');
 
 }
 
@@ -206,15 +203,13 @@ const reStartGame = (map) => {
 }
 
 const addExitBtn = (map) => {
-    const exitBtn = document.createElement('button');
-    exitBtn.setAttribute('class', 'exitBtn');
-    exitBtn.textContent = 'Exit';
-    exitBtn.addEventListener('click', () => reStartGame(map))
-    $('.utilities').append(exitBtn);
+    $('.home').addClass('home-appear').click(function() {
+        reStartGame(map)
+    })
 }
 
 const showChooseContinentTitle = () => {
-    $('.mainTitle h1').fadeIn('slow').text('Choose a continent!').addClass('choose');
+    $('h1').removeClass('title').addClass('choose').fadeIn('slow').text('Choose a continent!');
 }
 
 const showContinentBtns = () => {
