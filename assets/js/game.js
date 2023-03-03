@@ -68,6 +68,7 @@ const addEventListeners = (map) => {
         clickedCountryCode = e.features[0].properties.iso_3166_1;
     })
     
+    // only for mobile devices
     map.on('touchstart', 'country-hover', (e) => {
         clickedCountryCode = e.features[0].properties.iso_3166_1;
     })
@@ -159,7 +160,7 @@ const disableMapInteraction = (map) => {
     map["touchZoomRotate"].disable();
 }
 
-const resetMap = (map) => {
+export const resetMap = (map) => {
 
     removeHoverLayer(map);
     removeBlurLayer(map);

@@ -2,7 +2,16 @@ import {
     data
 } from '../data/countries.js'
 
-import { clickedCountryCode } from './game.js';
+import {
+    clickedCountryCode,
+    game,
+    resetMap
+} from './game.js';
+
+let score = 0;
+
+// this function gets fired in the 'addFeedbackLayer' when user chooses the right answer.
+const increaseScore = () => ++score;
 
 /** add select layer to the map */
 const addSelectLayer = (map, countryCode) => {
@@ -39,7 +48,9 @@ export const removeSelectLayer = (map) => {
     map.getLayer('country-select-line') && map.removeLayer('country-select-line');
 }
 
-/** this layer renders the country green/red according to the answer given */
+/** this layer renders the country green/red according to the answer given 
+ * as well as increases the score if the answer is correct.
+ */
 const addFeedbackLayer = (map, countryCode) => {
     map.addLayer({
         filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
@@ -55,6 +66,7 @@ const addFeedbackLayer = (map, countryCode) => {
         type: "line"
     });
     if (countryCode === clickedCountryCode) {
+        increaseScore();
         map.addLayer({
             filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
             id: 'country-feedback-fill',
@@ -90,32 +102,35 @@ export const removeFeedbackLayer = (map) => {
 }
 
 /** add select- and feedback layers and remove previous ones */
-const setSelectEventListeners = (map, countryCode, callback) => {
-    
-    // map.on('click', () => {
-    //     removeSelectLayer(map);
-    //     console.log('click', clickedCountryCode)
-    //     addSelectLayer(map, clickedCountryCode);
-    // })
+const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
 
-    // const setDblClickFeedbackLayer = () => {
-    //     removeFeedbackLayer(map);
-    //     addFeedbackLayer(map, countryCode)
-    //     console.log('doubleclick', clickedCountryCode)
-    //     callback()
-    //     // cleans up event listener after it's initiated
-    //     return map.off('dblclick', setDblClickFeedbackLayer)
-    // }
+    map.on('click', () => {
+        removeSelectLayer(map);
+        console.log('click', clickedCountryCode)
+        addSelectLayer(map, clickedCountryCode);
+    })
 
-    // map.on('dblclick', setDblClickFeedbackLayer)
+    const setDblClickFeedbackLayer = () => {
+        removeFeedbackLayer(map);
+        addFeedbackLayer(map, countryCode, increaseScore)
+        console.log('doubleclick', clickedCountryCode)
+        callback()
+        // cleans up event listener after it's initiated
+        return map.off('dblclick', setDblClickFeedbackLayer)
+    }
+
+    map.on('dblclick', setDblClickFeedbackLayer)
+
+
+    // touch events for mobile devices
 
     const setTapHoldFeedbackLayer = () => {
         console.log('callback fired')
         removeSelectLayer(map);
         removeFeedbackLayer(map);
-        addFeedbackLayer(map, countryCode)
+        addFeedbackLayer(map, countryCode, increaseScore)
         callback()
-        
+
     }
 
     const touchStartFunction = (startEvent) => {
@@ -129,7 +144,7 @@ const setSelectEventListeners = (map, countryCode, callback) => {
                 // console.log('taphold', clickedCountryCode)
                 // remember that this calls a recursive function!
                 setTapHoldFeedbackLayer();
-                
+
             } else {
                 // console.log('tap', clickedCountryCode)
                 map.once('touchstart', touchStartFunction)
@@ -141,8 +156,8 @@ const setSelectEventListeners = (map, countryCode, callback) => {
         map.once('touchend', touchEndFunction);
     }
 
-    map.once('touchstart', touchStartFunction) 
-    
+    map.once('touchstart', touchStartFunction)
+
 }
 
 const getRandomCountryCode = (countries) => {
@@ -165,23 +180,28 @@ const getQuestions = (region) => {
 
 const oneQuestion = (map, code, country, region, callback) => {
     $('#countryLabel').addClass('country').addClass(`country${region}`).text(country).fadeIn('slow');
-    
-    setSelectEventListeners(map, code, callback)
+    setSelectEventListeners(map, code, increaseScore, callback)
 }
 
 // this recursive code asks the last question in the array and in oneQuestion() function it sets
 // the event listener to set the next question after a dblclick / taphold event, as long as
 // the questions array is not empty.
-const askQuestions = (map, region, questions) => {
-    if (questions.length === 0)  {
-        return
+const askQuestions = (map, region, questions, showScore) => {
+    if (questions.length === 0) {
+        return showScore()
     };
+
     const question = questions.pop()
-    oneQuestion(map, question[0], question[1], region, () => askQuestions(map, region, questions))
+    oneQuestion(map, question[0], question[1], region, () => askQuestions(map, region, questions, showScore))
 }
 
+const restartRound = (map) => {
+    resetMap(map);
+    game(map)
+}
 
 export const startRound = (map, region) => {
+    score = 0;
     $('.continentCanvas').empty();
     $('.mainTitle h1').fadeIn('slow').removeClass('choose').text(`Find the country on the map!`).addClass('question');
     const countryLabel = document.createElement('p');
@@ -190,6 +210,17 @@ export const startRound = (map, region) => {
 
     const questions = getQuestions(region);
 
-    askQuestions(map, region, questions)
-    
+    const showScore = () => {
+        $('.mainTitle h1').empty().text(`<p >Your Score: ${score} / 10</p>`)
+        $('.mainTitle').append(`<p><button id="restart" class="playBtn">Restart Game</button></p>`);
+        $('#restart').click(function () {
+            restartRound(map)
+        })
+    }
+
+    askQuestions(map, region, questions, showScore)
+
+   
+
+
 }
