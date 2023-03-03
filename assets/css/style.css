@@ -18,23 +18,18 @@
 }
 
 .choose {
-  transform: scale(0.8);
+  position: absolute;
+  top: 4vh;
+  z-index: 1;
+  font-weight: bold;
+  color: var(--main-font-color);
+  text-shadow: 0 0 15px var(--primary-color);
+  font-family: var(--main-font-family);
+  font-size: var(--question-font-size);
+  opacity: 0;
+  animation: appear 1s ease-in forwards
 }
-/* @keyframes appear {
-  from {
-    opacity: 0;   
-  }
-  to {
-    opacity: 1;   
-  }
-} */
 
-/* if screen is higher than 750px then place globe in the middle of screen */
-/* @media screen and (min-height: 750px) {
-  .map {
-    height: auto;
-  }
-} */
 
 /* ----------- Continent buttons ----------- */
 
@@ -85,13 +80,10 @@
 
 .exitBtn {
   position: relative;
-  /* background-color: var(--transparent-bg-color); */
   font-size: var(--utilities-font-size);
   text-shadow: 0 0 2px var(--primary-color);
   font-weight: 400;
   color: var(--main-font-color);
-  /* border: 1.5px solid var(--ocean);
-  box-shadow: 4px 4px 15px var(--primary-color); */
   text-align: center;
   margin: 1rem 0 0 1rem;
   cursor: pointer;
@@ -103,18 +95,23 @@
 }
 
 .question {
-  display: inline-block;
-  margin: 1rem 0;
+  position: absolute;
+  top: 6vh;
+  z-index: 1;
   font-weight: bold;
+  color: var(--main-font-color);
+  text-shadow: 0 0 15px var(--primary-color);
+  font-family: var(--main-font-family);
   font-size: var(--question-font-size);
-  letter-spacing: 0;
   opacity: 0;
-  animation: appear 1s ease-in forwards
+  animation: appear 1s ease-in forwards;
 }
 
 .country {
-  display: inline;
-  position: relative;
+  display: none;
+  position: absolute;
+  top: 15vh;
+  z-index: 1;
   background-color: var(--secondary-bg-color);
   font-size: var(--country-font-size);
   font-weight: 700;
@@ -122,10 +119,8 @@
   box-shadow: 4px 4px 15px var(--primary-color);
   text-shadow: none;
   padding: .2rem 1.8rem;
-  margin: auto;
   border-radius: 1.5rem;
   opacity: 0;
-  animation: appear .2s ease-in forwards
 }
 
 .countryEurope {
@@ -142,4 +137,27 @@
 
 .countryAmericas {
   border: 3px solid var(--orange);
+}
+
+.newGame {
+  display: none;
+  position: absolute;
+  top: 47vh;
+  z-index: 1;
+  background-color: var(--transparent-bg-color);
+  font-size: var(--country-font-size);
+  font-weight: 700;
+  color: var(--main-font-color);
+  border: 3px solid var(--orange);
+  cursor: pointer;
+  padding: .7rem 2rem;
+  border-radius: 2rem;
+  box-shadow: 4px 4px 15px var(--primary-color);
+  opacity: 0;
+}
+
+
+.animate-appear {
+  display: inline;
+  animation: appear .2s ease-in forwards;
 }

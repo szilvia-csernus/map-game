@@ -179,7 +179,7 @@ const getQuestions = (region) => {
 }
 
 const oneQuestion = (map, code, country, region, callback) => {
-    $('#countryLabel').addClass('country').addClass(`country${region}`).text(country).fadeIn('slow');
+    $('#countryLabel').addClass(`country${region}`).text(country).addClass('animate-appear');
     setSelectEventListeners(map, code, increaseScore, callback)
 }
 
@@ -196,31 +196,28 @@ const askQuestions = (map, region, questions, showScore) => {
 }
 
 const restartRound = (map) => {
-    resetMap(map);
+    $('.newGame').removeClass('animate-appear');
+    
     game(map)
 }
 
 export const startRound = (map, region) => {
     score = 0;
     $('.continentCanvas').empty();
-    $('.mainTitle h1').fadeIn('slow').removeClass('choose').text(`Find the country on the map!`).addClass('question');
-    const countryLabel = document.createElement('p');
-    countryLabel.id = 'countryLabel';
-    $('.mainTitle').append(countryLabel)
+    $('h1').fadeIn('slow').removeClass('choose').text(`Find the country on the map!`).addClass('question');
+    
 
     const questions = getQuestions(region);
 
     const showScore = () => {
-        $('.mainTitle h1').empty().text(`<p >Your Score: ${score} / 10</p>`)
-        $('.mainTitle').append(`<p><button id="restart" class="playBtn">Restart Game</button></p>`);
-        $('#restart').click(function () {
+        resetMap(map);
+        $('h1').empty().removeClass('question').addClass('title').text(`Your Score: ${score} / 10`)
+        $('#countryLabel').removeClass('animate-appear').empty();
+        $('.newGame').addClass('animate-appear').text('New Game').click(function () {
             restartRound(map)
         })
     }
 
     askQuestions(map, region, questions, showScore)
-
-   
-
 
 }
