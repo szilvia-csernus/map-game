@@ -137,7 +137,7 @@ const removeBlurLayer = (map) => {
 }
 
 const removePlayBtn = () => {
-    $('.playBtnCanvas').remove();
+    $('.playBtnCanvas') && $('.playBtnCanvas').remove();
 }
 
 const enableMapInteraction = (map) => {
@@ -177,7 +177,7 @@ export const resetMap = (map) => {
 }
 
 const updateElements = () => {
-    $('.continentCanvas').remove();
+    $('.continentCanvas') && $('.continentCanvas').remove();
 
     // reset main title
     $('h1').empty().addClass('mainTitleReAppear').text('map it!');
