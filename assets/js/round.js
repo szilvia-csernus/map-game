@@ -101,25 +101,25 @@ export const removeFeedbackLayer = (map) => {
     map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
 }
 
-/** add select- and feedback layers and remove previous ones */
+/** remove previous select- and feedback layers' event listeners and add updated ones */
 const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
 
-    map.on('click', () => {
-        removeSelectLayer(map);
-        console.log('click', clickedCountryCode)
-        addSelectLayer(map, clickedCountryCode);
-    })
+    // map.on('click', () => {
+    //     removeSelectLayer(map);
+    //     console.log('click', clickedCountryCode)
+    //     addSelectLayer(map, clickedCountryCode);
+    // })
 
-    const setDblClickFeedbackLayer = () => {
-        removeFeedbackLayer(map);
-        addFeedbackLayer(map, countryCode, increaseScore)
-        console.log('doubleclick', clickedCountryCode)
-        callback()
-        // cleans up event listener after it's initiated
-        return map.off('dblclick', setDblClickFeedbackLayer)
-    }
+    // const setDblClickFeedbackLayer = () => {
+    //     removeFeedbackLayer(map);
+    //     addFeedbackLayer(map, countryCode, increaseScore)
+    //     console.log('doubleclick', clickedCountryCode)
+    //     callback()
+    //     // cleans up event listener after it's initiated
+    //     return map.off('dblclick', setDblClickFeedbackLayer)
+    // }
 
-    map.on('dblclick', setDblClickFeedbackLayer)
+    // map.on('dblclick', setDblClickFeedbackLayer)
 
 
     // touch events for mobile devices
@@ -134,13 +134,19 @@ const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     }
 
     const touchStartFunction = (startEvent) => {
-        console.log('start', startEvent.originalEvent.timeStamp)
+        const startX = startEvent.point.x
+        const startY = startEvent.point.y;
+        console.log('start', startX, startY)
 
         const touchEndFunction = (endEvent) => {
-            console.log('end', endEvent.originalEvent.timeStamp)
+            const endX = endEvent.point.x
+            const endY = endEvent.point.y;
+        console.log('end', endX, endY)
+            const distance = ((endX - startX) ** 2 + (endY - endY) ** 2) ** (1/2)
+            console.log('distance', distance)
 
             // if user's tap is longer than 500ms then initiate the feedback layer
-            if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 500) {
+            if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 500 && distance < 5 ) {
                 // console.log('taphold', clickedCountryCode)
                 // remember that this calls a recursive function!
                 setTapHoldFeedbackLayer();
@@ -211,7 +217,7 @@ export const startRound = (map, region) => {
 
     const showScore = () => {
         resetMap(map);
-        $('h1').empty().removeClass('question').addClass('title').text(`Your Score: ${score} / 10`)
+        $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / 10`)
         $('#countryLabel').removeClass('animate-appear').empty();
         $('.newGame').addClass('animate-appear').text('New Game').click(function () {
             restartRound(map)
