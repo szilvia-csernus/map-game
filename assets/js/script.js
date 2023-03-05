@@ -16,7 +16,10 @@ const mapColours = {
     7: "#FF9671", // orange
 }
 
-// Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool.
+/** Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool. 
+ * Creating a map object fires as a 'load' using the Mapbox provided allowance of 
+ * 50.000 loads / month. This is created once and used throughout the whole lifecycle of the app.
+*/
 const createMapObject = (callback) => {
 
     mapboxgl.accessToken =
@@ -38,7 +41,7 @@ const createMapObject = (callback) => {
         doubleClickZoom: false,
         touchZoomRotate: false
     }).addControl(new mapboxgl.AttributionControl({
-        customAttribution: 'App development and map design by &copy; Szilvia Csernus'
+        customAttribution: '&copy; App development and map design by Szilvia Csernus'
         }));;
 
 
@@ -49,6 +52,7 @@ const createMapObject = (callback) => {
 
 }
 
+/**  adds tileset source for country boundaries, region and country name data */
 const addTilesetSource = (map) => {
 
     map.addSource('country-boundaries', {
@@ -82,7 +86,7 @@ const addRotation = (map, callback) => {
         }
     }
 
-    // When animation is complete, start spinning if there is no ongoing interaction
+    // When animation is complete (1s), start spinning again.
     map.on('moveend', () => spinGlobe());
 
     $('.playBtn').click(function () {
