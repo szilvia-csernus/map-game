@@ -84,7 +84,7 @@ html, body, section, article, h1, h2, p, a, button {
     width: 2rem;
     height: 2.5rem;
     color: var(--main-font-color);
-    text-shadow: 0 0 15px var(--primary-color);
+    filter: drop-shadow( 0 0 10px var(--primary-color));
     font-family: var(--main-font-family);
     font-size: var(--utilities-font-size);
     cursor: pointer;
