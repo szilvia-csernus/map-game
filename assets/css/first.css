@@ -2,8 +2,8 @@
 
 html, body, section, article, h1, h2, p, a, button {
     margin: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
+    /* margin-block-start: 0;
+    margin-block-end: 0; */
     border: 0;
     padding: 0;
     outline: 0;
@@ -20,7 +20,7 @@ html, body, section, article, h1, h2, p, a, button {
     --main-font-family: 'Nunito';
     --primary-color: rgb(14, 43, 94);
     --primary-color-hover: rgb(26, 70, 132);
-    --transparent-bg-color: rgba(14, 43, 94, 0.8);
+    --transparent-bg-color: rgba(14, 43, 94, 0.9);
     --main-font-color: white;
     --secondary-bg-color: white;
     --secondary-font-color: rgb(14, 60, 94);
@@ -75,55 +75,42 @@ html, body, section, article, h1, h2, p, a, button {
     }
   }
 
-  .home {
-    display: none;
+  .exit {
     position: absolute;
     top: 2vh;
     left: 2vw;
     z-index: 1;
     font-weight: bold;
+    width: 2rem;
+    height: 2.5rem;
     color: var(--main-font-color);
     text-shadow: 0 0 15px var(--primary-color);
     font-family: var(--main-font-family);
     font-size: var(--utilities-font-size);
-  }
-
-  .home-appear {
-    display: inline;
-  }
-
-  /* .mainTitleReAppear {
+    cursor: pointer;
     opacity: 0;
-    animation: appear .2s ease-in forwards
-  } */
-  
-  .playBtnCanvas {
-    position: absolute;
-    bottom: 4vh;
-    width: 100vw;
-    z-index: 1;
-    text-align: center;
-    margin: auto;
+    animation: appear .2s ease-in forwards;
   }
-  
-  .playBtn, .continentBtn {
-    display: inline;
-    position: relative;
+
+  .playBtn {
+    position: absolute;
+    bottom: 7vh;
     background-color: var(--transparent-bg-color);
     font-size: var(--button-font-size);
     font-weight: 700;
     letter-spacing: .2rem;
     color: var(--main-font-color);
-    border: 4px solid var(--orange);
+    border: 2px solid var(--main-font-color);
     cursor: pointer;
     padding: .7rem 3rem;
     border-radius: 2rem;
     box-shadow: 4px 4px 15px var(--primary-color);
-    opacity: 1;
-    /* animation: appear .2s ease-in forwards */
+    opacity: 0;
+    animation: appear .2s ease-in forwards;
   }
   
-  .playBtn:hover, .continentBtn:hover {
+  
+  .playBtn:hover {
     background-color: var(--primary-color-hover);
   }
   

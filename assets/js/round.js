@@ -1,8 +1,8 @@
 import { data } from '../data/countries.js'
 
-import { game} from './game.js';
-import { resetMap } from './exit.js';
+import { resetMap, restartGame } from './exit.js';
 import { addSelectLayer, removeSelectLayer, addFeedbackLayer, removeFeedbackLayer, clickedCountryCode } from './layers.js';
+import { addNewGameBtn, removeContinentBtns } from './buttons.js';
 
 let score = 0;
 
@@ -16,7 +16,7 @@ const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
         map.on('click', () => {
             removeSelectLayer(map);
             removeFeedbackLayer(map);
-            console.log('click', clickedCountryCode) // issue here!!!
+            console.log('click', clickedCountryCode)
             addSelectLayer(map, clickedCountryCode);
         })
 
@@ -98,7 +98,7 @@ const getQuestions = (region) => {
     const codes = Object.keys(data[region]);
 
     const questions = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 3; i++) {
         const randomCode = getRandomCountryCode(codes);
         const country = data[region][randomCode].countryName;
         questions.push([randomCode, country])
@@ -108,7 +108,7 @@ const getQuestions = (region) => {
 }
 
 const oneQuestion = (map, code, country, region, callback) => {
-    $('#countryLabel').addClass(`country${region}`).text(country).addClass('animate-appear');
+    $('#countryLabel').text(country)
     setSelectEventListeners(map, code, increaseScore, callback)
 }
 
@@ -123,27 +123,25 @@ const askQuestions = (map, region, questions, showScore) => {
     oneQuestion(map, question[0], question[1], region, () => askQuestions(map, region, questions, showScore))
 }
 
-const restartRound = (map) => {
-    $('.newGame').removeClass('animate-appear');
-
-    game(map)
+export const restartRound = (map) => {
+    $('#newGame').remove();
+    restartGame(map)
 }
 
 export const startRound = (map, region) => {
     score = 0;
-    $('.continentCanvas').empty();
-    $('h1').fadeIn('slow').removeClass('choose').text(`Find the country on the map!`).addClass('question');
 
+    $('h1').fadeIn('slow').removeClass('choose').text('Find the country on the map!').addClass('question');
+    $('body').append(`<div id="countryLabel" class="country country${region}"></div>`)
+    removeContinentBtns();
 
     const questions = getQuestions(region);
 
     const showScore = (map) => {
         resetMap(map);
         $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / 10`)
-        $('#countryLabel').removeClass('animate-appear').empty();
-        $('.newGame').addClass('animate-appear').text('New Game').click(function () {
-            restartRound(map)
-        })
+        $('#countryLabel').remove();
+        addNewGameBtn(map)
     }
 
     askQuestions(map, region, questions, showScore)

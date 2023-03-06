@@ -23,41 +23,34 @@ export const resetMap = (map) => {
 
     map.easeTo({
         zoom: initialZoom(),
-        duration: 1000,
+        duration: 500,
         essential: true
     })
 
 }
 
 const updateElements = () => {
-    $('.continentCanvas') && $('.continentCanvas').remove();
+    $('#continentCanvas').remove();
 
     // reset main title
-    $('h1').empty().addClass('mainTitleReAppear').text('map it!');
+    $('h1').empty().removeClass('question').removeClass('choose').addClass('title').text('map it!');
 
-
-    // re-set Play button
-    const playBtnCanvas = document.createElement('div');
-    playBtnCanvas.setAttribute('class', 'playBtnCanvas');
-    const playBtn = document.createElement('button');
-    playBtn.setAttribute('class', 'playBtn');
-    playBtn.textContent = 'PLAY';
-    document.body.appendChild(playBtnCanvas);
-    playBtnCanvas.appendChild(playBtn);
-
-    $('.home').removeClass('.home-appear');
+    $('#countryLabel').remove()
+    $('#exit').remove();
 
 }
 
-const reStartGame = (map) => {
+export const restartGame = (map) => {
     updateElements();
     resetMap(map);
-    setTimeout(() => startGame(map), 1000);
+    // delay with 1.2s to allow the globe to zoom back to its original position
+    setTimeout( () => startGame(map), 500);
 }
 
 const addExitBtn = (map) => {
-    $('.home').addClass('home-appear').click(function () {
-        reStartGame(map)
+    $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg"></img>')
+    $('#exit').click(function () {
+        restartGame(map)
     })
 }
 
