@@ -338,6 +338,9 @@ https://grizhlie-clamp-calculator.netlify.app/
 
 ## Icons
 <br>
+* Exit icon:
+https://www.svgrepo.com/svg/170342/exit-hand-drawn-interface-symbol-variant
+
 * Mute - Sound icons:
 https://www.svgrepo.com/svg/441980/mute
 https://www.svgrepo.com/svg/442013/sound

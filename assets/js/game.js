@@ -1,6 +1,7 @@
 import { addExit } from './exit.js';
 import { startRound } from './round.js';
 import { addHoverLayer, addBlurLayer, addEventListeners } from './layers.js';
+import { addContinentBtns } from './buttons.js';
 
 
 const enableMapInteraction = (map) => {
@@ -42,33 +43,18 @@ const addClickListenersToContinentBtns = (map) => {
     addHoverLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
-    addFlyOnClick($('#asiaBtn'), 'Asia', [77.367783, 32.174450], 2.8)
-    addFlyOnClick($('#africaBtn'), 'Africa', [17.015762, 8.895926], 3)
+    addFlyOnClick($('#asiaBtn'), 'Asia', [77.367783, 32.174450], 2.5)
+    addFlyOnClick($('#africaBtn'), 'Africa', [17.015762, 8.895926], 2.8)
     addFlyOnClick($('#americasBtn'), 'Americas', [-84.811020, 11.632733], 2)
-}
-
-const showContinentBtns = () => {
-    $('body').append('<div class="continentCanvas"></div>')
-
-    // add continent buttons
-    $('.continentCanvas').append('<button id="europeBtn" class="continentBtn">Europe</button>');
-    $('.continentCanvas').append('<button id="asiaBtn" class="continentBtn">Asia</button>');
-    $('.continentCanvas').append('<button id="africaBtn" class="continentBtn">Africa</button>');
-    $('.continentCanvas').append('<button id="americasBtn" class="continentBtn">Americas</button>');
 }
 
 const showChooseContinentTitle = () => {
     $('h1').removeClass('title').addClass('choose').fadeIn('slow').text('Choose a continent!');
 }
 
-const removePlayBtn = () => {
-    $('.playBtnCanvas') && $('.playBtnCanvas').remove();
-}
-
 export const game = (map) => {
-    removePlayBtn();
     addExit(map);
     showChooseContinentTitle();
-    showContinentBtns();
+    addContinentBtns();
     addClickListenersToContinentBtns(map);
 }

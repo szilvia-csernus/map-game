@@ -6,6 +6,8 @@ export const initialZoom = () => {
     } else return 1.7
 }
 
+import { addPlayBtn, removePlayBtn } from './buttons.js'
+
 const mapColours = {
     1: "#845EC2", // violet
     2: "#F7C8A8", // peach
@@ -63,7 +65,7 @@ const addTilesetSource = (map) => {
 
 };
 
-const addRotation = (map, callback) => {
+const addRotation = (map, button, callback) => {
     // Base code for rotating globe function is provided by mapbox.com in Mabpbox GLJS Examples. 
     // Rotation speed 
     const secondsPerRevolution = 180;
@@ -89,10 +91,9 @@ const addRotation = (map, callback) => {
     // When animation is complete (1s), start spinning again.
     map.on('moveend', () => spinGlobe());
 
-    $('.playBtn').click(function () {
+    button.click(function() {
         spinEnabled = !spinEnabled;
         // map.stop(); // Immediately end ongoing animation
-        
         callback();
     });
 
@@ -106,12 +107,14 @@ const addIntroAnimation = () => {
 let game;
 
 export const startGame = (map) => {
-    addRotation(map, () => {
+    addPlayBtn();
+    addRotation(map, $('#playBtn'), () => {
         // import game.js only once
         if (!game) {
             game = import('./game.js');
         }
         game.then(module => {
+            removePlayBtn();
             module.game(map);
         })
     });

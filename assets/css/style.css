@@ -27,7 +27,7 @@
   font-family: var(--main-font-family);
   font-size: var(--question-font-size);
   opacity: 0;
-  animation: appear 1s ease-in forwards
+  animation: appear .5s ease-in forwards
 }
 
 
@@ -35,17 +35,17 @@
 
 .continentCanvas {
   position: absolute;
-  bottom: 0;
+  bottom: 6vh;
   width: 100vw;
   max-width: 900px;
   margin: auto;
-  margin-bottom: 4vh;
   z-index: 2;
+  opacity: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 1rem 0;
-
+  animation: appear .5s ease-in forwards
 }
 
 .continentBtn {
@@ -54,7 +54,21 @@
   padding: 0.7rem 0;
   margin: auto;
   letter-spacing: 0;
-  animation: appear .8s ease-in forwards
+  position: relative;
+  background-color: var(--transparent-bg-color);
+  border: 2px solid var(--orange);
+  font-size: var(--button-font-size);
+  font-weight: 700;
+  letter-spacing: .1rem;
+  color: var(--main-font-color);
+  cursor: pointer;
+  /* padding: .7rem 3rem; */
+  border-radius: 2rem;
+  box-shadow: 4px 4px 15px var(--primary-color);
+}
+
+.continentBtn:hover {
+  background-color: var(--primary-color-hover);
 }
 
 #europeBtn {
@@ -78,22 +92,6 @@
 
 /* ------------- Game -------------- */
 
-.exitBtn {
-  position: relative;
-  font-size: var(--utilities-font-size);
-  text-shadow: 0 0 2px var(--primary-color);
-  font-weight: 400;
-  color: var(--main-font-color);
-  text-align: center;
-  margin: 1rem 0 0 1rem;
-  cursor: pointer;
-}
-
-.exitBtn:hover {
-  /* color: var(--main-font-color); */
-  border-bottom: 2px solid var(--main-font-color);
-}
-
 .question {
   position: absolute;
   top: 6vh;
@@ -108,7 +106,6 @@
 }
 
 .country {
-  display: none;
   position: absolute;
   top: 15vh;
   z-index: 1;
@@ -121,26 +118,26 @@
   padding: .2rem 1.8rem;
   border-radius: 1.5rem;
   opacity: 0;
+  animation: appear .5s ease-in forwards;
 }
 
 .countryEurope {
-  border: 3px solid var(--violet)
+  border: 2px solid var(--violet)
 }
 
 .countryAfrica {
-  border: 3px solid var(--yellow)
+  border: 2px solid var(--yellow)
 }
 
 .countryAsia {
-  border: 3px solid var(--fuchsia)
+  border: 2px solid var(--fuchsia)
 }
 
 .countryAmericas {
-  border: 3px solid var(--orange);
+  border: 2px solid var(--orange);
 }
 
 .newGame {
-  display: none;
   position: absolute;
   top: 47vh;
   z-index: 1;
@@ -148,16 +145,16 @@
   font-size: var(--country-font-size);
   font-weight: 700;
   color: var(--main-font-color);
-  border: 3px solid var(--orange);
+  border: 2px solid var(--main-font-color);
   cursor: pointer;
   padding: .7rem 2rem;
   border-radius: 2rem;
   box-shadow: 4px 4px 15px var(--primary-color);
   opacity: 0;
+  animation: appear 1s ease-in forwards;
 }
 
-
-.animate-appear {
+/* .animate-appear {
   display: inline;
   animation: appear .2s ease-in forwards;
-}
+} */
