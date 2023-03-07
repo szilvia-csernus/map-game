@@ -1,6 +1,6 @@
 import { removeHoverLayer, removeBlurLayer, removeSelectLayer, removeFeedbackLayer, removeTouchLayer } from "./layers.js";
 
-import { initialZoom, startGame } from './script.js'
+import { initialZoom, startGame } from './index.js'
 
 
 const disableMapInteraction = (map) => {
@@ -45,7 +45,7 @@ const updateElements = () => {
 export const restartGame = (map) => {
     updateElements();
     resetMap(map);
-    // delay with 1.2s to allow the globe to zoom back to its original position
+    // delay with 500ms to allow the globe to zoom back to its original zoom level
     setTimeout( () => startGame(map), 500);
 }
 

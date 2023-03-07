@@ -32,7 +32,7 @@ const createMapObject = (callback) => {
         projection: 'globe', // Display the map as a globe
         zoom: initialZoom(),
         minZoom: 1,
-        maxZoom: 6,
+        maxZoom: 7,
         center: [30, 40],
         attributionControl: false,
         dragPan: false,
