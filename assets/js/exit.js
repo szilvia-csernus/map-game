@@ -9,7 +9,7 @@ const disableMapInteraction = (map) => {
     map["boxZoom"].disable();
     map["dragRotate"].disable();
     map["keyboard"].disable();
-    // map["touchZoomRotate"].disable();
+    map["touchZoomRotate"].disable();
 }
 
 export const resetMap = (map) => {

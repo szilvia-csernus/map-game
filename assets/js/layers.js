@@ -1,9 +1,13 @@
+const minZoom = (map) => map.getMinZoom();
+const maxZoom = (map) => map.getMaxZoom();
+
 /** adds hover-change layer to the map. Used on non-mobile devices.  */
 export const addHoverLayer = (map) => {
+    console.log(minZoom(map), maxZoom(map) + 0.5)
         map.addLayer({
             id: 'country-hover',
-            minzoom: 1,
-            maxzoom: 7,
+            minzoom: minZoom(map),
+            maxzoom: maxZoom(map) + 0.5,
             paint: {
                 'fill-color': [
                     'case',
@@ -32,8 +36,8 @@ export const removeHoverLayer = (map) => {
 export const addTouchLayer = (map) => {
         map.addLayer({
             id: 'country-touch',
-            minzoom: 1,
-            maxzoom: 7,
+            minzoom: minZoom(map),
+            maxzoom: maxZoom(map) + 0.5,
             paint: {
                 'fill-color': "hsla(0, 0%, 100%, 0)"
             },
@@ -56,8 +60,8 @@ export const removeTouchLayer = (map) => {
 export const addBlurLayer = (map) => {
     map.addLayer({
         id: `country-blur`,
-        minzoom: 1,
-        maxzoom: 7,
+        minzoom: minZoom(map),
+        maxzoom: maxZoom(map) + 0.5,
         paint: {
             'fill-color': "hsla(208, 66%, 35%, 0.6)"
         },
@@ -80,8 +84,8 @@ export const addSelectLayer = (map, countryCode) => {
     map.addLayer({
         filter: ['==', ['get', 'iso_3166_1'], countryCode],
         id: 'country-select-line',
-        minzoom: 1,
-        maxzoom: 7,
+        minzoom: minZoom(map),
+        maxzoom: maxZoom(map) + 0.5,
         paint: {
             'line-color': "#2ec62e",
             'line-width': 2
@@ -93,8 +97,8 @@ export const addSelectLayer = (map, countryCode) => {
     map.addLayer({
         filter: ['==', ['get', 'iso_3166_1'], countryCode],
         id: 'country-select-fill',
-        minzoom: 1,
-        maxzoom: 7,
+        minzoom: minZoom(map),
+        maxzoom: maxZoom(map) + 0.5,
         paint: {
             'fill-color': "#fff",
         },
@@ -117,8 +121,8 @@ export const addFeedbackLayer = (map, correct) => {
     map.addLayer({
         filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
         id: 'country-feedback-line',
-        minzoom: 1,
-        maxzoom: 7,
+        minzoom: minZoom(map),
+        maxzoom: maxZoom(map) + 0.5,
         paint: {
             'line-color': "#fff",
             'line-width': 3
@@ -131,8 +135,8 @@ export const addFeedbackLayer = (map, correct) => {
         map.addLayer({
             filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
             id: 'country-feedback-fill',
-            minzoom: 1,
-            maxzoom: 7,
+            minzoom: minZoom(map),
+            maxzoom: maxZoom(map) + 0.5,
             paint: {
                 'fill-color': "#2cf32c"
             },
@@ -144,8 +148,8 @@ export const addFeedbackLayer = (map, correct) => {
         map.addLayer({
             filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
             id: 'country-feedback-fill',
-            minzoom: 1,
-            maxzoom: 7,
+            minzoom: minZoom(map),
+            maxzoom: maxZoom(map) + 0.5,
             paint: {
                 'fill-color': "#ff0000"
             },
