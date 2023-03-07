@@ -167,7 +167,7 @@
 }
 
 .animate-bump {
-  animation: bump 800ms ease-in-out;
+  animation: bump 1s ease-in-out;
 }
 
 @keyframes bump {
@@ -176,10 +176,10 @@
   }
 
   30% {
-    transform: scale(1);
+    transform: scale(1.1);
   }
 
-  70% {
+  50% {
     transform: scale(1.2);
   }
 

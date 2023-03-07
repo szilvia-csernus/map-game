@@ -145,10 +145,12 @@ const getQuestions = (region) => {
 
 const oneQuestion = (map, code, country, region, callback) => {
     $('#countryLabel').remove();
-    $('body').append(`<div id="countryLabel" class="country country${region} animate-bump">${country}</div>`)
-    removeSelectLayer(map);
-    removeFeedbackLayer(map);
-    setSelectEventListeners(map, code, increaseScore, callback)
+    setTimeout(() => {
+        $('body').append(`<div id="countryLabel" class="country country${region} animate-bump">${country}</div>`);
+        removeSelectLayer(map);
+        removeFeedbackLayer(map);
+        setSelectEventListeners(map, code, increaseScore, callback)
+    }, 1000)
 }
 
 /**  this recursive code asks the last question in the questions array and in oneQuestion() function it re-sets
@@ -160,7 +162,7 @@ const askQuestions = (map, region, questions, showScore) => {
 
     const question = questions.pop()
     oneQuestion(map, question[0], question[1], region, () => {
-        setTimeout(() => askQuestions(map, region, questions, showScore), 1500)
+        askQuestions(map, region, questions, showScore)
     })
 
 }
