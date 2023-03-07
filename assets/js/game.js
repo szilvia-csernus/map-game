@@ -10,7 +10,7 @@ const enableMapInteraction = (map) => {
     map["scrollZoom"].enable();
     map["boxZoom"].enable();
     map["keyboard"].enable();
-    map["touchZoomRotate"].enable();
+    // map["touchZoomRotate"].enable();
 }
 
 const addClickListenersToContinentBtns = (map) => {
