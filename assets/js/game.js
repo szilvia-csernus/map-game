@@ -9,7 +9,6 @@ const enableMapInteraction = (map) => {
     map["dragPan"].enable();
     map["scrollZoom"].enable();
     map["boxZoom"].enable();
-    // map["dragRotate"].enable();
     map["keyboard"].enable();
     map["touchZoomRotate"].enable();
 }
@@ -45,7 +44,6 @@ const addClickListenersToContinentBtns = (map) => {
         })
     }
     
-    console.log(window.navigator.maxTouchPoints)
     window.navigator.maxTouchPoints > 0 ? addTouchLayer(map) : addHoverLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
