@@ -1,7 +1,5 @@
-/** adds hover-change layer to the map on non-mobile devices.  */
+/** adds hover-change layer to the map. Used on non-mobile devices.  */
 export const addHoverLayer = (map) => {
-    // select region's countries to be hoverable on non-mobile devices
-    // if (!map.getLayer('country-hover')) {
         map.addLayer({
             id: 'country-hover',
             minzoom: 1,
@@ -18,8 +16,6 @@ export const addHoverLayer = (map) => {
             'source-layer': "country_boundaries",
             type: "fill"
         })
-    // }
-
 }
 
 /** remove hover layer and its filters if they exist */
@@ -31,10 +27,9 @@ export const removeHoverLayer = (map) => {
 
 }
 
-/** adds touch-selectable layer to the map on mobile devices.  */
+/** this layer is used on mobile devices to provide a touch-selectable layer to
+ * allow identifying the touched country.  */
 export const addTouchLayer = (map) => {
-    // select region's countries to be selectable on mobile devices
-    // if (!map.getLayer('country-touch')) {
         map.addLayer({
             id: 'country-touch',
             minzoom: 1,
@@ -46,8 +41,6 @@ export const addTouchLayer = (map) => {
             'source-layer': "country_boundaries",
             type: "fill"
         })
-    // }
-
 }
 
 /** remove hover layer and its filters if they exist */
@@ -128,7 +121,7 @@ export const addFeedbackLayer = (map, countryCode, increaseScore) => {
         maxzoom: 7,
         paint: {
             'line-color': "#fff",
-            'line-width': 2
+            'line-width': 3
         },
         source: "country-boundaries",
         'source-layer': "country_boundaries",
@@ -142,7 +135,7 @@ export const addFeedbackLayer = (map, countryCode, increaseScore) => {
             minzoom: 1,
             maxzoom: 7,
             paint: {
-                'fill-color': "#3aa956"
+                'fill-color': "#2cf32c"
             },
             source: "country-boundaries",
             'source-layer': "country_boundaries",
@@ -155,7 +148,7 @@ export const addFeedbackLayer = (map, countryCode, increaseScore) => {
             minzoom: 1,
             maxzoom: 7,
             paint: {
-                'fill-color': "#a93a42"
+                'fill-color': "#ff0000"
             },
             source: "country-boundaries",
             'source-layer': "country_boundaries",
