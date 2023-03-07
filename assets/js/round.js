@@ -1,8 +1,22 @@
-import { data } from '../data/countries.js'
+import {
+    data
+} from '../data/countries.js'
 
-import { resetMap, restartGame } from './exit.js';
-import { addSelectLayer, removeSelectLayer, addFeedbackLayer, removeFeedbackLayer, clickedCountryCode } from './layers.js';
-import { addNewGameBtn, removeContinentBtns } from './buttons.js';
+import {
+    resetMap,
+    restartGame
+} from './exit.js';
+import {
+    addSelectLayer,
+    removeSelectLayer,
+    addFeedbackLayer,
+    removeFeedbackLayer,
+    clickedCountryCode
+} from './layers.js';
+import {
+    addNewGameBtn,
+    removeContinentBtns
+} from './buttons.js';
 
 let score = 0;
 
@@ -36,56 +50,73 @@ const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
 
     } else {
 
-        // touch events for mobile devices only
+    // touch events for mobile devices only
 
-        const setTapHoldFeedbackLayer = () => {
-            console.log('callback fired')
-            removeSelectLayer(map);
-            removeFeedbackLayer(map);
-            addFeedbackLayer(map, countryCode, increaseScore)
-            // This function calls the next question recursively. (See askQuestions function)
-            callback()
+    const setTapHoldFeedbackLayer = () => {
+        console.log('callback fired')
+        removeSelectLayer(map);
+        removeFeedbackLayer(map);
+        addFeedbackLayer(map, countryCode, increaseScore)
+        // This function calls the next question recursively. (See askQuestions function)
+        callback()
 
-        }
-        const touchStartFunction = (startEvent) => {
-            const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
+    }
+    const touchStartFunction = (startEvent) => {
+        const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
 
-            if (!moreFingersTouch) {
-                const startX = startEvent.point.x
-                const startY = startEvent.point.y;
-                // console.log('start', startX, startY)
-                console.log(startEvent)
-                // console.log('start', startEvent.originalEvent.touches, startEvent.originalEvent.changedTouches, startEvent.originalEvent.targetTouches)
+        if (!moreFingersTouch) {
+            const startX = startEvent.point.x
+            const startY = startEvent.point.y;
+            // console.log('start', startX, startY)
+            console.log(startEvent)
+            // console.log('start', startEvent.originalEvent.touches, startEvent.originalEvent.changedTouches, startEvent.originalEvent.targetTouches)
+
+            const touchEndFunction = (endEvent) => {
+                const endX = endEvent.point.x
+                const endY = endEvent.point.y;
+                console.log('end', endX, endY)
+                const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2)
+                console.log('distance', distance)
+                console.log(endEvent)
+                // console.log('end', startEvent.originalEvent.touches, startEvent.originalEvent.changedTouches, startEvent.originalEvent.targetTouches)
                 
-                const touchEndFunction = (endEvent) => {
-                    const endX = endEvent.point.x
-                    const endY = endEvent.point.y;
-                    // console.log('end', endX, endY)
-                    const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2)
-                    // console.log('distance', distance)
-                    console.log(endEvent)
-                    // console.log('end', startEvent.originalEvent.touches, startEvent.originalEvent.changedTouches, startEvent.originalEvent.targetTouches)
-
-                    // if user's tap is longer than 500ms but the movement is shorter 
-                    // than 5mm then initiate the feedback layer
-                    if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 500 && distance < 5) {
-                        // console.log('taphold', clickedCountryCode)
+                // if tap was not rather a swipe..
+                if (distance < 5) {
+                    // if user's tap is longer than 300ms
+                    if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 300) {
+                        console.log('taphold', clickedCountryCode)
+                        
+                        // we have to stop 'touchend' function before stepping into the recursive callback function!
+                        map.off('touchend', touchEndFunction);
+                
                         // remember that this calls a recursive function!
                         setTapHoldFeedbackLayer();
 
                     } else {
-                        // console.log('tap', clickedCountryCode)
-                        map.once('touchstart', touchStartFunction)
+                        console.log('tap', clickedCountryCode)
+                        // map.once('touchstart', touchStartFunction)
                         removeFeedbackLayer(map)
                         removeSelectLayer(map);
                         addSelectLayer(map, clickedCountryCode);
+                        map.off('touchend', touchEndFunction);
+                        map.once('touchstart', touchStartFunction)
+               
+                        //
+                        // map.off('touchend', touchEndFunction);
                     }
+                } else {
+                    map.off('touchend', touchEndFunction);
+                    map.once('touchstart', touchStartFunction)
+                    
                 }
-                map.once('touchend', touchEndFunction);
+                
             }
-
-            map.once('touchstart', touchStartFunction)
+            map.on('touchend', touchEndFunction);
         }
+    }
+
+    map.once('touchstart', touchStartFunction)
+
     }
 }
 
@@ -113,14 +144,17 @@ const oneQuestion = (map, code, country, region, callback) => {
 }
 
 /**  this recursive code asks the last question in the questions array and in oneQuestion() function it re-sets
-* the event listener to the next question after a dblclick / taphold event. */
+ * the event listener to the next question after a dblclick / taphold event. */
 const askQuestions = (map, region, questions, showScore) => {
     if (questions.length === 0) {
-        return setTimeout(showScore(map), 1000)
+        return setTimeout(() => showScore(map), 1000)
     };
 
     const question = questions.pop()
-    oneQuestion(map, question[0], question[1], region, () => askQuestions(map, region, questions, showScore))
+    oneQuestion(map, question[0], question[1], region, () => {
+        setTimeout(() => askQuestions(map, region, questions, showScore), 1000)
+    })
+
 }
 
 export const restartRound = (map) => {

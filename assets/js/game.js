@@ -1,6 +1,6 @@
 import { addExit } from './exit.js';
 import { startRound } from './round.js';
-import { addHoverLayer, addBlurLayer, addEventListeners } from './layers.js';
+import { addHoverLayer, addBlurLayer, addEventListeners, addTouchLayer } from './layers.js';
 import { addContinentBtns } from './buttons.js';
 
 
@@ -31,6 +31,9 @@ const addClickListenersToContinentBtns = (map) => {
             // set hoverable filter for region and blur filter outside region
             map.getLayer('country-hover') &&
                 map.setFilter('country-hover', ['==', ['get', 'region'], region]);
+            map.getLayer('country-touch') &&
+                map.setFilter('country-touch', ['==', ['get', 'region'], region]);
+            
             !map.getLayer('country-blur') && addBlurLayer(map);
             map.setFilter('country-blur', ['!=', ['get', 'region'], region]);
 
@@ -40,7 +43,9 @@ const addClickListenersToContinentBtns = (map) => {
             startRound(map, region);
         })
     }
-    addHoverLayer(map);
+    
+   addTouchLayer(map);
+   addHoverLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
     addFlyOnClick($('#asiaBtn'), 'Asia', [77.367783, 32.174450], 2.5)

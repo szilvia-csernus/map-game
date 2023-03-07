@@ -31,7 +31,35 @@ export const removeHoverLayer = (map) => {
 
 }
 
-/** add a blur to countries outside the region */
+/** adds touch-selectable layer to the map on mobile devices.  */
+export const addTouchLayer = (map) => {
+    // select region's countries to be selectable on mobile devices
+    if (!map.getLayer('country-touch') && window.navigator.userAgentData.mobile === true) {
+        map.addLayer({
+            id: 'country-touch',
+            minzoom: 1,
+            maxzoom: 7,
+            paint: {
+                'fill-color': "hsla(0, 0%, 100%, 0)"
+            },
+            source: "country-boundaries",
+            'source-layer': "country_boundaries",
+            type: "fill"
+        })
+    }
+
+}
+
+/** remove hover layer and its filters if they exist */
+export const removeTouchLayer = (map) => {
+    if (map.getLayer('country-touch')) {
+        map.setFilter('country-touch', null);
+        map.removeLayer('country-touch');
+    }
+
+}
+
+/** add a blur layer to map to allow filtering out regions */
 export const addBlurLayer = (map) => {
     map.addLayer({
         id: `country-blur`,
@@ -142,71 +170,146 @@ export const removeFeedbackLayer = (map) => {
     map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
 }
 
+// /** this layer renders correct & incorrect country names according to the answer given.*/
+// export const addNameLayer = (map, countryCode, increaseScore) => {
+//     map.addLayer({
+//         filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+//         id: 'country-feedback-line',
+//         minzoom: 1,
+//         maxzoom: 7,
+//         paint: {
+//             'line-color': "#fff",
+//             'line-width': 2
+//         },
+//         source: "country-boundaries",
+//         'source-layer': "country_boundaries",
+//         type: "line"
+//     });
+//     if (countryCode === clickedCountryCode) {
+//         increaseScore();
+//         map.addLayer({
+//             filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+//             id: 'country-feedback-fill',
+//             minzoom: 1,
+//             maxzoom: 7,
+//             paint: {
+//                 'fill-color': "#3aa956"
+//             },
+//             source: "country-boundaries",
+//             'source-layer': "country_boundaries",
+//             type: "fill"
+//         });
+//     } else {
+//         map.addLayer({
+//             filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+//             id: 'country-feedback-fill',
+//             minzoom: 1,
+//             maxzoom: 7,
+//             paint: {
+//                 'fill-color': "#a93a42"
+//             },
+//             source: "country-boundaries",
+//             'source-layer': "country_boundaries",
+//             type: "fill"
+//         });
+//     }
+// }
+
 export let clickedCountryCode = null;
 export const addEventListeners = (map) => {
     let hoveredStateId = null;
+    
+    // // when the user moves their mouse over the state-fill layer, 
+    // // we'll update the feature state for the feature under the mouse.
+    // // non-touch devices only.
+    // if (map.getLayer('country-hover') && window.navigator.userAgentData.mobile === false) {
+    //     map.on('mousemove', `country-hover`, (e) => {
+    //         map.getCanvas().style.cursor = 'pointer';
+    //         // console.log(e.features[0].properties.name_en, e.features[0].properties.iso_3166_1, e.features[0].properties.iso_3166_1_alpha_3, e.features[0].properties.wikidata_id)
+    //         if (e.features.length > 0) {
+    //             if (hoveredStateId) {
 
-    // when the user moves their mouse over the state-fill layer, 
-    // we'll update the feature state for the feature under the mouse.
-    // non-touch devices only.
-    if (map.getLayer('country-hover') && window.navigator.userAgentData.mobile === false) {
-        map.on('mousemove', `country-hover`, (e) => {
-            map.getCanvas().style.cursor = 'pointer';
-            // console.log(e.features[0].properties.name_en, e.features[0].properties.iso_3166_1, e.features[0].properties.iso_3166_1_alpha_3, e.features[0].properties.wikidata_id)
-            if (e.features.length > 0) {
-                if (hoveredStateId) {
+    //                 map.setFeatureState({
+    //                     source: 'country-boundaries',
+    //                     sourceLayer: 'country_boundaries',
+    //                     id: hoveredStateId
+    //                 }, {
+    //                     hover: false
+    //                 });
+    //             }
 
-                    map.setFeatureState({
-                        source: 'country-boundaries',
-                        sourceLayer: 'country_boundaries',
-                        id: hoveredStateId
-                    }, {
-                        hover: false
-                    });
-                }
+    //             hoveredStateId = e.features[0].id;
+    //             map.setFeatureState({
+    //                 source: 'country-boundaries',
+    //                 sourceLayer: 'country_boundaries',
+    //                 id: hoveredStateId
+    //             }, {
+    //                 hover: true
+    //             });
 
-                hoveredStateId = e.features[0].id;
-                map.setFeatureState({
-                    source: 'country-boundaries',
-                    sourceLayer: 'country_boundaries',
-                    id: hoveredStateId
-                }, {
-                    hover: true
-                });
+    //         }
+    //     });
 
-            }
-        });
 
-        // When the mouse leaves the state-fill layer, update the feature state of the
-        // previously hovered feature.
-        map.on('mouseleave', `country-hover`, () => {
-            // console.log(hoveredStateId)
-            if (hoveredStateId) {
+    //     // When the mouse leaves the state-fill layer, update the feature state of the
+    //     // previously hovered feature.
+    //     map.on('mouseleave', 'country-hover', () => {
+    //         // console.log(hoveredStateId)
+    //         if (hoveredStateId) {
 
-                map.setFeatureState({
-                    source: 'country-boundaries',
-                    sourceLayer: 'country_boundaries',
-                    id: hoveredStateId
-                }, {
-                    hover: false
-                });
-                hoveredStateId = null;
-            }
+    //             map.setFeatureState({
+    //                 source: 'country-boundaries',
+    //                 sourceLayer: 'country_boundaries',
+    //                 id: hoveredStateId
+    //             }, {
+    //                 hover: false
+    //             });
+    //             hoveredStateId = null;
+    //         }
 
-            map.getCanvas().style.cursor = '';
-        });
+    //         map.getCanvas().style.cursor = '';
+    //     });
+    
+    //     map.on('click', 'country-hover', (e) => {
+    //         clickedCountryCode = e.features[0].properties.iso_3166_1;
+    //         console.log(clickedCountryCode)
+    //     })
+    // }
 
-        map.on('click', 'country-hover', (e) => {
+    // if (map.getLayer('country-touch') && window.navigator.userAgentData.mobile === true) {
+        map.on('touchstart', 'country-touch', (e) => {
             clickedCountryCode = e.features[0].properties.iso_3166_1;
             console.log(clickedCountryCode)
         })
-    }
-    if (window.navigator.userAgentData.mobile === true) {
+    // }
+
+    let touchedStateId = null;
+    // if (window.navigator.userAgentData.mobile === true) {
         // only for mobile devices
-        map.once('touchstart', 'country-select-fill', (e) => {
-            clickedCountryCode = e.features[0].properties.iso_3166_1;
-        })
-    }
+        // map.on('touchstart', 'country-hover', (e) => {
+        //     console.log(e)
+        //     if (e.features.length > 0) {
+            //     if (touchedStateId) {
+
+            //         map.setFeatureState({
+            //             source: 'country-boundaries',
+            //             sourceLayer: 'country_boundaries',
+            //             id:touchedStateId
+            //         }, {
+            //             touch: false
+            //         });
+            //     }
+
+            //    touchedStateId = e.features[0].id;
+            //     map.setFeatureState({
+            //         source: 'country-boundaries',
+            //         sourceLayer: 'country_boundaries',
+            //         id:touchedStateId
+            //     }, {
+            //         touch: true
+            //     });
+
+        //     }
+        // })
+    // }
 };
-
-

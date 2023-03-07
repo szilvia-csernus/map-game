@@ -94,7 +94,7 @@ html, body, section, article, h1, h2, p, a, button {
 
   .playBtn {
     position: absolute;
-    bottom: 7vh;
+    bottom: 6vh;
     background-color: var(--transparent-bg-color);
     font-size: var(--button-font-size);
     font-weight: 700;
@@ -113,4 +113,14 @@ html, body, section, article, h1, h2, p, a, button {
   .playBtn:hover {
     background-color: var(--primary-color-hover);
   }
+
+
+.developer {
+  color: rgba(0,0,0,.75)
+}
+
+.mapbox-improve-map {
+  display: none;
+}
+  
   

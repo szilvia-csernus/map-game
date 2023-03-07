@@ -350,7 +350,8 @@ https://www.svgrepo.com/svg/442013/sound
 
 ## Other credits - incorporated ideas and solutions
 <br>
-
+* Adding drop-shadow to svg icons:
+https://css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filters/
 <br><br>
 
 ## Content
