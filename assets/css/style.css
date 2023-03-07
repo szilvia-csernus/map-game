@@ -94,7 +94,7 @@
 
 .question {
   position: absolute;
-  top: 6vh;
+  top: 6.5vh;
   z-index: 1;
   font-weight: bold;
   color: var(--main-font-color);
@@ -105,9 +105,38 @@
   animation: appear 1s ease-in forwards;
 }
 
+.checkmarks {
+  position: absolute;
+  top: 12vh;
+  z-index: 1;
+  display: flex; 
+}
+
+.correct {
+  /* color: var(--correct); */
+  /* stroke: var(--correct); */
+  fill: var(--correct);
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow( 0 0 10px var(--primary-color));
+  animation: bump 400ms ease-in-out;
+}
+
+.incorrect {
+  /* color: var(--incorrect); */
+  stroke: var(--incorrect);
+  /* fill: var(--incorrect); */
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow( 0 0 10px var(--primary-color));
+  animation: bump 400ms ease-in-out;
+}
+
 .country {
   position: absolute;
-  top: 15vh;
+  top: 17vh;
   z-index: 1;
   background-color: var(--secondary-bg-color);
   font-size: var(--country-font-size);
@@ -117,8 +146,8 @@
   text-shadow: none;
   padding: .2rem 1.8rem;
   border-radius: 1.5rem;
-  opacity: 0;
-  animation: appear .5s ease-in forwards;
+  /* opacity: 0;
+  animation: appear .5s ease-in forwards; */
 }
 
 .countryEurope {
@@ -135,6 +164,28 @@
 
 .countryAmericas {
   border: 2px solid var(--orange);
+}
+
+.animate-bump {
+  animation: bump 800ms ease-in-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  70% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .newGame {

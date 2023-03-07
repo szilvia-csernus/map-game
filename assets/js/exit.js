@@ -37,6 +37,7 @@ const updateElements = () => {
     $('h1').empty().removeClass('question').removeClass('choose').addClass('title').text('map it!');
 
     $('#countryLabel').remove();
+    $('#checkmarks').remove();
     $('#newGame').remove();
     $('#exit').remove();
 
