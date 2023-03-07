@@ -45,8 +45,8 @@ const addClickListenersToContinentBtns = (map) => {
         })
     }
     
-    console.log(window.navigator.userAgentData.mobile)
-    window.navigator.userAgentData.mobile == false ? addHoverLayer(map) : addTouchLayer(map);
+    console.log(window.navigator.maxTouchPoints)
+    window.navigator.maxTouchPoints > 0 ? addTouchLayer(map) : addHoverLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
     addFlyOnClick($('#asiaBtn'), 'Asia', [77.367783, 32.174450], 2.5)

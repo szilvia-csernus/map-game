@@ -26,7 +26,7 @@ const increaseScore = () => ++score;
 /** remove previous select- and feedback layers' event listeners and add updated ones */
 const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     // add these event listeners to non-mobile (non-touch) devices only
-    if (window.navigator.userAgentData.mobile === false) {
+    if (!window.navigator.maxTouchPoints > 0) {
         map.on('click', () => {
             removeSelectLayer(map);
             removeFeedbackLayer(map);
