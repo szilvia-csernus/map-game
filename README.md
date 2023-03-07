@@ -345,6 +345,11 @@ https://www.svgrepo.com/svg/170342/exit-hand-drawn-interface-symbol-variant
 https://www.svgrepo.com/svg/441980/mute
 https://www.svgrepo.com/svg/442013/sound
 
+* Check icon:
+https://www.svgrepo.com/svg/404945/check-mark
+
+* Cross icon:
+https://www.svgrepo.com/svg/470906/times
 
 <br><br>
 
