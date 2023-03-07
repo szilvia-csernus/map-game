@@ -19,7 +19,7 @@ const mapColours = {
 }
 
 /** Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool. 
- * Creating a map object fires as a 'load' using the Mapbox provided allowance of 
+ * Creating a map object fires as a 'load' using the Mapbox-provided allowance of 
  * 50.000 loads / month. This is created once and used throughout the whole lifecycle of the app.
 */
 const createMapObject = (callback) => {
