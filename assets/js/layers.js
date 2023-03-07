@@ -222,7 +222,7 @@ export const addEventListeners = (map) => {
     // when the user moves their mouse over the state-fill layer, 
     // we'll update the feature state for the feature under the mouse.
     // non-touch devices only.
-    if (map.getLayer('country-hover') && window.navigator.userAgentData.mobile === false) {
+    if (map.getLayer('country-hover')) {
         map.on('mousemove', `country-hover`, (e) => {
             map.getCanvas().style.cursor = 'pointer';
             // console.log(e.features[0].properties.name_en, e.features[0].properties.iso_3166_1, e.features[0].properties.iso_3166_1_alpha_3, e.features[0].properties.wikidata_id)
@@ -276,40 +276,10 @@ export const addEventListeners = (map) => {
         })
     }
 
-    // if (map.getLayer('country-touch') && window.navigator.userAgentData.mobile === true) {
+    if (map.getLayer('country-touch')) {
         map.on('touchstart', 'country-touch', (e) => {
             clickedCountryCode = e.features[0].properties.iso_3166_1;
             console.log(clickedCountryCode)
         })
-    // }
-
-    let touchedStateId = null;
-    // if (window.navigator.userAgentData.mobile === true) {
-        // only for mobile devices
-        // map.on('touchstart', 'country-hover', (e) => {
-        //     console.log(e)
-        //     if (e.features.length > 0) {
-            //     if (touchedStateId) {
-
-            //         map.setFeatureState({
-            //             source: 'country-boundaries',
-            //             sourceLayer: 'country_boundaries',
-            //             id:touchedStateId
-            //         }, {
-            //             touch: false
-            //         });
-            //     }
-
-            //    touchedStateId = e.features[0].id;
-            //     map.setFeatureState({
-            //         source: 'country-boundaries',
-            //         sourceLayer: 'country_boundaries',
-            //         id:touchedStateId
-            //     }, {
-            //         touch: true
-            //     });
-
-        //     }
-        // })
-    // }
+    }
 };
