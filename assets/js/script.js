@@ -43,7 +43,7 @@ const createMapObject = (callback) => {
         doubleClickZoom: false,
         touchZoomRotate: false
     }).addControl(new mapboxgl.AttributionControl({
-        customAttribution: '&copy; App development and map design by Szilvia Csernus'
+        customAttribution: '<span class="developer">&copy; App development by Szilvia Csernus</span>'
         }));;
 
 
@@ -68,7 +68,7 @@ const addTilesetSource = (map) => {
 const addRotation = (map, button, callback) => {
     // Base code for rotating globe function is provided by mapbox.com in Mabpbox GLJS Examples. 
     // Rotation speed 
-    const secondsPerRevolution = 180;
+    const secondsPerRevolution = 150;
 
     let spinEnabled = true;
     
