@@ -9,8 +9,9 @@ const enableMapInteraction = (map) => {
     map["dragPan"].enable();
     map["scrollZoom"].enable();
     map["boxZoom"].enable();
+    map["dragRotate"].enable();
     map["keyboard"].enable();
-    // map["touchZoomRotate"].enable();
+    map["touchZoomRotate"].enable();
 }
 
 const addClickListenersToContinentBtns = (map) => {
