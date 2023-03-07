@@ -38,6 +38,9 @@ html, body, section, article, h1, h2, p, a, button {
     --pink: #f475b4;
     --magenta: #D65DB1;
     --yellow: #FFC75F;
+
+    --correct: #2cf32c;
+    --incorrect: #ff0000;
   }
   
   html {

@@ -129,7 +129,7 @@ const getQuestions = (region) => {
     const codes = Object.keys(data[region]);
 
     const questions = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
         const randomCode = getRandomCountryCode(codes);
         const country = data[region][randomCode].countryName;
         questions.push([randomCode, country])
@@ -173,7 +173,7 @@ export const startRound = (map, region) => {
 
     const showScore = (map) => {
         resetMap(map);
-        $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / 10`)
+        $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / 5`)
         $('#countryLabel').remove();
         addNewGameBtn(map)
     }
