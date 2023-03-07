@@ -67,6 +67,8 @@ const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
         if (!moreFingersTouch) {
             const startX = startEvent.point.x
             const startY = startEvent.point.y;
+            const force = startEvent.originalEvent.touches[0].force
+            console.log(force)
             // console.log('start', startX, startY)
             console.log(startEvent)
             // console.log('start', startEvent.originalEvent.touches, startEvent.originalEvent.changedTouches, startEvent.originalEvent.targetTouches)
@@ -82,8 +84,8 @@ const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
                 
                 // if tap was not rather a swipe..
                 if (distance < 5) {
-                    // if user's tap is longer than 300ms
-                    if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 300) {
+                    // if user's tap is longer than 300ms or stronger than a light tap
+                    if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 300 || force > 0.9) {
                         console.log('taphold', clickedCountryCode)
                         
                         // we have to stop 'touchend' function before stepping into the recursive callback function!
