@@ -26,6 +26,7 @@ const addClickListenersToContinentBtns = (map) => {
             })
             // clear previous filters if any
             map.getLayer('country-hover') && map.setFilter('country-hover', null);
+            map.getLayer('country-touch') && map.setFilter('country-touch', null);
             map.getLayer('country-blur') && map.setFilter('country-blur', null);
 
             // set hoverable filter for region and blur filter outside region
@@ -44,8 +45,8 @@ const addClickListenersToContinentBtns = (map) => {
         })
     }
     
-   addTouchLayer(map);
-   addHoverLayer(map);
+    console.log(window.navigator.userAgentData.mobile)
+    window.navigator.userAgentData.mobile == false ? addHoverLayer(map) : addTouchLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
     addFlyOnClick($('#asiaBtn'), 'Asia', [77.367783, 32.174450], 2.5)

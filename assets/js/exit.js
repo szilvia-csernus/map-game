@@ -1,4 +1,4 @@
-import { removeHoverLayer, removeBlurLayer, removeSelectLayer, removeFeedbackLayer } from "./layers.js";
+import { removeHoverLayer, removeBlurLayer, removeSelectLayer, removeFeedbackLayer, removeTouchLayer } from "./layers.js";
 
 import { initialZoom, startGame } from './script.js'
 
@@ -15,6 +15,7 @@ const disableMapInteraction = (map) => {
 export const resetMap = (map) => {
 
     removeHoverLayer(map);
+    removeTouchLayer(map);
     removeBlurLayer(map);
     removeSelectLayer(map);
     removeFeedbackLayer(map);
