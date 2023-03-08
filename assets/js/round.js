@@ -7,8 +7,8 @@ import {
     restartGame
 } from './exit.js';
 import {
-    addSelectLayer,
-    removeSelectLayer,
+    // addSelectLayer,
+    // removeSelectLayer,
     addFeedbackLayer,
     removeFeedbackLayer,
     clickedCountryCode
@@ -35,16 +35,16 @@ const addFeedback = (map, countryCode, increaseScore) => {
 }
 
 const setClickSelectEventListeners = (map, countryCode, increaseScore, callback) => {
-    map.on('click', () => {
-        removeSelectLayer(map);
-        removeFeedbackLayer(map);
-        console.log('click', clickedCountryCode)
-        addSelectLayer(map, clickedCountryCode);
-    })
+    // map.on('click', () => {
+    //     // removeSelectLayer(map);
+    //     removeFeedbackLayer(map);
+    //     console.log('click', clickedCountryCode)
+    //     // addSelectLayer(map, clickedCountryCode);
+    // })
 
     const setDblClickFeedbackLayer = () => {
         // removeSelectLayer(map);
-        // removeFeedbackLayer(map);
+        removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore)
         console.log('doubleclick', clickedCountryCode)
         console.log('callback fired')
@@ -61,7 +61,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
     const setTapHoldFeedbackLayer = () => {
         console.log('callback fired')
         // removeSelectLayer(map);
-        // removeFeedbackLayer(map);
+        removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore)
         // This function calls the next question recursively. (See askQuestions function)
         callback()
@@ -70,46 +70,48 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
     const touchStartFunction = (startEvent) => {
         const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
 
-        if (!moreFingersTouch) {
-            const startX = startEvent.point.x
-            const startY = startEvent.point.y;
-            // the strength of the tap
-            const force = startEvent.originalEvent.touches[0].force
+        const startX = startEvent.point.x
+        const startY = startEvent.point.y;
 
-            const touchEndFunction = (endEvent) => {
-                const endX = endEvent.point.x
-                const endY = endEvent.point.y;
+        const touchEndFunction = (endEvent) => {
+            const endX = endEvent.point.x
+            const endY = endEvent.point.y;
 
-                // what is the distance between starting the tap and ending it 
-                // to determine if it was intended as a swipe or not.
-                const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2)
-                
-                // if tap was not rather a swipe..
-                if (distance < 5) {
-                    // if user's tap is longer than 300ms or stronger than a light tap
-                    if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 300 || force > 0.9) {
-                        console.log('taphold', clickedCountryCode)
-                        
-                        // we have to stop 'touchend' function before stepping into the recursive callback function!
-                        map.off('touchend', touchEndFunction);
-                
-                        // remember that this calls a recursive function!!
-                        setTapHoldFeedbackLayer();
+            // the distance btw the start and end of the touch action
+            const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2)
 
-                    } else {
-                        console.log('tap', clickedCountryCode)
-                        removeFeedbackLayer(map)
-                        removeSelectLayer(map);
-                        addSelectLayer(map, clickedCountryCode);
-                        map.off('touchend', touchEndFunction);
-                        map.once('touchstart', touchStartFunction)
-                    }
+            // if tap was not rather a swipe..
+            if (distance < 4) {
+                // if user's tap is longer than 200ms
+                if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 250) {
+                    console.log('taphold', clickedCountryCode)
+
+                    // we have to stop 'touchend' function before stepping into the recursive callback function!
+                    map.off('touchend', touchEndFunction);
+
+                    // remember that this calls a recursive function!!
+                    setTapHoldFeedbackLayer();
+
                 } else {
+                    console.log('tap', clickedCountryCode)
+                    removeFeedbackLayer(map)
+                    // removeSelectLayer(map);
+                    // addSelectLayer(map, clickedCountryCode);
                     map.off('touchend', touchEndFunction);
                     map.once('touchstart', touchStartFunction)
-                } 
+                }
+            } else {
+                map.off('touchend', touchEndFunction);
+                map.once('touchstart', touchStartFunction)
             }
+        }
+        
+        if (!moreFingersTouch) {
+            // if the touch was with one finger only
             map.on('touchend', touchEndFunction);
+        } else {
+            // if touch was with more fingers, start the toch listening again
+            map.once('touchend', () => map.once('touchstart', touchStartFunction));
         }
     }
     map.once('touchstart', touchStartFunction)
@@ -147,7 +149,7 @@ const oneQuestion = (map, code, country, region, callback) => {
     $('#countryLabel').remove();
     setTimeout(() => {
         $('body').append(`<div id="countryLabel" class="country country${region} animate-bump">${country}</div>`);
-        removeSelectLayer(map);
+        // removeSelectLayer(map);
         removeFeedbackLayer(map);
         setSelectEventListeners(map, code, increaseScore, callback)
     }, 1000)
@@ -174,7 +176,9 @@ export const restartRound = (map) => {
 
 export const startRound = (map, region) => {
     score = 0;
-
+    // set minimum zoom level after animation finished.
+    setTimeout(() => map.setMinZoom(map.getZoom()), 1000);
+    
     $('h1').fadeIn('slow').removeClass('choose').text('Find the country on the map!').addClass('question');
     $('body').append('<ul id="checkmarks" class="checkmarks"></ul>');
     removeContinentBtns();

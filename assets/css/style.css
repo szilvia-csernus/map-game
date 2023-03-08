@@ -167,7 +167,7 @@
 }
 
 .animate-bump {
-  animation: bump 1s ease-in-out;
+  animation: bump 1s;
 }
 
 @keyframes bump {
