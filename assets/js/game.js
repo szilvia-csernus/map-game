@@ -8,9 +8,8 @@ const enableMapInteraction = (map) => {
     // Set scroll and drag functions
     map["dragPan"].enable();
     map["scrollZoom"].enable();
-    map["boxZoom"].enable();
-    map["dragRotate"].enable();
-    map["keyboard"].enable();
+    // map["boxZoom"].enable();
+    // map["dragRotate"].enable();
     map["touchZoomRotate"].enable();
 }
 
@@ -22,8 +21,10 @@ const addClickListenersToContinentBtns = (map) => {
                 center,
                 zoom,
                 duration: 1000,
+                bearing: 0,
                 essential: true
             })
+
             // clear previous filters if any
             map.getLayer('country-hover') && map.setFilter('country-hover', null);
             map.getLayer('country-touch') && map.setFilter('country-touch', null);
