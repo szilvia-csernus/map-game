@@ -51,8 +51,8 @@ const updateElements = () => {
 export const restartGame = (map) => {
     updateElements();
     resetMap(map);
-    // delay with 500ms to allow the globe to zoom back to its original zoom level
-    setTimeout( () => startGame(map), 1500);
+    // delay with 1s to allow the globe to zoom back to its original zoom level
+    setTimeout( () => startGame(map), 1000);
 }
 
 const addExitBtn = (map) => {

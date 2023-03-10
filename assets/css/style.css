@@ -26,8 +26,9 @@
   text-shadow: 0 0 15px var(--primary-color);
   font-family: var(--main-font-family);
   font-size: var(--question-font-size);
-  opacity: 0;
-  animation: appear .5s ease-in forwards
+  /* opacity: 0;
+  animation: appear .5s ease-in forwards */
+  animation: bump 1s ease-in-out;
 }
 
 
@@ -62,7 +63,6 @@
   letter-spacing: .1rem;
   color: var(--main-font-color);
   cursor: pointer;
-  /* padding: .7rem 3rem; */
   border-radius: 2rem;
   box-shadow: 4px 4px 15px var(--primary-color);
 }
@@ -101,8 +101,8 @@
   text-shadow: 0 0 15px var(--primary-color);
   font-family: var(--main-font-family);
   font-size: var(--question-font-size);
-  opacity: 0;
-  animation: appear 1s ease-in forwards;
+  /* opacity: 0; */
+  animation: bump 1s ease-in-out;
 }
 
 .checkmarks {
@@ -120,7 +120,7 @@
   width: 2rem;
   height: 2rem;
   filter: drop-shadow( 0 0 10px var(--primary-color));
-  animation: bump 400ms ease-in-out;
+  animation: bump 1s ease-in-out;
 }
 
 .incorrect {
@@ -131,7 +131,7 @@
   width: 2rem;
   height: 2rem;
   filter: drop-shadow( 0 0 10px var(--primary-color));
-  animation: bump 400ms ease-in-out;
+  animation: bump 1s ease-in-out;
 }
 
 .country {
@@ -146,8 +146,6 @@
   text-shadow: none;
   padding: .2rem 1.8rem;
   border-radius: 1.5rem;
-  /* opacity: 0;
-  animation: appear .5s ease-in forwards; */
 }
 
 .countryEurope {
@@ -167,7 +165,7 @@
 }
 
 .animate-bump {
-  animation: bump 1s;
+  animation: bump 1s ease-in-out;
 }
 
 @keyframes bump {

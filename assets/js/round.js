@@ -44,7 +44,7 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
 
     const setDblClickFeedbackLayer = () => {
         // removeSelectLayer(map);
-        removeFeedbackLayer(map);
+        // removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore)
         console.log('doubleclick', clickedCountryCode)
         console.log('callback fired')
@@ -61,7 +61,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
     const setTapHoldFeedbackLayer = () => {
         console.log('callback fired')
         // removeSelectLayer(map);
-        removeFeedbackLayer(map);
+        // removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore)
         // This function calls the next question recursively. (See askQuestions function)
         callback()
@@ -94,7 +94,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 
                 } else {
                     console.log('tap', clickedCountryCode)
-                    removeFeedbackLayer(map)
+                    // removeFeedbackLayer(map)
                     // removeSelectLayer(map);
                     // addSelectLayer(map, clickedCountryCode);
                     map.off('touchend', touchEndFunction);
@@ -110,7 +110,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
             // if the touch was with one finger only
             map.on('touchend', touchEndFunction);
         } else {
-            // if touch was with more fingers, start the toch listening again
+            // if touch was with more fingers, start the touch listening again
             map.once('touchend', () => map.once('touchstart', touchStartFunction));
         }
     }
@@ -120,6 +120,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 /** remove previous select- and feedback layers' event listeners and add updated ones */
 const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     // add these event listeners to non-mobile (non-touch) devices only
+    removeFeedbackLayer(map);
     if (!window.navigator.maxTouchPoints > 0) {
         setClickSelectEventListeners(map, countryCode, increaseScore, callback)
     } else {
@@ -127,19 +128,28 @@ const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     }
 }
 
-const getRandomCountryCode = (countries) => {
-    let randomCountryCodeIndex = Math.floor(Math.random() * countries.length);
-    return countries[randomCountryCodeIndex]
+/** generate unique indecies from the countries array and 
+ * return an array with the given number of elements.*/
+const getRandomCountryCodes = (countries, num) => {
+    let codes = [];
+    let randomCountryCodeIndex;
+    while (codes.length < num) {
+        randomCountryCodeIndex = Math.floor(Math.random() * countries.length);
+        !codes.includes(countries[randomCountryCodeIndex]) && codes.push(countries[randomCountryCodeIndex])
+    }
+    return codes
 }
 
-const getQuestions = (region) => {
-    const codes = Object.keys(data[region]);
+const getQuestions = (region, num) => {
+    const allCodesInRegion = Object.keys(data[region]);
+
+    const randomCodes = getRandomCountryCodes(allCodesInRegion, num);
 
     const questions = [];
-    for (let i = 0; i < 5; i++) {
-        const randomCode = getRandomCountryCode(codes);
-        const country = data[region][randomCode].countryName;
-        questions.push([randomCode, country])
+    console.log(data[region])
+    for (const code of randomCodes) {
+        const country = data[region][code]
+        questions.push([code, country])
     }
     console.log(questions)
     return questions;
@@ -174,25 +184,27 @@ export const restartRound = (map) => {
     restartGame(map)
 }
 
-export const startRound = (map, region) => {
+export const startRound = (map, region, num) => {
     score = 0;
     // set minimum zoom level after animation finished.
     setTimeout(() => map.setMinZoom(map.getZoom()), 1000);
     
-    $('h1').fadeIn('slow').removeClass('choose').text('Find the country on the map!').addClass('question');
+    $('h1').fadeIn('slow').removeClass('choose').text('');
+    setTimeout( () => $('h1').text('Find the country on the map!').addClass('question'), 1000);
     $('body').append('<ul id="checkmarks" class="checkmarks"></ul>');
     removeContinentBtns();
 
-    const questions = getQuestions(region);
+    const questions = getQuestions(region, num);
 
     const showScore = (map) => {
         resetMap(map);
-        $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / 5`)
+        $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / ${num}`)
         $('#countryLabel').remove();
         $('#checkmarks').remove();
         addNewGameBtn(map)
     }
 
-    askQuestions(map, region, questions, showScore)
+    // wait a second before displaying the first country
+    setTimeout( () => askQuestions(map, region, questions, showScore), 1000)
 
 }

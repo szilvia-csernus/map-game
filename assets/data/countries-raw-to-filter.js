@@ -1994,45 +1994,30 @@ const filterCountries = () => {
 			country['CountryCode'] != 'AW' && // Aruba
 			country['CountryCode'] != 'MF' && // Saint Martin
 			country['CountryCode'] != 'SM' && // San Marino
-			country['CountryCode'].length < 4 && // wrong data
+			country['CountryCode'].length < 3 && // wrong data
 			!(
 				parseInt(country['CapitalLatitude']) === 0 &&
 				parseInt(country['CapitalLongitude']) === 0
 			)
 		) {
 			if (country['ContinentName'] === 'Africa') {
-			countriesObject.Africa[country['CountryCode']] = {
-				countryName: country['CountryName'],
-				capitalName: country['CapitalName'],
-				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
-			}
-		} else if (country['ContinentName'] === 'Europe') {
-			countriesObject.Europe[country['CountryCode']] = {
+			countriesObject.Africa[country['CountryCode']] = country['CountryName']
 
-				countryName: country['CountryName'],
-				capitalName: country['CapitalName'],
-				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
-			}
+		} else if (country['ContinentName'] === 'Europe') {
+			countriesObject.Europe[country['CountryCode']] = country['CountryName']
+			
 		} else if (country['ContinentName'] === 'North America' ||
 		country['ContinentName'] === 'South America' ||
 		country['ContinentName'] === 'Central America') {
-			countriesObject.Americas[country['CountryCode']] = {
-				countryName: country['CountryName'],
-				capitalName: country['CapitalName'],
-				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
-			}
+			countriesObject.Americas[country['CountryCode']] = country['CountryName']
+			
 		} else if (country['ContinentName'] === 'Asia') {
-			countriesObject.Asia[country['CountryCode']] = {
-				countryName: country['CountryName'],
-				capitalName: country['CapitalName'],
-				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
-			}
+			countriesObject.Asia[country['CountryCode']] = country['CountryName']
+			
 		} else {
 			countriesObject.rest[country['CountryCode']] = {
 				region: country['ContinentName'],
-				countryName: country['CountryName'],
-				capitalName: country['CapitalName'],
-				coordinates: [country['CapitalLongitude'], country['CapitalLatitude']]
+				countryName: country['CountryName']
 			}
 		}
 		}
