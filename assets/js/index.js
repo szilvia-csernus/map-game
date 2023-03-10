@@ -7,6 +7,7 @@ export const initialZoom = () => {
 }
 
 import { addPlayBtn, removePlayBtn } from './buttons.js'
+import { addHowToPlay } from './how-to-play.js'
 
 const mapColours = {
     1: "#845EC2", // violet
@@ -46,12 +47,10 @@ const createMapObject = (callback) => {
         customAttribution: '<span class="developer">&copy; App development by Szilvia Csernus</span>'
         }));;
 
-
     map.on('load', () => {
         addTilesetSource(map);
         callback(map)
     })
-
 }
 
 /**  adds tileset source for country boundaries, region and country name data */
@@ -145,7 +144,6 @@ const addRotation = (map, button, callback) => {
 
     button.click(function() {
         spinEnabled = !spinEnabled;
-        // map.stop(); // Immediately end ongoing animation
         callback();
     });
 

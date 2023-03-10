@@ -1,8 +1,24 @@
-import { addExit } from './exit.js';
-import { startRound } from './round.js';
-import { addHoverLayer, addBlurLayer, addEventListeners, addTouchLayer } from './layers.js';
-import { addContinentBtns } from './buttons.js';
+import {
+    addExit
+} from './exit.js';
+import {
+    startRound
+} from './round.js';
+import {
+    addHoverLayer,
+    addBlurLayer,
+    addEventListeners,
+    addTouchLayer
+} from './layers.js';
+import {
+    addContinentBtns
+} from './buttons.js';
+import {
+    addHowToPlay
+} from './how-to-play.js';
 
+
+export const isMobile = window.navigator.maxTouchPoints > 0;
 
 const enableMapInteraction = (map) => {
     // Set scroll and drag functions
@@ -35,7 +51,7 @@ const addClickListenersToContinentBtns = (map) => {
                 map.setFilter('country-hover', ['==', ['get', 'region'], region]);
             map.getLayer('country-touch') &&
                 map.setFilter('country-touch', ['==', ['get', 'region'], region]);
-            
+
             !map.getLayer('country-blur') && addBlurLayer(map);
             map.setFilter('country-blur', ['!=', ['get', 'region'], region]);
 
@@ -45,8 +61,8 @@ const addClickListenersToContinentBtns = (map) => {
             startRound(map, region, 15);
         })
     }
-    
-    window.navigator.maxTouchPoints > 0 ? addTouchLayer(map) : addHoverLayer(map);
+
+    isMobile ? addTouchLayer(map) : addHoverLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
     addFlyOnClick($('#asiaBtn'), 'Asia', [77.367783, 32.174450], 2.5)
@@ -59,8 +75,14 @@ const showChooseContinentTitle = () => {
 }
 
 export const game = (map) => {
-    addExit(map);
-    showChooseContinentTitle();
-    addContinentBtns();
-    addClickListenersToContinentBtns(map);
+    addHowToPlay(isMobile);
+    document.body.requestFullscreen()
+    $('#okay').click(function () {
+        $('#howToPlayCanvas').remove();
+        addExit(map);
+        showChooseContinentTitle();
+        addContinentBtns();
+        addClickListenersToContinentBtns(map);
+    })
+
 }
