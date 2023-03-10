@@ -36,6 +36,7 @@ export const resetMap = (map) => {
 }
 
 const updateElements = () => {
+    $('#howToPlayCanvas').remove();
     $('#continentCanvas').remove();
 
     // reset main title
@@ -58,6 +59,7 @@ export const restartGame = (map) => {
 const addExitBtn = (map) => {
     $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg"></img>')
     $('#exit').click(function () {
+        document.exitFullscreen()
         restartGame(map)
     })
 }

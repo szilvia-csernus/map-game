@@ -34,6 +34,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
     --secondary-font-color: rgb(14, 60, 94);
     --button-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
     --title-font-size: clamp(3rem, 2.8519rem + 0.7407vw, 3.5rem);
+    --choose-font-size: clamp(2.2rem, 2.0571rem + 0.7143vw, 2.7rem);
     --question-font-size: clamp(1.7rem, 1.486rem + 0.571vw, 2rem);
     --country-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
     --utilities-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
@@ -111,11 +112,12 @@ html, body, section, article, h1, h2, p, a, button, ul {
     font-weight: 700;
     letter-spacing: .2rem;
     color: var(--main-font-color);
-    border: 2px solid var(--main-font-color);
+    border: 1px solid var(--main-font-color);
     cursor: pointer;
     padding: .7rem 3rem;
     border-radius: 2rem;
-    box-shadow: 4px 4px 15px var(--primary-color);
+    box-shadow: 2px 2px 10px var(--main-font-color) inset, 
+                4px 4px 15px var(--primary-color);
     opacity: 0;
     animation: appear .2s ease-in forwards;
   }
