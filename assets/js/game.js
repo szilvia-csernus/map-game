@@ -42,7 +42,7 @@ const addClickListenersToContinentBtns = (map) => {
             // add event listeners to the filtered region of the map
             addEventListeners(map);
             enableMapInteraction(map);
-            startRound(map, region);
+            startRound(map, region, 15);
         })
     }
     
@@ -51,7 +51,7 @@ const addClickListenersToContinentBtns = (map) => {
     addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
     addFlyOnClick($('#asiaBtn'), 'Asia', [77.367783, 32.174450], 2.5)
     addFlyOnClick($('#africaBtn'), 'Africa', [17.015762, 8.895926], 2.8)
-    addFlyOnClick($('#americasBtn'), 'Americas', [-84.811020, 11.632733], 2)
+    addFlyOnClick($('#americasBtn'), 'Americas', [-84.811020, 11.632733], 2.5)
 }
 
 const showChooseContinentTitle = () => {

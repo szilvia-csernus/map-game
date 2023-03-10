@@ -33,7 +33,7 @@ const createMapObject = (callback) => {
         zoom: initialZoom(),
         minZoom: 1,
         maxZoom: 7,
-        center: [30, 40],
+        center: [50, 40],
         attributionControl: false,
         dragPan: false,
         scrollZoom: false,
@@ -60,14 +60,66 @@ const addTilesetSource = (map) => {
     map.addSource('country-boundaries', {
         type: 'vector',
         url: 'mapbox://mapbox.country-boundaries-v1',
+        filter: [
+            "all",
+            [
+              "match",
+              ["get", "worldview"],
+              ["US"],
+              false,
+              true
+            ]
+          ],
         generateId: true
     })
+
+    map.addLayer({
+        id: 'patch-for-ukraine-fill',
+        filter: 
+            [
+              "match",
+              ["get", "iso_3166_1"],
+              ["UA"],
+              true,
+              false
+          ],
+        minzoom: 1,
+        maxzoom: 7,
+        paint: {
+            'fill-color': "#f475b4"
+        },
+        source: "country-boundaries",
+        'source-layer': "country_boundaries",
+        type: "fill"
+    })
+
+    map.addLayer({
+        id: 'patch-for-ukraine-line',
+        filter:
+        [
+          "match",
+          ["get", "iso_3166_1"],
+          ["UA"],
+          true,
+          false
+      ],
+        minzoom: 1,
+        maxzoom: 7,
+        paint: {
+            'line-color': "#fff",
+            'line-width': 1
+        },
+        source: "country-boundaries",
+        'source-layer': "country_boundaries",
+        type: "line"
+    });
 
 };
 
 const addRotation = (map, button, callback) => {
-    // Base code for rotating globe function is provided by mapbox.com in Mabpbox GLJS Examples. 
-    // Rotation speed 
+    // Code for rotating globe function is adapted from an example by mapbox.com. 
+    // https://docs.mapbox.com/mapbox-gl-js/example/globe-spin/
+
     const secondsPerRevolution = 150;
 
     let spinEnabled = true;

@@ -1,12 +1,24 @@
 const minZoom = (map) => map.getMinZoom() - 0.1;
 const maxZoom = (map) => map.getMaxZoom() + 0.5;
 // const maxZoom = (map) => 6.1;
+export let clickedCountryCode = null;
+
 
 /** adds hover-change layer to the map. Used on non-mobile devices.  */
 export const addHoverLayer = (map) => {
     
         map.addLayer({
             id: 'country-hover',
+            filter: [
+                "all",
+                [
+                  "match",
+                  ["get", "worldview"],
+                  ["US"],
+                  false,
+                  true
+                ]
+              ],
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
             paint: {
@@ -37,6 +49,16 @@ export const removeHoverLayer = (map) => {
 export const addTouchLayer = (map) => {
         map.addLayer({
             id: 'country-touch',
+            filter: [
+                "all",
+                [
+                  "match",
+                  ["get", "worldview"],
+                  ["US"],
+                  false,
+                  true
+                ]
+              ],
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
             paint: {
@@ -62,6 +84,16 @@ export const removeTouchLayer = (map) => {
 export const addBlurLayer = (map) => {
     map.addLayer({
         id: `country-blur`,
+        filter: [
+            "all",
+            [
+              "match",
+              ["get", "worldview"],
+              ["US"],
+              false,
+              true
+            ]
+          ],
         minzoom: minZoom(map),
         maxzoom: maxZoom(map),
         paint: {
@@ -121,7 +153,17 @@ export const removeSelectLayer = (map) => {
  */
 export const addFeedbackLayer = (map, correct) => {
     map.addLayer({
-        filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+        filter: [
+            "all",
+            [
+              "match",
+              ["get", "worldview"],
+              ["US"],
+              false,
+              true
+            ],
+            ['==', ['get', 'iso_3166_1'], clickedCountryCode]
+          ],
         id: 'country-feedback-line',
         minzoom: minZoom(map),
         maxzoom: maxZoom(map),
@@ -135,7 +177,17 @@ export const addFeedbackLayer = (map, correct) => {
     });
     if (correct) {
         map.addLayer({
-            filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+            filter: [
+                "all",
+                [
+                  "match",
+                  ["get", "worldview"],
+                  ["US"],
+                  false,
+                  true
+                ],
+                ['==', ['get', 'iso_3166_1'], clickedCountryCode]
+              ],
             id: 'country-feedback-fill',
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
@@ -148,7 +200,17 @@ export const addFeedbackLayer = (map, correct) => {
         });
     } else {
         map.addLayer({
-            filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+            filter: [
+                "all",
+                [
+                  "match",
+                  ["get", "worldview"],
+                  ["US"],
+                  false,
+                  true
+                ],
+                ['==', ['get', 'iso_3166_1'], clickedCountryCode]
+              ],
             id: 'country-feedback-fill',
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
@@ -160,6 +222,7 @@ export const addFeedbackLayer = (map, correct) => {
             type: "fill"
         });
     }
+   
 }
 
 /** remove other country selection if there is any */
@@ -168,55 +231,8 @@ export const removeFeedbackLayer = (map) => {
     map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
 }
 
-// /** this layer renders correct & incorrect country names according to the answer given.*/
-// export const addNameLayer = (map, countryCode, increaseScore) => {
-//     map.addLayer({
-//         filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
-//         id: 'country-feedback-line',
-//         minzoom: 1,
-//         maxzoom: 7,
-//         paint: {
-//             'line-color': "#fff",
-//             'line-width': 2
-//         },
-//         source: "country-boundaries",
-//         'source-layer': "country_boundaries",
-//         type: "line"
-//     });
-//     if (countryCode === clickedCountryCode) {
-//         increaseScore();
-//         map.addLayer({
-//             filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
-//             id: 'country-feedback-fill',
-//             minzoom: 1,
-//             maxzoom: 7,
-//             paint: {
-//                 'fill-color': "#3aa956"
-//             },
-//             source: "country-boundaries",
-//             'source-layer': "country_boundaries",
-//             type: "fill"
-//         });
-//     } else {
-//         map.addLayer({
-//             filter: ['==', ['get', 'iso_3166_1'], clickedCountryCode],
-//             id: 'country-feedback-fill',
-//             minzoom: 1,
-//             maxzoom: 7,
-//             paint: {
-//                 'fill-color': "#a93a42"
-//             },
-//             source: "country-boundaries",
-//             'source-layer': "country_boundaries",
-//             type: "fill"
-//         });
-//     }
-// }
-
-export let clickedCountryCode = null;
 export const addEventListeners = (map) => {
     let hoveredStateId = null;
-    
     // when the user moves their mouse over the state-fill layer, 
     // we'll update the feature state for the feature under the mouse.
     // non-touch devices only.
