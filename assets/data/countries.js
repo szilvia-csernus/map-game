@@ -4,7 +4,8 @@
 // Czech Republic => Czechia
 // Cyprus, Azerbaijan, Armenia, Georgia, Turkey moved to Asia
 // Gibraltar, Vatican City, Dominica, Barbados, Cayman Islands,
-// British Virgin Islands, Bermuda, Grenada, Maldives  removed from list
+// British Virgin Islands, Bermuda, Grenada, Maldives,
+// Monaco  removed from list
 // "TW": "Taiwan"
 
 // 175 in total
@@ -98,7 +99,6 @@ export const data = {
         "MK": "Macedonia",
         "MT": "Malta",
         "MD": "Moldova",
-        "MC": "Monaco",
         "ME": "Montenegro",
         "NL": "Netherlands",
         "NO": "Norway",
