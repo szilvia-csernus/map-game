@@ -36,6 +36,7 @@ export const resetMap = (map) => {
 const updateElements = () => {
     initializeScore();
 
+    $('#highScoresBackground').remove();
     $('#howToPlayCanvas').remove();
     $('#continentCanvas').remove();
 

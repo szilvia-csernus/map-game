@@ -328,7 +328,7 @@ export const addPatchLayerForUkraine = (map) => {
         maxzoom: 7,
         paint: {
             'line-color': "#fff",
-            'line-width': 1
+            'line-width': 0.5
         },
         source: "country-boundaries",
         'source-layer': "country_boundaries",
