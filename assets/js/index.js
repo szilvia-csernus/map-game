@@ -116,7 +116,7 @@ const addTilesetSource = (map) => {
 };
 
 const addRotation = (map, button, callback) => {
-    // Code for rotating globe function is adapted from an example by mapbox.com. 
+    // Code for spinGlobe() function is adapted from an example by mapbox.com. 
     // https://docs.mapbox.com/mapbox-gl-js/example/globe-spin/
 
     const secondsPerRevolution = 150;

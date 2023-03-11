@@ -17,11 +17,24 @@
   animation: appear .2s forwards;
 }
 
+
+/* ---------- How To Play --------------- */
+
+.howToPlayBackground {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
 .howToPlayCanvas {
   position: absolute;
-  align-self: center;
-  width: 20rem;
-  height: 20rem;
+  width: 18rem;
+  height: 18rem;
   background-color: var(--transparent-bg-color);
   border: 1px solid var(--main-font-color);
   border-radius: 50%;
@@ -32,14 +45,21 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   opacity: 0;
   animation: appear 1s forwards;
 }
 
+@media screen and (min-width: 415px ) {
+  .howToPlayCanvas {
+    width: 25rem;
+    height: 25rem;
+  }
+}
+
 .firstRule {
-  margin: .5rem 0;
+  margin: 3rem 0 .5rem;
   opacity: 0;
   animation: appear 1s forwards;
 }
@@ -57,14 +77,17 @@
 }
 
 .okay {
-  width: 4.8rem;
-  height: 4.8rem;
-  margin-top: 1.5rem;
-  border-radius: 50%;
-  padding: 0.5rem 0;
+  /* width: 4.8rem;
+  height: 4.8rem; */
+  margin: 1.5rem;
+  /* border-radius: 50%; */
+  padding: 0.5rem 1.5rem;
   text-align: center;
   cursor: pointer;
-  box-shadow: 4px 4px 15px var(--main-font-color) inset;
+  border: 1px solid var(--main-font-color);
+  border-radius: 2rem;
+  box-shadow: 2px 2px 7px var(--main-font-color) inset, 
+  4px 4px 15px var(--primary-color);
   opacity: 0;
   animation: appear 1s 4.5s forwards;
 }
@@ -158,7 +181,6 @@
   text-shadow: 0 0 15px var(--primary-color);
   font-family: var(--main-font-family);
   font-size: var(--question-font-size);
-  /* opacity: 0; */
   animation: bump 1s ease-in-out;
 }
 
