@@ -90,6 +90,7 @@ export const game = (map) => {
 
     if (!visitedBefore && firstTime) {
         firstTime = false;
+        window.localStorage.setItem('visitedBefore', 'true');
         addHowToPlay(isMobile, false, continueFunction);
     } else {
         continueFunction()
