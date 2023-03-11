@@ -22,11 +22,13 @@ export const removeHowToPlay = () => {
 }
 
 export const addHowToPlayIcon = (isMobile) => {
-    $('body').append('<img id="questionMark" class="questionMark" src="./assets/icons/questionMark.svg" alt="how to play icon"></img>');
-    $('#questionMark').click(function () {
-        // remove the icon so that user can't click it again when instructions are already rendered on the page.
-        $('#questionMark').remove();
-        console.log('click event listener')
-        addHowToPlay(isMobile, true)
-    })
+    if (!document.getElementById('questionMark')) {
+        $('body').append('<img id="questionMark" class="questionMark" src="./assets/icons/questionMark.svg" alt="how to play icon"></img>');
+        $('#questionMark').click(function () {
+            // remove the icon so that user can't click it again when instructions are already rendered on the page.
+            $('#questionMark').remove();
+            console.log('click event listener')
+            addHowToPlay(isMobile, true)
+        })
+    }
 }
