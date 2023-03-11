@@ -351,6 +351,9 @@ https://www.svgrepo.com/svg/404945/check-mark
 * Cross icon:
 https://www.svgrepo.com/svg/470906/times
 
+* Question mark icon:
+https://www.svgrepo.com/svg/491697/question-circle
+
 <br><br>
 
 ## Other credits - incorporated ideas and solutions
@@ -371,8 +374,6 @@ https://css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filters/
 I would like to thank the following contributors:
 
 * My mentor [Elaine Broche](https://github.com/elainebroche-dev) for giving useful feedback throughout the development and testing process.
-
-
 
 * My friends for taking the time to test my site.
 

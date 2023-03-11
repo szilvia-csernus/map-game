@@ -104,6 +104,23 @@ html, body, section, article, h1, h2, p, a, button, ul {
     animation: appear .2s ease-in forwards;
   }
 
+  .questionMark {
+    position: absolute;
+    top: 1.5vh;
+    right: 2vw;
+    z-index: 1;
+    font-weight: bold;
+    width: 1.9rem;
+    height: 2.4rem;
+    color: var(--main-font-color);
+    filter: drop-shadow( 0 0 10px var(--primary-color));
+    font-family: var(--main-font-family);
+    font-size: var(--utilities-font-size);
+    cursor: pointer;
+    opacity: 0;
+    animation: appear .2s ease-in forwards;
+  }
+
   .playBtn {
     position: absolute;
     bottom: 6vh;

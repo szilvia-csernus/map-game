@@ -14,11 +14,13 @@ import {
     addContinentBtns
 } from './buttons.js';
 import {
-    addHowToPlay
+    addHowToPlay, addHowToPlayIcon
 } from './how-to-play.js';
 
 
 export const isMobile = window.navigator.maxTouchPoints > 0;
+export const visitedBefore = window.localStorage.getItem('visitedBefore');
+let firstTime = true;
 
 const enableMapInteraction = (map) => {
     // Set scroll and drag functions
@@ -75,14 +77,19 @@ const showChooseContinentTitle = () => {
 }
 
 export const game = (map) => {
-    addHowToPlay(isMobile);
-    document.body.requestFullscreen()
-    $('#okay').click(function () {
-        $('#howToPlayCanvas').remove();
+
+    const continueFunction = () => {
         addExit(map);
         showChooseContinentTitle();
         addContinentBtns();
         addClickListenersToContinentBtns(map);
-    })
+    }
+
+    if (!visitedBefore && firstTime) {
+        firstTime = false;
+        addHowToPlay(isMobile, continueFunction);
+    } else {
+        continueFunction()
+    }
 
 }

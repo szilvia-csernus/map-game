@@ -1,5 +1,4 @@
 import { removeHoverLayer, removeBlurLayer, 
-    // removeSelectLayer, 
     removeFeedbackLayer, removeTouchLayer } from "./layers.js";
 
 import { initialZoom, startGame } from './index.js'
@@ -18,7 +17,6 @@ export const resetMap = (map) => {
     removeHoverLayer(map);
     removeTouchLayer(map);
     removeBlurLayer(map);
-    // removeSelectLayer(map);
     removeFeedbackLayer(map);
 
     disableMapInteraction(map);
@@ -57,9 +55,8 @@ export const restartGame = (map) => {
 }
 
 const addExitBtn = (map) => {
-    $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg"></img>')
+    $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg" alt="exit icon"></img>')
     $('#exit').click(function () {
-        document.exitFullscreen()
         restartGame(map)
     })
 }
