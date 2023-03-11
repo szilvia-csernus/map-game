@@ -30,6 +30,10 @@ export const startRound = (map, region, num) => {
 
     const showScore = (map, score) => {
         resetMap(map);
+        const highScore = window.localStorage.getItem(region);
+        if (highScore < score) {
+            window.localStorage.setItem(region, score)
+        }
         $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / ${num}`)
         $('#countryLabel').remove();
         $('#checkmarks').remove();

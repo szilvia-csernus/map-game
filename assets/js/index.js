@@ -84,6 +84,7 @@ let game;
 
 export const startGame = (map) => {
     addPlayBtn(() => {
+        // delay loading the rest of the code until button is clicked.
         // import game.js only once
         if (!game) {
             game = import('./game.js'); // returns a promise
