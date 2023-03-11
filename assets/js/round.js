@@ -10,6 +10,7 @@ import {
 } from './buttons.js';
 
 import { getQuestions, askQuestions, initializeScore } from './questions.js';
+import { showHighScores } from './high-scores.js';
 
 export const restartRound = (map) => {
     removeNewGameBtn();
@@ -30,14 +31,24 @@ export const startRound = (map, region, num) => {
 
     const showScore = (map, score) => {
         resetMap(map);
+        $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / ${num}`)
+        $('#countryLabel').remove();
+        $('#checkmarks').remove();
+
         const highScore = window.localStorage.getItem(region);
         if (highScore < score) {
             window.localStorage.setItem(region, score)
         }
-        $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / ${num}`)
-        $('#countryLabel').remove();
-        $('#checkmarks').remove();
-        addNewGameBtn(map)
+
+        const playedBefore = window.localStorage.getItem('playedBefore');
+        if (!playedBefore) {
+            window.localStorage.setItem('playedBefore', 'true')
+            addNewGameBtn(map)
+        } else {
+           showHighScores(map)
+        }
+        
+        
     }
 
     // wait a second before displaying the first country

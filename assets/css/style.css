@@ -285,11 +285,10 @@
   background-color: var(--primary-color-hover);
 }
 
+
 /* ---- High Score -------  */
 
-/* ---------- How To Play --------------- */
-
-.highScoreBackground {
+.highScoresBackground {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -300,17 +299,16 @@
   background-color: rgba(22, 29, 50, 0.4);
 }
 
-.highScoreCanvas {
+.highScoresCanvas {
   position: absolute;
   width: 18rem;
   height: 18rem;
   background-color: var(--main-font-color);
   border: 1px solid var(--primary-color);
   border-radius: 50%;
-  box-shadow: 10px 10px 30px var(--primary-color) inset, 
+  box-shadow: 30px 30px 80px var(--primary-color) inset, 
   10px 10px 30px var(--main-font-color);
   padding: 2rem;
-  font-size: var(--utilities-font-size);
   color: var(--primary-color);
   text-align: center;
   display: flex;
@@ -322,20 +320,25 @@
 }
 
 @media screen and (min-width: 415px ) {
-  .highScoreCanvas {
+  .highScoresCanvas {
     width: 25rem;
     height: 25rem;
   }
 }
 
-.highScoreTitle {
+.highScoresTitle {
   margin: 3rem 0 .5rem;
-  opacity: 0;
-  animation: appear 1s forwards;
+  font-size: var(--high-score-title-font-size);
+  font-weight: bold;
 }
 
 .score {
-  margin: .5rem 0;
-  opacity: 0;
-  animation: appear 1s 1s forwards;
+  font-size: var(--high-score-font-size);
+  font-weight: bold;
+}
+
+.repositionBtn {
+  position: unset;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1rem;
 }
