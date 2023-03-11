@@ -1,3 +1,7 @@
+import { addPlayBtn, removePlayBtn } from './buttons.js'
+import { addPatchLayerForUkraine } from './layers.js'
+import { addRotation } from './spin.js'
+
 export const initialZoom = () => {
     if (window.innerWidth < 415) {
         return 1
@@ -5,9 +9,6 @@ export const initialZoom = () => {
         return 1.5
     } else return 1.7
 }
-
-import { addPlayBtn, removePlayBtn } from './buttons.js'
-import { addPatchLayerForUkraine } from './layers.js'
 
 const mapColours = {
     1: "#845EC2", // violet
@@ -75,38 +76,6 @@ const addTilesetSource = (map) => {
     addPatchLayerForUkraine(map);
 };
 
-let spinEnabled;
-
-export const stopSpin = () => spinEnabled = false;
-
-export const addRotation = (map) => {
-    // Code for spinGlobe() function is adapted (and heavily modified)
-    // from an example by mapbox.com. 
-    // https://docs.mapbox.com/mapbox-gl-js/example/globe-spin/
-
-    const secondsPerRevolution = 150; 
-    spinEnabled = true;
-    function spinGlobe() {
-        if (spinEnabled) {
-            let distancePerSecond = 360 / secondsPerRevolution;
-            const center = map.getCenter();
-            center.lng -= distancePerSecond;
-            // Smoothly animate the map over one second.
-            // When this animation is complete, it calls the 'moveend' event.
-            map.easeTo({
-                center,
-                duration: 1000,
-                easing: (n) => n
-            });
-            // When animation is complete (1s), start spinning again.
-            map.once('moveend', spinGlobe);
-        } else {
-            map.stop()
-        }
-    }
-    spinGlobe();
-}
-
 const addIntroAnimation = () => {
     $('.map').addClass('animate-appear-map');
 }
@@ -117,7 +86,7 @@ export const startGame = (map) => {
     addPlayBtn(() => {
         // import game.js only once
         if (!game) {
-            game = import('./game.js');
+            game = import('./game.js'); // returns a promise
         }
         game.then(module => {
             removePlayBtn();

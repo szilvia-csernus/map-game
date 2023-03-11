@@ -1,7 +1,9 @@
 import { removeHoverLayer, removeBlurLayer, 
     removeFeedbackLayer, removeTouchLayer } from "./layers.js";
 
-import { initialZoom, startGame, stopSpin } from './index.js'
+import { initialZoom, startGame } from './index.js'
+import { initializeScore } from "./questions.js";
+import { stopSpin } from "./spin.js";
 
 
 const disableMapInteraction = (map) => {
@@ -32,6 +34,8 @@ export const resetMap = (map) => {
 }
 
 const updateElements = () => {
+    initializeScore();
+
     $('#howToPlayCanvas').remove();
     $('#continentCanvas').remove();
 

@@ -14,9 +14,9 @@ import {
     addContinentBtns
 } from './buttons.js';
 import {
-    addHowToPlay
+    addHowToPlay, addHowToPlayIcon
 } from './how-to-play.js';
-import { stopSpin } from './index.js';
+import { stopSpin } from './spin.js';
 
 
 export const isMobile = window.navigator.maxTouchPoints > 0;
@@ -93,6 +93,7 @@ export const game = (map) => {
         window.localStorage.setItem('visitedBefore', 'true');
         addHowToPlay(isMobile, false, continueFunction);
     } else {
+        addHowToPlayIcon(isMobile)
         continueFunction()
     }
 }
