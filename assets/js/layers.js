@@ -142,11 +142,6 @@ export const removeBlurLayer = (map) => {
 //     });
 // }
 
-/** remove other country selection if there is any */
-export const removeSelectLayer = (map) => {
-    map.getLayer('country-select-fill') && map.removeLayer('country-select-fill');
-    map.getLayer('country-select-line') && map.removeLayer('country-select-line');
-}
 
 /** this layer renders the country green/red according to the answer given 
  * as well as increases the score if the answer is correct.
@@ -297,3 +292,46 @@ export const addEventListeners = (map) => {
         })
     }
 };
+
+export const addPatchLayerForUkraine = (map) => {
+    map.addLayer({
+        id: 'patch-for-ukraine-fill',
+        filter: 
+            [
+              "match",
+              ["get", "iso_3166_1"],
+              ["UA"],
+              true,
+              false
+          ],
+        minzoom: 1,
+        maxzoom: 7,
+        paint: {
+            'fill-color': "#f475b4"
+        },
+        source: "country-boundaries",
+        'source-layer': "country_boundaries",
+        type: "fill"
+    })
+
+    map.addLayer({
+        id: 'patch-for-ukraine-line',
+        filter:
+        [
+          "match",
+          ["get", "iso_3166_1"],
+          ["UA"],
+          true,
+          false
+      ],
+        minzoom: 1,
+        maxzoom: 7,
+        paint: {
+            'line-color': "#fff",
+            'line-width': 1
+        },
+        source: "country-boundaries",
+        'source-layer': "country_boundaries",
+        type: "line"
+    });
+}

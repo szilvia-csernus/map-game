@@ -14,12 +14,14 @@ import {
     addContinentBtns
 } from './buttons.js';
 import {
-    addHowToPlay, addHowToPlayIcon
+    addHowToPlay
 } from './how-to-play.js';
+import { stopSpin } from './index.js';
 
 
 export const isMobile = window.navigator.maxTouchPoints > 0;
 export const visitedBefore = window.localStorage.getItem('visitedBefore');
+
 let firstTime = true;
 
 const enableMapInteraction = (map) => {
@@ -32,9 +34,10 @@ const enableMapInteraction = (map) => {
 }
 
 const addClickListenersToContinentBtns = (map) => {
-
+    
     const addFlyOnClick = (button, region, center, zoom = 4) => {
         button.click(function () {
+            stopSpin()
             map.easeTo({
                 center,
                 zoom,
@@ -60,7 +63,7 @@ const addClickListenersToContinentBtns = (map) => {
             // add event listeners to the filtered region of the map
             addEventListeners(map);
             enableMapInteraction(map);
-            startRound(map, region, 15);
+            startRound(map, region, 1);
         })
     }
 
@@ -87,9 +90,8 @@ export const game = (map) => {
 
     if (!visitedBefore && firstTime) {
         firstTime = false;
-        addHowToPlay(isMobile, continueFunction);
+        addHowToPlay(isMobile, false, continueFunction);
     } else {
         continueFunction()
     }
-
 }

@@ -7,15 +7,14 @@ import {
     restartGame
 } from './exit.js';
 import {
-    // addSelectLayer,
-    // removeSelectLayer,
     addFeedbackLayer,
     removeFeedbackLayer,
     clickedCountryCode
 } from './layers.js';
 import {
     addNewGameBtn,
-    removeContinentBtns
+    removeContinentBtns,
+    removeNewGameBtn
 } from './buttons.js';
 
 let score = 0;
@@ -35,16 +34,9 @@ const addFeedback = (map, countryCode, increaseScore) => {
 }
 
 const setClickSelectEventListeners = (map, countryCode, increaseScore, callback) => {
-    // map.on('click', () => {
-    //     // removeSelectLayer(map);
-    //     removeFeedbackLayer(map);
-    //     console.log('click', clickedCountryCode)
-    //     // addSelectLayer(map, clickedCountryCode);
-    // })
 
     const setDblClickFeedbackLayer = () => {
-        // removeSelectLayer(map);
-        // removeFeedbackLayer(map);
+        removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore)
         console.log('doubleclick', clickedCountryCode)
         console.log('callback fired')
@@ -60,8 +52,7 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     const setTapHoldFeedbackLayer = () => {
         console.log('callback fired')
-        // removeSelectLayer(map);
-        // removeFeedbackLayer(map);
+        removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore)
         // This function calls the next question recursively. (See askQuestions function)
         callback()
@@ -94,9 +85,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 
                 } else {
                     console.log('tap', clickedCountryCode)
-                    // removeFeedbackLayer(map)
-                    // removeSelectLayer(map);
-                    // addSelectLayer(map, clickedCountryCode);
+                    removeFeedbackLayer(map)
                     map.off('touchend', touchEndFunction);
                     map.once('touchstart', touchStartFunction)
                 }
@@ -159,7 +148,6 @@ const oneQuestion = (map, code, country, region, callback) => {
     $('#countryLabel').remove();
     setTimeout(() => {
         $('body').append(`<div id="countryLabel" class="country country${region} animate-bump">${country}</div>`);
-        // removeSelectLayer(map);
         removeFeedbackLayer(map);
         setSelectEventListeners(map, code, increaseScore, callback)
     }, 1000)
@@ -180,7 +168,7 @@ const askQuestions = (map, region, questions, showScore) => {
 }
 
 export const restartRound = (map) => {
-    $('#newGame').remove();
+    removeNewGameBtn();
     restartGame(map)
 }
 

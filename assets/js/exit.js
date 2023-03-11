@@ -1,7 +1,7 @@
 import { removeHoverLayer, removeBlurLayer, 
     removeFeedbackLayer, removeTouchLayer } from "./layers.js";
 
-import { initialZoom, startGame } from './index.js'
+import { initialZoom, startGame, stopSpin } from './index.js'
 
 
 const disableMapInteraction = (map) => {
@@ -25,12 +25,10 @@ export const resetMap = (map) => {
 
     map.easeTo({
         zoom: initialZoom(),
-        duration: 1500,
+        duration: 1000,
         bearing: 0,
         essential: true,
     })
-
-
 }
 
 const updateElements = () => {
@@ -44,7 +42,6 @@ const updateElements = () => {
     $('#checkmarks').remove();
     $('#newGame').remove();
     $('#exit').remove();
-
 }
 
 export const restartGame = (map) => {
@@ -57,6 +54,7 @@ export const restartGame = (map) => {
 const addExitBtn = (map) => {
     $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg" alt="exit icon"></img>')
     $('#exit').click(function () {
+        stopSpin();
         restartGame(map)
     })
 }
