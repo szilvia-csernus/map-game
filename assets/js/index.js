@@ -7,7 +7,7 @@ export const initialZoom = () => {
 }
 
 import { addPlayBtn, removePlayBtn } from './buttons.js'
-import { addHowToPlay } from './how-to-play.js'
+import { addPatchLayerForUkraine } from './layers.js'
 
 const mapColours = {
     1: "#845EC2", // violet
@@ -72,81 +72,38 @@ const addTilesetSource = (map) => {
         generateId: true
     })
 
-    map.addLayer({
-        id: 'patch-for-ukraine-fill',
-        filter: 
-            [
-              "match",
-              ["get", "iso_3166_1"],
-              ["UA"],
-              true,
-              false
-          ],
-        minzoom: 1,
-        maxzoom: 7,
-        paint: {
-            'fill-color': "#f475b4"
-        },
-        source: "country-boundaries",
-        'source-layer': "country_boundaries",
-        type: "fill"
-    })
-
-    map.addLayer({
-        id: 'patch-for-ukraine-line',
-        filter:
-        [
-          "match",
-          ["get", "iso_3166_1"],
-          ["UA"],
-          true,
-          false
-      ],
-        minzoom: 1,
-        maxzoom: 7,
-        paint: {
-            'line-color': "#fff",
-            'line-width': 1
-        },
-        source: "country-boundaries",
-        'source-layer': "country_boundaries",
-        type: "line"
-    });
-
+    addPatchLayerForUkraine(map);
 };
 
-const addRotation = (map, button, callback) => {
-    // Code for spinGlobe() function is adapted from an example by mapbox.com. 
+let spinEnabled;
+
+export const stopSpin = () => spinEnabled = false;
+
+export const addRotation = (map) => {
+    // Code for spinGlobe() function is adapted (and heavily modified)
+    // from an example by mapbox.com. 
     // https://docs.mapbox.com/mapbox-gl-js/example/globe-spin/
 
-    const secondsPerRevolution = 150;
-
-    let spinEnabled = true;
-    
+    const secondsPerRevolution = 150; 
+    spinEnabled = true;
     function spinGlobe() {
-        const zoom = map.getZoom();
         if (spinEnabled) {
             let distancePerSecond = 360 / secondsPerRevolution;
             const center = map.getCenter();
             center.lng -= distancePerSecond;
             // Smoothly animate the map over one second.
-            // When this animation is complete, it calls a 'moveend' event.
+            // When this animation is complete, it calls the 'moveend' event.
             map.easeTo({
                 center,
                 duration: 1000,
                 easing: (n) => n
             });
+            // When animation is complete (1s), start spinning again.
+            map.once('moveend', spinGlobe);
+        } else {
+            map.stop()
         }
     }
-
-    // When animation is complete (1s), start spinning again.
-    map.on('moveend', () => spinGlobe());
-
-    button.click(function() {
-        spinEnabled = !spinEnabled;
-        callback();
-    });
-
     spinGlobe();
 }
 
@@ -157,8 +114,7 @@ const addIntroAnimation = () => {
 let game;
 
 export const startGame = (map) => {
-    addPlayBtn();
-    addRotation(map, $('#playBtn'), () => {
+    addPlayBtn(() => {
         // import game.js only once
         if (!game) {
             game = import('./game.js');
@@ -168,6 +124,7 @@ export const startGame = (map) => {
             module.game(map);
         })
     });
+    addRotation(map);
 }
 
 createMapObject((map) => {

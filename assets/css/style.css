@@ -38,7 +38,7 @@
   background-color: var(--transparent-bg-color);
   border: 1px solid var(--main-font-color);
   border-radius: 50%;
-  box-shadow: 4px 4px 15px var(--main-font-color) inset;
+  box-shadow: 10px 10px 30px var(--main-font-color) inset;
   padding: 2rem;
   font-size: var(--utilities-font-size);
   color: var(--main-font-color);
@@ -67,20 +67,17 @@
 .secondRule {
   margin: .5rem 0;
   opacity: 0;
-  animation: appear 1s 1.5s forwards;
+  animation: appear 1s 1s forwards;
 }
 
 .thirdRule {
   margin: .5rem 0;
   opacity: 0;
-  animation: appear 1s 3s forwards;
+  animation: appear 1s 2s forwards;
 }
 
 .okay {
-  /* width: 4.8rem;
-  height: 4.8rem; */
   margin: 1.5rem;
-  /* border-radius: 50%; */
   padding: 0.5rem 1.5rem;
   text-align: center;
   cursor: pointer;
@@ -89,7 +86,12 @@
   box-shadow: 2px 2px 7px var(--main-font-color) inset, 
   4px 4px 15px var(--primary-color);
   opacity: 0;
-  animation: appear 1s 4.5s forwards;
+  animation: appear 1s 3s forwards;
+}
+
+.fast {
+  opacity: 1;
+  animation: none;
 }
 
 .okay:hover {

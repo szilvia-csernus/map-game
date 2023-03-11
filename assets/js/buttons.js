@@ -1,8 +1,9 @@
 import { restartRound } from "./round.js";
 
 /** creates play button and adds to document */
-export const addPlayBtn = () => {
-    $('body').append('<div id="playBtn" class="playBtn">PLAY</div>')
+export const addPlayBtn = (callback) => {
+    $('body').append('<div id="playBtn" class="playBtn">PLAY</div>');
+    $('#playBtn').click(callback)
 }
 
 export const removePlayBtn = () => {
