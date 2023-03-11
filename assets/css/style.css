@@ -98,6 +98,8 @@
   background-color: var(--primary-color-hover);
 }
 
+/* ---- Choose a Continent ----  */
+
 .choose {
   position: absolute;
   top: 6vh;
@@ -110,8 +112,6 @@
   animation: bump 1s ease-in-out;
 }
 
-
-/* ----------- Continent buttons ----------- */
 
 .continentCanvas {
   position: absolute;
@@ -283,4 +283,59 @@
 
 .newGame:hover {
   background-color: var(--primary-color-hover);
+}
+
+/* ---- High Score -------  */
+
+/* ---------- How To Play --------------- */
+
+.highScoreBackground {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: rgba(22, 29, 50, 0.4);
+}
+
+.highScoreCanvas {
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  background-color: var(--main-font-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 50%;
+  box-shadow: 10px 10px 30px var(--primary-color) inset, 
+  10px 10px 30px var(--main-font-color);
+  padding: 2rem;
+  font-size: var(--utilities-font-size);
+  color: var(--primary-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: appear 1s forwards;
+}
+
+@media screen and (min-width: 415px ) {
+  .highScoreCanvas {
+    width: 25rem;
+    height: 25rem;
+  }
+}
+
+.highScoreTitle {
+  margin: 3rem 0 .5rem;
+  opacity: 0;
+  animation: appear 1s forwards;
+}
+
+.score {
+  margin: .5rem 0;
+  opacity: 0;
+  animation: appear 1s 1s forwards;
 }

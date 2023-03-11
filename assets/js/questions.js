@@ -44,7 +44,6 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
 
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     const setTapHoldFeedbackLayer = () => {
-        console.log('callback fired')
         removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore)
         // This function calls the next question recursively. (See askQuestions function)
