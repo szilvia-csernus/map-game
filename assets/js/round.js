@@ -20,7 +20,7 @@ export const restartRound = (map) => {
 export const startRound = (map, region, num) => {
     initializeScore();
     // set minimum zoom level after animation finished.
-    setTimeout(() => map.setMinZoom(map.getZoom()), 1000);
+    setTimeout(() => map.setMinZoom(map.getZoom() - 1), 800);
     
     $('h1').fadeIn('slow').removeClass('choose').text('');
     setTimeout( () => $('h1').text('Find the country on the map!').addClass('question'), 1000);
@@ -46,9 +46,7 @@ export const startRound = (map, region, num) => {
             addNewGameBtn(map)
         } else {
            showHighScores(map)
-        }
-        
-        
+        } 
     }
 
     // wait a second before displaying the first country

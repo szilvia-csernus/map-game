@@ -27,7 +27,7 @@ export const resetMap = (map) => {
 
     map.easeTo({
         zoom: initialZoom(),
-        duration: 1000,
+        duration: 800,
         bearing: 0,
         essential: true,
     })

@@ -35,7 +35,7 @@ const enableMapInteraction = (map) => {
 
 const addClickListenersToContinentBtns = (map) => {
     
-    const addFlyOnClick = (button, region, center, zoom = 4) => {
+    const addFlyOnClick = (button, region, center, zoom) => {
         button.click(function () {
             stopSpin()
             map.easeTo({
