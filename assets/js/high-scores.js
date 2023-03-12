@@ -1,4 +1,3 @@
-import { addNewGameBtn } from "./buttons.js"
 import { restartGame } from "./exit.js"
 
 export const showHighScores = (map) => {
