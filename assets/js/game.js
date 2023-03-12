@@ -22,6 +22,13 @@ import { stopSpin } from './spin.js';
 export const isMobile = window.navigator.maxTouchPoints > 0;
 export const visitedBefore = window.localStorage.getItem('visitedBefore');
 
+const centerCoordinates = {
+    europe: [14.213562, 53.541532],
+    asia: [77.367783, 32.174450],
+    africa: [17.015762, 8.895926],
+    americas: [-84.811020, 11.632733],
+}
+
 let firstTime = true;
 
 const enableMapInteraction = (map) => {
@@ -69,10 +76,10 @@ const addClickListenersToContinentBtns = (map) => {
 
     isMobile ? addTouchLayer(map) : addHoverLayer(map);
 
-    addFlyOnClick($('#europeBtn'), 'Europe', [14.213562, 53.541532], 3.5)
-    addFlyOnClick($('#asiaBtn'), 'Asia', [77.367783, 32.174450], 2.5)
-    addFlyOnClick($('#africaBtn'), 'Africa', [17.015762, 8.895926], 2.8)
-    addFlyOnClick($('#americasBtn'), 'Americas', [-84.811020, 11.632733], 2.5)
+    addFlyOnClick($('#europeBtn'), 'Europe', centerCoordinates.europe , 3.5)
+    addFlyOnClick($('#asiaBtn'), 'Asia', centerCoordinates.asia , 2.5)
+    addFlyOnClick($('#africaBtn'), 'Africa', centerCoordinates.africa , 2.8)
+    addFlyOnClick($('#americasBtn'), 'Americas', centerCoordinates.americas , 2.5)
 }
 
 const showChooseContinentTitle = () => {

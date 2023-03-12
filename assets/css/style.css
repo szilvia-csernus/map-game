@@ -360,9 +360,9 @@
   padding: 0.5rem 1.5rem;
   text-align: center;
   cursor: pointer;
-  border: 1px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
   border-radius: 2rem;
-  box-shadow: 5px 5px 10px var(--primary-color) inset, 
+  box-shadow: 2px 2px 5px var(--primary-color) inset, 
   4px 4px 15px var(--primary-color);
   font-size: var(--high-score-font-size);
   font-weight: bold;
