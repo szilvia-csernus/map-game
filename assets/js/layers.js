@@ -1,7 +1,10 @@
+import { countriesWithCapitals } from "../data/countries-with-capitals.js";
+
 const minZoom = (map) => map.getMinZoom() - 0.1;
 const maxZoom = (map) => map.getMaxZoom() + 0.5;
 // const maxZoom = (map) => 6.1;
 export let clickedCountryCode = null;
+export let clickedCountryName = null;
 
 
 /** adds hover-change layer to the map. Used on non-mobile devices.  */
@@ -113,40 +116,10 @@ export const removeBlurLayer = (map) => {
     }
 }
 
-/** add select layer to the map */
-// export const addSelectLayer = (map, countryCode) => {
-//     map.addLayer({
-//         filter: ['==', ['get', 'iso_3166_1'], countryCode],
-//         id: 'country-select-line',
-//         minzoom: minZoom(map),
-//         maxzoom: maxZoom(map),
-//         paint: {
-//             'line-color': "#2ec62e",
-//             'line-width': 2
-//         },
-//         source: "country-boundaries",
-//         'source-layer': "country_boundaries",
-//         type: "line"
-//     });
-//     map.addLayer({
-//         filter: ['==', ['get', 'iso_3166_1'], countryCode],
-//         id: 'country-select-fill',
-//         minzoom: minZoom(map),
-//         maxzoom: maxZoom(map),
-//         paint: {
-//             'fill-color': "#fff",
-//         },
-//         source: "country-boundaries",
-//         'source-layer': "country_boundaries",
-//         type: "fill"
-//     });
-// }
-
-
 /** this layer renders the country green/red according to the answer given 
  * as well as increases the score if the answer is correct.
  */
-export const addFeedbackLayer = (map, correct) => {
+export const addFeedbackLayer = (map, correct, correctCountryCode, region) => {
     map.addLayer({
         filter: [
             "all",
@@ -170,6 +143,7 @@ export const addFeedbackLayer = (map, correct) => {
         'source-layer': "country_boundaries",
         type: "line"
     });
+    
     if (correct) {
         map.addLayer({
             filter: [
@@ -193,6 +167,7 @@ export const addFeedbackLayer = (map, correct) => {
             'source-layer': "country_boundaries",
             type: "fill"
         });
+        addNameLayer(map, clickedCountryCode);
     } else {
         map.addLayer({
             filter: [
@@ -216,19 +191,86 @@ export const addFeedbackLayer = (map, correct) => {
             'source-layer': "country_boundaries",
             type: "fill"
         }); 
+        addNameLayer(map, clickedCountryCode);
+        setTimeout(() => flyToCorrectCountry(map, correctCountryCode, region), 1500);
     }
     clickedCountryCode = null;
+}
+
+/** add select layer to the map */
+const addNameLayer = (map, code) => {
+    map.addLayer({
+        filter: ['==', ['get', 'iso_3166_1'], code],
+        id: 'country-name',
+        minzoom: minZoom(map),
+        maxzoom: maxZoom(map),
+        source: "country-boundaries",
+        'source-layer': "country_boundaries",
+        type: "symbol",
+        'layout': {
+            'text-field': ['get', 'name_en'],
+        },
+        paint: {
+            'text-color': "#fff",
+            'text-halo-blur': 1,
+            'text-halo-color': '#0e2b5e',
+            'text-halo-width': 1
+        },
+    });
+}
+
+const flyToCorrectCountry = (map, code, region) => {
+    removeFeedbackLayer(map);
+    map.addLayer({
+        filter: [
+            "all",
+            [
+              "match",
+              ["get", "worldview"],
+              ["US"],
+              false,
+              true
+            ],
+            ['==', ['get', 'iso_3166_1'], code]
+          ],
+        id: 'correct-country',
+        minzoom: minZoom(map),
+        maxzoom: maxZoom(map),
+        paint: {
+            'line-color': "#2cf32c",
+            'line-width': 3
+        },
+        source: "country-boundaries",
+        'source-layer': "country_boundaries",
+        type: "line"
+    });
+
+    addNameLayer(map, code);
+
+    const longlat = countriesWithCapitals[region][code].coordinates
+    map.flyTo({
+        center: longlat,
+        duration: 1000,
+        bearing: 0,
+        essential: true
+    })
+}
+
+export const removeNameLayer = (map) => {
+    map.getLayer('country-name') && map.removeLayer('country-name');
+    map.getLayer('correct-country') && map.removeLayer('correct-country');
 }
 
 /** remove other country selection if there is any */
 export const removeFeedbackLayer = (map) => {
     map.getLayer('country-feedback-fill') && map.removeLayer('country-feedback-fill');
     map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
+    removeNameLayer(map);
 }
 
 export const addEventListeners = (map) => {
     let hoveredStateId = null;
-    // when the user moves their mouse over the state-fill layer, 
+    // when the user moves the mouse over the state-fill layer, 
     // we'll update the feature state for the feature under the mouse.
     // non-touch devices only.
     if (map.getLayer('country-hover')) {
@@ -281,14 +323,16 @@ export const addEventListeners = (map) => {
     
         map.on('click', 'country-hover', (e) => {
             clickedCountryCode = e.features[0].properties.iso_3166_1;
-            console.log(clickedCountryCode)
+            clickedCountryName = e.features[0].properties.name_en;
+            console.log(clickedCountryName)
         })
     }
 
     if (map.getLayer('country-touch')) {
         map.on('touchstart', 'country-touch', (e) => {
             clickedCountryCode = e.features[0].properties.iso_3166_1;
-            console.log(clickedCountryCode)
+            clickedCountryName = e.features[0].properties.name_en;
+            console.log(clickedCountryName)
         })
     }
 };

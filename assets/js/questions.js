@@ -8,6 +8,8 @@ import {
     clickedCountryCode
 } from './layers.js';
 
+import { isMobile } from './game.js';
+
 let score = 0;
 
 // this function gets fired in the 'addFeedback' when user chooses the right answer.
@@ -15,9 +17,9 @@ const increaseScore = () => ++score;
 
 export const initializeScore = () => score = 0;
 
-const addFeedback = (map, countryCode, increaseScore) => {
+const addFeedback = (map, countryCode, increaseScore, region) => {
     const correct = countryCode === clickedCountryCode ? true : false;
-    addFeedbackLayer(map, correct);
+    addFeedbackLayer(map, correct, countryCode, region);
     if (correct) {
         increaseScore();
         $('#checkmarks').append('<li ><svg class="correct"><use href="./assets/icons/correct.svg#icon"></use></svg></li>')
@@ -26,11 +28,11 @@ const addFeedback = (map, countryCode, increaseScore) => {
     }
 }
 
-const setClickSelectEventListeners = (map, countryCode, increaseScore, callback) => {
+const setClickSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
 
     const setDblClickFeedbackLayer = () => {
         removeFeedbackLayer(map);
-        addFeedback(map, countryCode, increaseScore)
+        addFeedback(map, countryCode, increaseScore, region)
         // This function calls the next question recursively. (See askQuestions function)
         callback()
         // cleans up event listener after it's been initiated
@@ -40,10 +42,10 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
     map.on('dblclick', setDblClickFeedbackLayer)
 }
 
-const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
+const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
     const setTapHoldFeedbackLayer = () => {
         removeFeedbackLayer(map);
-        addFeedback(map, countryCode, increaseScore)
+        addFeedback(map, countryCode, increaseScore, region)
         // This function calls the next question recursively. (See askQuestions function)
         callback()
 
@@ -97,13 +99,13 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 }
 
 /** remove previous select- and feedback layers' event listeners and add updated ones */
-const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
+const setSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
     // add these event listeners to non-mobile (non-touch) devices only
     removeFeedbackLayer(map);
-    if (!window.navigator.maxTouchPoints > 0) {
-        setClickSelectEventListeners(map, countryCode, increaseScore, callback)
+    if (!isMobile) {
+        setClickSelectEventListeners(map, countryCode, increaseScore, callback, region)
     } else {
-        setTouchSelectEventListeners(map, countryCode, increaseScore, callback)
+        setTouchSelectEventListeners(map, countryCode, increaseScore, callback, region)
     }
 }
 
@@ -135,19 +137,20 @@ export const getQuestions = (region, num) => {
 }
 
 const oneQuestion = (map, code, country, region, callback) => {
+
     $('#countryLabel').remove();
     setTimeout(() => {
         $('body').append(`<div id="countryLabel" class="country country${region} animate-bump">${country}</div>`);
         removeFeedbackLayer(map);
-        setSelectEventListeners(map, code, increaseScore, callback)
-    }, 1000)
+        setSelectEventListeners(map, code, increaseScore, callback, region)
+    }, 3000)
 }
 
 /**  this recursive code asks the last question in the questions array and in oneQuestion() function it re-sets
  * the event listener to the next question after a dblclick / taphold event. */
 export const askQuestions = (map, region, questions, showScore) => {
     if (questions.length === 0) {
-        return setTimeout(() => showScore(map, score), 1500)
+        return setTimeout(() => showScore(map, score), 2000)
     };
 
     const question = questions.pop()

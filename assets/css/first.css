@@ -26,7 +26,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
 
   :root {
     --main-font-family: 'Nunito';
-    --primary-color: rgb(14, 43, 94);
+    --primary-color: #0e2b5e;
     --primary-color-hover: rgb(26, 70, 132);
     --transparent-bg-color: rgba(14, 43, 94, 0.9);
     --main-font-color: white;

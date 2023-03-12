@@ -1,4 +1,4 @@
-{
+export const countriesWithCapitals = {
 	"Africa": {
 		"EH": {
 			"countryName": "Western Sahara",
