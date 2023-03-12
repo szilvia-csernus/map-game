@@ -1,5 +1,5 @@
 import { addPlayBtn, removePlayBtn } from './buttons.js'
-import { addPatchLayerForUkraine } from './layers.js'
+import { addPatchLayer } from './layers.js'
 import { addRotation } from './spin.js'
 
 export const initialZoom = () => {
@@ -73,7 +73,7 @@ const addTilesetSource = (map) => {
         generateId: true
     })
 
-    addPatchLayerForUkraine(map);
+    addPatchLayer(map);
 };
 
 const addIntroAnimation = () => {

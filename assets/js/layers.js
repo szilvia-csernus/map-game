@@ -215,9 +215,9 @@ export const addFeedbackLayer = (map, correct) => {
             source: "country-boundaries",
             'source-layer': "country_boundaries",
             type: "fill"
-        });
+        }); 
     }
-   
+    clickedCountryCode = null;
 }
 
 /** remove other country selection if there is any */
@@ -293,7 +293,7 @@ export const addEventListeners = (map) => {
     }
 };
 
-export const addPatchLayerForUkraine = (map) => {
+export const addPatchLayer = (map) => {
     map.addLayer({
         id: 'patch-for-ukraine-fill',
         filter: 

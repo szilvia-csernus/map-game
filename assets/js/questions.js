@@ -31,8 +31,6 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
     const setDblClickFeedbackLayer = () => {
         removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore)
-        console.log('doubleclick', clickedCountryCode)
-        console.log('callback fired')
         // This function calls the next question recursively. (See askQuestions function)
         callback()
         // cleans up event listener after it's been initiated
