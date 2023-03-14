@@ -223,6 +223,8 @@
   text-shadow: none;
   padding: .2rem 1.8rem;
   border-radius: 1.5rem;
+  opacity: 0;
+  animation: bump 1s forwards;
 }
 
 .countryEurope {
@@ -241,9 +243,9 @@
   border: 2px solid var(--orange);
 }
 
-.animate-bump {
+/* .animate-bump {
   animation: bump 1s;
-}
+} */
 
 @keyframes bump {
   0% {
@@ -251,14 +253,17 @@
   }
 
   25% {
+    opacity: 1;
     transform: scale(1.1);
   }
 
   50% {
+    opacity: 1;
     transform: scale(1.2);
   }
 
   100% {
+    opacity: 1;
     transform: scale(1);
   }
 }
@@ -331,7 +336,7 @@
   font-size: var(--high-score-title-font-size);
   font-weight: bold;
   text-transform: uppercase;
-  filter: drop-shadow( 0 0 10px var(--primary-color));
+  filter: drop-shadow( 0 0 10px var(--main-font-color));
 }
 
 .score {
