@@ -6,14 +6,14 @@
 // Gibraltar, Vatican City, Dominica, Barbados, Cayman Islands,
 // British Virgin Islands, Bermuda, Grenada, Maldives,
 // Monaco  removed from list
-// "TW": "Taiwan"
+// "TW": "Taiwan" and
+// "EH": "Western Sahara" removed because of ambiguity in the data.
 
 // 175 in total
 
 
 export const data = {
-    "Africa": {
-        "EH": "Western Sahara",
+    "Africa": {  
         "DZ": "Algeria",
         "AO": "Angola",
         "BJ": "Benin",

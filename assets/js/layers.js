@@ -1,4 +1,5 @@
 import { countriesWithCapitals } from "../data/countries-with-capitals.js";
+import timeOutFunction from "./timeout.js";
 
 const minZoom = (map) => map.getMinZoom() - 0.1;
 const maxZoom = (map) => map.getMaxZoom() + 0.5;
@@ -6,21 +7,17 @@ const maxZoom = (map) => map.getMaxZoom() + 0.5;
 export let clickedCountryCode = null;
 export let clickedCountryName = null;
 
+import { worldviewFilters } from "./index.js";
 
 /** adds hover-change layer to the map. Used on non-mobile devices.  */
 export const addHoverLayer = (map) => {
-    
+        // hovering effect is adopted from one of the Examples given on mapbox.com
+        // https://docs.mapbox.com/mapbox-gl-js/example/hover-styles/
         map.addLayer({
             id: 'country-hover',
             filter: [
                 "all",
-                [
-                  "match",
-                  ["get", "worldview"],
-                  ["US"],
-                  false,
-                  true
-                ]
+                ...worldviewFilters
               ],
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
@@ -54,13 +51,7 @@ export const addTouchLayer = (map) => {
             id: 'country-touch',
             filter: [
                 "all",
-                [
-                  "match",
-                  ["get", "worldview"],
-                  ["US"],
-                  false,
-                  true
-                ]
+                ...worldviewFilters
               ],
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
@@ -89,13 +80,7 @@ export const addBlurLayer = (map) => {
         id: `country-blur`,
         filter: [
             "all",
-            [
-              "match",
-              ["get", "worldview"],
-              ["US"],
-              false,
-              true
-            ]
+            ...worldviewFilters
           ],
         minzoom: minZoom(map),
         maxzoom: maxZoom(map),
@@ -116,20 +101,18 @@ export const removeBlurLayer = (map) => {
     }
 }
 
+export const timeOutForCorrectFeedback = new timeOutFunction();
+export const timeOutForIncorrectFeedback = new timeOutFunction();
+export const timeOutForFlyAnimation = new timeOutFunction();
+
 /** this layer renders the country green/red according to the answer given 
  * as well as increases the score if the answer is correct.
  */
-export const addFeedbackLayer = (map, correct, correctCountryCode, region) => {
+export const addFeedbackLayer = (map, correct, correctCountryCode, region, callback) => {
     map.addLayer({
         filter: [
             "all",
-            [
-              "match",
-              ["get", "worldview"],
-              ["US"],
-              false,
-              true
-            ],
+            ...worldviewFilters,
             ['==', ['get', 'iso_3166_1'], clickedCountryCode]
           ],
         id: 'country-feedback-line',
@@ -148,13 +131,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, region) => {
         map.addLayer({
             filter: [
                 "all",
-                [
-                  "match",
-                  ["get", "worldview"],
-                  ["US"],
-                  false,
-                  true
-                ],
+                ...worldviewFilters,
                 ['==', ['get', 'iso_3166_1'], clickedCountryCode]
               ],
             id: 'country-feedback-fill',
@@ -167,19 +144,18 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, region) => {
             'source-layer': "country_boundaries",
             type: "fill"
         });
-        addNameLayer(map, clickedCountryCode);
+
+        addNameLayer(map, clickedCountryCode, region);
+
+        // The callback function calls the next question recursively. (See askQuestions function)
+        timeOutForCorrectFeedback.setTimeOutFunction(callback, 2000);
+
     } else {
         map.addLayer({
             filter: [
                 "all",
-                [
-                  "match",
-                  ["get", "worldview"],
-                  ["US"],
-                  false,
-                  true
-                ],
-                ['==', ['get', 'iso_3166_1'], clickedCountryCode]
+                ['==', ['get', 'iso_3166_1'], clickedCountryCode],
+                ...worldviewFilters
               ],
             id: 'country-feedback-fill',
             minzoom: minZoom(map),
@@ -190,17 +166,24 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, region) => {
             source: "country-boundaries",
             'source-layer': "country_boundaries",
             type: "fill"
-        }); 
-        addNameLayer(map, clickedCountryCode);
-        setTimeout(() => flyToCorrectCountry(map, correctCountryCode, region), 1500);
+        });
+
+        addNameLayer(map, clickedCountryCode, region);
+
+        timeOutForFlyAnimation.setTimeOutFunction(() => flyToCorrectCountry(map, correctCountryCode, region), 1500);
+        timeOutForIncorrectFeedback.setTimeOutFunction(callback, 3000)
     }
     clickedCountryCode = null;
 }
 
-/** add select layer to the map */
+/** add name layer to the map */
 const addNameLayer = (map, code) => {
     map.addLayer({
-        filter: ['==', ['get', 'iso_3166_1'], code],
+        filter: [
+            "all",
+            ...worldviewFilters,
+            ['==', ['get', 'iso_3166_1'], code]
+        ],
         id: 'country-name',
         minzoom: minZoom(map),
         maxzoom: maxZoom(map),
@@ -224,13 +207,7 @@ const flyToCorrectCountry = (map, code, region) => {
     map.addLayer({
         filter: [
             "all",
-            [
-              "match",
-              ["get", "worldview"],
-              ["US"],
-              false,
-              true
-            ],
+            
             ['==', ['get', 'iso_3166_1'], code]
           ],
         id: 'correct-country',
@@ -245,7 +222,7 @@ const flyToCorrectCountry = (map, code, region) => {
         type: "line"
     });
 
-    addNameLayer(map, code);
+    addNameLayer(map, code, region);
 
     const longlat = countriesWithCapitals[region][code].coordinates
     map.flyTo({
@@ -276,7 +253,6 @@ export const addEventListeners = (map) => {
     if (map.getLayer('country-hover')) {
         map.on('mousemove', `country-hover`, (e) => {
             map.getCanvas().style.cursor = 'pointer';
-            // console.log(e.features[0].properties.name_en, e.features[0].properties.iso_3166_1, e.features[0].properties.iso_3166_1_alpha_3, e.features[0].properties.wikidata_id)
             if (e.features.length > 0) {
                 if (hoveredStateId) {
 
@@ -337,45 +313,45 @@ export const addEventListeners = (map) => {
     }
 };
 
-export const addPatchLayer = (map) => {
-    map.addLayer({
-        id: 'patch-for-ukraine-fill',
-        filter: 
-            [
-              "match",
-              ["get", "iso_3166_1"],
-              ["UA"],
-              true,
-              false
-          ],
-        minzoom: 1,
-        maxzoom: 7,
-        paint: {
-            'fill-color': "#f475b4"
-        },
-        source: "country-boundaries",
-        'source-layer': "country_boundaries",
-        type: "fill"
-    })
+// export const addPatchLayer = (map) => {
+//     map.addLayer({
+//         id: 'patch-for-ukraine-fill',
+//         filter: 
+//             [
+//               "match",
+//               ["get", "iso_3166_1"],
+//               ["UA"],
+//               true,
+//               false
+//           ],
+//         minzoom: 1,
+//         maxzoom: 7,
+//         paint: {
+//             'fill-color': "#f475b4"
+//         },
+//         source: "country-boundaries",
+//         'source-layer': "country_boundaries",
+//         type: "fill"
+//     })
 
-    map.addLayer({
-        id: 'patch-for-ukraine-line',
-        filter:
-        [
-          "match",
-          ["get", "iso_3166_1"],
-          ["UA"],
-          true,
-          false
-      ],
-        minzoom: 1,
-        maxzoom: 7,
-        paint: {
-            'line-color': "#fff",
-            'line-width': 0.5
-        },
-        source: "country-boundaries",
-        'source-layer': "country_boundaries",
-        type: "line"
-    });
-}
+//     map.addLayer({
+//         id: 'patch-for-ukraine-line',
+//         filter:
+//         [
+//           "match",
+//           ["get", "iso_3166_1"],
+//           ["UA"],
+//           true,
+//           false
+//       ],
+//         minzoom: 1,
+//         maxzoom: 7,
+//         paint: {
+//             'line-color': "#fff",
+//             'line-width': 0.5
+//         },
+//         source: "country-boundaries",
+//         'source-layer': "country_boundaries",
+//         type: "line"
+//     });
+// }

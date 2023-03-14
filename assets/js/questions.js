@@ -9,6 +9,7 @@ import {
 } from './layers.js';
 
 import { isMobile } from './game.js';
+import timeOutFunction from './timeout.js';
 
 let score = 0;
 
@@ -17,9 +18,9 @@ const increaseScore = () => ++score;
 
 export const initializeScore = () => score = 0;
 
-const addFeedback = (map, countryCode, increaseScore, region) => {
+const addFeedback = (map, countryCode, increaseScore, region, callback) => {
     const correct = countryCode === clickedCountryCode ? true : false;
-    addFeedbackLayer(map, correct, countryCode, region);
+    addFeedbackLayer(map, correct, countryCode, region, callback);
     if (correct) {
         increaseScore();
         $('#checkmarks').append('<li ><svg class="correct"><use href="./assets/icons/correct.svg#icon"></use></svg></li>')
@@ -32,11 +33,10 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback,
 
     const setDblClickFeedbackLayer = () => {
         removeFeedbackLayer(map);
-        addFeedback(map, countryCode, increaseScore, region)
-        // This function calls the next question recursively. (See askQuestions function)
-        callback()
+        addFeedback(map, countryCode, increaseScore, region, callback);
+        
         // cleans up event listener after it's been initiated
-        return map.off('dblclick', setDblClickFeedbackLayer)
+        return map.off('dblclick', setDblClickFeedbackLayer);
     }
 
     map.on('dblclick', setDblClickFeedbackLayer)
@@ -45,9 +45,10 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback,
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
     const setTapHoldFeedbackLayer = () => {
         removeFeedbackLayer(map);
-        addFeedback(map, countryCode, increaseScore, region)
-        // This function calls the next question recursively. (See askQuestions function)
-        callback()
+        addFeedback(map, countryCode, increaseScore, region, callback)
+        
+        // The callback function calls the next question recursively. (See askQuestions function)
+        callback();
 
     }
     const touchStartFunction = (startEvent) => {
@@ -66,7 +67,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback,
             // if tap was not rather a swipe..
             if (distance < 4) {
                 // if user's tap is longer than 200ms
-                if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 250) {
+                if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 200) {
                     console.log('taphold', clickedCountryCode)
 
                     // we have to stop 'touchend' function before stepping into the recursive callback function!
@@ -98,9 +99,8 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback,
     map.once('touchstart', touchStartFunction)
 }
 
-/** remove previous select- and feedback layers' event listeners and add updated ones */
+/** remove previously clicked country's layers and add updated event listeners */
 const setSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
-    // add these event listeners to non-mobile (non-touch) devices only
     removeFeedbackLayer(map);
     if (!isMobile) {
         setClickSelectEventListeners(map, countryCode, increaseScore, callback, region)
@@ -127,7 +127,6 @@ export const getQuestions = (region, num) => {
     const randomCodes = getRandomCountryCodes(allCodesInRegion, num);
 
     const questions = [];
-    console.log(data[region])
     for (const code of randomCodes) {
         const country = data[region][code]
         questions.push([code, country])
@@ -139,23 +138,27 @@ export const getQuestions = (region, num) => {
 const oneQuestion = (map, code, country, region, callback) => {
 
     $('#countryLabel').remove();
-    setTimeout(() => {
-        $('body').append(`<div id="countryLabel" class="country country${region} animate-bump">${country}</div>`);
+    $('body').append(`<div id="countryLabel" class="country country${region}">${country}</div>`);
+    // setTimeout(() => {
+        // remove previous question's feedbacks
         removeFeedbackLayer(map);
         setSelectEventListeners(map, code, increaseScore, callback, region)
-    }, 3000)
+    // }, 3000)
 }
+
+// export this timeOutFunction instance so that it can be cleared in exit.js
+export const timeOutForShowScore = new timeOutFunction()
+
 
 /**  this recursive code asks the last question in the questions array and in oneQuestion() function it re-sets
  * the event listener to the next question after a dblclick / taphold event. */
-export const askQuestions = (map, region, questions, showScore) => {
+export const askQuestions = (map, region, questions, num, showScore) => {
     if (questions.length === 0) {
-        return setTimeout(() => showScore(map, score), 2000)
+        return timeOutForShowScore.setTimeOutFunction(() => showScore(map, score, region, num), 4000)
     };
 
     const question = questions.pop()
     oneQuestion(map, question[0], question[1], region, () => {
-        askQuestions(map, region, questions, showScore)
+        askQuestions(map, region, questions, num, showScore)
     })
-
 }

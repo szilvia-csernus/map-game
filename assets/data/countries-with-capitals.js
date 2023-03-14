@@ -277,20 +277,10 @@ export const countriesWithCapitals = {
 			"capitalName": "Andorra la Vella",
 			"coordinates": ["1.516667", "42.5"]
 		},
-		"AM": {
-			"countryName": "Armenia",
-			"capitalName": "Yerevan",
-			"coordinates": ["44.500000", "40.166666666666664"]
-		},
 		"AT": {
 			"countryName": "Austria",
 			"capitalName": "Vienna",
 			"coordinates": ["16.366667", "48.2"]
-		},
-		"AZ": {
-			"countryName": "Azerbaijan",
-			"capitalName": "Baku",
-			"coordinates": ["49.866667", "40.38333333333333"]
 		},
 		"BY": {
 			"countryName": "Belarus",
@@ -316,11 +306,6 @@ export const countriesWithCapitals = {
 			"countryName": "Croatia",
 			"capitalName": "Zagreb",
 			"coordinates": ["16.000000", "45.8"]
-		},
-		"CY": {
-			"countryName": "Cyprus",
-			"capitalName": "Nicosia",
-			"coordinates": ["33.366667", "35.166666666666664"]
 		},
 		"CZ": {
 			"countryName": "Czech Republic",
@@ -352,20 +337,10 @@ export const countriesWithCapitals = {
 			"capitalName": "Paris",
 			"coordinates": ["2.333333", "48.86666666666667"]
 		},
-		"GE": {
-			"countryName": "Georgia",
-			"capitalName": "Tbilisi",
-			"coordinates": ["44.833333", "41.68333333333333"]
-		},
 		"DE": {
 			"countryName": "Germany",
 			"capitalName": "Berlin",
 			"coordinates": ["13.400000", "52.516666666666666"]
-		},
-		"GI": {
-			"countryName": "Gibraltar",
-			"capitalName": "Gibraltar",
-			"coordinates": ["-5.350000", "36.13333333333333"]
 		},
 		"GR": {
 			"countryName": "Greece",
@@ -376,11 +351,6 @@ export const countriesWithCapitals = {
 			"countryName": "Guernsey",
 			"capitalName": "Saint Peter Port",
 			"coordinates": ["-2.533333", "49.45"]
-		},
-		"VA": {
-			"countryName": "Vatican City",
-			"capitalName": "Vatican City",
-			"coordinates": ["12.450000", "41.9"]
 		},
 		"HU": {
 			"countryName": "Hungary",
@@ -522,11 +492,7 @@ export const countriesWithCapitals = {
 			"capitalName": "Bern",
 			"coordinates": ["7.466667", "46.916666666666664"]
 		},
-		"TR": {
-			"countryName": "Turkey",
-			"capitalName": "Ankara",
-			"coordinates": ["32.866667", "39.93333333333333"]
-		},
+		
 		"UA": {
 			"countryName": "Ukraine",
 			"capitalName": "Kyiv",
@@ -539,6 +505,31 @@ export const countriesWithCapitals = {
 		}
 	},
 	"Asia": {
+		"CY": {
+			"countryName": "Cyprus",
+			"capitalName": "Nicosia",
+			"coordinates": ["33.366667", "35.166666666666664"]
+		},
+		"GE": {
+			"countryName": "Georgia",
+			"capitalName": "Tbilisi",
+			"coordinates": ["44.833333", "41.68333333333333"]
+		},
+		"TR": {
+			"countryName": "Turkey",
+			"capitalName": "Ankara",
+			"coordinates": ["32.866667", "39.93333333333333"]
+		},
+		"AM": {
+			"countryName": "Armenia",
+			"capitalName": "Yerevan",
+			"coordinates": ["44.500000", "40.166666666666664"]
+		},
+		"AZ": {
+			"countryName": "Azerbaijan",
+			"capitalName": "Baku",
+			"coordinates": ["49.866667", "40.38333333333333"]
+		},
 		"AF": {
 			"countryName": "Afghanistan",
 			"capitalName": "Kabul",

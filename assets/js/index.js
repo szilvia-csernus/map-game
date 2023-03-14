@@ -1,5 +1,5 @@
 import { addPlayBtn, removePlayBtn } from './buttons.js'
-import { addPatchLayer } from './layers.js'
+// import { addPatchLayer } from './layers.js'
 import { addRotation } from './spin.js'
 
 export const initialZoom = () => {
@@ -9,6 +9,12 @@ export const initialZoom = () => {
         return 1.5
     } else return 1.7
 }
+
+export const worldviewFilters = [
+    [ "match", ["get", "disputed"], ["true"], false, true],
+    [ "match", ["get", "worldview"], ["RU"], false, true],
+    [ "match", ["get", "worldview"], ["MA"], false, true]
+  ]
 
 const mapColours = {
     1: "#845EC2", // violet
@@ -25,7 +31,9 @@ const mapColours = {
  * 50.000 loads / month. This is created once and used throughout the whole lifecycle of the app.
 */
 const createMapObject = (callback) => {
-
+    if (!mapboxgl.supported()) {
+        window.location.href = "../../no-support.html";
+        } else {
     mapboxgl.accessToken =
         'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
     const map = new mapboxgl.Map({
@@ -52,6 +60,11 @@ const createMapObject = (callback) => {
         addTilesetSource(map);
         callback(map)
     })
+
+    map.on('error', () => {
+        window.href = '../error.html'
+    })
+}
 }
 
 /**  adds tileset source for country boundaries, region and country name data */
@@ -62,18 +75,12 @@ const addTilesetSource = (map) => {
         url: 'mapbox://mapbox.country-boundaries-v1',
         filter: [
             "all",
-            [
-              "match",
-              ["get", "worldview"],
-              ["US"],
-              false,
-              true
-            ]
-          ],
+            ...worldviewFilters
+        ],
         generateId: true
     })
 
-    addPatchLayer(map);
+    // addPatchLayer(map);
 };
 
 const addIntroAnimation = () => {

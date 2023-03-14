@@ -20,7 +20,8 @@ import { stopSpin } from './spin.js';
 
 
 export const isMobile = window.navigator.maxTouchPoints > 0;
-export const visitedBefore = window.localStorage.getItem('visitedBefore');
+// safely use localStorage item.
+export const visitedBefore = window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
 
 const centerCoordinates = {
     europe: [14.213562, 53.541532],

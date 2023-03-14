@@ -1,9 +1,10 @@
 import { removeHoverLayer, removeBlurLayer, 
-    removeFeedbackLayer, removeTouchLayer } from "./layers.js";
+    removeFeedbackLayer, removeTouchLayer, timeOutForCorrectFeedback, timeOutForIncorrectFeedback, timeOutForFlyAnimation } from "./layers.js";
 
 import { initialZoom, startGame } from './index.js'
-import { initializeScore } from "./questions.js";
+import { initializeScore, timeOutForShowScore } from "./questions.js";
 import { stopSpin } from "./spin.js";
+import { timeOutForCountry, timeOutForMinZoom, timeOutForQuestion } from "./round.js";
 
 
 const disableMapInteraction = (map) => {
@@ -47,6 +48,14 @@ const updateElements = () => {
     $('#checkmarks').remove();
     $('#newGame').remove();
     $('#exit').remove();
+
+    timeOutForShowScore.clearTimeOutFunction();
+    timeOutForCorrectFeedback.clearTimeOutFunction();
+    timeOutForIncorrectFeedback.clearTimeOutFunction();
+    timeOutForFlyAnimation.clearTimeOutFunction();
+    timeOutForMinZoom.clearTimeOutFunction();
+    timeOutForQuestion.clearTimeOutFunction();
+    timeOutForCountry.clearTimeOutFunction();
 }
 
 export const restartGame = (map) => {
