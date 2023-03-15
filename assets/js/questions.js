@@ -46,10 +46,6 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback,
     const setTapHoldFeedbackLayer = () => {
         removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore, region, callback)
-        
-        // The callback function calls the next question recursively. (See askQuestions function)
-        callback();
-
     }
     const touchStartFunction = (startEvent) => {
         const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
