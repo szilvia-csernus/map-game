@@ -36,8 +36,6 @@ const enableMapInteraction = (map) => {
     // Set scroll and drag functions
     map["dragPan"].enable();
     map["scrollZoom"].enable();
-    // map["boxZoom"].enable();
-    // map["dragRotate"].enable();
     map["touchZoomRotate"].enable();
 }
 

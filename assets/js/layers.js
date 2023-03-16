@@ -1,9 +1,9 @@
 import { countriesWithCapitals } from "../data/countries-with-capitals.js";
-import timeOutFunction from "./timeout.js";
+import TimeOut from "./timeout.js";
 
 const minZoom = (map) => map.getMinZoom() - 0.1;
 const maxZoom = (map) => map.getMaxZoom() + 0.5;
-// const maxZoom = (map) => 6.1;
+
 export let clickedCountryCode = null;
 export let clickedCountryName = null;
 
@@ -101,9 +101,9 @@ export const removeBlurLayer = (map) => {
     }
 }
 
-export const timeOutForCorrectFeedback = new timeOutFunction();
-export const timeOutForIncorrectFeedback = new timeOutFunction();
-export const timeOutForFlyAnimation = new timeOutFunction();
+export const timeOutForCorrectFeedback = new TimeOut();
+export const timeOutForIncorrectFeedback = new TimeOut();
+export const timeOutForFlyAnimation = new TimeOut();
 
 /** this layer renders the country green/red according to the answer given 
  * as well as increases the score if the answer is correct.
@@ -134,7 +134,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, region, callb
                 ...worldviewFilters,
                 ['==', ['get', 'iso_3166_1'], clickedCountryCode]
               ],
-            id: 'country-feedback-fill',
+            id: 'country-feedback-fill-correct',
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
             paint: {
@@ -157,7 +157,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, region, callb
                 ['==', ['get', 'iso_3166_1'], clickedCountryCode],
                 ...worldviewFilters
               ],
-            id: 'country-feedback-fill',
+            id: 'country-feedback-fill-incorrect',
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
             paint: {
@@ -240,7 +240,8 @@ export const removeNameLayer = (map) => {
 
 /** remove other country selection if there is any */
 export const removeFeedbackLayer = (map) => {
-    map.getLayer('country-feedback-fill') && map.removeLayer('country-feedback-fill');
+    map.getLayer('country-feedback-fill-correct') && map.removeLayer('country-feedback-fill-correct');
+    map.getLayer('country-feedback-fill-incorrect') && map.removeLayer('country-feedback-fill-incorrect');
     map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
     removeNameLayer(map);
 }
@@ -312,46 +313,3 @@ export const addEventListeners = (map) => {
         })
     }
 };
-
-// export const addPatchLayer = (map) => {
-//     map.addLayer({
-//         id: 'patch-for-ukraine-fill',
-//         filter: 
-//             [
-//               "match",
-//               ["get", "iso_3166_1"],
-//               ["UA"],
-//               true,
-//               false
-//           ],
-//         minzoom: 1,
-//         maxzoom: 7,
-//         paint: {
-//             'fill-color': "#f475b4"
-//         },
-//         source: "country-boundaries",
-//         'source-layer': "country_boundaries",
-//         type: "fill"
-//     })
-
-//     map.addLayer({
-//         id: 'patch-for-ukraine-line',
-//         filter:
-//         [
-//           "match",
-//           ["get", "iso_3166_1"],
-//           ["UA"],
-//           true,
-//           false
-//       ],
-//         minzoom: 1,
-//         maxzoom: 7,
-//         paint: {
-//             'line-color': "#fff",
-//             'line-width': 0.5
-//         },
-//         source: "country-boundaries",
-//         'source-layer': "country_boundaries",
-//         type: "line"
-//     });
-// }

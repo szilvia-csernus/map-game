@@ -1,3 +1,4 @@
+import { showHighScores } from "./high-scores.js";
 import { restartRound } from "./round.js";
 
 /** creates play button and adds to document */
@@ -30,4 +31,12 @@ export const addNewGameBtn = (map) => {
 
 export const removeNewGameBtn = () => {
     $('#newGame').remove()
+}
+
+export const addHighScoresBtn = (map) => {
+    $('body').append('<button id="highScoresBtn" class="highScoresBtn">View your best scores here</button>');
+    $('#highScoresBtn').click(function() {
+        showHighScores(map);
+        this.remove();
+    });
 }

@@ -9,7 +9,7 @@ import {
 } from './layers.js';
 
 import { isMobile } from './game.js';
-import timeOutFunction from './timeout.js';
+import TimeOut from './timeout.js';
 
 let score = 0;
 
@@ -29,31 +29,36 @@ const addFeedback = (map, countryCode, increaseScore, region, callback) => {
     }
 }
 
+export let setDblClickFeedbackLayer;
+
 const setClickSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
 
-    const setDblClickFeedbackLayer = () => {
+    setDblClickFeedbackLayer = () => {
         removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore, region, callback);
         
         // cleans up event listener after it's been initiated
-        return map.off('dblclick', setDblClickFeedbackLayer);
+        // return map.off('dblclick', setDblClickFeedbackLayer);
     }
 
-    map.on('dblclick', setDblClickFeedbackLayer)
+    map.once('dblclick', setDblClickFeedbackLayer)
 }
+
+export let touchStartFunction;
+export let touchEndFunction;
 
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
     const setTapHoldFeedbackLayer = () => {
         removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore, region, callback)
     }
-    const touchStartFunction = (startEvent) => {
+    touchStartFunction = (startEvent) => {
         const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
 
         const startX = startEvent.point.x
         const startY = startEvent.point.y;
 
-        const touchEndFunction = (endEvent) => {
+        touchEndFunction = (endEvent) => {
             const endX = endEvent.point.x
             const endY = endEvent.point.y;
 
@@ -135,22 +140,22 @@ const oneQuestion = (map, code, country, region, callback) => {
 
     $('#countryLabel').remove();
     $('body').append(`<div id="countryLabel" class="country country${region}">${country}</div>`);
-    // setTimeout(() => {
-        // remove previous question's feedbacks
-        removeFeedbackLayer(map);
-        setSelectEventListeners(map, code, increaseScore, callback, region)
-    // }, 3000)
+
+    // remove previous question's feedbacks
+    removeFeedbackLayer(map);
+    setSelectEventListeners(map, code, increaseScore, callback, region)
+
 }
 
-// export this timeOutFunction instance so that it can be cleared in exit.js
-export const timeOutForShowScore = new timeOutFunction()
+// export this TimeOut instance so that it can be cleared in exit.js
+export const timeOutForShowScore = new TimeOut()
 
 
 /**  this recursive code asks the last question in the questions array and in oneQuestion() function it re-sets
  * the event listener to the next question after a dblclick / taphold event. */
 export const askQuestions = (map, region, questions, num, showScore) => {
     if (questions.length === 0) {
-        return timeOutForShowScore.setTimeOutFunction(() => showScore(map, score, region, num), 4000)
+        return timeOutForShowScore.setTimeOutFunction(() => showScore(map, score, region, num), 1500)
     };
 
     const question = questions.pop()
