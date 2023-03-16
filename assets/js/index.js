@@ -1,6 +1,5 @@
-import { addPlayBtn, removePlayBtn } from './buttons.js'
-// import { addPatchLayer } from './layers.js'
-import { addRotation } from './spin.js'
+import { addPlayBtn, removePlayBtn } from './buttons.js';
+import { addRotation } from './spin.js';
 
 export const initialZoom = () => {
     if (window.innerWidth < 415) {
@@ -14,17 +13,7 @@ export const worldviewFilters = [
     [ "match", ["get", "disputed"], ["true"], false, true],
     [ "match", ["get", "worldview"], ["RU"], false, true],
     [ "match", ["get", "worldview"], ["MA"], false, true]
-  ]
-
-const mapColours = {
-    1: "#845EC2", // violet
-    2: "#F7C8A8", // peach
-    3: "#FF6F91", // fuchsia
-    4: "#D65DB1", // magenta
-    5: "#f475b4", // pink
-    6: "#FFC75F", // yellow
-    7: "#FF9671", // orange
-}
+  ];
 
 /** Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool. 
  * Creating a map object fires as a 'load' using the Mapbox-provided allowance of 
@@ -53,7 +42,7 @@ const createMapObject = (callback) => {
         doubleClickZoom: false,
         touchZoomRotate: false
     }).addControl(new mapboxgl.AttributionControl({
-        customAttribution: '<span class="developer">&copy; App development by Szilvia Csernus</span>'
+        customAttribution: '<span class="developer">&copy; App development by Szilvia Csernusne Berczes</span>'
         }));;
 
     map.on('load', () => {
@@ -79,8 +68,6 @@ const addTilesetSource = (map) => {
         ],
         generateId: true
     })
-
-    // addPatchLayer(map);
 };
 
 const addIntroAnimation = () => {

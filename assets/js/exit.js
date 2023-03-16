@@ -2,16 +2,14 @@ import { removeHoverLayer, removeBlurLayer,
     removeFeedbackLayer, removeTouchLayer, timeOutForCorrectFeedback, timeOutForIncorrectFeedback, timeOutForFlyAnimation } from "./layers.js";
 
 import { initialZoom, startGame } from './index.js'
-import { initializeScore, timeOutForShowScore } from "./questions.js";
+import { initializeScore, setDblClickFeedbackLayer, timeOutForShowScore, touchEndFunction, touchStartFunction } from "./questions.js";
 import { stopSpin } from "./spin.js";
-import { timeOutForCountry, timeOutForMinZoom, timeOutForQuestion } from "./round.js";
+import { clearQuestions, timeOutForCountry, timeOutForMinZoom, timeOutForQuestion } from "./round.js";
 
 
 const disableMapInteraction = (map) => {
     map["dragPan"].disable();
     map["scrollZoom"].disable();
-    // map["boxZoom"].disable();
-    // map["dragRotate"].disable();
     map["touchZoomRotate"].disable();
 }
 
@@ -26,9 +24,13 @@ export const resetMap = (map) => {
 
     map.setMinZoom(initialZoom());
 
+    map.off('dblclick', setDblClickFeedbackLayer);
+    map.off('touchstart', touchStartFunction);
+    map.off('touchend', touchEndFunction);
+
     map.easeTo({
         zoom: initialZoom(),
-        duration: 800,
+        duration: 500,
         bearing: 0,
         essential: true,
     })
@@ -46,6 +48,7 @@ const updateElements = () => {
 
     $('#countryLabel').remove();
     $('#checkmarks').remove();
+    $('#highScoresBtn').remove();
     $('#newGame').remove();
     $('#exit').remove();
 
@@ -56,13 +59,15 @@ const updateElements = () => {
     timeOutForMinZoom.clearTimeOutFunction();
     timeOutForQuestion.clearTimeOutFunction();
     timeOutForCountry.clearTimeOutFunction();
+
+    clearQuestions();
 }
 
 export const restartGame = (map) => {
     updateElements();
     resetMap(map);
-    // delay with 1s to allow the globe to zoom back to its original zoom level
-    setTimeout( () => startGame(map), 1000);
+    // delay with 500ms to allow the globe to zoom back to its original zoom level
+    setTimeout( () => startGame(map), 500);
 }
 
 const addExitBtn = (map) => {

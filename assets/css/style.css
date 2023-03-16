@@ -28,7 +28,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 2;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--alternative-bg-color);
 }
 
 .howToPlayCanvas {
@@ -243,10 +243,6 @@
   border: 2px solid var(--orange);
 }
 
-/* .animate-bump {
-  animation: bump 1s;
-} */
-
 @keyframes bump {
   0% {
     transform: scale(1);
@@ -293,6 +289,21 @@
 
 /* ---- High Score -------  */
 
+.highScoresBtn {
+  position: absolute;
+  top: 13vh;
+  z-index: 1;
+  background-color: var(--secondary-bg-color);
+  font-size: var(--high-score-btn-font-size);
+  font-weight: 700;
+  color: var(--secondary-font-color);
+  box-shadow: 4px 4px 15px var(--primary-color);
+  padding: .1rem 1rem;
+  border: 1px solid var(--magenta);
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+
 .highScoresBackground {
   position: absolute;
   display: flex;
@@ -301,7 +312,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 2;
-  background-color: rgba(22, 29, 50, 0.5);
+  background-color: var(--alternative-bg-color);
 }
 
 .highScoresCanvas {

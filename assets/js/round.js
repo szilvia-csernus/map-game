@@ -4,44 +4,56 @@ import {
 } from './exit.js';
 
 import {
+    addHighScoresBtn,
     addNewGameBtn,
     removeContinentBtns,
     removeNewGameBtn
 } from './buttons.js';
 
 import { getQuestions, askQuestions, initializeScore } from './questions.js';
-import { showHighScores } from './high-scores.js';
-import timeOutFunction from './timeout.js';
+import TimeOut from './timeout.js';
 
 export const restartRound = (map) => {
     removeNewGameBtn();
-    restartGame(map)
+    restartGame(map);
 }
 
 const showScore = (map, score, region, num) => {
     resetMap(map);
-    $('h1').empty().removeClass('question').addClass('choose').text(`Your Score: ${score} / ${num}`)
+
+    const previousScoreExists = !!window.localStorage.getItem(region);
+    const highScore = Number(window.localStorage.getItem(region));
+
+    let text;
+    if (highScore < score && !previousScoreExists) {
+        text = "HIGH";
+    } else {
+        text = "Your";
+    }
+
+    highScore < score && window.localStorage.setItem(region, score);
+
+    $('h1').empty().removeClass('question').addClass('choose').text(`${text} Score: ${score} / ${num}`)
     $('#countryLabel').remove();
     $('#checkmarks').remove();
 
-    const highScore = Number(window.localStorage.getItem(region));
-    if (highScore < score) {
-        window.localStorage.setItem(region, score)
-    }
-
     const playedBefore = window.localStorage.getItem('playedBefore') === 'true' ? true : false;
 
-    if (!playedBefore) {
-        window.localStorage.setItem('playedBefore', 'true')
-        addNewGameBtn(map)
+    if (playedBefore) {
+        addHighScoresBtn(map);
     } else {
-       showHighScores(map)
-    } 
+        window.localStorage.setItem('playedBefore', 'true');
+    }
+
+    addNewGameBtn(map);
 }
 
-export const timeOutForMinZoom = new timeOutFunction();
-export const timeOutForQuestion = new timeOutFunction();
-export const timeOutForCountry = new timeOutFunction();
+export const timeOutForMinZoom = new TimeOut();
+export const timeOutForQuestion = new TimeOut();
+export const timeOutForCountry = new TimeOut();
+
+let questions;
+export const clearQuestions = () => questions = null;
 
 export const startRound = (map, region, num) => {
     initializeScore();
@@ -50,12 +62,12 @@ export const startRound = (map, region, num) => {
     timeOutForMinZoom.setTimeOutFunction(() => map.setMinZoom(map.getZoom() - 0.5), 1000);
     
     $('h1').removeClass('choose').text('');
-    timeOutForQuestion.setTimeOutFunction(() => $('h1').text('Find the country on the map!').addClass('question'), 1000)
+    timeOutForQuestion.setTimeOutFunction(() => $('h1').text('Find the country on the map!').addClass('question'), 1000);
     $('body').append('<ul id="checkmarks" class="checkmarks"></ul>');
     removeContinentBtns();
 
-    const questions = getQuestions(region, num);
+    questions = getQuestions(region, num);
 
     // wait a second before displaying the first question
-    timeOutForCountry.setTimeOutFunction(() => askQuestions(map, region, questions, num, showScore), 1000)
+    timeOutForCountry.setTimeOutFunction(() => askQuestions(map, region, questions, num, showScore), 1000);
 }
