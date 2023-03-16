@@ -66,6 +66,14 @@ html, body, section, article, h1, h2, p, a, button, ul {
     height: 100vh;
     margin: 0;
   }
+  
+  .error {
+    color: var(--main-font-color);
+    font-size: var(--country-font-size);
+    text-align: center;
+    line-height: 3rem;
+    margin: 2rem;
+  }
 
   .title {
     position: absolute;

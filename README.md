@@ -316,6 +316,11 @@ Please view [TESTING.md](TESTING.md) for more information on testing.
 
 # Credits
 
+* Count API for counting website visits:
+https://countapi.xyz/
+
+* EmailJS for sending error data
+
 * Data for capital cities:
 https://github.com/mledoze/countries
 https://codebeautify.org/online-json-editor/5aa491
@@ -329,6 +334,7 @@ https://www.npmjs.com/package/world-infohttps://www.npmjs.com/package/world-info
 
 * Clamp() calculator:
 https://grizhlie-clamp-calculator.netlify.app/
+
 
 <br>
 

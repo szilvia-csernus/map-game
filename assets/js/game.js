@@ -71,7 +71,7 @@ const addClickListenersToContinentBtns = (map) => {
             // add event listeners to the filtered region of the map
             addEventListeners(map);
             enableMapInteraction(map);
-            startRound(map, region, 5);
+            startRound(map, region, 10);
         })
     }
 
