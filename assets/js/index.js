@@ -26,17 +26,13 @@ const mapColours = {
     7: "#FF9671", // orange
 }
 
-function websiteVisits(response) {
-    document.querySelector("#visits").textContent = response.value;
-}
-
 /** Creating the map object with Mapbox GL JS - Map custom designed in Mapbox's Studio tool. 
  * Creating a map object fires as a 'load' using the Mapbox-provided allowance of 
  * 50.000 loads / month. This is created once and used throughout the whole lifecycle of the app.
 */
 const createMapObject = (callback) => {
     if (!mapboxgl.supported()) {
-        window.location.href = "../../no-support.html";
+        window.location.replace('../no-support.html');
         } else {
     mapboxgl.accessToken =
         'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
@@ -66,7 +62,7 @@ const createMapObject = (callback) => {
     })
 
     map.on('error', () => {
-        window.href = '../error.html'
+        window.location.href = '../error.html';
     })
 }
 }
@@ -91,16 +87,16 @@ const addIntroAnimation = () => {
     $('.map').addClass('animate-appear-map');
 }
 
-let game;
+let gameFile;
 
 export const startGame = (map) => {
     addPlayBtn(() => {
         // delay loading the rest of the code until button is clicked.
         // import game.js only once
-        if (!game) {
-            game = import('./game.js'); // returns a promise
+        if (!gameFile) {
+            gameFile = import('./game.js'); // returns a promise
         }
-        game.then(module => {
+        gameFile.then(module => {
             removePlayBtn();
             module.game(map);
         })

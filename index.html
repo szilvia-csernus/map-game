@@ -18,10 +18,12 @@
     <link rel="stylesheet" href="./assets/css/first.css" />
     <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
     <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin />
-    <script async src="https://api.countapi.xyz/hit/szilvia-csernus.github.io/0c8ac971-2e4a-46ce-ab17-471a6282c043?callback=websiteVisits"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script src="./assets/js/firewall.js"></script>
   </head>
   <body>
-    <div>This site has been visited <span id="visits"></span> times.</div>
     <h1 class="title">map it!</h1>
     
     <div id="map" class="map"></div>
@@ -43,6 +45,6 @@
       defer
     ></script>
 
-    <script src="./assets/js/index.js" defer type="module"></script>
+    <!-- <script src="./assets/js/index.js"></script> -->
   </body>
 </html>
