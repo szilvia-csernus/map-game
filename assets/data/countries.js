@@ -5,7 +5,7 @@
 // Cyprus, Azerbaijan, Armenia, Georgia, Turkey moved to Asia
 // Gibraltar, Vatican City, Dominica, Barbados, Cayman Islands,
 // British Virgin Islands, Bermuda, Grenada, Maldives,
-// Monaco  removed from list
+// Monaco, Seychelles, Mauritius  removed from list
 // "TW": "Taiwan" and
 // "EH": "Western Sahara" removed because of ambiguity in the data.
 
@@ -45,7 +45,6 @@ export const data = {
         "MW": "Malawi",
         "ML": "Mali",
         "MR": "Mauritania",
-        "MU": "Mauritius",
         "MA": "Morocco",
         "MZ": "Mozambique",
         "NA": "Namibia",
@@ -53,7 +52,6 @@ export const data = {
         "NG": "Nigeria",
         "RW": "Rwanda",
         "SN": "Senegal",
-        "SC": "Seychelles",
         "SL": "Sierra Leone",
         "SO": "Somalia",
         "ZA": "South Africa",
@@ -96,7 +94,7 @@ export const data = {
         "LI": "Liechtenstein",
         "LT": "Lithuania",
         "LU": "Luxembourg",
-        "MK": "Macedonia",
+        "MK": "North Macedonia",
         "MT": "Malta",
         "MD": "Moldova",
         "ME": "Montenegro",
