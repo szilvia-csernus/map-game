@@ -48,8 +48,15 @@
 
 @media screen and (min-width: 415px) {
   .howToPlayCanvas {
-    width: 25rem;
-    height: 25rem;
+    width: 21rem;
+    height: 21rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .howToPlayCanvas {
+    width: 29rem;
+    height: 29rem;
   }
 }
 
@@ -331,8 +338,15 @@
 
 @media screen and (min-width: 415px) {
   .highScoresCanvas {
-    width: 25rem;
-    height: 25rem;
+    width: 21rem;
+    height: 21rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .highScoresCanvas {
+    width: 29rem;
+    height: 29rem;
   }
 }
 
