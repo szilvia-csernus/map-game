@@ -1,6 +1,6 @@
 import {
     data
-} from '../data/countries.js';
+} from '../data/countries-with-continent.js';
 
 import {
     addFeedbackLayer,
@@ -18,9 +18,9 @@ const increaseScore = () => ++score;
 
 export const initializeScore = () => score = 0;
 
-const addFeedback = (map, countryCode, increaseScore, region, callback) => {
+const addFeedback = (map, countryCode, increaseScore, callback) => {
     const correct = countryCode === clickedCountryCode ? true : false;
-    addFeedbackLayer(map, correct, countryCode, region, callback);
+    addFeedbackLayer(map, correct, countryCode, callback);
     if (correct) {
         increaseScore();
         $('#checkmarks').append('<li ><svg class="correct"><use href="./assets/icons/correct.svg#icon"></use></svg></li>')
@@ -31,11 +31,11 @@ const addFeedback = (map, countryCode, increaseScore, region, callback) => {
 
 export let setDblClickFeedbackLayer;
 
-const setClickSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
+const setClickSelectEventListeners = (map, countryCode, increaseScore, callback) => {
 
     setDblClickFeedbackLayer = () => {
         removeFeedbackLayer(map);
-        addFeedback(map, countryCode, increaseScore, region, callback);
+        addFeedback(map, countryCode, increaseScore, callback);
         
         // cleans up event listener after it's been initiated
         // return map.off('dblclick', setDblClickFeedbackLayer);
@@ -47,10 +47,10 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback,
 export let touchStartFunction;
 export let touchEndFunction;
 
-const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
+const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     const setTapHoldFeedbackLayer = () => {
         removeFeedbackLayer(map);
-        addFeedback(map, countryCode, increaseScore, region, callback)
+        addFeedback(map, countryCode, increaseScore, callback)
     }
     touchStartFunction = (startEvent) => {
         const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
@@ -101,12 +101,12 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback,
 }
 
 /** remove previously clicked country's layers and add updated event listeners */
-const setSelectEventListeners = (map, countryCode, increaseScore, callback, region) => {
+const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     removeFeedbackLayer(map);
     if (!isMobile) {
-        setClickSelectEventListeners(map, countryCode, increaseScore, callback, region)
+        setClickSelectEventListeners(map, countryCode, increaseScore, callback)
     } else {
-        setTouchSelectEventListeners(map, countryCode, increaseScore, callback, region)
+        setTouchSelectEventListeners(map, countryCode, increaseScore, callback)
     }
 }
 
@@ -143,7 +143,7 @@ const oneQuestion = (map, code, country, region, callback) => {
 
     // remove previous question's feedbacks
     removeFeedbackLayer(map);
-    setSelectEventListeners(map, code, increaseScore, callback, region)
+    setSelectEventListeners(map, code, increaseScore, callback)
 
 }
 

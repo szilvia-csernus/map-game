@@ -326,6 +326,15 @@ https://github.com/mledoze/countries
 https://codebeautify.org/online-json-editor/5aa491
 https://ctftime.org/writeup/16139
 
+* Data for country centroids for displaying the names of the countries:
+https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson - MIT Licence, Copyright (c) 2021 Gavin Rehkemper
+
+* Country info including continent info:
+https://github.com/annexare/Countries/blob/master/data/countries.json - MIT License, Copyright (c) 2014 Annexare Studio
+
+* Geolocation coordinate finder:
+http://bboxfinder.com/
+
 * Flag-icons in svg format in an npm package:
 https://www.npmjs.com/package/flag-icons
 
