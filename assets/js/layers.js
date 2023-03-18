@@ -134,6 +134,8 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
         type: "line"
     });
 
+    addPopup(map, clickedCountryCode)
+
     if (correct) {
         map.addLayer({
             filter: [
@@ -152,8 +154,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
             type: "fill"
         });
 
-        // addNameLayer(map, clickedCountryCode);
-        addPopup(map, clickedCountryCode)
+        // addPopup(map, clickedCountryCode)
 
         // The callback function calls the next question recursively. (See askQuestions function)
         timeOutForCorrectFeedback.setTimeOutFunction(callback, 2000);
@@ -176,8 +177,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
             type: "fill"
         });
 
-        // addNameLayer(map, clickedCountryCode);
-        addPopup(map, clickedCountryCode)
+        // addPopup(map, clickedCountryCode)
 
         timeOutForFlyAnimation.setTimeOutFunction(() => flyToCorrectCountry(map, correctCountryCode), 1500);
         timeOutForIncorrectFeedback.setTimeOutFunction(callback, 3500)
