@@ -1,0 +1,358 @@
+{
+    "Africa": {
+        "AO": "Angola",
+        "BF": "Burkina Faso",
+        "BI": "Burundi",
+        "BJ": "Benin",
+        "BW": "Botswana",
+        "CD": "Democratic Republic of the Congo",
+        "CF": "Central African Republic",
+        "CG": "Republic of the Congo",
+        "CI": "Ivory Coast",
+        "CM": "Cameroon",
+        "CV": "Cape Verde",
+        "DJ": "Djibouti",
+        "DZ": "Algeria",
+        "EG": "Egypt",
+        "EH": "Western Sahara",
+        "ER": "Eritrea",
+        "ET": "Ethiopia",
+        "GA": "Gabon",
+        "GH": "Ghana",
+        "GM": "Gambia",
+        "GN": "Guinea",
+        "GQ": "Equatorial Guinea",
+        "GW": "Guinea-Bissau",
+        "KE": "Kenya",
+        "KM": "Comoros",
+        "LR": "Liberia",
+        "LS": "Lesotho",
+        "LY": "Libya",
+        "MA": "Morocco",
+        "MG": "Madagascar",
+        "ML": "Mali",
+        "MR": "Mauritania",
+        "MU": "Mauritius",
+        "MW": "Malawi",
+        "MZ": "Mozambique",
+        "NA": "Namibia",
+        "NE": "Niger",
+        "NG": "Nigeria",
+        "RE": "Réunion",
+        "RW": "Rwanda",
+        "SC": "Seychelles",
+        "SD": "Sudan",
+        "SH": "Saint Helena",
+        "SL": "Sierra Leone",
+        "SN": "Senegal",
+        "SO": "Somalia",
+        "SS": "South Sudan",
+        "ST": "São Tomé and Príncipe",
+        "SZ": "Swaziland",
+        "TD": "Chad",
+        "TG": "Togo",
+        "TN": "Tunisia",
+        "TZ": "Tanzania",
+        "UG": "Uganda",
+        "YT": "Mayotte",
+        "ZA": "South Africa",
+        "ZM": "Zambia",
+        "ZW": "Zimbabwe"
+    },
+    "Europe": {
+        "AD": "Andorra",
+        "AL": "Albania",
+        "AT": "Austria",
+        "AX": "Åland",
+        "BA": "Bosnia and Herzegovina",
+        "BE": "Belgium",
+        "BG": "Bulgaria",
+        "BY": "Belarus",
+        "CH": "Switzerland",
+        "CY": "Cyprus",
+        "CZ": "Czech Republic",
+        "DE": "Germany",
+        "DK": "Denmark",
+        "EE": "Estonia",
+        "ES": "Spain",
+        "FI": "Finland",
+        "FO": "Faroe Islands",
+        "FR": "France",
+        "GB": "United Kingdom",
+        "GG": "Guernsey",
+        "GI": "Gibraltar",
+        "GR": "Greece",
+        "HR": "Croatia",
+        "HU": "Hungary",
+        "IE": "Ireland",
+        "IM": "Isle of Man",
+        "IS": "Iceland",
+        "IT": "Italy",
+        "JE": "Jersey",
+        "LI": "Liechtenstein",
+        "LT": "Lithuania",
+        "LU": "Luxembourg",
+        "LV": "Latvia",
+        "MC": "Monaco",
+        "MD": "Moldova",
+        "ME": "Montenegro",
+        "MK": "North Macedonia",
+        "MT": "Malta",
+        "NL": "Netherlands",
+        "NO": "Norway",
+        "PL": "Poland",
+        "PT": "Portugal",
+        "RO": "Romania",
+        "RS": "Serbia",
+        "RU": "Russia",
+        "SE": "Sweden",
+        "SI": "Slovenia",
+        "SJ": "Svalbard and Jan Mayen",
+        "SK": "Slovakia",
+        "SM": "San Marino",
+        "UA": "Ukraine",
+        "VA": "Vatican City",
+        "XK": "Kosovo"
+    },
+    "Asia": {
+        "AE": "United Arab Emirates",
+        "AF": "Afghanistan",
+        "AM": "Armenia",
+        "AZ": "Azerbaijan",
+        "BD": "Bangladesh",
+        "BH": "Bahrain",
+        "BN": "Brunei",
+        "BT": "Bhutan",
+        "CC": "Cocos [Keeling] Islands",
+        "CN": "China",
+        "CX": "Christmas Island",
+        "GE": "Georgia",
+        "HK": "Hong Kong",
+        "ID": "Indonesia",
+        "IL": "Israel",
+        "IN": "India",
+        "IO": "British Indian Ocean Territory",
+        "IQ": "Iraq",
+        "IR": "Iran",
+        "JO": "Jordan",
+        "JP": "Japan",
+        "KG": "Kyrgyzstan",
+        "KH": "Cambodia",
+        "KP": "North Korea",
+        "KR": "South Korea",
+        "KW": "Kuwait",
+        "KZ": "Kazakhstan",
+        "LA": "Laos",
+        "LB": "Lebanon",
+        "LK": "Sri Lanka",
+        "MM": "Myanmar [Burma]",
+        "MN": "Mongolia",
+        "MO": "Macao",
+        "MV": "Maldives",
+        "MY": "Malaysia",
+        "NP": "Nepal",
+        "OM": "Oman",
+        "PH": "Philippines",
+        "PK": "Pakistan",
+        "PS": "Palestine",
+        "QA": "Qatar",
+        "SA": "Saudi Arabia",
+        "SG": "Singapore",
+        "SY": "Syria",
+        "TH": "Thailand",
+        "TJ": "Tajikistan",
+        "TM": "Turkmenistan",
+        "TR": "Turkey",
+        "TW": "Taiwan",
+        "UZ": "Uzbekistan",
+        "VN": "Vietnam",
+        "YE": "Yemen"
+    },
+    "Americas": {
+        "AG": "Antigua and Barbuda",
+        "AI": "Anguilla",
+        "AR": "Argentina",
+        "AW": "Aruba",
+        "BB": "Barbados",
+        "BL": "Saint Barthélemy",
+        "BM": "Bermuda",
+        "BO": "Bolivia",
+        "BQ": "Bonaire",
+        "BR": "Brazil",
+        "BS": "Bahamas",
+        "BZ": "Belize",
+        "CA": "Canada",
+        "CL": "Chile",
+        "CO": "Colombia",
+        "CR": "Costa Rica",
+        "CU": "Cuba",
+        "CW": "Curacao",
+        "DM": "Dominica",
+        "DO": "Dominican Republic",
+        "EC": "Ecuador",
+        "FK": "Falkland Islands",
+        "GD": "Grenada",
+        "GF": "French Guiana",
+        "GL": "Greenland",
+        "GP": "Guadeloupe",
+        "GT": "Guatemala",
+        "GY": "Guyana",
+        "HN": "Honduras",
+        "HT": "Haiti",
+        "JM": "Jamaica",
+        "KN": "Saint Kitts and Nevis",
+        "KY": "Cayman Islands",
+        "LC": "Saint Lucia",
+        "MF": "Saint Martin",
+        "MQ": "Martinique",
+        "MS": "Montserrat",
+        "MX": "Mexico",
+        "NI": "Nicaragua",
+        "PA": "Panama",
+        "PE": "Peru",
+        "PM": "Saint Pierre and Miquelon",
+        "PR": "Puerto Rico",
+        "PY": "Paraguay",
+        "SR": "Suriname",
+        "SV": "El Salvador",
+        "SX": "Sint Maarten",
+        "TC": "Turks and Caicos Islands",
+        "TT": "Trinidad and Tobago",
+        "US": "United States",
+        "UY": "Uruguay",
+        "VC": "Saint Vincent and the Grenadines",
+        "VE": "Venezuela",
+        "VG": "British Virgin Islands",
+        "VI": "U.S. Virgin Islands"
+    },
+    "rest": {
+        "AQ": {
+            "region": "AN",
+            "name": "Antarctica"
+        },
+        "AS": {
+            "region": "OC",
+            "name": "American Samoa"
+        },
+        "AU": {
+            "region": "OC",
+            "name": "Australia"
+        },
+        "BV": {
+            "region": "AN",
+            "name": "Bouvet Island"
+        },
+        "CK": {
+            "region": "OC",
+            "name": "Cook Islands"
+        },
+        "FJ": {
+            "region": "OC",
+            "name": "Fiji"
+        },
+        "FM": {
+            "region": "OC",
+            "name": "Micronesia"
+        },
+        "GS": {
+            "region": "AN",
+            "name": "South Georgia and the South Sandwich Islands"
+        },
+        "GU": {
+            "region": "OC",
+            "name": "Guam"
+        },
+        "HM": {
+            "region": "AN",
+            "name": "Heard Island and McDonald Islands"
+        },
+        "KI": {
+            "region": "OC",
+            "name": "Kiribati"
+        },
+        "MH": {
+            "region": "OC",
+            "name": "Marshall Islands"
+        },
+        "MP": {
+            "region": "OC",
+            "name": "Northern Mariana Islands"
+        },
+        "NC": {
+            "region": "OC",
+            "name": "New Caledonia"
+        },
+        "NF": {
+            "region": "OC",
+            "name": "Norfolk Island"
+        },
+        "NR": {
+            "region": "OC",
+            "name": "Nauru"
+        },
+        "NU": {
+            "region": "OC",
+            "name": "Niue"
+        },
+        "NZ": {
+            "region": "OC",
+            "name": "New Zealand"
+        },
+        "PF": {
+            "region": "OC",
+            "name": "French Polynesia"
+        },
+        "PG": {
+            "region": "OC",
+            "name": "Papua New Guinea"
+        },
+        "PN": {
+            "region": "OC",
+            "name": "Pitcairn Islands"
+        },
+        "PW": {
+            "region": "OC",
+            "name": "Palau"
+        },
+        "SB": {
+            "region": "OC",
+            "name": "Solomon Islands"
+        },
+        "TF": {
+            "region": "AN",
+            "name": "French Southern Territories"
+        },
+        "TK": {
+            "region": "OC",
+            "name": "Tokelau"
+        },
+        "TL": {
+            "region": "OC",
+            "name": "East Timor"
+        },
+        "TO": {
+            "region": "OC",
+            "name": "Tonga"
+        },
+        "TV": {
+            "region": "OC",
+            "name": "Tuvalu"
+        },
+        "UM": {
+            "region": "OC",
+            "name": "U.S. Minor Outlying Islands"
+        },
+        "VU": {
+            "region": "OC",
+            "name": "Vanuatu"
+        },
+        "WF": {
+            "region": "OC",
+            "name": "Wallis and Futuna"
+        },
+        "WS": {
+            "region": "OC",
+            "name": "Samoa"
+        }
+    }
+}
