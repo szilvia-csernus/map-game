@@ -68,8 +68,8 @@ html, body, section, article, h1, h2, p, a, button, ul {
   .preMap {
     position: absolute;
     align-self: center;
-    width: 32rem;
-    height: 32rem;
+    width: 24rem;
+    height: 24rem;
     background-color: white;
     border-radius: 50%;
     animation: scaleCircle 1.5s ease-in forwards;
@@ -78,23 +78,23 @@ html, body, section, article, h1, h2, p, a, button, ul {
   }
 
   /* the size of the circle is calculated from the map's size depending on zoomm levels */
-  @media screen and (min-width: 415px) {
+  /* @media screen and (min-width: 415px) {
     .preMap {
       width: 90rem;
       height: 90rem;
     }
-  }
-  @media screen and (min-width: 800px) {
+  } */
+  @media screen and (min-width: 600px) {
     .preMap {
-      width: 104rem;
-      height: 104rem;
+      width: 33rem;
+      height: 33rem;
     }
   }
 
   @keyframes scaleCircle {
     0% {
       opacity: 0;
-      transform: scale(0.8, 0.8);
+      transform: scale(0.7, 0.7);
     }
     100% {
       opacity: .9;

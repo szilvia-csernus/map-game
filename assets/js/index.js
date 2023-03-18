@@ -7,11 +7,11 @@ import {
 } from './spin.js';
 
 export const initialZoom = () => {
-    if (window.innerWidth < 415) {
+    if (window.innerWidth < 600) {
         return 1
-    } else if (window.innerWidth < 800) {
+    } else  {
         return 1.5
-    } else return 1.7
+    }
 }
 
 export const worldviewFilters = [
