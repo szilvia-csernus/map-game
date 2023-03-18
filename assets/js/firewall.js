@@ -1,14 +1,15 @@
-emailjs.init("sZPW9YDqBsCM52fA-");
+export const firewall = callback => {
+    emailjs.init("sZPW9YDqBsCM52fA-");
 
-const sendMail = (from, message) => {
-    emailjs.send('my-emailjs-service', 'universal-template', {
-        "project_name": "Map game project",
-        "from_name": from,
-        "message": message
-    })
-}
+    const sendMail = (from, message) => {
+        emailjs.send('my-emailjs-service', 'universal-template', {
+            "project_name": "Map game project",
+            "from_name": from,
+            "message": message
+        })
+    }
 
-fetch("https://api.countapi.xyz/hit/szilvia-csernus/map-game").then(fetchResponse => {
+    fetch("https://api.countapi.xyz/hit/szilvia-csernus/map-game").then(fetchResponse => {
         if (fetchResponse.status != 200) {
             fetchResponse.json().then(data => sendMail('Unsuccessful Count API call', data))
         } else {
@@ -19,8 +20,9 @@ fetch("https://api.countapi.xyz/hit/szilvia-csernus/map-game").then(fetchRespons
                     return;
                 } else if (data.value === 100 || data.value === 1000 || data.value === 20000) {
                     sendMail('Count API', `Map game load number reached ${data.value}`)
-                }   
-                import('./index.js')
+                }
+                callback()
             })
         }
     })
+}

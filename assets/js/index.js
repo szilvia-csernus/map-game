@@ -3,13 +3,16 @@ import {
     removePlayBtn
 } from './buttons.js';
 import {
+    firewall
+} from './firewall.js';
+import {
     addRotation
 } from './spin.js';
 
 export const initialZoom = () => {
     if (window.innerWidth < 600) {
         return 1
-    } else  {
+    } else {
         return 1.5
     }
 }
@@ -106,7 +109,10 @@ export const startGame = (map) => {
     addRotation(map);
 }
 
-createMapObject((map) => {
-    addIntroAnimation();
-    startGame(map);
-})
+// only create map object if within allowance.
+firewall( () => {
+    createMapObject((map) => {
+        addIntroAnimation();
+        startGame(map);
+    })
+});
