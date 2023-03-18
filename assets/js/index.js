@@ -8,10 +8,10 @@ import {
 
 export const initialZoom = () => {
     if (window.innerWidth < 415) {
-        return 1
+        return 0.5
     } else if (window.innerWidth < 800) {
-        return 1.5
-    } else return 1.7
+        return 1.3
+    } else return 1.5
 }
 
 export const worldviewFilters = [

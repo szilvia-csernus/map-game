@@ -3,12 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <title>map it!</title>
-    <meta name="author" content="Szilvia Csernus" />
+    <meta name="author" content="Szilvia Csernusne Berczes" />
     <meta name="description" content="map it! - Interactive game" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=6"
     />
+
+    <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
+    <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin />
+    <script
+      src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"
+      crossorigin 
+    ></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css"
+      rel="stylesheet" crossorigin 
+    />
+    
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700"
@@ -16,8 +28,7 @@
     />
 
     <link rel="stylesheet" href="./assets/css/first.css" />
-    <link rel="preconnect" href="https://api.mapbox.com" crossorigin />
-    <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin />
+    
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
     </script>
@@ -26,17 +37,8 @@
   <body>
     <h1 class="title">map it!</h1>
     
-    <div id="map" class="map"></div>
-    
-    <script
-      src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"
-      crossorigin 
-    ></script>
-
-    <link
-      href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css"
-      rel="stylesheet" crossorigin 
-    />
+    <div class="preMap"></div>
+    <div id="map" class="map"></div>  
 
     <link rel="stylesheet" href="./assets/css/style.css" defer />
 
@@ -45,6 +47,5 @@
       defer
     ></script>
 
-    <!-- <script src="./assets/js/index.js"></script> -->
   </body>
 </html>

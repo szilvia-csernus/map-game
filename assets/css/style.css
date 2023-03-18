@@ -10,9 +10,8 @@
 }
 
 .animate-appear-map {
-  animation: appear .2s forwards;
+  animation: appear 1s forwards;
 }
-
 
 /* ---------- How To Play --------------- */
 
@@ -107,7 +106,6 @@
   font-size: var(--choose-font-size);
   animation: bump 1s ease-in-out;
 }
-
 
 .continentCanvas {
   position: absolute;
