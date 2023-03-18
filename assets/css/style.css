@@ -46,7 +46,7 @@
   animation: appear 1s forwards;
 }
 
-@media screen and (min-width: 415px) {
+@media screen and (min-width: 414px) {
   .howToPlayCanvas {
     width: 21rem;
     height: 21rem;
@@ -336,7 +336,7 @@
   animation: appear 1s forwards;
 }
 
-@media screen and (min-width: 415px) {
+@media screen and (min-width: 414px) {
   .highScoresCanvas {
     width: 21rem;
     height: 21rem;
