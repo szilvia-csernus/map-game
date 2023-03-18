@@ -1,5 +1,6 @@
 import { removeHoverLayer, removeBlurLayer, 
-    removeFeedbackLayer, removeTouchLayer, timeOutForCorrectFeedback, timeOutForIncorrectFeedback, timeOutForFlyAnimation } from "./layers.js";
+    removeFeedbackLayer, removeTouchLayer, timeOutForCorrectFeedback, timeOutForIncorrectFeedback, timeOutForFlyAnimation, 
+    popup, clickEventHandler, mouseLeaveHoverEventListenerHandler, mouseMoveHoverEventListenerHandler } from "./layers.js";
 
 import { initialZoom, startGame } from './index.js'
 import { initializeScore, setDblClickFeedbackLayer, timeOutForShowScore, touchEndFunction, touchStartFunction } from "./questions.js";
@@ -24,9 +25,15 @@ export const resetMap = (map) => {
 
     map.setMinZoom(initialZoom());
 
+    map.off('mousemove', `country-hover`, mouseMoveHoverEventListenerHandler);
+    map.off('mouseleave', 'country-hover', mouseLeaveHoverEventListenerHandler);
+    map.off('click', 'country-hover', clickEventHandler);
+    map.off('touchstart', 'country-touch', clickEventHandler);
     map.off('dblclick', setDblClickFeedbackLayer);
     map.off('touchstart', touchStartFunction);
     map.off('touchend', touchEndFunction);
+
+    popup && popup.remove();
 
     map.easeTo({
         zoom: initialZoom(),

@@ -47,7 +47,7 @@ const addClickListenersToContinentBtns = (map) => {
             map.easeTo({
                 center,
                 zoom,
-                duration: 1000,
+                duration: 1500,
                 bearing: 0,
                 essential: true
             })
