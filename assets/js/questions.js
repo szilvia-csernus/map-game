@@ -68,7 +68,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
             // if tap was not rather a swipe..
             if (distance < 4) {
                 // if user's tap is longer than 200ms
-                if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 200) {
+                if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 150) {
                     console.log('taphold', clickedCountryCode)
 
                     // we have to stop 'touchend' function before stepping into the recursive callback function!
