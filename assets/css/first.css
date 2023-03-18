@@ -50,7 +50,6 @@ html, body, section, article, h1, h2, p, a, button, ul {
     --pink: #f475b4;
     --magenta: #D65DB1;
     --yellow: #FFC75F;
-
     --correct: #2cf32c;
     --incorrect: #ff0000;
   }
@@ -66,6 +65,33 @@ html, body, section, article, h1, h2, p, a, button, ul {
     background-color: var(--primary-color);
     height: 100vh;
     margin: 0;
+  }
+
+  .preMap {
+    position: absolute;
+    align-self: center;
+    width: 50vh;
+    height: 50vh;
+    background-color: white;
+    border-radius: 50%;
+    animation: scaleCircle .8s ease-in forwards;
+    
+  }
+
+  @keyframes scaleCircle {
+    0% {
+      opacity: 0;
+      transform: scale(1,1);
+    }
+    /* 70% {
+      opacity: .5;
+      transform: scale(1.2, 1.2)
+    } */
+    100% {
+      opacity: .9;
+      transform: scale(1.2, 1.2)
+    }
+    
   }
   
   .error {
@@ -109,7 +135,6 @@ html, body, section, article, h1, h2, p, a, button, ul {
     color: var(--main-font-color);
     filter: drop-shadow( 0 0 10px var(--primary-color));
     font-family: var(--main-font-family);
-    /* font-size: var(--utilities-font-size); */
     cursor: pointer;
     opacity: 0;
     animation: appear .2s ease-in forwards;
@@ -126,7 +151,6 @@ html, body, section, article, h1, h2, p, a, button, ul {
     color: var(--main-font-color);
     filter: drop-shadow( 0 0 10px var(--primary-color));
     font-family: var(--main-font-family);
-    /* font-size: var(--utilities-font-size); */
     cursor: pointer;
     opacity: 0;
     animation: appear .2s ease-in forwards;
@@ -149,7 +173,6 @@ html, body, section, article, h1, h2, p, a, button, ul {
     opacity: 0;
     animation: appear .2s ease-in forwards;
   }
-  
   
   .playBtn:hover {
     background-color: var(--primary-color-hover);
