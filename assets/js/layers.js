@@ -9,9 +9,12 @@ const maxZoom = (map) => map.getMaxZoom() + 0.5;
 export let clickedCountryCode = null;
 export let clickedCountryName = null;
 
+export const initializeClickedCountryCode = () => clickedCountryCode = null;
+
 import {
     worldviewFilters
 } from "./index.js";
+import { isMobile } from "./game.js";
 
 /** adds hover-change layer to the map. Used on non-mobile devices.  */
 export const addHoverLayer = (map) => {
@@ -111,11 +114,26 @@ export const removeBlurLayer = (map) => {
 export const timeOutForCorrectFeedback = new TimeOut();
 export const timeOutForIncorrectFeedback = new TimeOut();
 export const timeOutForFlyAnimation = new TimeOut();
+export const timeOutForPopup = new TimeOut();
 
+export let popup;
+
+const addPopup = (map, code) => {
+    if (countryCoordinates[code]) {
+        popup = new mapboxgl.Popup()
+            .setLngLat(countryCoordinates[code]["coordinates"])
+            .setHTML(`<span>${countryCoordinates[code]["countryName"]}</span>`)
+            .addTo(map);
+    }
+    
+}
 /** this layer renders the country green/red according to the answer given 
  * as well as increases the score if the answer is correct.
  */
 export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => {
+
+    // timeOutForPopup.setTimeOutFunction((map, clickedCountryCode) => addPopup(map, clickedCountryCode), 200);
+
     map.addLayer({
         filter: [
             "all",
@@ -134,8 +152,6 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
         type: "line"
     });
 
-    addPopup(map, clickedCountryCode)
-
     if (correct) {
         map.addLayer({
             filter: [
@@ -152,9 +168,9 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
             source: "country-boundaries",
             'source-layer': "country_boundaries",
             type: "fill"
-        });
-
-        // addPopup(map, clickedCountryCode)
+        })
+        
+        addPopup(map, clickedCountryCode);
 
         // The callback function calls the next question recursively. (See askQuestions function)
         timeOutForCorrectFeedback.setTimeOutFunction(callback, 2000);
@@ -175,25 +191,14 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
             source: "country-boundaries",
             'source-layer': "country_boundaries",
             type: "fill"
-        });
-
-        // addPopup(map, clickedCountryCode)
+        })
+        
+        addPopup(map, clickedCountryCode);
 
         timeOutForFlyAnimation.setTimeOutFunction(() => flyToCorrectCountry(map, correctCountryCode), 1500);
         timeOutForIncorrectFeedback.setTimeOutFunction(callback, 3500)
     }
-    clickedCountryCode = null;
-}
-
-export let popup;
-
-const addPopup = (map, code) => {
-    if (countryCoordinates[code]) {
-        popup = new mapboxgl.Popup()
-            .setLngLat(countryCoordinates[code]["coordinates"])
-            .setHTML(`<span>${countryCoordinates[code]["countryName"]}</span>`)
-            .addTo(map);
-    }
+    
 }
 
 const flyToCorrectCountry = (map, code) => {
@@ -235,16 +240,23 @@ export const removeFeedbackLayer = (map) => {
     map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
     map.getLayer('corrected-country') && map.removeLayer('corrected-country');
     // removeNameLayer(map);
-    // if there is already a popup on the map then remove it first
-    popup && popup.remove()
+    // if there is already a popup on the map then remove it
+    popup && popup.remove();
 }
 
 export const clickEventHandler = (e) => {
+    // if clicked item has no id the click won't register a clicked country.
+    console.log(e);
+    if (e.features) {
     // filter for Crimea and Western Sahara which would otherwise incorrectly show up as part of Russia/Morocco.
     clickedCountryCode = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].properties.iso_3166_1 : e.features[0].properties.iso_3166_1;
     clickedCountryName = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].properties.name_en : e.features[0].properties.name_en;
 
     console.log(e.features, clickedCountryCode, clickedCountryName)
+    } else {
+        initializeClickedCountryCode()
+        console.log('there were no e.features ', e, clickedCountryCode)
+    }
 }
 
 let hoveredStateId = null;
@@ -296,15 +308,15 @@ export function mouseLeaveHoverEventListenerHandler () {
     this.getCanvas().style.cursor = '';
 }
 
-export const addEventListeners = (map) => {
+export const addDesktopEventListeners = (map) => {
     
-    if (map.getLayer('country-hover')) {
+    if (map.getLayer('country-hover') && !isMobile) {
         map.on('mousemove', `country-hover`, mouseMoveHoverEventListenerHandler);
         map.on('mouseleave', 'country-hover', mouseLeaveHoverEventListenerHandler);
-        map.on('click', 'country-hover', clickEventHandler)    
+        // map.on('click', 'country-hover', clickEventHandler)    
     }
 
-    if (map.getLayer('country-touch')) {
-        map.on('touchstart', 'country-touch', clickEventHandler)
-    }
+    // if (map.getLayer('country-touch') && isMobile) {
+    //     map.on('click', 'country-touch', clickEventHandler)
+    // }
 };
