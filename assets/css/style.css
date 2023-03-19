@@ -55,8 +55,8 @@
 
 @media screen and (min-width: 600px) {
   .howToPlayCanvas {
-    width: 29rem;
-    height: 29rem;
+    width: 28.7rem;
+    height: 28.7rem;
   }
 }
 
@@ -345,8 +345,8 @@
 
 @media screen and (min-width: 600px) {
   .highScoresCanvas {
-    width: 29rem;
-    height: 29rem;
+    width: 28.7rem;
+    height: 28.7rem;
   }
 }
 

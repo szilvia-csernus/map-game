@@ -7,7 +7,7 @@ import {
 import {
     addHoverLayer,
     addBlurLayer,
-    addEventListeners,
+    addDesktopEventListeners,
     addTouchLayer
 } from './layers.js';
 import {
@@ -67,7 +67,7 @@ const addClickListenersToContinentBtns = (map) => {
             map.setFilter('country-blur', ['!=', ['get', 'region'], region]);
 
             // add event listeners to the filtered region of the map
-            addEventListeners(map);
+            addDesktopEventListeners(map);
             enableMapInteraction(map);
             startRound(map, region, 10);
         })

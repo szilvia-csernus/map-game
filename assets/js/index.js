@@ -18,6 +18,7 @@ export const initialZoom = () => {
 }
 
 export const worldviewFilters = [
+    ["has", "color_group"],
     ["match", ["get", "disputed"],
         ["true"], false, true
     ],
@@ -97,7 +98,6 @@ export const startGame = (map) => {
     addPlayBtn(() => {
         // delay loading the rest of the code until button is clicked.
         // import game.js only once
-        console.log('play button event listener')
         if (!gameFile) {
             gameFile = import('./game.js'); // returns a promise
         }

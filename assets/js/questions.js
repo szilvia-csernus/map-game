@@ -5,7 +5,9 @@ import {
 import {
     addFeedbackLayer,
     removeFeedbackLayer,
-    clickedCountryCode
+    clickedCountryCode,
+    clickEventHandler,
+    initializeClickedCountryCode
 } from './layers.js';
 
 import { isMobile } from './game.js';
@@ -29,30 +31,40 @@ const addFeedback = (map, countryCode, increaseScore, callback) => {
     }
 }
 
-export let setDblClickFeedbackLayer;
+export let setDblClickFeedbackLayer = () => {};
 
 const setClickSelectEventListeners = (map, countryCode, increaseScore, callback) => {
 
-    setDblClickFeedbackLayer = () => {
-        removeFeedbackLayer(map);
-        addFeedback(map, countryCode, increaseScore, callback);
+    setDblClickFeedbackLayer = (event) => {
         
-        // cleans up event listener after it's been initiated
-        // return map.off('dblclick', setDblClickFeedbackLayer);
+        clickEventHandler(event);
+
+        // if clicked item has no id then we just ignore it.
+        console.log(event);
+        console.log(clickedCountryCode)
+
+        if (clickedCountryCode) {
+            map.off('dblclick', 'country-hover', setDblClickFeedbackLayer)
+            removeFeedbackLayer(map);
+            addFeedback(map, countryCode, increaseScore, callback);
+        }
+        
     }
 
-    map.once('dblclick', setDblClickFeedbackLayer)
+    map.on('dblclick', 'country-hover', setDblClickFeedbackLayer)
 }
 
-export let touchStartFunction;
-export let touchEndFunction;
+export let touchStartFunction = () => {};
+export let touchEndFunction = () => {};
 
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     const setTapHoldFeedbackLayer = () => {
         removeFeedbackLayer(map);
         addFeedback(map, countryCode, increaseScore, callback)
     }
+
     touchStartFunction = (startEvent) => {
+        
         const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
 
         const startX = startEvent.point.x
@@ -67,37 +79,53 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 
             // if tap was not rather a swipe..
             if (distance < 4) {
-                // if user's tap is longer than 200ms
-                if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 150) {
-                    console.log('taphold', clickedCountryCode)
-
+                // if user's tap is longer than 100ms
+                if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 100) {
+                    
+                    clickEventHandler(endEvent);
                     // we have to stop 'touchend' function before stepping into the recursive callback function!
-                    map.off('touchend', touchEndFunction);
+                    
+                    console.log('taphold', clickedCountryCode, endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp)
 
-                    // remember that this calls a recursive function!!
-                    setTapHoldFeedbackLayer();
+                    // if the tap was on a valid country
+                    if (clickedCountryCode) {
+                        // we turn off 'touchstart' fn before entering the next cycle of the recursive function.
+                        map.off('touchstart', 'country-touch', touchStartFunction);
+
+                        // remember that this calls a recursive function!!
+                        setTapHoldFeedbackLayer();
+                        
+                    } else {
+                        map.off('touchstart', 'country-touch', touchStartFunction);
+                        map.on('touchstart', 'country-touch', touchStartFunction)
+                    }
 
                 } else {
                     console.log('tap', clickedCountryCode)
-                    removeFeedbackLayer(map)
-                    map.off('touchend', touchEndFunction);
-                    map.once('touchstart', touchStartFunction)
+                    // removeFeedbackLayer(map)
+                    map.off('touchstart', 'country-touch', touchStartFunction);
+                    map.on('touchstart', 'country-touch', touchStartFunction)
                 }
             } else {
-                map.off('touchend', touchEndFunction);
-                map.once('touchstart', touchStartFunction)
+                // if touch was a swipe / drag / pan action, reset touchstart action
+                map.off('touchstart', 'country-touch', touchStartFunction);
+                map.on('touchstart', 'country-touch', touchStartFunction)
             }
         }
         
         if (!moreFingersTouch) {
             // if the touch was with one finger only
-            map.on('touchend', touchEndFunction);
+            // map.off('touchend', 'country-touch', touchEndFunction);
+            map.once('touchend', 'country-touch', touchEndFunction);
         } else {
-            // if touch was with more fingers, start the touch listening again
-            map.once('touchend', () => map.once('touchstart', touchStartFunction));
+            // if touch was with more fingers, stop and restart touch listening.
+            // we are not interested when the touch ends hence no 'touchend' fn in this scenario.
+            map.off('touchstart', 'country-touch', touchStartFunction);
+            map.on('touchstart', 'country-touch', touchStartFunction)
         }
     }
-    map.once('touchstart', touchStartFunction)
+   
+    map.on('touchstart', 'country-touch', touchStartFunction)
 }
 
 /** remove previously clicked country's layers and add updated event listeners */
@@ -141,6 +169,7 @@ const oneQuestion = (map, code, country, region, callback) => {
     $('#countryLabel').remove();
     $('body').append(`<div id="countryLabel" class="country country${region}">${country}</div>`);
 
+    initializeClickedCountryCode();
     // remove previous question's feedbacks
     removeFeedbackLayer(map);
     setSelectEventListeners(map, code, increaseScore, callback)

@@ -1,6 +1,6 @@
 import { removeHoverLayer, removeBlurLayer, 
     removeFeedbackLayer, removeTouchLayer, timeOutForCorrectFeedback, timeOutForIncorrectFeedback, timeOutForFlyAnimation, 
-    popup, clickEventHandler, mouseLeaveHoverEventListenerHandler, mouseMoveHoverEventListenerHandler } from "./layers.js";
+    popup, clickEventHandler, mouseLeaveHoverEventListenerHandler, mouseMoveHoverEventListenerHandler, timeOutForPopup } from "./layers.js";
 
 import { initialZoom, startGame } from './index.js'
 import { initializeScore, setDblClickFeedbackLayer, timeOutForShowScore, touchEndFunction, touchStartFunction } from "./questions.js";
@@ -27,11 +27,11 @@ export const resetMap = (map) => {
 
     map.off('mousemove', `country-hover`, mouseMoveHoverEventListenerHandler);
     map.off('mouseleave', 'country-hover', mouseLeaveHoverEventListenerHandler);
-    map.off('click', 'country-hover', clickEventHandler);
-    map.off('touchstart', 'country-touch', clickEventHandler);
-    map.off('dblclick', setDblClickFeedbackLayer);
-    map.off('touchstart', touchStartFunction);
-    map.off('touchend', touchEndFunction);
+    // map.off('click', 'country-hover', clickEventHandler);
+    // map.off('click', 'country-touch', clickEventHandler);
+    map.off('dblclick', 'country-hover', setDblClickFeedbackLayer);
+    map.off('touchstart','country-touch', touchStartFunction);
+    map.off('touchend','country-touch', touchEndFunction);
 
     popup && popup.remove();
 
@@ -66,6 +66,7 @@ const updateElements = () => {
     timeOutForMinZoom.clearTimeOutFunction();
     timeOutForQuestion.clearTimeOutFunction();
     timeOutForCountry.clearTimeOutFunction();
+    timeOutForPopup.clearTimeOutFunction();
 
     clearQuestions();
 }
