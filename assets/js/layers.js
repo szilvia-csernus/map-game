@@ -121,11 +121,11 @@ export let marker;
 const addMarker = (map, code) => {
     if (countryCoordinates[code]) {
         // $('body').append(`<div id="marker" className="marker" >${countryCoordinates[code]["countryName"]}</div>`);
-        const marker = document.createElement('div');
-        marker.className = 'marker';
-        marker.innerHTML = countryCoordinates[code]["countryName"];
+        const el = document.createElement('div');
+        el.className = 'marker';
+        el.innerHTML = countryCoordinates[code]["countryName"];
         
-        marker = new mapboxgl.Marker(marker)
+        marker = new mapboxgl.Marker(el)
             .setLngLat(countryCoordinates[code]["coordinates"])
             .addTo(map);
     }

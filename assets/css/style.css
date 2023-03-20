@@ -48,15 +48,15 @@
 
 @media screen and (min-width: 414px) {
   .howToPlayCanvas {
-    width: 21rem;
-    height: 21rem;
+    width: 20rem;
+    height: 20rem;
   }
 }
 
 @media screen and (min-width: 600px) {
   .howToPlayCanvas {
-    width: 28.7rem;
-    height: 28.7rem;
+    width: 28.2rem;
+    height: 28.2rem;
   }
 }
 
@@ -265,6 +265,18 @@
   }
 }
 
+.marker {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  color: var(--primary-color);
+  font-family: var(--main-font-family);
+  filter: drop-shadow(3px 3px 30px white);
+  font-weight: bold;
+  font-size: var(--marker-font-size);
+}
+
 .newGame {
   position: absolute;
   top: 47vh;
@@ -338,15 +350,15 @@
 
 @media screen and (min-width: 414px) {
   .highScoresCanvas {
-    width: 21rem;
-    height: 21rem;
+    width: 20rem;
+    height: 20rem;
   }
 }
 
 @media screen and (min-width: 600px) {
   .highScoresCanvas {
-    width: 28.7rem;
-    height: 28.7rem;
+    width: 28.2rem;
+    height: 28.2rem;
   }
 }
 
