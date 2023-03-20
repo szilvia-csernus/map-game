@@ -53,7 +53,6 @@ export const removeHoverLayer = (map) => {
         map.setFilter('country-hover', null);
         map.removeLayer('country-hover');
     }
-
 }
 
 /** this layer is used on mobile devices to provide a touch-selectable layer to
@@ -130,7 +129,6 @@ const addMarker = (map, code) => {
             .setLngLat(countryCoordinates[code]["coordinates"])
             .addTo(map);
     }
-
 }
 
 /** this layer renders the country green/red according to the answer given 
@@ -176,7 +174,6 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
 
         addMarker(map, clickedCountryCode);
 
-
         // The callback function calls the next question recursively. (See askQuestions function)
         timeOutForCorrectFeedback.setTimeOutFunction(callback, 2000);
 
@@ -202,9 +199,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
 
         timeOutForFlyAnimation.setTimeOutFunction(() => flyToCorrectCountry(map, correctCountryCode), 1500);
         timeOutForIncorrectFeedback.setTimeOutFunction(callback, 3500);
-
     }
-
 }
 
 const flyToCorrectCountry = (map, code) => {
@@ -296,9 +291,7 @@ export function mouseMoveHoverEventListenerHandler(e) {
 };
 
 export function mouseLeaveHoverEventListenerHandler() {
-    // console.log(hoveredStateId)
     if (hoveredStateId) {
-
         // When the mouse leaves the state-fill layer, update the feature state of the
         // previously hovered feature.
         this.setFeatureState({
@@ -318,11 +311,6 @@ export const addDesktopEventListeners = (map) => {
 
     if (map.getLayer('country-hover') && !isMobile) {
         map.on('mousemove', `country-hover`, mouseMoveHoverEventListenerHandler);
-        map.on('mouseleave', 'country-hover', mouseLeaveHoverEventListenerHandler);
-        // map.on('click', 'country-hover', clickEventHandler)    
+        map.on('mouseleave', 'country-hover', mouseLeaveHoverEventListenerHandler);   
     }
-
-    // if (map.getLayer('country-touch') && isMobile) {
-    //     map.on('click', 'country-touch', clickEventHandler)
-    // }
 };
