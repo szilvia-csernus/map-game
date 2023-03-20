@@ -1,4 +1,4 @@
-import { restartGame } from "./exit.js"
+import { restartGame } from "./exit.js";
 
 export const showHighScores = (map) => {
 
@@ -21,10 +21,10 @@ export const showHighScores = (map) => {
     africa && $('#highScoresCanvas').append(`<p class="score scoreAfrica">Africa:  ${africa}</p>`);
     americas && $('#highScoresCanvas').append(`<p class="score scoreAmericas">Americas: ${americas}</p>`);
     
-    $('#highScoresCanvas').append($(`<button id="highScoresOkay" class="highScoresOkay">OK</button>`))
+    $('#highScoresCanvas').append($(`<button id="highScoresOkay" class="highScoresOkay">OK</button>`));
     $('#highScoresOkay').click(() => {
         $('#highScoresBackground').remove();
-        restartGame(map)
-    })
-}
+        restartGame(map);
+    });
+};
 

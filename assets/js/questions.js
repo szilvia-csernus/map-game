@@ -25,11 +25,11 @@ const addFeedback = (map, countryCode, increaseScore, callback) => {
     addFeedbackLayer(map, correct, countryCode, callback);
     if (correct) {
         increaseScore();
-        $('#checkmarks').append('<li ><svg class="correct"><use href="./assets/icons/correct.svg#icon"></use></svg></li>')
+        $('#checkmarks').append('<li ><svg class="correct"><use href="./assets/icons/correct.svg#icon"></use></svg></li>');
     } else {
-        $('#checkmarks').append('<li ><svg class="incorrect"><use href="./assets/icons/incorrect.svg#icon"></use></svg></li>')
+        $('#checkmarks').append('<li ><svg class="incorrect"><use href="./assets/icons/incorrect.svg#icon"></use></svg></li>');
     }
-}
+};
 
 export let setDblClickFeedbackLayer = () => {};
 
@@ -41,18 +41,17 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
 
         // if clicked item has no id then we just ignore it.
         console.log(event);
-        console.log(clickedCountryCode)
+        console.log(clickedCountryCode);
 
         if (clickedCountryCode) {
-            map.off('dblclick', 'country-hover', setDblClickFeedbackLayer)
+            map.off('dblclick', 'country-hover', setDblClickFeedbackLayer);
             removeFeedbackLayer(map);
             addFeedback(map, countryCode, increaseScore, callback);
         }
         
-    }
-
-    map.on('dblclick', 'country-hover', setDblClickFeedbackLayer)
-}
+    };
+    map.on('dblclick', 'country-hover', setDblClickFeedbackLayer);
+};
 
 export let touchStartFunction = () => {};
 export let touchEndFunction = () => {};
@@ -60,22 +59,22 @@ export let touchEndFunction = () => {};
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     const setTapHoldFeedbackLayer = () => {
         removeFeedbackLayer(map);
-        addFeedback(map, countryCode, increaseScore, callback)
-    }
+        addFeedback(map, countryCode, increaseScore, callback);
+    };
 
     touchStartFunction = (startEvent) => {
-        
+
         const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
 
-        const startX = startEvent.point.x
+        const startX = startEvent.point.x;
         const startY = startEvent.point.y;
 
         touchEndFunction = (endEvent) => {
-            const endX = endEvent.point.x
+            const endX = endEvent.point.x;
             const endY = endEvent.point.y;
 
             // the distance btw the start and end of the touch action
-            const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2)
+            const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2);
 
             // if tap was not rather a swipe..
             if (distance < 4) {
@@ -85,7 +84,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
                     clickEventHandler(endEvent);
                     // we have to stop 'touchend' function before stepping into the recursive callback function!
                     
-                    console.log('taphold', clickedCountryCode, endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp)
+                    console.log('taphold', clickedCountryCode, endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp);
 
                     // if the tap was on a valid country
                     if (clickedCountryCode) {
@@ -99,49 +98,47 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
                     } else {
                         map.off('touchstart', 'country-touch', touchStartFunction);
                         map.off('touchend', 'country-touch', touchEndFunction);
-                        map.on('touchstart', 'country-touch', touchStartFunction)
+                        map.on('touchstart', 'country-touch', touchStartFunction);
                     }
 
                 } else {
-                    console.log('tap', clickedCountryCode)
+                    console.log('tap', clickedCountryCode);
                     // removeFeedbackLayer(map)
                     map.off('touchstart', 'country-touch', touchStartFunction);
                     map.off('touchend', 'country-touch', touchEndFunction);
-                    map.on('touchstart', 'country-touch', touchStartFunction)
+                    map.on('touchstart', 'country-touch', touchStartFunction);
                 }
             } else {
                 // if touch was a swipe / drag / pan action, reset touchstart action
                 map.off('touchstart', 'country-touch', touchStartFunction);
                 map.off('touchend', 'country-touch', touchEndFunction);
-                map.on('touchstart', 'country-touch', touchStartFunction)
+                map.on('touchstart', 'country-touch', touchStartFunction);
             }
-        }
+        };
         
         if (moreFingersTouch) {
             // if touch was with more fingers, stop and restart touch listening.
             // we are not interested when the touch ends hence no 'touchend' fn in this scenario.
             map.off('touchstart', 'country-touch', touchStartFunction);
             map.off('touchend', 'country-touch', touchEndFunction);
-            map.on('touchstart', 'country-touch', touchStartFunction)
-            
+            map.on('touchstart', 'country-touch', touchStartFunction);    
         } else {
             // if the touch was with one finger only
-            map.on('touchend', 'country-touch', touchEndFunction);        }
-    }
-   
+            map.on('touchend', 'country-touch', touchEndFunction);        
+        }
+    };
     map.on('touchstart', 'country-touch', touchStartFunction);
-    
-}
+};
 
 /** remove previously clicked country's layers and add updated event listeners */
 const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     removeFeedbackLayer(map);
     if (!isMobile) {
-        setClickSelectEventListeners(map, countryCode, increaseScore, callback)
+        setClickSelectEventListeners(map, countryCode, increaseScore, callback);
     } else {
-        setTouchSelectEventListeners(map, countryCode, increaseScore, callback)
+        setTouchSelectEventListeners(map, countryCode, increaseScore, callback);
     }
-}
+};
 
 /** generate unique indecies from the countries array and 
  * return an array with the given number of country codes.*/
@@ -150,10 +147,10 @@ const getRandomCountryCodes = (countries, num) => {
     let randomCountryCodeIndex;
     while (codes.length < num) {
         randomCountryCodeIndex = Math.floor(Math.random() * countries.length);
-        !codes.includes(countries[randomCountryCodeIndex]) && codes.push(countries[randomCountryCodeIndex])
+        !codes.includes(countries[randomCountryCodeIndex]) && codes.push(countries[randomCountryCodeIndex]);
     }
-    return codes
-}
+    return codes;
+};
 
 export const getQuestions = (region, num) => {
     const allCodesInRegion = Object.keys(data[region]);
@@ -162,12 +159,12 @@ export const getQuestions = (region, num) => {
 
     const questions = [];
     for (const code of randomCodes) {
-        const country = data[region][code]
-        questions.push([code, country])
+        const country = data[region][code];
+        questions.push([code, country]);
     }
-    console.log(questions)
+    console.log(questions);
     return questions;
-}
+};
 
 const oneQuestion = (map, code, country, region, callback) => {
 
@@ -177,23 +174,23 @@ const oneQuestion = (map, code, country, region, callback) => {
     initializeClickedCountryCode();
     // remove previous question's feedbacks
     removeFeedbackLayer(map);
-    setSelectEventListeners(map, code, increaseScore, callback)
+    setSelectEventListeners(map, code, increaseScore, callback);
 
-}
+};
 
 // export this TimeOut instance so that it can be cleared in exit.js
-export const timeOutForShowScore = new TimeOut()
+export const timeOutForShowScore = new TimeOut();
 
 
 /**  this recursive code asks the last question in the questions array and in oneQuestion() function it re-sets
  * the event listener to the next question after a dblclick / taphold event. */
 export const askQuestions = (map, region, questions, num, showScore) => {
     if (questions.length === 0) {
-        return timeOutForShowScore.setTimeOutFunction(() => showScore(map, score, region, num), 1500)
-    };
+        return timeOutForShowScore.setTimeOutFunction(() => showScore(map, score, region, num), 1500);
+    }
 
-    const question = questions.pop()
+    const question = questions.pop();
     oneQuestion(map, question[0], question[1], region, () => {
-        askQuestions(map, region, questions, num, showScore)
-    })
-}
+        askQuestions(map, region, questions, num, showScore);
+    });
+};

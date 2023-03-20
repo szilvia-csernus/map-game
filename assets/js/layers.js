@@ -44,8 +44,8 @@ export const addHoverLayer = (map) => {
         source: "country-boundaries",
         'source-layer': "country_boundaries",
         type: "fill"
-    })
-}
+    });
+};
 
 /** remove hover layer and its filters if they exist */
 export const removeHoverLayer = (map) => {
@@ -53,7 +53,7 @@ export const removeHoverLayer = (map) => {
         map.setFilter('country-hover', null);
         map.removeLayer('country-hover');
     }
-}
+};
 
 /** this layer is used on mobile devices to provide a touch-selectable layer to
  * allow identifying the touched country.  */
@@ -73,8 +73,8 @@ export const addTouchLayer = (map) => {
         source: "country-boundaries",
         'source-layer': "country_boundaries",
         type: "fill"
-    })
-}
+    });
+};
 
 /** remove hover layer and its filters if they exist */
 export const removeTouchLayer = (map) => {
@@ -82,8 +82,7 @@ export const removeTouchLayer = (map) => {
         map.setFilter('country-touch', null);
         map.removeLayer('country-touch');
     }
-
-}
+};
 
 /** add a blur layer to map to allow filtering out regions */
 export const addBlurLayer = (map) => {
@@ -101,8 +100,8 @@ export const addBlurLayer = (map) => {
         source: "country-boundaries",
         'source-layer': "country_boundaries",
         type: "fill"
-    })
-}
+    });
+};
 
 /** remove blur layer and its filters if they exist */
 export const removeBlurLayer = (map) => {
@@ -110,7 +109,7 @@ export const removeBlurLayer = (map) => {
         map.setFilter('country-blur', null);
         map.removeLayer('country-blur');
     }
-}
+};
 
 export const timeOutForCorrectFeedback = new TimeOut();
 export const timeOutForIncorrectFeedback = new TimeOut();
@@ -120,16 +119,16 @@ export let marker;
 
 const addMarker = (map, code) => {
     if (countryCoordinates[code]) {
-        // $('body').append(`<div id="marker" className="marker" >${countryCoordinates[code]["countryName"]}</div>`);
+        // $('body').append(`<div id="marker" className="marker" >${countryCoordinates[code].coordinates}</div>`);
         const el = document.createElement('div');
         el.className = 'marker';
-        el.textContent = countryCoordinates[code]["countryName"];
+        el.textContent = countryCoordinates[code].countryName;
         
         marker = new mapboxgl.Marker(el)
-            .setLngLat(countryCoordinates[code]["coordinates"])
+            .setLngLat(countryCoordinates[code].coordinates)            
             .addTo(map);
     }
-}
+};
 
 /** this layer renders the country green/red according to the answer given 
  * as well as increases the score if the answer is correct.
@@ -195,12 +194,12 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
             type: "fill"
         }, topMostLayer);
 
-        addMarker(map, clickedCountryCode)
+        addMarker(map, clickedCountryCode);
 
         timeOutForFlyAnimation.setTimeOutFunction(() => flyToCorrectCountry(map, correctCountryCode), 1500);
         timeOutForIncorrectFeedback.setTimeOutFunction(callback, 3500);
     }
-}
+};
 
 const flyToCorrectCountry = (map, code) => {
     removeFeedbackLayer(map);
@@ -221,18 +220,18 @@ const flyToCorrectCountry = (map, code) => {
         source: "country-boundaries",
         'source-layer': "country_boundaries",
         type: "line"
-    })
+    });
 
-    const longlat = countryCoordinates[code]["coordinates"]
+    const longlat = countryCoordinates[code].coordinates;
     map.flyTo({
         center: longlat,
         duration: 1000,
         bearing: 0,
         essential: true
-    })
+    });
 
     addMarker(map, code);
-}
+};
 
 /** remove other country selection if there is any */
 export const removeFeedbackLayer = (map) => {
@@ -243,7 +242,7 @@ export const removeFeedbackLayer = (map) => {
 
     // if there is already a marker on the map then remove it
     marker && marker.remove();
-}
+};
 
 export const clickEventHandler = (e) => {
     // if clicked item has no id the click won't register a clicked country.
@@ -253,12 +252,12 @@ export const clickEventHandler = (e) => {
         clickedCountryCode = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].properties.iso_3166_1 : e.features[0].properties.iso_3166_1;
         clickedCountryName = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].properties.name_en : e.features[0].properties.name_en;
 
-        console.log(e.features, clickedCountryCode, clickedCountryName)
+        console.log(e.features, clickedCountryCode, clickedCountryName);
     } else {
         // initializeClickedCountryCode()
-        console.log('there were no e.features ', e, clickedCountryCode)
+        console.log('there were no e.features ', e, clickedCountryCode);
     }
-}
+};
 
 let hoveredStateId = null;
 
@@ -288,7 +287,7 @@ export function mouseMoveHoverEventListenerHandler(e) {
             hover: true
         });
     }
-};
+}
 
 export function mouseLeaveHoverEventListenerHandler() {
     if (hoveredStateId) {

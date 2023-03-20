@@ -27,8 +27,8 @@ export const addRotation = (map) => {
             // When animation is complete (1s), start spinning again.
             map.once('moveend', spinGlobe);
         } else {
-            map.stop()
+            map.stop();
         }
     }
     spinGlobe();
-}
+};

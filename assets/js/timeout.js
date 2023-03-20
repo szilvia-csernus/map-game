@@ -7,20 +7,12 @@ class TimeOut {
 
     setTimeOutFunction(callback, time) {
         this.timeOutID = window.setTimeout(callback, time);
-    } 
+    }
 
     clearTimeOutFunction() {
-        window.clearTimeout(this.timeOutID)
+        window.clearTimeout(this.timeOutID);
    }
 
 }
 
-// TimeOut.prototype.setTimeOutFunction = function (callback, time) {
-//     this.timeOutID = setTimeout(callback, time);
-// } 
-
-// TimeOut.prototype.clearTimeOutFunction = function () {
-//     clearTimeout(this.timeOutID)
-// }
-
-export default TimeOut
+export default TimeOut;
