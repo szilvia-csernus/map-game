@@ -9,6 +9,7 @@
 // Spain was overwritten by Canarians, removed Canarians and put Spain back
 // Added Aland Islands
 // Russia's center was changed to allow the label be more in view
+// Norway's center was replaced such that label appears more inside boundaries
 
 
 
@@ -723,7 +724,7 @@ export const countryCoordinates = {
     },
     "NO": {
         "countryName": "Norway",
-        "coordinates": [16.670259272390894, 64.97775882947745]
+        "coordinates": [8.804512,61.328846]
     },
     "SE": {
         "countryName": "Sweden",

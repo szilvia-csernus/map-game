@@ -91,12 +91,14 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
                     if (clickedCountryCode) {
                         // we turn off 'touchstart' fn before entering the next cycle of the recursive function.
                         map.off('touchstart', 'country-touch', touchStartFunction);
+                        map.off('touchend', 'country-touch', touchEndFunction);
 
                         // remember that this calls a recursive function!!
                         setTapHoldFeedbackLayer();
                         
                     } else {
                         map.off('touchstart', 'country-touch', touchStartFunction);
+                        map.off('touchend', 'country-touch', touchEndFunction);
                         map.on('touchstart', 'country-touch', touchStartFunction)
                     }
 
@@ -104,28 +106,31 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
                     console.log('tap', clickedCountryCode)
                     // removeFeedbackLayer(map)
                     map.off('touchstart', 'country-touch', touchStartFunction);
+                    map.off('touchend', 'country-touch', touchEndFunction);
                     map.on('touchstart', 'country-touch', touchStartFunction)
                 }
             } else {
                 // if touch was a swipe / drag / pan action, reset touchstart action
                 map.off('touchstart', 'country-touch', touchStartFunction);
+                map.off('touchend', 'country-touch', touchEndFunction);
                 map.on('touchstart', 'country-touch', touchStartFunction)
             }
         }
         
-        if (!moreFingersTouch) {
-            // if the touch was with one finger only
-            // map.off('touchend', 'country-touch', touchEndFunction);
-            map.once('touchend', 'country-touch', touchEndFunction);
-        } else {
+        if (moreFingersTouch) {
             // if touch was with more fingers, stop and restart touch listening.
             // we are not interested when the touch ends hence no 'touchend' fn in this scenario.
             map.off('touchstart', 'country-touch', touchStartFunction);
+            map.off('touchend', 'country-touch', touchEndFunction);
             map.on('touchstart', 'country-touch', touchStartFunction)
-        }
+            
+        } else {
+            // if the touch was with one finger only
+            map.on('touchend', 'country-touch', touchEndFunction);        }
     }
    
-    map.on('touchstart', 'country-touch', touchStartFunction)
+    map.on('touchstart', 'country-touch', touchStartFunction);
+    
 }
 
 /** remove previously clicked country's layers and add updated event listeners */
