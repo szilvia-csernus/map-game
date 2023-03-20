@@ -2,17 +2,17 @@ import { removeHoverLayer, removeBlurLayer,
     removeFeedbackLayer, removeTouchLayer, timeOutForCorrectFeedback, timeOutForIncorrectFeedback, timeOutForFlyAnimation, 
     marker, mouseLeaveHoverEventListenerHandler, mouseMoveHoverEventListenerHandler,  } from "./layers.js";
 
-import { initialZoom, startGame } from './index.js'
+import { initialZoom, startGame } from './index.js';
 import { initializeScore, setDblClickFeedbackLayer, timeOutForShowScore, touchEndFunction, touchStartFunction } from "./questions.js";
 import { stopSpin } from "./spin.js";
 import { clearQuestions, timeOutForCountry, timeOutForMinZoom, timeOutForQuestion } from "./round.js";
 
 
 const disableMapInteraction = (map) => {
-    map["dragPan"].disable();
-    map["scrollZoom"].disable();
-    map["touchZoomRotate"].disable();
-}
+    map.dragPan.disable();
+    map.scrollZoom.disable();
+    map.touchZoomRotate.disable();
+};
 
 export const resetMap = (map) => {
 
@@ -38,8 +38,8 @@ export const resetMap = (map) => {
         duration: 500,
         bearing: 0,
         essential: true,
-    })
-}
+    });
+};
 
 const updateElements = () => {
     initializeScore();
@@ -66,24 +66,24 @@ const updateElements = () => {
     timeOutForCountry.clearTimeOutFunction();
 
     clearQuestions();
-}
+};
 
 export const restartGame = (map) => {
     updateElements();
     resetMap(map);
     // delay with 500ms to allow the globe to zoom back to its original zoom level
     setTimeout( () => startGame(map), 500);
-}
+};
 
 const addExitBtn = (map) => {
-    $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg" alt="exit icon"></img>')
-    $('#exit').click(function () {
+    $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg" alt="exit icon"></img>');
+    $('#exit').click( () => {
         stopSpin();
-        restartGame(map)
-    })
-}
+        restartGame(map);
+    });
+};
 
 export const addExit = (map) => {
     addExitBtn(map);
-}
+};
 

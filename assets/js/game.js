@@ -34,9 +34,9 @@ let firstTime = true;
 
 const enableMapInteraction = (map) => {
     // Set scroll and drag functions
-    map["dragPan"].enable();
-    map["scrollZoom"].enable();
-    map["touchZoomRotate"].enable();
+    map.dragPan.enable();
+    map.scrollZoom.enable();
+    map.touchZoomRotate.enable();
 }
 
 const addClickListenersToContinentBtns = (map) => {

@@ -2,7 +2,7 @@ export const addHowToPlay = (isMobile, fast, callback = () => {}) => {
     // remove the icon so that user can't click it again when instructions are already rendered on the page.
     $('#questionMark').remove();
 
-    const message = isMobile ? "Touch " : "Double Click "
+    const message = isMobile ? "Touch " : "Double Click ";
     const fastClass = fast ? 'fast' : '';
     $('body').append('<div id="howToPlayBackground" class="howToPlayBackground"></div>');
     $('#howToPlayBackground').append(`<div id="howToPlayCanvas" class="howToPlayCanvas"></div>`);
@@ -13,13 +13,13 @@ export const addHowToPlay = (isMobile, fast, callback = () => {}) => {
     $('#okay').click(function () {
         removeHowToPlay();
         addHowToPlayIcon(isMobile, true);
-        callback()
-    })
-}
+        callback();
+    });
+};
 
 export const removeHowToPlay = () => {
     $('#howToPlayBackground').remove();
-}
+};
 
 export const addHowToPlayIcon = (isMobile) => {
     if (!document.getElementById('questionMark')) {
@@ -27,8 +27,8 @@ export const addHowToPlayIcon = (isMobile) => {
         $('#questionMark').click(function () {
             // remove the icon so that user can't click it again when instructions are already rendered on the page.
             $('#questionMark').remove();
-            console.log('click event listener')
-            addHowToPlay(isMobile, true)
-        })
+            console.log('click event listener');
+            addHowToPlay(isMobile, true);
+        });
     }
-}
+};

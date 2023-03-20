@@ -16,7 +16,7 @@ import TimeOut from './timeout.js';
 export const restartRound = (map) => {
     removeNewGameBtn();
     restartGame(map);
-}
+};
 
 const showScore = (map, score, region, num) => {
     resetMap(map);
@@ -33,7 +33,7 @@ const showScore = (map, score, region, num) => {
 
     highScore < score && window.localStorage.setItem(region, score);
 
-    $('h1').empty().removeClass('question').addClass('choose').text(`${text} Score: ${score} / ${num}`)
+    $('h1').empty().removeClass('question').addClass('choose').text(`${text} Score: ${score} / ${num}`);
     $('#countryLabel').remove();
     $('#checkmarks').remove();
 
@@ -46,7 +46,7 @@ const showScore = (map, score, region, num) => {
     }
 
     addNewGameBtn(map);
-}
+};
 
 export const timeOutForMinZoom = new TimeOut();
 export const timeOutForQuestion = new TimeOut();
@@ -70,4 +70,4 @@ export const startRound = (map, region, num) => {
 
     // wait a second before displaying the first question
     timeOutForCountry.setTimeOutFunction(() => askQuestions(map, region, questions, num, showScore), 1000);
-}
+};

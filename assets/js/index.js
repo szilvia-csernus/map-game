@@ -11,11 +11,11 @@ import {
 
 export const initialZoom = () => {
     if (window.innerWidth < 600) {
-        return 1
+        return 1;
     } else {
-        return 1.5
+        return 1.5;
     }
-}
+};
 
 // exclude disputed areas as well as worldviews with ambiguous interests:
 // Russia regarding Crimea, Serbia regarding Kosovo, 
@@ -68,18 +68,18 @@ const createMapObject = (callback) => {
             touchZoomRotate: false
         }).addControl(new mapboxgl.AttributionControl({
             customAttribution: '<span class="developer">&copy; App development by Szilvia Csernusne Berczes</span>'
-        }));;
+        }));
 
         map.on('load', () => {
             addTilesetSource(map);
-            callback(map)
-        })
+            callback(map);
+        });
 
         map.on('error', () => {
             window.location.href = '../error.html';
-        })
+        });
     }
-}
+};
 
 /**  adds tileset source for country boundaries, region and country name data */
 const addTilesetSource = (map) => {
@@ -92,12 +92,12 @@ const addTilesetSource = (map) => {
             ...worldviewFilters
         ],
         generateId: true
-    })
+    });
 };
 
 const addIntroAnimation = () => {
     $('.map').addClass('animate-appear-map');
-}
+};
 
 let gameFile;
 
@@ -111,15 +111,15 @@ export const startGame = (map) => {
         gameFile.then(module => {
             removePlayBtn();
             module.game(map);
-        })
+        });
     });
     addRotation(map);
-}
+};
 
 // only create map object if within allowance.
 firewall( () => {
     createMapObject((map) => {
         addIntroAnimation();
         startGame(map);
-    })
+    });
 });
