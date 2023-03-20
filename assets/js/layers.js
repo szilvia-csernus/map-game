@@ -123,7 +123,7 @@ const addMarker = (map, code) => {
         // $('body').append(`<div id="marker" className="marker" >${countryCoordinates[code]["countryName"]}</div>`);
         const el = document.createElement('div');
         el.className = 'marker';
-        el.innerHTML = countryCoordinates[code]["countryName"];
+        el.textContent = countryCoordinates[code]["countryName"];
         
         marker = new mapboxgl.Marker(el)
             .setLngLat(countryCoordinates[code]["coordinates"])
@@ -249,9 +249,9 @@ export const clickEventHandler = (e) => {
     // if clicked item has no id the click won't register a clicked country.
     console.log(e);
     if (e.features) {
-        // filter for Crimea and Western Sahara which would otherwise incorrectly show up as part of Russia/Morocco.
-        clickedCountryCode = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].properties.iso_3166_1 : e.features[0].properties.iso_3166_1;
-        clickedCountryName = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].properties.name_en : e.features[0].properties.name_en;
+        // filter for Crimea, Western Sahara and Falkland Islands that would otherwise incorrectly show up as part of Russia/Morocco/Argentina.
+        clickedCountryCode = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].properties.iso_3166_1 : e.features[0].properties.iso_3166_1;
+        clickedCountryName = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].properties.name_en : e.features[0].properties.name_en;
 
         console.log(e.features, clickedCountryCode, clickedCountryName)
     } else {
@@ -278,8 +278,8 @@ export function mouseMoveHoverEventListenerHandler(e) {
                 hover: false
             });
         }
-        // filter for Crimea and Western Sahara which would otherwise incorrectly show up as part of Russia/Morocco.
-        hoveredStateId = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].id : e.features[0].id;
+        // filter for Crimea, Western Sahara and Falkland Islands that would otherwise incorrectly show up as part of Russia/Morocco/Argentina.
+        hoveredStateId = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].id : e.features[0].id;
         this.setFeatureState({
             source: 'country-boundaries',
             sourceLayer: 'country_boundaries',
