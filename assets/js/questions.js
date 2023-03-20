@@ -70,6 +70,15 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
         const startY = startEvent.point.y;
 
         touchEndFunction = (endEvent) => {
+
+            // if touch started with one finger but continued with more, reset listening
+            if (endEvent.originalEvent.touches.length > 1) {
+                map.off('touchstart', 'country-touch', touchStartFunction);
+                map.off('touchend', 'country-touch', touchEndFunction);
+                map.on('touchstart', 'country-touch', touchStartFunction);
+                return;
+            }
+            
             const endX = endEvent.point.x;
             const endY = endEvent.point.y;
 

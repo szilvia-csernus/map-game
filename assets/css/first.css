@@ -72,7 +72,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
     height: 18rem;
     background-color: white;
     border-radius: 50%;
-    animation: scaleCircle 1.5s ease-in forwards;
+    animation: scaleCircle 3s ease-in forwards;
     opacity: 0;
     overflow: hidden;
   }
