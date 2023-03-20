@@ -17,6 +17,10 @@ export const initialZoom = () => {
     }
 }
 
+// exclude disputed areas as well as worldviews with ambiguous interests:
+// Russia regarding Crimea, Serbia regarding Kosovo, 
+// Morocco regarding Western Sahara and  
+// Argentina regarding Falkland Islands.
 export const worldviewFilters = [
     ["has", "color_group"],
     ["match", ["get", "disputed"],
@@ -30,6 +34,9 @@ export const worldviewFilters = [
     ],
     ["match", ["get", "worldview"],
         ["MA"], false, true
+    ],
+    ["match", ["get", "worldview"],
+        ["AR"], false, true
     ]
 ];
 
