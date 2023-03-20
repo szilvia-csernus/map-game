@@ -37,7 +37,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
     --question-font-size: clamp(1.7rem, 1.486rem + 0.571vw, 2rem);
     --country-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
     --high-score-btn-font-size: clamp(1.1rem, 1.0429rem + 0.2857vw, 1.3rem);
-    --popup-font-size: clamp(1.1rem, 1.0429rem + 0.2857vw, 1.3rem);
+    --marker-font-size: clamp(1.1rem, 1.0429rem + 0.2857vw, 1.3rem);
     --high-score-title-font-size: clamp(1.5rem, 1.4429rem + 0.2857vw, 1.7rem);
     --high-score-font-size: clamp(1.4rem, 1.3429rem + 0.2857vw, 1.6rem);
     --utilities-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);

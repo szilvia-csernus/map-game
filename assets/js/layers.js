@@ -14,7 +14,9 @@ export const initializeClickedCountryCode = () => clickedCountryCode = null;
 import {
     worldviewFilters
 } from "./index.js";
-import { isMobile } from "./game.js";
+import {
+    isMobile
+} from "./game.js";
 
 /** adds hover-change layer to the map. Used on non-mobile devices.  */
 export const addHoverLayer = (map) => {
@@ -24,8 +26,8 @@ export const addHoverLayer = (map) => {
         id: 'country-hover',
         filter: [
             "all",
-                ...worldviewFilters
-                ],
+            ...worldviewFilters
+        ],
         minzoom: minZoom(map),
         maxzoom: maxZoom(map),
         paint: {
@@ -114,26 +116,28 @@ export const removeBlurLayer = (map) => {
 export const timeOutForCorrectFeedback = new TimeOut();
 export const timeOutForIncorrectFeedback = new TimeOut();
 export const timeOutForFlyAnimation = new TimeOut();
-export const timeOutForPopup = new TimeOut();
 
-export let popup;
+export let marker;
 
-const addPopup = (map, code) => {
+const addMarker = (map, code) => {
     if (countryCoordinates[code]) {
-        popup = new mapboxgl.Popup()
+        // $('body').append(`<div id="marker" className="marker" >${countryCoordinates[code]["countryName"]}</div>`);
+        const marker = document.createElement('div');
+        marker.className = 'marker';
+        marker.innerHTML = countryCoordinates[code]["countryName"];
+        
+        marker = new mapboxgl.Marker(marker)
             .setLngLat(countryCoordinates[code]["coordinates"])
-            .setHTML(`<span>${countryCoordinates[code]["countryName"]}</span>`)
             .addTo(map);
     }
-    
+
 }
+
 /** this layer renders the country green/red according to the answer given 
  * as well as increases the score if the answer is correct.
  */
 export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => {
-
-    // timeOutForPopup.setTimeOutFunction((map, clickedCountryCode) => addPopup(map, clickedCountryCode), 200);
-
+    const topMostLayer = map.getLayer('country-touch') ? 'country-touch' : '';
     map.addLayer({
         filter: [
             "all",
@@ -150,7 +154,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
         source: "country-boundaries",
         'source-layer': "country_boundaries",
         type: "line"
-    });
+    }, topMostLayer);
 
     if (correct) {
         map.addLayer({
@@ -168,9 +172,10 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
             source: "country-boundaries",
             'source-layer': "country_boundaries",
             type: "fill"
-        })
-        
-        addPopup(map, clickedCountryCode);
+        }, topMostLayer);
+
+        addMarker(map, clickedCountryCode);
+
 
         // The callback function calls the next question recursively. (See askQuestions function)
         timeOutForCorrectFeedback.setTimeOutFunction(callback, 2000);
@@ -191,18 +196,20 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
             source: "country-boundaries",
             'source-layer': "country_boundaries",
             type: "fill"
-        })
-        
-        addPopup(map, clickedCountryCode);
+        }, topMostLayer);
+
+        addMarker(map, clickedCountryCode)
 
         timeOutForFlyAnimation.setTimeOutFunction(() => flyToCorrectCountry(map, correctCountryCode), 1500);
-        timeOutForIncorrectFeedback.setTimeOutFunction(callback, 3500)
+        timeOutForIncorrectFeedback.setTimeOutFunction(callback, 3500);
+
     }
-    
+
 }
 
 const flyToCorrectCountry = (map, code) => {
     removeFeedbackLayer(map);
+
     map.addLayer({
         filter: [
             "all",
@@ -219,10 +226,7 @@ const flyToCorrectCountry = (map, code) => {
         source: "country-boundaries",
         'source-layer': "country_boundaries",
         type: "line"
-    });
-
-    // addNameLayer(map, code);
-    addPopup(map, code)
+    })
 
     const longlat = countryCoordinates[code]["coordinates"]
     map.flyTo({
@@ -231,6 +235,8 @@ const flyToCorrectCountry = (map, code) => {
         bearing: 0,
         essential: true
     })
+
+    addMarker(map, code);
 }
 
 /** remove other country selection if there is any */
@@ -239,57 +245,57 @@ export const removeFeedbackLayer = (map) => {
     map.getLayer('country-feedback-fill-incorrect') && map.removeLayer('country-feedback-fill-incorrect');
     map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
     map.getLayer('corrected-country') && map.removeLayer('corrected-country');
-    // removeNameLayer(map);
-    // if there is already a popup on the map then remove it
-    popup && popup.remove();
+
+    // if there is already a marker on the map then remove it
+    marker && marker.remove();
 }
 
 export const clickEventHandler = (e) => {
     // if clicked item has no id the click won't register a clicked country.
     console.log(e);
     if (e.features) {
-    // filter for Crimea and Western Sahara which would otherwise incorrectly show up as part of Russia/Morocco.
-    clickedCountryCode = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].properties.iso_3166_1 : e.features[0].properties.iso_3166_1;
-    clickedCountryName = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].properties.name_en : e.features[0].properties.name_en;
+        // filter for Crimea and Western Sahara which would otherwise incorrectly show up as part of Russia/Morocco.
+        clickedCountryCode = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].properties.iso_3166_1 : e.features[0].properties.iso_3166_1;
+        clickedCountryName = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].properties.name_en : e.features[0].properties.name_en;
 
-    console.log(e.features, clickedCountryCode, clickedCountryName)
+        console.log(e.features, clickedCountryCode, clickedCountryName)
     } else {
-        initializeClickedCountryCode()
+        // initializeClickedCountryCode()
         console.log('there were no e.features ', e, clickedCountryCode)
     }
 }
 
 let hoveredStateId = null;
 
-export function mouseMoveHoverEventListenerHandler (e) {
+export function mouseMoveHoverEventListenerHandler(e) {
     // when the user moves the mouse over the state-fill layer, 
     // we'll update the feature state for the feature under the mouse.
     // non-touch devices only.
-   this.getCanvas().style.cursor = 'pointer';
-            if (e.features.length > 0) {
-                if (hoveredStateId) {
+    this.getCanvas().style.cursor = 'pointer';
+    if (e.features.length > 0) {
+        if (hoveredStateId) {
 
-                   this.setFeatureState({
-                        source: 'country-boundaries',
-                        sourceLayer: 'country_boundaries',
-                        id: hoveredStateId
-                    }, {
-                        hover: false
-                    });
-                }
-                // filter for Crimea and Western Sahara which would otherwise incorrectly show up as part of Russia/Morocco.
-                hoveredStateId = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].id : e.features[0].id;
-               this.setFeatureState({
-                    source: 'country-boundaries',
-                    sourceLayer: 'country_boundaries',
-                    id: hoveredStateId
-                }, {
-                    hover: true
-                });
-            }
+            this.setFeatureState({
+                source: 'country-boundaries',
+                sourceLayer: 'country_boundaries',
+                id: hoveredStateId
+            }, {
+                hover: false
+            });
+        }
+        // filter for Crimea and Western Sahara which would otherwise incorrectly show up as part of Russia/Morocco.
+        hoveredStateId = (e.features[0].id === 12128447 || e.features[0].id === 9965705) ? e.features[1].id : e.features[0].id;
+        this.setFeatureState({
+            source: 'country-boundaries',
+            sourceLayer: 'country_boundaries',
+            id: hoveredStateId
+        }, {
+            hover: true
+        });
+    }
 };
 
-export function mouseLeaveHoverEventListenerHandler () {
+export function mouseLeaveHoverEventListenerHandler() {
     // console.log(hoveredStateId)
     if (hoveredStateId) {
 
@@ -309,7 +315,7 @@ export function mouseLeaveHoverEventListenerHandler () {
 }
 
 export const addDesktopEventListeners = (map) => {
-    
+
     if (map.getLayer('country-hover') && !isMobile) {
         map.on('mousemove', `country-hover`, mouseMoveHoverEventListenerHandler);
         map.on('mouseleave', 'country-hover', mouseLeaveHoverEventListenerHandler);

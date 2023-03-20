@@ -408,22 +408,6 @@
   cursor: default;
 }
 
-.mapboxgl-popup-tip {
-  border: none;
-}
 
-.mapboxgl-popup-content {
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  color: var(--primary-color);
-  font-family: var(--main-font-family);
-  filter: drop-shadow(3px 3px 30px white);
-  font-weight: bold;
-  font-size: var(--popup-font-size);
-}
 
-.mapboxgl-popup-close-button {
-  display: none;
-}
+
