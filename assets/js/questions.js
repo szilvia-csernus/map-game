@@ -58,10 +58,11 @@ export let touchEndFunction = () => {};
 
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     const setTapHoldFeedbackLayer = () => {
-        removeFeedbackLayer(map);
         // don't listen to furter touches until next question
         map.off('touchstart', 'country-touch', touchStartFunction);
         map.off('touchend', 'country-touch', touchEndFunction);
+        removeFeedbackLayer(map);
+        
         addFeedback(map, countryCode, increaseScore, callback);
     };
 
@@ -78,7 +79,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
             if (endEvent.originalEvent.touches.length > 1) {
                 map.off('touchstart', 'country-touch', touchStartFunction);
                 map.off('touchend', 'country-touch', touchEndFunction);
-                map.on('touchstart', 'country-touch', touchStartFunction);
+                map.once('touchstart', 'country-touch', touchStartFunction);
                 return;
             }
             
@@ -89,7 +90,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
             const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2);
 
             // if tap was not rather a swipe..
-            if (distance < 4) {
+            if (distance < 10) {
                 // if user's tap is longer than 100ms
                 if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 50) {
                     
@@ -110,7 +111,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
                     } else {
                         map.off('touchstart', 'country-touch', touchStartFunction);
                         map.off('touchend', 'country-touch', touchEndFunction);
-                        map.on('touchstart', 'country-touch', touchStartFunction);
+                        map.once('touchstart', 'country-touch', touchStartFunction);
                     }
 
                 } else {
@@ -118,13 +119,13 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
                     // removeFeedbackLayer(map)
                     map.off('touchstart', 'country-touch', touchStartFunction);
                     map.off('touchend', 'country-touch', touchEndFunction);
-                    map.on('touchstart', 'country-touch', touchStartFunction);
+                    map.once('touchstart', 'country-touch', touchStartFunction);
                 }
             } else {
                 // if touch was a swipe / drag / pan action, reset touchstart action
                 map.off('touchstart', 'country-touch', touchStartFunction);
                 map.off('touchend', 'country-touch', touchEndFunction);
-                map.on('touchstart', 'country-touch', touchStartFunction);
+                map.once('touchstart', 'country-touch', touchStartFunction);
             }
         };
         
@@ -133,13 +134,13 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
             // we are not interested when the touch ends hence no 'touchend' fn in this scenario.
             map.off('touchstart', 'country-touch', touchStartFunction);
             map.off('touchend', 'country-touch', touchEndFunction);
-            map.on('touchstart', 'country-touch', touchStartFunction);    
+            map.once('touchstart', 'country-touch', touchStartFunction);    
         } else {
             // if the touch was with one finger only
             map.on('touchend', 'country-touch', touchEndFunction);        
         }
     };
-    map.on('touchstart', 'country-touch', touchStartFunction);
+    map.once('touchstart', 'country-touch', touchStartFunction);
 };
 
 /** remove previously clicked country's layers and add updated event listeners */
