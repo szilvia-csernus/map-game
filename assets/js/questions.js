@@ -59,6 +59,9 @@ export let touchEndFunction = () => {};
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     const setTapHoldFeedbackLayer = () => {
         removeFeedbackLayer(map);
+        // don't listen to furter touches until next question
+        map.off('touchstart', 'country-touch', touchStartFunction);
+        map.off('touchend', 'country-touch', touchEndFunction);
         addFeedback(map, countryCode, increaseScore, callback);
     };
 
