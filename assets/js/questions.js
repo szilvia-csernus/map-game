@@ -58,89 +58,95 @@ export let touchEndFunction = () => {};
 
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     const setTapHoldFeedbackLayer = () => {
-        // don't listen to furter touches until next question
-        map.off('touchstart', 'country-touch', touchStartFunction);
-        map.off('touchend', 'country-touch', touchEndFunction);
+       
         removeFeedbackLayer(map);
-        
         addFeedback(map, countryCode, increaseScore, callback);
     };
 
-    touchStartFunction = (startEvent) => {
+    let startX, startY, startTime, endX, endY, endTime;
 
-        const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
+    touchEndFunction = (endEvent) => {
+        console.log('end event', endEvent);
+        // if touch started with one finger but continued with more, reset listening
+        if (endEvent.originalEvent.touches.length > 1) {
+            map.off('touchstart', 'country-touch', touchStartFunction);
+            map.off('touchend', 'country-touch', touchEndFunction);
+            map.on('touchstart', 'country-touch', touchStartFunction);
+            return;
+        }
+        
+        endX = endEvent.point.x;
+        endY = endEvent.point.y;
+        endTime = endEvent.originalEvent.timeStamp;
 
-        const startX = startEvent.point.x;
-        const startY = startEvent.point.y;
+        // the distance btw the start and end of the touch action
+        const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2);
 
-        touchEndFunction = (endEvent) => {
+        // if tap was not rather a swipe..
+        if (distance < 10) {
+            // if user's tap is longer than 100ms
+            if ((endTime - startTime) > 50) {
+                
+                clickEventHandler(endEvent);
+                // we have to stop 'touchend' function before stepping into the recursive callback function!
+                
+                console.log('taphold', clickedCountryCode, endTime - startTime);
 
-            // if touch started with one finger but continued with more, reset listening
-            if (endEvent.originalEvent.touches.length > 1) {
-                map.off('touchstart', 'country-touch', touchStartFunction);
-                map.off('touchend', 'country-touch', touchEndFunction);
-                map.once('touchstart', 'country-touch', touchStartFunction);
-                return;
-            }
-            
-            const endX = endEvent.point.x;
-            const endY = endEvent.point.y;
-
-            // the distance btw the start and end of the touch action
-            const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2);
-
-            // if tap was not rather a swipe..
-            if (distance < 10) {
-                // if user's tap is longer than 100ms
-                if ((endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp) > 50) {
-                    
-                    clickEventHandler(endEvent);
-                    // we have to stop 'touchend' function before stepping into the recursive callback function!
-                    
-                    console.log('taphold', clickedCountryCode, endEvent.originalEvent.timeStamp - startEvent.originalEvent.timeStamp);
-
-                    // if the tap was on a valid country
-                    if (clickedCountryCode) {
-                        // we turn off 'touchstart' fn before entering the next cycle of the recursive function.
-                        map.off('touchstart', 'country-touch', touchStartFunction);
-                        map.off('touchend', 'country-touch', touchEndFunction);
-
-                        // remember that this calls a recursive function!!
-                        setTapHoldFeedbackLayer();
-                        
-                    } else {
-                        map.off('touchstart', 'country-touch', touchStartFunction);
-                        map.off('touchend', 'country-touch', touchEndFunction);
-                        map.once('touchstart', 'country-touch', touchStartFunction);
-                    }
-
-                } else {
-                    console.log('tap', clickedCountryCode);
-                    // removeFeedbackLayer(map)
+                // if the tap was on a valid country
+                if (clickedCountryCode) {
+                     // don't listen to furter touches until next question
                     map.off('touchstart', 'country-touch', touchStartFunction);
                     map.off('touchend', 'country-touch', touchEndFunction);
-                    map.once('touchstart', 'country-touch', touchStartFunction);
+
+                    // remember that this calls a recursive function!!
+                    setTapHoldFeedbackLayer();
+                    
+                } else {
+                    // if touch target was invalid, reset touch function
+                    map.off('touchstart', 'country-touch', touchStartFunction);
+                    map.off('touchend', 'country-touch', touchEndFunction);
+                    map.on('touchstart', 'country-touch', touchStartFunction);
                 }
-            } else {
-                // if touch was a swipe / drag / pan action, reset touchstart action
+
+            } else 
+            {
                 map.off('touchstart', 'country-touch', touchStartFunction);
                 map.off('touchend', 'country-touch', touchEndFunction);
                 map.once('touchstart', 'country-touch', touchStartFunction);
             }
-        };
-        
+        } else {
+            // if touch was a swipe / drag / pan action, reset touchstart action
+            map.off('touchstart', 'country-touch', touchStartFunction);
+            map.off('touchend', 'country-touch', touchEndFunction);
+            map.on('touchstart', 'country-touch', touchStartFunction);
+        }
+    };
+
+    touchStartFunction = (startEvent) => {
+        console.log('start event', startEvent);
+        const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
+
+        startX = startEvent.point.x;
+        startY = startEvent.point.y;
+        startTime = startEvent.originalEvent.timeStamp;
+
         if (moreFingersTouch) {
             // if touch was with more fingers, stop and restart touch listening.
             // we are not interested when the touch ends hence no 'touchend' fn in this scenario.
+
             map.off('touchstart', 'country-touch', touchStartFunction);
-            map.off('touchend', 'country-touch', touchEndFunction);
-            map.once('touchstart', 'country-touch', touchStartFunction);    
+            map.on('touchstart', 'country-touch', touchStartFunction);    
         } else {
             // if the touch was with one finger only
             map.on('touchend', 'country-touch', touchEndFunction);        
         }
     };
-    map.once('touchstart', 'country-touch', touchStartFunction);
+
+    map.on('touchstart', 'country-touch', touchStartFunction);
+    map.on('touchcancel', 'country-touch', () => {
+        map.off('touchstart', 'country-touch', touchStartFunction);
+        map.off('touchend', 'country-touch', touchEndFunction);
+    })
 };
 
 /** remove previously clicked country's layers and add updated event listeners */
