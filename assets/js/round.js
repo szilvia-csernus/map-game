@@ -10,7 +10,7 @@ import {
     removeNewGameBtn
 } from './buttons.js';
 
-import { getQuestions, askQuestions, initializeScore } from './questions.js';
+import { getQuestions, askQuestions, resetScore } from './questions.js';
 import TimeOut from './timeout.js';
 
 export const restartRound = (map) => {
@@ -56,7 +56,7 @@ let questions;
 export const clearQuestions = () => questions = null;
 
 export const startRound = (map, region, num) => {
-    initializeScore();
+    resetScore();
 
     // set minimum zoom level after animation finished.
     timeOutForMinZoom.setTimeOutFunction(() => map.setMinZoom(map.getZoom() - 0.5), 1000);

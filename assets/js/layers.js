@@ -9,7 +9,7 @@ const maxZoom = (map) => map.getMaxZoom() + 0.5;
 export let clickedCountryCode = null;
 export let clickedCountryName = null;
 
-export const initializeClickedCountryCode = () => clickedCountryCode = null;
+export const resetClickedCountryCode = () => clickedCountryCode = null;
 
 import {
     worldviewFilters
@@ -67,7 +67,7 @@ export const addTouchLayer = (map) => {
         minzoom: minZoom(map),
         maxzoom: maxZoom(map),
         paint: {
-            // 'fill-color': "#fff"
+            // fully transparent
             'fill-color': "hsla(0, 0%, 100%, 0)"
         },
         source: "country-boundaries",
@@ -254,7 +254,7 @@ export const clickEventHandler = (e) => {
 
         console.log(e.features, clickedCountryCode, clickedCountryName);
     } else {
-        // initializeClickedCountryCode()
+        // resetClickedCountryCode()
         console.log('there were no e.features ', e, clickedCountryCode);
     }
 };

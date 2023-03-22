@@ -71,7 +71,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
     width: 18rem;
     height: 18rem;
     border-radius: 50%;
-    background: radial-gradient(circle, white 20%, var(--primary-color) 60%);
+    background: radial-gradient(circle, white 10%, var(--primary-color) 60%);
     background-position: center;
     background-repeat: no-repeat;
     animation: scaleCircle 4s ease-in forwards;
