@@ -3,7 +3,7 @@ import { removeHoverLayer, removeBlurLayer,
     marker, mouseLeaveHoverEventListenerHandler, mouseMoveHoverEventListenerHandler,  } from "./layers.js";
 
 import { initialZoom, startGame } from './index.js';
-import { initializeScore, setDblClickFeedbackLayer, timeOutForShowScore, touchEndFunction, touchStartFunction } from "./questions.js";
+import { resetScore, setDblClickFeedbackLayer, timeOutForShowScore, touchEndFunction, touchStartFunction } from "./questions.js";
 import { stopSpin } from "./spin.js";
 import { clearQuestions, timeOutForCountry, timeOutForMinZoom, timeOutForQuestion } from "./round.js";
 
@@ -43,7 +43,7 @@ export const resetMap = (map) => {
 };
 
 const updateElements = () => {
-    initializeScore();
+    resetScore();
 
     $('#highScoresBackground').remove();
     $('#howToPlayCanvas').remove();

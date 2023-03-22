@@ -7,7 +7,7 @@ import {
     removeFeedbackLayer,
     clickedCountryCode,
     clickEventHandler,
-    initializeClickedCountryCode
+    resetClickedCountryCode
 } from './layers.js';
 
 import { isMobile } from './game.js';
@@ -19,7 +19,7 @@ let score = 0;
 // this function gets fired in the 'addFeedback' when user chooses the right answer.
 const increaseScore = () => ++score;
 
-export const initializeScore = () => score = 0;
+export const resetScore = () => score = 0;
 
 const addFeedback = (map, countryCode, increaseScore, callback) => {
     const correct = countryCode === clickedCountryCode ? true : false;
@@ -158,13 +158,13 @@ export const getQuestions = (region, num) => {
 };
 
 const oneQuestion = (map, code, country, region, callback) => {
+    resetClickedCountryCode();
+    // remove previous question's feedbacks
+    removeFeedbackLayer(map);
 
     $('#countryLabel').remove();
     $('body').append(`<div id="countryLabel" class="country country${region}">${country}</div>`);
 
-    initializeClickedCountryCode();
-    // remove previous question's feedbacks
-    removeFeedbackLayer(map);
     setSelectEventListeners(map, code, increaseScore, callback);
 
 };
