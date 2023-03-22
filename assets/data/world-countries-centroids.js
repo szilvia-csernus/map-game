@@ -10,6 +10,8 @@
 // Added Aland Islands
 // Russia's center was changed to allow the label be more in view
 // Norway's center was replaced such that label appears more inside boundaries
+// Croatia's center was replaced
+// Morocco's center was replaced
 
 
 
@@ -336,7 +338,7 @@ export const countryCoordinates = {
     },
     "MA": {
         "countryName": "Morocco",
-        "coordinates": [-8.817212587250811, 28.687598134979325]
+        "coordinates": [-6.100159,32.458936]
     },
     "PT": {
         "countryName": "Portugal",
@@ -672,7 +674,7 @@ export const countryCoordinates = {
     },
     "HR": {
         "countryName": "Croatia",
-        "coordinates": [16.625761129583374, 44.91192100856702]
+        "coordinates": [16.639051,45.639488]
     },
     "CZ": {
         "countryName": "Czechia",
