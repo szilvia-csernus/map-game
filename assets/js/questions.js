@@ -100,56 +100,6 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
             } 
         }
     };
-    // touchEndFunction = (endEvent) => {
-    //     console.log('end event', endEvent);
-    //     // if touch started with one finger but continued with more
-    //     if (endEvent.originalEvent.touches.length > 1) {
-            
-    //         map.off('touchend', 'country-touch', touchEndFunction);
-    //         return;
-    //     }
-        
-    //     endX = endEvent.point.x;
-    //     endY = endEvent.point.y;
-    //     endTime = endEvent.originalEvent.timeStamp;
-
-    //     // the distance btw the start and end of the touch action
-    //     const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2);
-
-    //     // if tap was not rather a swipe..
-    //     if (distance < 10) {
-    //         // if tap was longer than 50ms or was a strong tap
-    //         if ((endTime - startTime) > 50 || force > 0.8) {
-                
-    //             clickEventHandler(endEvent);
-                
-    //             console.log('taphold', clickedCountryCode, endTime - startTime);
-
-    //             // if the tap was on a valid country
-    //             if (clickedCountryCode) {
-    //                 console.log(clickedCountryCode)
-    //                  // don't listen to furter touches until next question
-    //                 map.off('touchstart', 'country-touch', touchStartFunction);
-    //                 map.off('touchend', 'country-touch', touchEndFunction);
-
-    //                 // remember that this calls a recursive function!!
-    //                 setTapHoldFeedbackLayer();
-                    
-    //             } else {
-    //                 console.log('invalid click')
-    //                 // if touch target was invalid
-    //                 map.off('touchend', 'country-touch', touchEndFunction);
-    //             }
-    //         } else 
-    //         {
-    //             // if tap was too short & too light
-    //             map.off('touchend', 'country-touch', touchEndFunction);
-    //         }
-    //     } else {
-    //         // if touch was a swipe / drag / pan action
-    //         map.off('touchend', 'country-touch', touchEndFunction);
-    //     }
-    // };
 
     touchStartFunction = (startEvent) => {
         console.log('start event', startEvent);
@@ -160,16 +110,9 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
         startTime = startEvent.originalEvent.timeStamp;
         force = startEvent.originalEvent.targetTouches[0].force ? startEvent.originalEvent.targetTouches[0].force : 0;
 
-        if (moreFingersTouch) {
-            // if touch was with more fingers, stop and restart touch listening.
-            // we are not interested when the touch ends hence no 'touchend' fn in this scenario.
-
-            // map.off('touchstart', 'country-touch', touchStartFunction);
-            // map.on('touchstart', 'country-touch', touchStartFunction);    
-        } else {
-            // if the touch was with one finger only
-            map.on('touchend', 'country-touch', touchEndFunction);        
-        }
+        if (!moreFingersTouch) {
+            map.on('touchend', 'country-touch', touchEndFunction);
+        } 
     };
 
     map.on('touchstart', 'country-touch', touchStartFunction);
