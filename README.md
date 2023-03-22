@@ -4,76 +4,59 @@
 
 ---
 
-### [View the live project here]()
+### [View the live project here](https://szilvia-csernus.github.io/map-game/)
 
 ---
 <br>
 
-Amiresponsive image goes here
+![Landing page](readme-images/map-it-desktop.jpeg)
 
----
-<br>
-
-## CONTENTS
-
-* [User Experience](#user-experience-ux)
-  * [Website Owner's Goals](#website-owners-goals)
-  * [Website Visitors' Goals](#website-visitors-goals)
-
-* [Design](#design)
-  * [Colour Scheme](#colour-scheme)
-  * [Typography](#typography)
-  * [Imagery](#imagery)
-  * [Wireframes](#wireframes)
-  * [High Fidelity Prototype](#high-fidelity-prototype)
-
-* [Features](#features)
-  * [General Features](#general-features)
-  * [Future Implementations](#future-implementations)
-  * [Accessibility](#accessibility)
-
-* [Technologies Used](#technologies-used)
-  * [Languages Used](#languages-used)
-  * [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
-
-* [Deployment and Local Development](#deployment-and-local-development)
-  * [Deployment](#deployment)
-  * [Forking the GitHub Repository](#forking-the-github-repository)
-  * [Making a Local Clone](#making-a-local-clone)
-
-* [Testing](#testing)
-
-* [Credits](#credits)
-  * [Main Images](#main-images)
-  * [Icons](#icons)
-  * [Other Credits](#other-credits---incorporated-ideas-and-solutions)
-  * [Acknowledgements](#acknowledgements)
-<br><br>
 ---
 <br>
 
 # User Experience (UX)
 
-## Website Owner's Goals
+## Site Owner's Goals
+
+* The game should test the players' knowledge on the world's countries.
+* The game should be visually appealing.
+* It should give simple, clear instructions.
+* The countries should be visually distinguishable.
+* It should include animations to raise interest.
+* It should be interactive.
+* Player should be given feedback about the chosen country.
+* High scores should be retained in the browser if settings allow.
+* The game should look well and run on a wide range of devices.
 
 
+## Players' Goals
 
-## Website Visitors' Goals
+* The game should be fun to play.
+* Countries should be colourful and easy to recognise.
+* The rules should be easy to follow.
+* It should give feedback about the chosen country.
+* It should retain high scores.
+* The game should look well and run on a wide range of devices.
 
 ---
 <br>
 
 # Design
 
-Wireframes and designs were created in [Figma](https://www.figma.com/).
+Wireframes and designs were created in [Balsamiq](https://balsamiq.cloud/).
+![main screen](readme-images/wireframe-main.jpeg)
+![game screens](readme-images/wireframe-game.jpeg)
 <br><br>
 
 ## Colour Scheme
 
+Seven colours were needed to colour the countries on the map. They were chosen to be colourful but sophisticated.
+<br>
+Colours for correct and incorrect feedback were chosen for their brightness and conveyed meanings.
+<br>
 
-![Light mode palette:]()
+![Colour palette:](readme-images/colour-palette.jpeg)
 
-![Dark mode palette:]()
 <br><br>
 
 ## Typography
