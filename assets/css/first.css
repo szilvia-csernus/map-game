@@ -70,8 +70,10 @@ html, body, section, article, h1, h2, p, a, button, ul {
     align-self: center;
     width: 18rem;
     height: 18rem;
-    background-color: white;
     border-radius: 50%;
+    background: radial-gradient(circle, white 20%, var(--primary-color) 60%);
+    background-position: center;
+    background-repeat: no-repeat;
     animation: scaleCircle 3s ease-in forwards;
     opacity: 0;
     overflow: hidden;
@@ -94,6 +96,17 @@ html, body, section, article, h1, h2, p, a, button, ul {
   @keyframes scaleCircle {
     0% {
       opacity: 0;
+      transform: scale(1,1);
+    }
+    100% {
+      opacity: .8;
+      transform: scale(1.8,1.8);
+    }
+    
+  }
+  /* @keyframes scaleCircle {
+    0% {
+      opacity: 0;
       transform: scale(0.7, 0.7);
     }
     100% {
@@ -101,7 +114,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
       transform: scale(1,1)
     }
     
-  }
+  } */
   
   .error {
     color: var(--main-font-color);
