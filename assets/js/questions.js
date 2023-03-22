@@ -117,9 +117,8 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 
     map.on('touchstart', 'country-touch', touchStartFunction);
     // if another event cancels the touch event
-    map.on('touchcancel', 'country-touch', () => {
-        restartGame(map);
-    })
+    map.on('touchcancel', 'country-touch', restartGame);
+
 };
 
 /** remove previously clicked country's layers and add updated event listeners */
@@ -178,7 +177,7 @@ export const timeOutForShowScore = new TimeOut();
  * the event listener to the next question after a dblclick / taphold event. */
 export const askQuestions = (map, region, questions, num, showScore) => {
     if (questions.length === 0) {
-        return timeOutForShowScore.setTimeOutFunction(() => showScore(map, score, region, num), 1500);
+        return timeOutForShowScore.setTimeOutFunction(() => showScore(map, score, region, num), 1000);
     }
 
     const question = questions.pop();
