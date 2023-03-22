@@ -63,15 +63,14 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
         addFeedback(map, countryCode, increaseScore, callback);
     };
 
-    let startX, startY, startTime, endX, endY, endTime;
+    let startX, startY, startTime, endX, endY, endTime, force;
 
     touchEndFunction = (endEvent) => {
         console.log('end event', endEvent);
         // if touch started with one finger but continued with more, reset listening
         if (endEvent.originalEvent.touches.length > 1) {
-            map.off('touchstart', 'country-touch', touchStartFunction);
+
             map.off('touchend', 'country-touch', touchEndFunction);
-            map.on('touchstart', 'country-touch', touchStartFunction);
             return;
         }
         
@@ -84,16 +83,16 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 
         // if tap was not rather a swipe..
         if (distance < 10) {
-            // if user's tap is longer than 100ms
-            if ((endTime - startTime) > 50) {
+            // if user's tap is longer than 30ms
+            if ((endTime - startTime) > 30 || force === 1) {
                 
                 clickEventHandler(endEvent);
-                // we have to stop 'touchend' function before stepping into the recursive callback function!
                 
                 console.log('taphold', clickedCountryCode, endTime - startTime);
 
                 // if the tap was on a valid country
                 if (clickedCountryCode) {
+                    console.log(clickedCountryCode)
                      // don't listen to furter touches until next question
                     map.off('touchstart', 'country-touch', touchStartFunction);
                     map.off('touchend', 'country-touch', touchEndFunction);
@@ -102,23 +101,19 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
                     setTapHoldFeedbackLayer();
                     
                 } else {
-                    // if touch target was invalid, reset touch function
-                    map.off('touchstart', 'country-touch', touchStartFunction);
+                    console.log('invalid click')
+                    // if touch target was invalid
                     map.off('touchend', 'country-touch', touchEndFunction);
-                    map.on('touchstart', 'country-touch', touchStartFunction);
                 }
 
             } else 
             {
-                map.off('touchstart', 'country-touch', touchStartFunction);
+                // if tap was too short
                 map.off('touchend', 'country-touch', touchEndFunction);
-                map.once('touchstart', 'country-touch', touchStartFunction);
             }
         } else {
-            // if touch was a swipe / drag / pan action, reset touchstart action
-            map.off('touchstart', 'country-touch', touchStartFunction);
+            // if touch was a swipe / drag / pan action, reset touchstart actio
             map.off('touchend', 'country-touch', touchEndFunction);
-            map.on('touchstart', 'country-touch', touchStartFunction);
         }
     };
 
@@ -129,6 +124,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
         startX = startEvent.point.x;
         startY = startEvent.point.y;
         startTime = startEvent.originalEvent.timeStamp;
+        force = startEvent.originalEvent.targetTouches[0].force ? startEvent.originalEvent.targetTouches[0].force : 0;
 
         if (moreFingersTouch) {
             // if touch was with more fingers, stop and restart touch listening.
@@ -143,6 +139,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
     };
 
     map.on('touchstart', 'country-touch', touchStartFunction);
+    // if user swipes out of window or other event cancels the touch event, stop the listeners
     map.on('touchcancel', 'country-touch', () => {
         map.off('touchstart', 'country-touch', touchStartFunction);
         map.off('touchend', 'country-touch', touchEndFunction);
