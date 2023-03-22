@@ -25,7 +25,7 @@ const showScore = (map, score, region, num) => {
     const highScore = Number(window.localStorage.getItem(region));
 
     let text;
-    if (highScore < score && !previousScoreExists) {
+    if (highScore < score && previousScoreExists) {
         text = "HIGH";
     } else {
         text = "Your";
