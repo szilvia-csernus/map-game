@@ -1,4 +1,5 @@
-# map it! 
+<h1>map it!</h1>
+
 > Interactive game built for the web. Written in HTML, CSS, JavaScript and JQuery, utilising the [Mapbox GL JS API](www.mapbox.com).
 ---
 ## [View the live project here](https://szilvia-csernus.github.io/map-game/)
@@ -6,7 +7,6 @@
 
 > This project was created for [Code Institute](www.codeintitute.net)'s Web Development Course as the Second Milestone Project. The brief was to build an interactive, front-end project using HTML, CSS and JavaScript, optionally using JQuery and/or any APIs.
 <br>
-> 
 
 ---
 <br>
@@ -47,9 +47,9 @@ Wireframes were created in [Balsamiq](https://balsamiq.cloud/).
 
 ## Colour Scheme
 
-Seven colours were needed to colour the countries on the map. They were chosen to be colourful but sophisticated.
+Seven colours were needed to colour the countries on the map. They were chosen to be vibrant to convey playfulness, yet uniform in tone to have a professional feel.
 <br>
-Colours for correct and incorrect feedback were chosen for their brightness and conveyed meanings.
+Colours for correct and incorrect feedback were chosen for their brightness to raise the player's attention.
 <br>
 
 ![Colour palette:](readme-images/colour-palette.jpeg)
@@ -85,7 +85,7 @@ When visiting the first time, it takes a while (depending on network speed) to l
 
 ## Instructions
 
-The first time a user visits the site, an animation gives brief instructions on how to play the game. Later on, the animation will not show again but it will be available when clicking the question mark icon in the top right corner. In case the user clears up the site's localStorage, the animation will show again as if they were visiting for the first time.
+The first time a user visits the site, an animation gives brief instructions on how to play the game. Later on, the animation will not show again but the instructions will be available when clicking the question mark icon in the top right corner. In case the user clears up the site's localStorage, the animation will show again as if they were visiting for the first time.
 <br>
 ![instructions](readme-images/insturctions.gif)
 <br>
@@ -101,7 +101,7 @@ The first step in the game is to choose which region the player wants to test th
 
 ## Choosing a country
 
-The player has to select the country that appears in the top. If the selection is correct, the country is coloured green and a green checkmark signals that the score has been registered. In case the selection is incorrect, the country becomes red and an animation flies the map to the correct country. This feedback allowes the player to improve their knowledge.
+The player has to select the country that appears in the top. If the selection is correct, the country is coloured green and a green checkmark signals that the score has been registered. In case the selection is incorrect, the country becomes red and an animation flies the map to the correct country. This feedback allows the player to improve their knowledge.
 <br>
 ![correct-country](readme-images/correct-country.gif)
 ![incorrect-country](readme-images/incorrect-country.gif)
@@ -110,15 +110,14 @@ The player has to select the country that appears in the top. If the selection i
 
 ## Scores
 
-After 10 countries were chosen, the screen displays the score. For the first time, this is all the feedback the user gets but from the second round on, a `View your best scores here` button appears from which the player's best scores are available. The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores will be lost.
+After 10 countries were chosen, the screen displays the score. For the first time, this is all the feedback the user is given but from the second round on, a `View your best scores here` button appears which can be clicked to display the user's best scores. The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores will be lost.
 <br>
 
 ![your-score](readme-images/your-score.jpeg)
 ![best-scores](readme-images/best-scores.jpeg)
 
 ---
-
-
+<br>
 
 ## Future Implementations
 <br>
@@ -126,11 +125,17 @@ The project could be converted into a React project, which could increase it's p
 <br>
 There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. A new option with the US states could be part of the too.
 
-<br><br>
+<br>
 ---
 
 ## Accessibility
 <br>
+
+* Fonts were chosen to have clean contours and simple design to maximize legibility. 
+* For font sizes, `rem` was used throughout the site to allow the text to scale according to the users' preferred default font-size.
+* The map can be zoomed in and out when the player has to find a country to cater for easier access.
+* Icons are labelled with `aria-labels`.
+* Chrome Dev Tools' Lighthouse score is 100% for accessibility for both mobile and desktop devices. 
 
 * [Mapbox Studio](https://studio.mapbox.com/) allows to test map designs for 8 types of visual impairments. This is how the map looks across all tests:
 <br>
@@ -144,11 +149,6 @@ There are many options to widen the game's functionality. Capital cities, flags 
 ![visual-impairment-7](readme-images/visual-impairment-7.jpeg)
 ![visual-impairment-8](readme-images/visual-impairment-8.jpeg)
 
-* Fonts were chosen to be simple with clean contours to maximize legibility. 
-* For font sizes, `rem` was used throughout the site to allow the text to scale according to the users' preferred default font-size.
-* The map can be zoomed in and out when the player has to find a country to cater for easier access.
-* Icons are labelled with `aria-labels`.
-* Chrome Dev Tools' Lighthouse score is 100% for accessibility for both mobile and desktop devices. 
 
 <br><br>
 
@@ -252,7 +252,7 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 # Testing
 
-Please view [TESTING.md](TESTING.md) for more information on testing.
+Refer to [TESTING.md](TESTING.md) for information on testing.
 
 ---
 <br><br>
@@ -275,6 +275,7 @@ https://grizhlie-clamp-calculator.netlify.app/
 
 ## Icons
 <br>
+
 * Exit icon:
 https://www.svgrepo.com/svg/170342/exit-hand-drawn-interface-symbol-variant
 
