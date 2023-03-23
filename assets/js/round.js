@@ -6,7 +6,7 @@ import {
 import {
     addHighScoresBtn,
     addNewGameBtn,
-    removeContinentBtns,
+    removeRegionBtns,
     removeNewGameBtn
 } from './buttons.js';
 
@@ -64,7 +64,7 @@ export const startRound = (map, region, num) => {
     $('h1').removeClass('choose').text('');
     timeOutForQuestion.setTimeOutFunction(() => $('h1').text('Find the country on the map!').addClass('question'), 1000);
     $('body').append('<ul id="checkmarks" class="checkmarks"></ul>');
-    removeContinentBtns();
+    removeRegionBtns();
 
     questions = getQuestions(region, num);
 

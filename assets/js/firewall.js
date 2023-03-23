@@ -11,7 +11,7 @@ export const firewall = callback => {
 
     fetch("https://api.countapi.xyz/hit/szilvia-csernus/map-game").then(fetchResponse => {
         if (fetchResponse.status != 200) {
-            fetchResponse.json().then(data => sendMail('Unsuccessful Count API call', data));
+            // error message can be sent from here
         } else {
             fetchResponse.json().then(data => {
                 console.log(data.value);
