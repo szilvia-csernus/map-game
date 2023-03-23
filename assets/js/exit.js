@@ -47,7 +47,7 @@ const updateElements = () => {
 
     $('#highScoresBackground').remove();
     $('#howToPlayCanvas').remove();
-    $('#continentCanvas').remove();
+    $('#regionCanvas').remove();
 
     // reset main title
     $('h1').empty().removeClass('question').removeClass('choose').addClass('title').text('map it!');

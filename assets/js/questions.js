@@ -1,6 +1,6 @@
 import {
     data
-} from '../data/countries-with-continent.js';
+} from '../data/countries-with-region.js';
 
 import {
     addFeedbackLayer,

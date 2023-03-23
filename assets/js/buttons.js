@@ -11,17 +11,17 @@ export const removePlayBtn = () => {
     $('#playBtn').remove();
 };
 
-export const addContinentBtns = () => {
-    $('body').append('<div id="continentCanvas" class="continentCanvas"></div>');
+export const addRegionBtns = () => {
+    $('body').append('<div id="regionCanvas" class="regionCanvas"></div>');
 
-    $('#continentCanvas').append('<button id="europeBtn" class="continentBtn">Europe</button>');
-    $('#continentCanvas').append('<button id="asiaBtn" class="continentBtn">Asia</button>');
-    $('#continentCanvas').append('<button id="africaBtn" class="continentBtn">Africa</button>');
-    $('#continentCanvas').append('<button id="americasBtn" class="continentBtn">Americas</button>');
+    $('#regionCanvas').append('<button id="europeBtn" class="regionBtn">Europe</button>');
+    $('#regionCanvas').append('<button id="asiaBtn" class="regionBtn">Asia</button>');
+    $('#regionCanvas').append('<button id="africaBtn" class="regionBtn">Africa</button>');
+    $('#regionCanvas').append('<button id="americasBtn" class="regionBtn">Americas</button>');
 };
 
-export const removeContinentBtns = () => {
-    $('#continentCanvas').remove();
+export const removeRegionBtns = () => {
+    $('#regionCanvas').remove();
 };
 
 export const addNewGameBtn = (map) => {

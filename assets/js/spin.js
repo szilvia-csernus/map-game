@@ -11,7 +11,7 @@ export const addRotation = (map) => {
     spinEnabled = true;
 
     // keep rotating as long as stopSpin() gets fired which happens 
-    // when a continent button gets clicked.
+    // when a region button gets clicked.
     function spinGlobe() {
         if (spinEnabled) {
             let distancePerSecond = 360 / secondsPerRevolution;

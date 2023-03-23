@@ -11,7 +11,7 @@ import {
     addTouchLayer
 } from './layers.js';
 import {
-    addContinentBtns
+    addRegionBtns
 } from './buttons.js';
 import {
     addHowToPlay, addHowToPlayIcon
@@ -39,7 +39,7 @@ const enableMapInteraction = (map) => {
     map.touchZoomRotate.enable();
 }
 
-const addClickListenersToContinentBtns = (map) => {
+const addClickListenersToRegionBtns = (map) => {
     
     const addFlyOnClick = (button, region, center, zoom) => {
         button.click(function () {
@@ -81,17 +81,17 @@ const addClickListenersToContinentBtns = (map) => {
     addFlyOnClick($('#americasBtn'), 'Americas', centerCoordinates.americas , 2.5)
 }
 
-const showChooseContinentTitle = () => {
-    $('h1').removeClass('title').addClass('choose').fadeIn('slow').text('Choose a continent!');
+const showChooseRegionTitle = () => {
+    $('h1').removeClass('title').addClass('choose').fadeIn('slow').text('Choose a region!');
 }
 
 export const game = (map) => {
 
     const continueFunction = () => {
         addExit(map);
-        showChooseContinentTitle();
-        addContinentBtns();
-        addClickListenersToContinentBtns(map);
+        showChooseRegionTitle();
+        addRegionBtns();
+        addClickListenersToRegionBtns(map);
     }
 
     if (!visitedBefore && firstTime) {
