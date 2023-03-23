@@ -1,15 +1,12 @@
-# Main title
-
-> Map-based game building on country knowledge.
-
+# map it! 
+> Interactive game built for the web. Written in HTML, CSS, JavaScript and JQuery, utilising the [Mapbox GL JS API](www.mapbox.com).
 ---
+## [View the live project here](https://szilvia-csernus.github.io/map-game/)
+![Landing page](readme-images/amiresponsive.jpeg)
 
-### [View the live project here](https://szilvia-csernus.github.io/map-game/)
-
----
+> This project was created for [Code Institute](www.codeintitute.net)'s Web Development Course as the Second Milestone Project. The brief was to build an interactive, front-end project using HTML, CSS and JavaScript, optionally using JQuery and/or any APIs.
 <br>
-
-![Landing page](readme-images/map-it-desktop.jpeg)
+> 
 
 ---
 <br>
@@ -41,9 +38,9 @@
 ---
 <br>
 
-# Design
+# Wireframes
 
-Wireframes and designs were created in [Balsamiq](https://balsamiq.cloud/).
+Wireframes were created in [Balsamiq](https://balsamiq.cloud/).
 ![main screen](readme-images/wireframe-main.jpeg)
 ![game screens](readme-images/wireframe-game.jpeg)
 <br><br>
@@ -61,105 +58,63 @@ Colours for correct and incorrect feedback were chosen for their brightness and 
 
 ## Typography
 
-A font pairing website [Typ.io](https://typ.io/lists) helped me make typography choices.
-I selected [Nunito](https://fonts.google.com/specimen/Nunito) and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) from the [Google Fonts](https://fonts.google.com/) library for their simplicity and legibility yet fairly informal feel. To complement these simple styled main fonts, for the feature logo I chose a more decorative typeface, [Bubblegum Sans](https://fonts.google.com/specimen/Bubblegum+Sans).
+I selected the font named [Nunito](https://fonts.google.com/specimen/Nunito) from the [Google Fonts](https://fonts.google.com/) library for its simplicity and legibility yet fairly informal look.
 <br><br>
 
-## Imagery
+## Map Style
 
-All the **images** appearing on the site are sourced from [Pexels](https://pexels.com/) or [Unsplash](https://unsplash.com/). All pictures have been converted to `.webp` format to reduce file size and as such, reduce loading time. To further increase performance, more image sizes are available for the browser to load the most appropriate one for any screen resolution. For older browsers that don't recognise `.webp` format, `.png` images were added as backups. This method makes sure that for every device, the best size and resolution will be chosen to achieve the best possible performance.
-
-All **icons** are in .svg format that is lightweight in size, scales perfectly and certain properties can be set programmatically. I needed these properties to make them capable to respond to dark-mode preferences. Some of the icons I drew myself in Figma, others I downloaded from [svgrepo](https://svgrepo.com/). These latter icons are either unlicensed or open-source. All icons were drawn or edited to be uniform in design as well as responsive to dark mode or - as in the case of the rabbit icon - to screen size changes. All icons' colour is set programmatically with CSS.
-
-All references to the images and icons that have been sourced from other sites can be found in the [credits](#credits) section.
+**Mapbox** allows to custom style its maps in [Mapbox Studio](https://studio.mapbox.com/). I used the freely available 'country-boundaries-v1' tileset and coloured the countries with the chosen colours with the help of the tileset's color-group property. This property makes sure that no adjacent countries will be coloured the same.
 <br><br>
 
-## Wireframes
+## Icons
 
-Wireframes were created in [Figma](https://www.figma.com/).
-
-[Live link to wireframe for mobile]()
-<br>
-
-![mobile-low-fidelity-design]()
-<br>
-
-[Live link to wireframe for desktop]()
-<br>
-
-![desktop-low-fidelity-design]()
-<br><br>
-
-## High Fidelity Prototype
-
-I created high-fidelity prototypes for both mobile and desktop screens. 
-
-[Live link to HiFi Prototype for mobile]()
-<br>
-
-![mobile-high-fidelity-design]()
-<br>
-
-[Live link to HiFi Prototype for desktop]()
-<br>
-
-![desktop-high-fidelity-design]()
-
----
-<br>
-
-# Features
-
-
-Dark mode is implemented throughout all pages to satisfy the website owner's UX requirement.
-<br><br>
-
-## General Features
-<br>
-
-### Header
-<br>
-
-The **header** is responsive to all screen sizes. On large screens, it expands horizontally, while on mobile and narrower screens the menu bar is replaced with a `burger` icon. Clicking this icon would make the menu appear as a side bar.
-
-All types of the menu bar have Bootstrap codebase. I styled them in css to achieve the desired look. 
-
-A hover effect gives the user feedback about the menu choices. The logo can be clicked from any pages to lead the user back to the home page.
-
-![header-desktop-light-mode]()
-![header-desktop-dark-mode]()
-<br><br>
-
-**Header on small screens:**
-<br>
-
-![header-mobile-light-mode]()
-![header-mobile-dark-mode]()
-<br><br>
-
-**Side bars open from the burger menu icon:**
-<br>
-
-![sidebar-light-mode]()
-![sidebar-dark-mode]()
-
-### Footer
-<br>
-
-The **footer** features all contact information as well as links to social media pages. Calls and Emails can be directly initiated by clicking on the links.
-
-![footer-desktop]()
-![footer-mobile]()
-<br><br>
+**Icons** for the exit and the info buttons as well as the checkmark and cross icons were downloaded from [svgrepo](https://svgrepo.com/). Credits to individual icons are given in the [credits](#credits) section. <br>
+For **favicons**, I created a small version of the intro image in [Figma](https://www.figma.com/) and used the [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/) to convert it to favicons for all devices.
 
 <br><br>
 
-**Favicons** are also responsive to light / dark mode preferences. I drew the light mode icon myself but used [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/) to transform it into a dark-mode-sensitive favicon.
-<br><br>
+# Functionality
 
-![favicon-light-mode](assets/images/readme-images/favicon-light-mode.svg)
-![favicon-dark-mode](assets/images/readme-images/favicon-dark-mode.svg)
+## Landing Page
+
+When visiting the first time, it takes a while (depending on network speed) to load all source code and tilesets from Mapbox. While waiting for loading, a subtle animation is used to fill the time. Once the map is ready, it appears on the sceen and the game can be started with the `PLAY` button.
+<br>
+![loading-image](readme-images/loading.jpeg) 
+![loaded-page](readme-images/map-it-mobile.jpeg) 
+<hr>
+
+## Instructions
+
+The first time a user visits the site, an animation gives brief instructions on how to play the game. Later on, the animation will not show again but it will be available when clicking the question mark icon in the top right corner. In case the user clears up the site's localStorage, the animation will show again as if they were visiting for the first time.
+<br>
+![instructions](readme-images/insturctions.gif)
+<br>
+<hr>
+
+## Choosing a region
+
+The first step in the game is to choose which region the player wants to test their knowledge on. Once chosen, an animation will bring the map closer to that region. The region's countries become selectable while all countries outside the region become blurred.<br>
+![choose-a-region](readme-images/choose-a-region.jpeg)
+![find-the-country](readme-images/find-the-country.jpeg)
+<br>
+<hr>
+
+## Choosing a country
+
+The player has to select the country that appears in the top. If the selection is correct, the country is coloured green and a green checkmark signals that the score has been registered. In case the selection is incorrect, the country becomes red and an animation flies the map to the correct country. This feedback allowes the player to improve their knowledge.
+<br>
+![correct-country](readme-images/correct-country.gif)
+![incorrect-country](readme-images/incorrect-country.gif)
 <br><br>
+<hr>
+
+## Scores
+
+After 10 countries were chosen, the screen displays the score. For the first time, this is all the feedback the user gets but from the second round on, a `View your best scores here` button appears from which the player's best scores are available. The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores will be lost.
+<br>
+
+![your-score](readme-images/your-score.jpeg)
+![best-scores](readme-images/best-scores.jpeg)
 
 ---
 
@@ -167,6 +122,9 @@ The **footer** features all contact information as well as links to social media
 
 ## Future Implementations
 <br>
+The project could be converted into a React project, which could increase it's performance.
+<br>
+There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. A new option with the US states could be part of the too.
 
 <br><br>
 ---
@@ -174,18 +132,24 @@ The **footer** features all contact information as well as links to social media
 ## Accessibility
 <br>
 
-* To aid screen readers: 
-  * `Semantic HTML` was used throughout all pages.
+* [Mapbox Studio](https://studio.mapbox.com/) allows to test map designs for 8 types of visual impairments. This is how the map looks across all tests:
+<br>
 
-  * All images have descriptive `alt` attributes and all other elements that have implied meanings are labelled with `aria-labels`.
-
-  * Current pages and modals are also labelled with the appropriate `aria properties` to help navigation.
+![visual-impairment-1](readme-images/visual-impairment-1.jpeg)
+![visual-impairment-2](readme-images/visual-impairment-2.jpeg)
+![visual-impairment-3](readme-images/visual-impairment-3.jpeg)
+![visual-impairment-4](readme-images/visual-impairment-4.jpeg)
+![visual-impairment-5](readme-images/visual-impairment-5.jpeg)
+![visual-impairment-6](readme-images/visual-impairment-6.jpeg)
+![visual-impairment-7](readme-images/visual-impairment-7.jpeg)
+![visual-impairment-8](readme-images/visual-impairment-8.jpeg)
 
 * Fonts were chosen to be simple with clean contours to maximize legibility. 
-
 * For font sizes, `rem` was used throughout the site to allow the text to scale according to the users' preferred default font-size.
+* The map can be zoomed in and out when the player has to find a country to cater for easier access.
+* Icons are labelled with `aria-labels`.
+* Chrome Dev Tools' Lighthouse score is 100% for accessibility for both mobile and desktop devices. 
 
-* All colours were tested beforehand to have sufficient contrast with the help of [Color Palette Contrast Checker](https://color-contrast-checker.deque.com/).
 <br><br>
 
 ---
@@ -202,38 +166,34 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript), 
 ## Frameworks, Libraries & Programs Used
 <br>
 
-* [Figma](https://www.figma.com/) 
-  - to create the design.
+* [Mapbox GL JS API](www.mapbox.com)  - used for every map-based functionality.
 
-* [Git](https://git-scm.com/) & [Github](https://github.com/) 
-  - for version control, safe storage and deployment.
+* [Mapbox Studio](https://studio.mapbox.com/)  - to create map design.
 
-* [Gitpod](https://www.gitpod.io/) alongside with [CodeInstitute's template](https://github.com/Code-Institute-Org/gitpod-full-template) 
-  - for the development environment.
+* [JQuery](https://jquery.com/)  - to write shorter code.
 
-* [Google Fonts](https://fonts.google.com/) 
-  - to import fonts into the stylesheet.
+* [Count API](https://countapi.xyz/)  - to keep track of the number of page loads.
 
-* [Typ.io](https://typ.io/lists)
-  - to make typography choices.
+* [EmailJS](https://www.emailjs.com/)  - to send updates about website usage.
 
-* [Google Dev Tools](https://developer.chrome.com/docs/devtools/) 
-  - for testing and troubleshooting.
+* [Google Fonts](https://fonts.google.com/)  - for texts.
 
-* [CloudConvert](https://cloudconvert.com/jpg-converter) 
-  - to convert images to .webp format.
+* [Balsamiq](https://balsamiq.cloud/)  - to create wireframes.
 
-* [Color Palette Contrast Checker](https://color-contrast-checker.deque.com/)
-  - to check colours have sufficient contrast.
-  
-* [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/) 
-  - to generate dark mode responsive favicons.
+* [Figma](https://www.figma.com/)  - to create colour palette and image for favicon.
 
-* [Am I Responsive?](https://ui.dev/amiresponsive) 
-  - to create site visuals for responsive design.
+* [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/)  - to generate dark mode responsive favicons.
 
-* [Gyazo](https://gyazo.com) 
-  - for adding .gif file to this README
+* [Am I Responsive?](https://ui.dev/amiresponsive)  - to create site visuals for responsive design.
+
+* [Gyazo](https://gyazo.com)  - for adding .gif files to this README file.
+
+* [Git](https://git-scm.com/) & [Github](https://github.com/)  - for version control, safe storage and deployment.
+
+* [Gitpod](https://www.gitpod.io/) alongside with [CodeInstitute's template](https://github.com/Code-Institute-Org/gitpod-full-template)  - for the development environment.
+
+* [Google Dev Tools](https://developer.chrome.com/docs/devtools/)  - for testing and troubleshooting.
+
 <br><br>
 ---
 
@@ -299,49 +259,24 @@ Please view [TESTING.md](TESTING.md) for more information on testing.
 
 # Credits
 
-* Count API for counting website visits:
-https://countapi.xyz/
-
-* EmailJS for sending error data
-
-* Data for capital cities:
-https://github.com/mledoze/countries
-https://codebeautify.org/online-json-editor/5aa491
-https://ctftime.org/writeup/16139
-
 * Data for country centroids for displaying the names of the countries:
 https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson - MIT Licence, Copyright (c) 2021 Gavin Rehkemper
 
-* Country info including continent info:
+* Country info including region info:
 https://github.com/annexare/Countries/blob/master/data/countries.json - MIT License, Copyright (c) 2014 Annexare Studio
 
 * Geolocation coordinate finder:
 http://bboxfinder.com/
 
-* Flag-icons in svg format in an npm package:
-https://www.npmjs.com/package/flag-icons
-
-* Country info (inc. capital) in an npm package:
-https://www.npmjs.com/package/world-infohttps://www.npmjs.com/package/world-info
-
-* Clamp() calculator:
+* Clamp() calculator for responsive font sizes:
 https://grizhlie-clamp-calculator.netlify.app/
 
-
 <br>
-
-## Images
-<br>
-
 
 ## Icons
 <br>
 * Exit icon:
 https://www.svgrepo.com/svg/170342/exit-hand-drawn-interface-symbol-variant
-
-* Mute - Sound icons:
-https://www.svgrepo.com/svg/441980/mute
-https://www.svgrepo.com/svg/442013/sound
 
 * Check icon:
 https://www.svgrepo.com/svg/404945/check-mark
@@ -356,15 +291,21 @@ https://www.svgrepo.com/svg/491697/question-circle
 
 ## Other credits - incorporated ideas and solutions
 <br>
-* Adding drop-shadow to svg icons:
+
+* Base code for rotating globe is adapted from [one of Mapbox's example codes](https://docs.mapbox.com/mapbox-gl-js/example/globe-spin/),
+which I also reference in the code.
+
+* Base code for hovering effect is adapted from [one of Mapbox's example codes](https://docs.mapbox.com/mapbox-gl-js/example/hover-styles/),
+which I also reference in the code.
+
+* Adding drop-shadow filter to svg icons:
 https://css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filters/
 <br><br>
 
 ## Content
 <br>
 
-
-* Content for Deployment and Development of this README file was written using [Code Institute's sample README file](https://raw.githubusercontent.com/Code-Institute-Solutions/SampleREADME/master/README.md).
+* Content for the Deployment and Development section of this README file was written using [Code Institute's sample README file](https://raw.githubusercontent.com/Code-Institute-Solutions/SampleREADME/master/README.md).
 <br><br>
 
 ##  Acknowledgements
@@ -373,7 +314,7 @@ I would like to thank the following contributors:
 
 * My mentor [Elaine Broche](https://github.com/elainebroche-dev) for giving useful feedback throughout the development and testing process.
 
-* My friends for taking the time to test my site.
+* My family and friends for taking the time to test the game.
 
 * The Slack Community for continuous support.
 
@@ -386,4 +327,4 @@ This project was created for Code Institute's web application development course
 <br><br>
 Not for public use.
 <br><br>
-Szilvia Csernusne Berczes, Jan 2023.
+&copy; All rights reserved. Szilvia Csernusne Berczes, March 2023.
