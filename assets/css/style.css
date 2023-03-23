@@ -100,7 +100,7 @@
   background-color: var(--primary-color-hover);
 }
 
-/* ---- Choose a Continent ----  */
+/* ---- Choose a Region ----  */
 
 .choose {
   position: absolute;
@@ -114,7 +114,7 @@
   animation: bump 1s ease-in-out;
 }
 
-.continentCanvas {
+.regionCanvas {
   position: absolute;
   bottom: 5vh;
   width: 100vw;
@@ -129,7 +129,7 @@
   animation: appear .5s ease-in forwards
 }
 
-.continentBtn {
+.regionBtn {
   text-align: center;
   width: clamp(8rem, 6.8148rem + 5.9259vw, 12rem);
   padding: 0.7rem 0;
@@ -146,7 +146,7 @@
   border-radius: 2rem;
 }
 
-.continentBtn:hover {
+.regionBtn:hover {
   background-color: var(--primary-color-hover);
 }
 

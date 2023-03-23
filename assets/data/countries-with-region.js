@@ -1,4 +1,4 @@
-// This file is created from countries-with-continent.json data, modified to suit the game's purposes.
+// This file is created from countries-with-region.json data, modified to suit the game's purposes.
 // See changes made at the end of the file.
 
 export const data = {
