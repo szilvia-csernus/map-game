@@ -11,14 +11,14 @@ export const firewall = callback => {
 
     fetch("https://api.countapi.xyz/hit/szilvia-csernus/map-game").then(fetchResponse => {
         if (fetchResponse.status != 200) {
-            // error message can be sent from here
+            // error message could be sent from here
         } else {
             fetchResponse.json().then(data => {
                 console.log(data.value);
                 if (data.value > 49000) {
                     window.location.href = '../error.html';
                     return;
-                } else if (data.value === 100 || data.value === 1000 || data.value === 20000) {
+                } else if (data.value === 100 || data.value === 2000 || data.value === 20000 || data.value === 49000) {
                     sendMail('Count API', `Map game load number reached ${data.value}`);
                 }
                 callback();

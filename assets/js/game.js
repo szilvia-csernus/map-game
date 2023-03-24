@@ -18,8 +18,8 @@ import {
 } from './how-to-play.js';
 import { stopSpin } from './spin.js';
 
+import { hasMouseFn } from './buttons.js';
 
-export const isMobile = window.navigator.maxTouchPoints > 0;
 // safely use localStorage item.
 export const visitedBefore = window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
 
@@ -32,17 +32,10 @@ const centerCoordinates = {
 
 let firstTime = true;
 
-const enableMapInteraction = (map) => {
-    // Set scroll and drag functions
-    map.dragPan.enable();
-    map.scrollZoom.enable();
-    map.touchZoomRotate.enable();
-}
-
 const addClickListenersToRegionBtns = (map) => {
     
     const addFlyOnClick = (button, region, center, zoom) => {
-        button.click(function () {
+        button.click(() => {
             stopSpin()
             map.easeTo({
                 center,
@@ -68,12 +61,12 @@ const addClickListenersToRegionBtns = (map) => {
 
             // add event listeners to the filtered region of the map
             addDesktopEventListeners(map);
-            enableMapInteraction(map);
+            
             startRound(map, region, 10);
         })
     }
 
-    isMobile ? addTouchLayer(map) : addHoverLayer(map);
+    hasMouseFn ? addHoverLayer(map) : addTouchLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', centerCoordinates.europe , 3.5)
     addFlyOnClick($('#asiaBtn'), 'Asia', centerCoordinates.asia , 2.5)
@@ -97,9 +90,9 @@ export const game = (map) => {
     if (!visitedBefore && firstTime) {
         firstTime = false;
         window.localStorage.setItem('visitedBefore', 'true');
-        addHowToPlay(isMobile, false, continueFunction);
+        addHowToPlay(hasMouseFn, false, continueFunction);
     } else {
-        addHowToPlayIcon(isMobile)
+        addHowToPlayIcon(hasMouseFn)
         continueFunction()
     }
 }

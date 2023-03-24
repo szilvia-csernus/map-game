@@ -8,7 +8,7 @@ import { stopSpin } from "./spin.js";
 import { clearQuestions, timeOutForCountry, timeOutForMinZoom, timeOutForQuestion } from "./round.js";
 
 
-const disableMapInteraction = (map) => {
+export const disableMapInteraction = (map) => {
     map.dragPan.disable();
     map.scrollZoom.disable();
     map.touchZoomRotate.disable();

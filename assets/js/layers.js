@@ -15,8 +15,8 @@ import {
     worldviewFilters
 } from "./index.js";
 import {
-    isMobile
-} from "./game.js";
+    hasMouseFn
+} from "./buttons.js";
 
 /** adds hover-change layer to the map. Used on non-mobile devices.  */
 export const addHoverLayer = (map) => {
@@ -235,10 +235,22 @@ const flyToCorrectCountry = (map, code) => {
 
 /** remove other country selection if there is any */
 export const removeFeedbackLayer = (map) => {
-    map.getLayer('country-feedback-fill-correct') && map.removeLayer('country-feedback-fill-correct');
-    map.getLayer('country-feedback-fill-incorrect') && map.removeLayer('country-feedback-fill-incorrect');
-    map.getLayer('country-feedback-line') && map.removeLayer('country-feedback-line');
-    map.getLayer('corrected-country') && map.removeLayer('corrected-country');
+    if (map.getLayer('country-feedback-fill-correct')) {
+        map.setFilter('country-feedback-fill-correct', null);
+        map.removeLayer('country-feedback-fill-correct');
+    } 
+    if (map.getLayer('country-feedback-fill-incorrect')) {
+        map.setFilter('country-feedback-fill-incorrect', null);
+        map.removeLayer('country-feedback-fill-incorrect');
+    }
+    if (map.getLayer('country-feedback-line')) {
+        map.setFilter('country-feedback-line', null);
+        map.removeLayer('country-feedback-line');
+    } 
+    if (map.getLayer('corrected-country')) {
+        map.setFilter('corrected-country', null);
+         map.removeLayer('corrected-country');
+    }
 
     // if there is already a marker on the map then remove it
     marker && marker.remove();
@@ -308,7 +320,7 @@ export function mouseLeaveHoverEventListenerHandler() {
 
 export const addDesktopEventListeners = (map) => {
 
-    if (map.getLayer('country-hover') && !isMobile) {
+    if (map.getLayer('country-hover') && hasMouseFn) {
         map.on('mousemove', `country-hover`, mouseMoveHoverEventListenerHandler);
         map.on('mouseleave', 'country-hover', mouseLeaveHoverEventListenerHandler);   
     }

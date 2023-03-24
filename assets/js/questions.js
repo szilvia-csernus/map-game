@@ -10,9 +10,9 @@ import {
     resetClickedCountryCode
 } from './layers.js';
 
-import { isMobile } from './game.js';
+import { hasMouseFn } from './buttons.js';
 import TimeOut from './timeout.js';
-import { restartGame } from './exit.js';
+import { disableMapInteraction, restartGame } from './exit.js';
 
 let score = 0;
 
@@ -22,6 +22,7 @@ const increaseScore = () => ++score;
 export const resetScore = () => score = 0;
 
 const addFeedback = (map, countryCode, increaseScore, callback) => {
+    disableMapInteraction(map);
     const correct = countryCode === clickedCountryCode ? true : false;
     addFeedbackLayer(map, correct, countryCode, callback);
     if (correct) {
@@ -124,7 +125,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 /** remove previously clicked country's layers and add updated event listeners */
 const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     removeFeedbackLayer(map);
-    if (!isMobile) {
+    if (hasMouseFn) {
         setClickSelectEventListeners(map, countryCode, increaseScore, callback);
     } else {
         setTouchSelectEventListeners(map, countryCode, increaseScore, callback);
@@ -157,7 +158,16 @@ export const getQuestions = (region, num) => {
     return questions;
 };
 
+const enableMapInteraction = (map) => {
+    // Set scroll and drag functions
+    map.dragPan.enable();
+    map.scrollZoom.enable();
+    map.touchZoomRotate.enable();
+}
+
+
 const oneQuestion = (map, code, country, region, callback) => {
+    enableMapInteraction(map);
     resetClickedCountryCode();
     // remove previous question's feedbacks
     removeFeedbackLayer(map);
