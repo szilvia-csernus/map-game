@@ -10,7 +10,7 @@ import {
     resetClickedCountryCode
 } from './layers.js';
 
-import { hasMouseFn } from './buttons.js';
+import { isMobile } from './buttons.js';
 import TimeOut from './timeout.js';
 import { disableMapInteraction, restartGame } from './exit.js';
 
@@ -125,7 +125,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 /** remove previously clicked country's layers and add updated event listeners */
 const setSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     removeFeedbackLayer(map);
-    if (hasMouseFn) {
+    if (!isMobile) {
         setClickSelectEventListeners(map, countryCode, increaseScore, callback);
     } else {
         setTouchSelectEventListeners(map, countryCode, increaseScore, callback);
