@@ -69,7 +69,17 @@ I selected the font named [Nunito](https://fonts.google.com/specimen/Nunito) fro
 ## Icons
 
 **Icons** for the exit and the info buttons as well as the checkmark and cross icons were downloaded from [svgrepo](https://svgrepo.com/). Credits to individual icons are given in the [credits](#credits) section. <br>
-For **favicons**, I created a small version of the intro image in [Figma](https://www.figma.com/) and used the [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/) to convert it to favicons for all devices.
+For **favicons**, I created a small version of the intro image in [Figma](https://www.figma.com/) and used the [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/) to convert it to favicons.
+
+<br><br>
+
+# Data
+
+The main data source for this project is [Mapbox's country-boundaries-v1](https://studio.mapbox.com/tilesets/mapbox.country-boundaries-v1) tileset. The tileset's countries and territories are defined in the ISO 3166-1 country code standard, including alternate worldviews. I filter for some of the conflicting worldviews in order to avoid ambiguity. Data in this tileset is based on information obtained from officially recognized local or international entities. The displayed country boundaries, the identification of countries / territories as well as the displayed names over the selected countries are coming from this dataset.
+
+Mapbox does not (freely) allow to download this dataset in a searchable format, so I needed to source this information from elswhere. I used [Annexare Studio's open source data (MIT License, Copyright (c) 2014 Annexare Studio)](https://github.com/annexare/Countries/blob/master/data/countries.json) to transform into a dataset I can use. After having transformed and filtered this data, I use it for asking the 10 random countries from the selected region.
+
+The third dataset I use is [another open source dataset assembled by Gavin Rehkemper (MIT Licence, Copyright (c) 2021 Gavin Rehkemper)](https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson). It contains the centroid positions for all countries which I need to display the countries' names over the selected countries as well as to fly the map to this location after an incorrect country choice.
 
 <br><br>
 
@@ -115,15 +125,36 @@ After 10 countries were chosen, the score gets displayed. For the first time, th
 
 ![your-score](readme-images/your-score.jpeg)
 ![best-scores](readme-images/best-scores.jpeg)
+<br><br>
+<hr>
 
----
-<br>
+## Cross-platform interactivity
+
+The game supports both desktop and mobile device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on touchscreen only devices the user can only interact with the map through touch methods. The program does not support both mouse/trackpad and touchscreen interactions simultaniously.
+
+In case of the presence of a mouse/trackpad: 
+* a hovering effect is being applied, 
+* double clicking / double tapping is required to select a country, 
+* zooming in and out of the map as well as panning is available depending on the tool used: 
+  - scrolling to zoom and grab-and-drag with a mouse, 
+  - two-finger zoom and double-tap-drag with a trackpad. In this scenario, the user has to double tap over an area which is not a selectable country, otherwise it gets selected. I recognise that this function clash is not ideal, I refer to this issue in the bugs section.
+
+In case of a mouse/trackpad is not available, it is assumed that the device is a touchscreen. In this case:
+* a firm tap or a slightly longer than usual (50ms long) tap is required to select a country.
+* zooming in and out as well as panning the map is available in the usual ways.
+  - zooming in and out with two or more fingers,
+  - panning and rotating the map with sustained and moving touch.
+
+<br><br>
+<hr>
 
 ## Future Implementations
 <br>
-The project could be converted into a React project, which could increase it's performance.
-<br>
-There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. A new option with the US states could be part of the too.
+This project could be converted into a React project to bring it in line with industry standards. It could also be converted to native mobile apps.
+<br><br>
+More robust testing suite could be written. Interactions with the Mapbox GL JS API are not currently part of the automatic testing functions.
+<br><br>
+There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. A new option with the US states could be part of the game too.
 
 <br>
 ---
