@@ -1,6 +1,6 @@
 <h1>map it!</h1>
 
-> Interactive game built for the web. Written in HTML, CSS, JavaScript and JQuery, utilising the [Mapbox GL JS API](www.mapbox.com).
+> Interactive game built for the web. Fully responsive, written in HTML, CSS, JavaScript and JQuery, utilising the [Mapbox GL JS API](www.mapbox.com).
 ---
 ## [View the live project here](https://szilvia-csernus.github.io/map-game/)
 ![Landing page](readme-images/amiresponsive.jpeg)
@@ -39,7 +39,7 @@
 <br>
 
 # Wireframes
-
+<br>
 Wireframes were created in [Balsamiq](https://balsamiq.cloud/).
 ![main screen](readme-images/wireframe-main.jpeg)
 ![game screens](readme-images/wireframe-game.jpeg)
@@ -50,7 +50,7 @@ Wireframes were created in [Balsamiq](https://balsamiq.cloud/).
 Seven colours were needed to colour the countries on the map. They were chosen to be vibrant to convey playfulness, yet uniform in tone to have a professional feel.
 <br>
 Colours for correct and incorrect feedback were chosen for their brightness to raise the player's attention.
-<br>
+<br><br>
 
 ![Colour palette:](readme-images/colour-palette.jpeg)
 
@@ -63,7 +63,7 @@ I selected the font named [Nunito](https://fonts.google.com/specimen/Nunito) fro
 
 ## Map Style
 
-**Mapbox** allows to custom style its maps in [Mapbox Studio](https://studio.mapbox.com/). I used the freely available 'country-boundaries-v1' tileset and coloured the countries with the chosen colours with the help of the tileset's color-group property. This property makes sure that no adjacent countries will be coloured the same.
+**Mapbox** allows to custom style its maps in [Mapbox Studio](https://studio.mapbox.com/). I used the freely available [country-boundaries-v1](https://studio.mapbox.com/tilesets/mapbox.country-boundaries-v1) tileset and coloured the countries with the chosen colours with the help of the tileset's color-group property. This property makes sure that no adjacent countries will be coloured the same.
 <br><br>
 
 ## Icons
@@ -77,9 +77,9 @@ For **favicons**, I created a small version of the intro image in [Figma](https:
 
 The main data source for this project is [Mapbox's country-boundaries-v1](https://studio.mapbox.com/tilesets/mapbox.country-boundaries-v1) tileset. The tileset's countries and territories are defined in the ISO 3166-1 country code standard, including alternate worldviews. I filter for some of the conflicting worldviews in order to avoid ambiguity. Data in this tileset is based on information obtained from officially recognized local or international entities. The displayed country boundaries, the identification of countries / territories as well as the displayed names over the selected countries are coming from this dataset.
 
-Mapbox does not (freely) allow to download this dataset in a searchable format, so I needed to source this information from elswhere. I used [Annexare Studio's open source data (MIT License, Copyright (c) 2014 Annexare Studio)](https://github.com/annexare/Countries/blob/master/data/countries.json) to transform into a dataset I can use. After having transformed and filtered this data, I use it for asking the 10 random countries from the selected region.
+Mapbox does not (freely) allow to download this dataset in a searchable format, so I needed to source this information from elswhere. I used [Annexare Studio's open source data (MIT License, Copyright (c) 2014 Annexare Studio)](https://github.com/annexare/Countries/blob/master/data/countries.json) for this purpose. After having transformed and filtered this data, I use it for asking the 10 random countries from the selected region.
 
-The third dataset I use is [another open source dataset assembled by Gavin Rehkemper (MIT Licence, Copyright (c) 2021 Gavin Rehkemper)](https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson). It contains the centroid positions for all countries which I need to display the countries' names over the selected countries as well as to fly the map to this location after an incorrect country choice.
+The third dataset used is [another open source dataset assembled by Gavin Rehkemper (MIT Licence, Copyright (c) 2021 Gavin Rehkemper)](https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson). It contains the centroid positions for all countries which I need to display the countries' names over the selected countries as well as to fly the map to this location after an incorrect country choice.
 
 <br><br>
 
@@ -88,40 +88,44 @@ The third dataset I use is [another open source dataset assembled by Gavin Rehke
 ## Landing Page
 
 When visiting the first time, it takes a while (depending on network speed) to load all source code and tilesets from Mapbox. While waiting for loading, a subtle animation is used to fill the time. Once the map is ready, it appears on the sceen and the game can be started with the `PLAY` button.
-<br>
+<br><br>
 ![loading-image](readme-images/loading.jpeg) 
 ![loaded-page](readme-images/map-it-mobile.jpeg) 
 <hr>
-
+<br><br>
 ## Instructions
 
 The first time a user visits the site, an animation gives brief instructions on how to play the game. Later on, the animation will not show again but the instructions will be available when clicking the question mark icon in the top right corner. In case the user clears up the site's localStorage, the animation will show again as if they were visiting for the first time.
-<br>
+<br><br>
 ![instructions](readme-images/insturctions.gif)
 <br>
 <hr>
+<br><br>
 
 ## Choosing a region
 
-The first step in the game is to choose which region the player wants to test their knowledge on. Once chosen, an animation will bring the map closer to that region. The region's countries become selectable while all countries outside the region become blurred.<br>
+The first step in the game is to choose which region the player wants to test their knowledge on. Once chosen, an animation will bring the map closer to that region. The region's countries become selectable while all countries outside the region become blurred.
+<br><br>
 ![choose-a-region](readme-images/choose-a-region.jpeg)
 ![find-the-country](readme-images/find-the-country.jpeg)
 <br>
 <hr>
+<br><br>
 
 ## Choosing a country
 
 The player has to select the country that appears in the top. If the selection is correct, the country is coloured green and a green checkmark signals that the score has been registered. In case the selection is incorrect, the country becomes red and an animation flies the map to the correct country. This feedback allows the player to improve their knowledge.
-<br>
+<br><br>
 ![correct-country](readme-images/correct-country.gif)
 ![incorrect-country](readme-images/incorrect-country.gif)
-<br><br>
+<br>
 <hr>
+<br><br>
 
 ## Scores
 
 After 10 countries were chosen, the score gets displayed. For the first time, this is all the feedback the user is given but from the second round on, a `View your best scores here` button appears which can be clicked to display the user's best scores. The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores will be lost.
-<br>
+<br><br>
 
 ![your-score](readme-images/your-score.jpeg)
 ![best-scores](readme-images/best-scores.jpeg)
@@ -130,7 +134,7 @@ After 10 countries were chosen, the score gets displayed. For the first time, th
 
 ## Cross-platform interactivity
 
-The game supports both desktop and mobile device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on touchscreen only devices the user can only interact with the map through touch methods. The program does not support both mouse/trackpad and touchscreen interactions simultaniously.
+The game supports both desktop and mobile device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on 'touchscreen only' devices the user can only interact with the map through touch methods. The program does not support both mouse/trackpad and touchscreen interactions simultaniously.
 
 In case of the presence of a mouse/trackpad: 
 * a hovering effect is being applied, 
@@ -139,7 +143,7 @@ In case of the presence of a mouse/trackpad:
   - scrolling to zoom and grab-and-drag with a mouse, 
   - two-finger zoom and double-tap-drag with a trackpad. In this scenario, the user has to double tap over an area which is not a selectable country, otherwise it gets selected. I recognise that this function clash is not ideal, I refer to this issue in the bugs section.
 
-In case of a mouse/trackpad is not available, it is assumed that the device is a touchscreen. In this case:
+In case of a mouse/trackpad not being available, it is assumed that the device is a touchscreen. In this case:
 * a firm tap or a slightly longer than usual (50ms long) tap is required to select a country.
 * zooming in and out as well as panning the map is available in the usual ways.
   - zooming in and out with two or more fingers,
@@ -150,7 +154,7 @@ In case of a mouse/trackpad is not available, it is assumed that the device is a
 
 ## Future Implementations
 <br>
-This project could be converted into a React project to bring it in line with industry standards. It could also be converted to native mobile apps.
+This project could be converted into a React project to bring it in line with industry standards. It could also be converted to native mobile apps. These would improve the app's performance.
 <br><br>
 More robust testing suite could be written. Interactions with the Mapbox GL JS API are not currently part of the automatic testing functions.
 <br><br>
@@ -213,11 +217,11 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript), 
 
 * [Figma](https://www.figma.com/)  - to create colour palette and image for favicon.
 
-* [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/)  - to generate dark mode responsive favicons.
+* [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/)  - to generate favicons.
 
 * [Am I Responsive?](https://ui.dev/amiresponsive)  - to create site visuals for responsive design.
 
-* [Gyazo](https://gyazo.com)  - for adding .gif files to this README file.
+* [Gyazo](https://gyazo.com)  - for adding `.gif` files to this README file.
 
 * [Git](https://git-scm.com/) & [Github](https://github.com/)  - for version control, safe storage and deployment.
 
@@ -283,7 +287,7 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 # Testing
 
-Refer to [TESTING.md](TESTING.md) for information on testing.
+Deatiled testing documents can be found at [TESTING.md](TESTING.md).
 
 ---
 <br><br>
