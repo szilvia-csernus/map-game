@@ -1,10 +1,16 @@
 import { showHighScores } from "./high-scores.js";
 import { restartRound } from "./round.js";
 
+export let hasMouseFn = false;
+
 /** creates play button and adds to document */
 export const addPlayBtn = (callback) => {
     $('body').append('<div id="playBtn" class="playBtn">PLAY</div>');
     $('#playBtn').click(callback);
+    $('#playBtn').mouseup(() => {
+        hasMouseFn = true;
+        console.log(hasMouseFn)
+    });
 };
 
 export const removePlayBtn = () => {

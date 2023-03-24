@@ -17,7 +17,7 @@ export const initialZoom = () => {
     }
 };
 
-// exclude disputed areas as well as worldviews with ambiguous interests:
+// exclude disputed areas as well as worldviews with conflicting interests:
 // Russia regarding Crimea, Serbia regarding Kosovo, 
 // Morocco regarding Western Sahara and  
 // Argentina regarding Falkland Islands.
@@ -58,6 +58,7 @@ const createMapObject = (callback) => {
             minZoom: 1,
             maxZoom: 7,
             center: [50, 40],
+            interactive: false,
             attributionControl: false,
             dragPan: false,
             scrollZoom: false,
@@ -115,6 +116,12 @@ export const startGame = (map) => {
     });
     addRotation(map);
 };
+
+$(document).ready(function(){
+    $('button').dblclick(function(e){
+      e.preventDefault();
+    });
+  });
 
 // only create map object if within allowance.
 firewall( () => {

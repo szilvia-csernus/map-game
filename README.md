@@ -110,7 +110,7 @@ The player has to select the country that appears in the top. If the selection i
 
 ## Scores
 
-After 10 countries were chosen, the screen displays the score. For the first time, this is all the feedback the user is given but from the second round on, a `View your best scores here` button appears which can be clicked to display the user's best scores. The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores will be lost.
+After 10 countries were chosen, the score gets displayed. For the first time, this is all the feedback the user is given but from the second round on, a `View your best scores here` button appears which can be clicked to display the user's best scores. The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores will be lost.
 <br>
 
 ![your-score](readme-images/your-score.jpeg)
