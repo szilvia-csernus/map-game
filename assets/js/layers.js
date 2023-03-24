@@ -15,7 +15,7 @@ import {
     worldviewFilters
 } from "./index.js";
 import {
-    hasMouseFn
+    isMobile
 } from "./buttons.js";
 
 /** adds hover-change layer to the map. Used on non-mobile devices.  */
@@ -320,7 +320,7 @@ export function mouseLeaveHoverEventListenerHandler() {
 
 export const addDesktopEventListeners = (map) => {
 
-    if (map.getLayer('country-hover') && hasMouseFn) {
+    if (map.getLayer('country-hover') && !isMobile) {
         map.on('mousemove', `country-hover`, mouseMoveHoverEventListenerHandler);
         map.on('mouseleave', 'country-hover', mouseLeaveHoverEventListenerHandler);   
     }

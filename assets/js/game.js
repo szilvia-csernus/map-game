@@ -18,7 +18,7 @@ import {
 } from './how-to-play.js';
 import { stopSpin } from './spin.js';
 
-import { hasMouseFn } from './buttons.js';
+import { isMobile } from './buttons.js';
 
 // safely use localStorage item.
 export const visitedBefore = window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
@@ -66,7 +66,7 @@ const addClickListenersToRegionBtns = (map) => {
         })
     }
 
-    hasMouseFn ? addHoverLayer(map) : addTouchLayer(map);
+    isMobile ? addTouchLayer(map) : addHoverLayer(map);
 
     addFlyOnClick($('#europeBtn'), 'Europe', centerCoordinates.europe , 3.5)
     addFlyOnClick($('#asiaBtn'), 'Asia', centerCoordinates.asia , 2.5)
@@ -90,9 +90,9 @@ export const game = (map) => {
     if (!visitedBefore && firstTime) {
         firstTime = false;
         window.localStorage.setItem('visitedBefore', 'true');
-        addHowToPlay(hasMouseFn, false, continueFunction);
+        addHowToPlay(isMobile, false, continueFunction);
     } else {
-        addHowToPlayIcon(hasMouseFn)
+        addHowToPlayIcon(isMobile)
         continueFunction()
     }
 }
