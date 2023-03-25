@@ -13,13 +13,15 @@
   "keywords": [
     "map",
     "countries",
-    "capitals",
     "game"
   ],
-  "author": "Szilvia Csernus",
+  "author": "Szilvia Csernusne Berczes",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/szilvia-csernus/map-game/issues"
   },
-  "homepage": "https://github.com/szilvia-csernus/map-game#readme"
+  "homepage": "https://github.com/szilvia-csernus/map-game#readme",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
 }

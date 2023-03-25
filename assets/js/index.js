@@ -96,7 +96,7 @@ const addTilesetSource = (map) => {
     });
 };
 
-const addIntroAnimation = () => {
+const addMapIntroAnimation = () => {
     $('.map').addClass('animate-appear-map');
 };
 
@@ -128,7 +128,7 @@ export const startGame = (map) => {
 firewall( () => {
     $('#preMapContainer').remove();
     createMapObject((map) => {
-        addIntroAnimation();
+        addMapIntroAnimation();
         startGame(map);
     });
 });
