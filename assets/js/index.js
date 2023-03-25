@@ -117,14 +117,16 @@ export const startGame = (map) => {
     addRotation(map);
 };
 
-$(document).ready(function(){
-    $('button').dblclick(function(e){
-      e.preventDefault();
-    });
-  });
+
+// $(document).ready(function(){
+//     $('button').dblclick(function(e){
+//       e.preventDefault();
+//     });
+//   });
 
 // only create map object if within allowance.
 firewall( () => {
+    $('#preMapContainer').remove();
     createMapObject((map) => {
         addIntroAnimation();
         startGame(map);
