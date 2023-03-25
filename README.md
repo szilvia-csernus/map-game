@@ -306,6 +306,9 @@ http://bboxfinder.com/
 * Clamp() calculator for responsive font sizes:
 https://grizhlie-clamp-calculator.netlify.app/
 
+* For the intro animation I used:
+https://css-tricks.com/animating-with-clip-path/
+
 <br>
 
 ## Icons

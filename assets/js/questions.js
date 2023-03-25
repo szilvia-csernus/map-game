@@ -67,7 +67,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
     let startX, startY, startTime, endX, endY, endTime, force;
 
     touchEndFunction = (endEvent) => {
-        // map.off('touchend', 'country-touch', touchEndFunction);
+        map.off('touchend', 'country-touch', touchEndFunction);
         endX = endEvent.point.x;
         endY = endEvent.point.y;
         endTime = endEvent.originalEvent.timeStamp;
@@ -117,7 +117,9 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
     };
 
     map.on('touchstart', 'country-touch', touchStartFunction);
-    // if another event cancels the touch event
+    // If another event cancels the touch event the default would be to jump back within the code when the player returns.
+    // This default behaviour messes up the event listeners & game flow.
+    // Tried to prevent this with preventDefault() and while it works in most cases doesn't always work for unknown reasons. 
     map.on('touchcancel', e => e.preventDefault());
 
 };
