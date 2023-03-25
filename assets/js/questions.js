@@ -67,7 +67,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
     let startX, startY, startTime, endX, endY, endTime, force;
 
     touchEndFunction = (endEvent) => {
-        map.off('touchend', 'country-touch', touchEndFunction);
+        // map.off('touchend', 'country-touch', touchEndFunction);
         endX = endEvent.point.x;
         endY = endEvent.point.y;
         endTime = endEvent.originalEvent.timeStamp;
@@ -82,7 +82,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
             // if tap was not rather a swipe..
             distance < 10 && 
             // if tap was longer than 50ms or was a strong tap 
-            ((endTime - startTime) > 50 || force > 0.8)
+            ((endTime - startTime) > 50 || force > 0.6)
             )
 
         {
@@ -112,13 +112,16 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
         force = startEvent.originalEvent.targetTouches[0].force ? startEvent.originalEvent.targetTouches[0].force : 0;
 
         if (!moreFingersTouch) {
-            map.on('touchend', 'country-touch', touchEndFunction);
+            map.once('touchend', 'country-touch', touchEndFunction);
         } 
     };
 
     map.on('touchstart', 'country-touch', touchStartFunction);
     // if another event cancels the touch event
-    map.on('touchcancel', 'country-touch', restartGame);
+    map.on('touchcancel', function(map) {
+        restartGame(map);
+        return map.off('touchcancel', this);
+    });
 
 };
 
