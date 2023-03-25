@@ -118,10 +118,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 
     map.on('touchstart', 'country-touch', touchStartFunction);
     // if another event cancels the touch event
-    map.on('touchcancel', function(map) {
-        restartGame(map);
-        return map.off('touchcancel', this);
-    });
+    map.on('touchcancel', e => e.preventDefault());
 
 };
 
