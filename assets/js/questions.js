@@ -55,6 +55,8 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
     map.on('dblclick', 'country-hover', setDblClickFeedbackLayer);
 };
 
+// define these functions on the global scope so later can be referenced in exit.js when we
+// want to remove them from the event listeners.
 export let touchStartFunction = () => {};
 export let touchEndFunction = () => {};
 
@@ -82,7 +84,7 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
             // if tap was not rather a swipe..
             distance < 10 && 
             // if tap was longer than 50ms or was a strong tap 
-            ((endTime - startTime) > 50 || force > 0.6)
+            ((endTime - startTime) > 50 || force > 0.5)
             )
 
         {
@@ -117,11 +119,6 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
     };
 
     map.on('touchstart', 'country-touch', touchStartFunction);
-    // If another event cancels the touch event the default would be to jump back within the code when the player returns.
-    // This default behaviour messes up the event listeners & game flow.
-    // Tried to prevent this with preventDefault() and while it works in most cases doesn't always work for unknown reasons. 
-    map.on('touchcancel', e => e.preventDefault());
-
 };
 
 /** remove previously clicked country's layers and add updated event listeners */
