@@ -65,56 +65,53 @@ html, body, section, article, h1, h2, p, a, button, ul {
     margin: 0;
   }
 
-  .preMap {
+  .preMapContainer {
     position: absolute;
     align-self: center;
     width: 18rem;
     height: 18rem;
-    border-radius: 50%;
-    background: radial-gradient(circle, white 10%, var(--primary-color) 60%);
-    background-position: center;
-    background-repeat: no-repeat;
-    animation: scaleCircle 4s ease-in forwards;
-    opacity: 0;
-    overflow: hidden;
+    
+    clip-path: circle(50% at 50% 50%);
+    
+  }
+
+  .preMap {
+    position: absolute;
+    top: -5rem;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    
+    background: radial-gradient(circle, white 10%, var(--primary-color) 50%);
+    background-size: 400%;
+    animation: moveBackground 10s ease-in-out infinite;
+
   }
 
   @media screen and (min-width: 414px) {
-    .preMap {
+    .preMapContainer{
       width: 24rem;
       height: 24rem;
     }
   }
 
   @media screen and (min-width: 600px) {
-    .preMap {
+    .preMapContainer {
       width: 33rem;
       height: 33rem;
     }
   }
 
-  @keyframes scaleCircle {
+  @keyframes moveBackground {
     0% {
-      opacity: 0;
-      transform: scale(1,1);
+      background-position: right;
     }
+
     100% {
-      opacity: .8;
-      transform: scale(1.8,1.8);
+      background-position: left;
     }
     
   }
-  /* @keyframes scaleCircle {
-    0% {
-      opacity: 0;
-      transform: scale(0.7, 0.7);
-    }
-    100% {
-      opacity: .9;
-      transform: scale(1,1)
-    }
-    
-  } */
   
   .error {
     color: var(--main-font-color);
@@ -205,8 +202,8 @@ html, body, section, article, h1, h2, p, a, button, ul {
   color: rgba(0,0,0,.75)
 }
 
-.mapbox-improve-map {
+/* .mapbox-improve-map {
   display: none;
-}
+} */
   
   
