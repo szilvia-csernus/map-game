@@ -30,7 +30,6 @@ export const resetMap = (map) => {
     map.off('dblclick', 'country-hover', setDblClickFeedbackLayer);
     map.off('touchstart','country-touch', touchStartFunction);
     map.off('touchend','country-touch', touchEndFunction);
-    // map.off('touchcancel', restartGame);
 
     marker && marker.remove();
 
