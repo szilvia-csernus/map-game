@@ -32,8 +32,8 @@ const showScore = (map, score, region, num) => {
     }
 
     if (highScore < score) {
-        window.localStorage.setItem(region, score)
-    };
+        window.localStorage.setItem(region, score);
+    }
 
     $('h1').empty().removeClass('question').addClass('choose').text(`${text} Score: ${score} / ${num}`);
     $('#countryLabel').remove();

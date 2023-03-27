@@ -88,4 +88,3 @@ const addExitBtn = (map) => {
 export const addExit = (map) => {
     addExitBtn(map);
 };
-
