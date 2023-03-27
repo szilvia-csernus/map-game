@@ -7,14 +7,24 @@
 | [game.js file validation](testing-images/jshint-game-js.jpeg) |  No warnings. |
 | [round.js file validation](testing-images/jshint-round-js.jpeg)| No warnings. |
 | [questions.js file validation](testing-images/jshint-questions-js.jpeg)| ES7+ features were flagged due to JSHint testing code against ES6. |
-| [firewall.js file validation](testing-images/jshint-firewall-js.jpeg)| emailjs variable is flagged as undeclared, although it is declared in the EmailJS API. |
+| [firewall.js file validation](testing-images/jshint-firewall-js.jpeg)| `emailjs` variable is flagged as undeclared, although it is declared in the EmailJS API. |
 | [high-scores.js file validation](testing-images/jshint-high-scores-js.jpeg)| No warnings. |
 | [how-to-play.js file validation](testing-images/jshint-how-to-play-js.jpeg)| No warnings. |
-| [layers.js file validation](testing-images/jshint-layers-js.jpeg)| mapboxgl variable is flagged as undeclared, although it is declared in the Mapbox GLJS API. |
+| [layers.js file validation](testing-images/jshint-layers-js.jpeg)| `mapboxgl` variable is flagged as undeclared, although it is declared in the Mapbox GL JS API. |
 | [spin.js file validation](testing-images/jshint-spin-js.jpeg)| No warnings. |
 | [timeout.js file validation](testing-images/jshint-timeout-js.jpeg)| No warnings. |
 | [buttons.js file validation](testing-images/jshint-buttons-js.jpeg)| No warnings. |
 | [exit.js file validation](testing-images/jshint-exit-js.jpeg)| No warnings. |
+<br><br>
+
+| W3C Result | Passed without errors |
+| :--- | :---: | 
+| [index.html file validation](testing-images/W3C-index-html.pdf) | &check; |
+| [no-support.html file validation](testing-images/W3C-no-support-html.pdf) | &check; |
+| [404.html file validation](testing-images/W3C-404-html.pdf) | &check; |
+| [error.html file validation](testing-images/W3C-error-html.pdf) | &check; |
+| [first.css file validation](testing-images/W3C-first-css.pdf) | &check; |
+| [style.css file validation](testing-images/W3C-style-css.pdf) | &check; |
 
 
 - - -
@@ -25,25 +35,40 @@
 
 ## Site Owner's Goals
 
-* The game should test the players' knowledge on the world's countries.
-* The game should be visually appealing.
-* It should give simple, clear instructions.
-* The countries should be visually distinguishable.
-* It should include animations to raise interest.
-* It should be interactive.
-* Player should be given feedback about the chosen country.
-* High scores should be retained in the browser if settings allow.
-* The game should look well and run on a wide range of devices.
+* The game should test the players' knowledge on the world's countries. -
+    - The game tests the user's knowledge on 166 countries.
+* The game should be visually appealing. -
+    - Vibrant colour scheme was used to raise interest.
+* It should give simple, clear instructions. -
+    - Instructions are short and simple sentences. The game rules are simple enough to guess without instructions.
+* The countries should be visually distinguishable. -
+    - Seven colours, as well as white borders were used to mark each country.
+* It should include animations to raise interest. -
+    - There are a number of animations throughout the game. The first is when waiting for the globe to appear, then the rotating globe, the instructions modal, the flying effects to bring the given region / country closer, the checkmarks and country names 'bump' to draw attention, the appearing of buttons and high-score modal are all animated.
+* It should be interactive. -
+    - The user is given instructions and feedback throughout the game and actively has to interact with the it.
+* Player should be given feedback about the chosen country. -
+    - Player is given feedback about the country selection: If it was correct, the country's colour turns green as well as a green checkmark appears while in case the choice was incorrect the country turns red and a red cross marks the missed choice. A flying animation flies the user to the correct country, which will be marked with a green border. The countries names are rendered over the map in all cases. 
+* High scores should be retained in the browser if settings allow. -
+    - High scores are stored in localStorage, which retains its values until the user clears them.
+* The game should look well and run on a wide range of devices. -
+    - The game is designed to be enjoyable on a wide range of devices including mobile phones, tablets, laptops and desktops.
 
 
 ## Players' Goals
 
-* The game should be fun to play.
-* Countries should be colourful and easy to recognise.
-* The rules should be easy to follow.
-* It should give feedback about the chosen country.
-* It should retain high scores.
-* The game should look well and run on a wide range of devices.
+* The game should be fun to play. -
+    - Feedback from testing shows that players enjoyed the game. Testers' age were between late teens to late 70s.
+* Countries should be colourful and easy to recognise. -
+    - Testers had no problem recognising the countries' shapes on the map, due to the number of colours that were used to colour them.
+* The rules should be easy to follow. -
+    - Feedback from testing shows that players found the game easy to understand.
+* It should give feedback about the chosen country. -
+    - Player is given feedback about the country selection: If it was correct, the country's colour turns green as well as a green checkmark appears, while in case the choice was incorrect the country turns red and a red cross marks the missed choice. A flying animation brings the the correct country closer, which will be marked with a green border. The countries' names are rendered over the map in all cases. 
+* It should retain high scores. -
+    - High scores are stored in localStorage, which retains its values until the user clears them.
+* The game should look well and run on a wide range of devices. -
+    - The game is designed to be enjoyable on a wide range of devices including mobile phones, tablets, laptops and desktops.
 
 - - -
 <br><br>
@@ -66,6 +91,17 @@
 ![visual-impairment-8](testing-images/visual-impairment-8.jpeg)
 
 
+# Test Cases
+
+## Functionality
+
+## Appearence
+
+## Touch functions
+
+## Mouse functions
+
+## Performance
 
 
 # Browser Tests
