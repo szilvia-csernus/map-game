@@ -164,7 +164,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
             paint: {
-                'fill-color': "#2cf32c"
+                'fill-color': "#00D700"
             },
             source: "country-boundaries",
             'source-layer': "country_boundaries",
@@ -187,7 +187,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
             minzoom: minZoom(map),
             maxzoom: maxZoom(map),
             paint: {
-                'fill-color': "#ff0000"
+                'fill-color': "#D60000"
             },
             source: "country-boundaries",
             'source-layer': "country_boundaries",

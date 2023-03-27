@@ -65,9 +65,11 @@ const addClickListenersToRegionBtns = (map) => {
                 map.setFilter('country-touch', ['==', ['get', 'region'], region]);
             }
 
-            if (!map.getLayer('country-blur') && addBlurLayer(map)) {
-                map.setFilter('country-blur', ['!=', ['get', 'region'], region]);
+            if (!map.getLayer('country-blur')) { 
+                addBlurLayer(map);
             }
+            map.setFilter('country-blur', ['!=', ['get', 'region'], region]);
+            
 
             // add event listeners to the filtered region of the map
             addDesktopEventListeners(map);
