@@ -1,13 +1,15 @@
 # map it!
 
-> Interactive game built for the web, written in HTML, CSS, JavaScript and JQuery, utilising the [Mapbox GL JS API](www.mapbox.com).
+Interactive front-end game built for the web, written in HTML, CSS, JavaScript and JQuery, utilising the [Mapbox GL JS API](www.mapbox.com).
+
 ---
-### [View the live project here](https://szilvia-csernus.github.io/map-game/)
+
+## [View the live project here](https://szilvia-csernus.github.io/map-game/)
 ---
 
 ![Landing page](readme-images/mockup.jpeg)
 
-> This project was created for [Code Institute](www.codeintitute.net)'s Web Development Course as the Second Milestone Project - Interactive Frontend Development Project - for assessment purposes.
+> This project was created for [Code Institute](www.codeintitute.net)'s Web Development Course as the Second Milestone Project (MS2) - Interactive Frontend Development Project - for assessment purposes.
 <br><br>
 Not for public use.
 <br><br>
@@ -136,7 +138,7 @@ The player has to select the country that appears in the top. If the selection i
 
 ## Scores
 
-After 10 countries were chosen, the score gets displayed. For the first time, this is all the feedback the user is given but from the second round on, a `View your best scores here` button appears which can be clicked to display the user's best scores. The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores will be lost.
+After 10 countries have been chosen, the score is displayed. For the first time, this is all the feedback the user is given but from the second round on, a `View your best scores here` button appears which can be clicked to display the user's best scores. The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores would be lost.
 <br><br>
 
 ![your-score](readme-images/your-score.jpeg)
@@ -144,33 +146,33 @@ After 10 countries were chosen, the score gets displayed. For the first time, th
 <br><br>
 <hr>
 
-## Cross-platform interactivity
+## Cross-platform usability
 
-The game supports both desktop and mobile device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on 'touchscreen only' devices the user can only interact with the map through touch methods. The program does not support both mouse/trackpad and touchscreen interactions simultaniously.
+The game supports both desktop and mobile device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on 'touchscreen only' devices the user can only select countries through touch methods. This differenciation was needed in order to allow all zooming and panning functionalities on the map. 
 
 In case of the presence of a mouse/trackpad: 
 * a hovering effect is being applied, 
 * double clicking / double tapping is required to select a country, 
 * zooming in and out of the map as well as panning is available depending on the tool used: 
-  - scrolling to zoom and grab-and-drag with a mouse, 
-  - two-finger zoom and double-tap-drag with a trackpad. In this scenario, the user has to double tap over an area which is not a selectable country, otherwise it gets selected. I recognise that this function clash is not ideal, I refer to this issue in the bugs section.
+  - scrolling to zoom and grab-and-pan with a mouse, 
+  - two-finger zoom and double-tap-pan with a trackpad.
 
 In case of a mouse/trackpad not being available, it is assumed that the device is a touchscreen. In this case:
 * a firm tap or a slightly longer than usual (50ms long) tap is required to select a country.
 * zooming in and out as well as panning the map is available in the usual ways.
   - zooming in and out with two or more fingers,
-  - panning and rotating the map with sustained and moving touch.
+  - panning and rotating the map with sustained and moving touch with one or more fingers.
 
 <br><br>
 <hr>
 
 ## Future Implementations
 <br>
-This project could be converted into a React project to bring it in line with industry standards. It could also be converted to native mobile apps. These would improve the app's performance.
+This project could be converted into a React project or into native mobile apps to bring it in line with industry standards. These would improve the app's performance as well.
 <br><br>
-More robust testing suite could be written. Interactions with the Mapbox GL JS API are not currently part of the automatic testing functions.
+Automatic testing with Cypress, to which support is provided by Mapbox. 
 <br><br>
-There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. A new option with the US states could be part of the game too.
+There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. Worldviews could be a dynamic feature depending on location of the user. A new option with the US states could be part of the game too.
 
 <br>
 ---
@@ -184,18 +186,7 @@ There are many options to widen the game's functionality. Capital cities, flags 
 * Icons are labelled with `aria-labels`.
 * Chrome Dev Tools' Lighthouse score is 100% for accessibility for both mobile and desktop devices. 
 
-* [Mapbox Studio](https://studio.mapbox.com/) allows to test map designs for 8 types of visual impairments. This is how the map looks across all tests:
-<br>
-
-![visual-impairment-1](readme-images/visual-impairment-1.jpeg)
-![visual-impairment-2](readme-images/visual-impairment-2.jpeg)
-![visual-impairment-3](readme-images/visual-impairment-3.jpeg)
-![visual-impairment-4](readme-images/visual-impairment-4.jpeg)
-![visual-impairment-5](readme-images/visual-impairment-5.jpeg)
-![visual-impairment-6](readme-images/visual-impairment-6.jpeg)
-![visual-impairment-7](readme-images/visual-impairment-7.jpeg)
-![visual-impairment-8](readme-images/visual-impairment-8.jpeg)
-
+* [Mapbox Studio](https://studio.mapbox.com/) allows to test map designs for 8 types of visual impairments. The result of these tests can be found in [TESTING.md](./TESTING.md#accessibility).
 
 <br><br>
 
@@ -231,7 +222,7 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript), 
 
 * [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/)  - to generate favicons.
 
-* [Multi Device Website Mocup](https://techsini.com/multi-mockup/index.php)  - to create site visuals for responsive design.
+* [Multi Device Website Mockup](https://techsini.com/multi-mockup/index.php)  - to create site visuals for responsive design.
 
 * [Gyazo](https://gyazo.com)  - for adding `.gif` files to this README file.
 
@@ -299,7 +290,7 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 # Testing
 
-Deatiled testing documents can be found at [TESTING.md](TESTING.md).
+Deatiled testing processes are documented in [TESTING.md](TESTING.md).
 
 ---
 <br><br>
