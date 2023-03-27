@@ -146,6 +146,21 @@ After 10 countries have been chosen, the score is displayed. For the first time,
 <br><br>
 <hr>
 
+## Error pages
+
+Three types of error messages can be deivered to the user depending on the issue 
+* a `404 (not found) page` in case of an invalid url was typed in, 
+* a `no-support page` in case the user uses an old browser that does not support Mapbox GL GS,
+* an `error page` in case there is a problem with the connection to the Mapbox API. 
+<br>
+
+![404.html](readme-images/404-html.jpeg)
+![no-support.html](readme-images/no-support-html.jpeg)
+![error.html](readme-images/error-html.jpeg)
+
+<br><br>
+<hr>
+
 ## Cross-platform usability
 
 The game supports both desktop and mobile device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on 'touchscreen only' devices the user can only select countries through touch methods. This differenciation was needed in order to allow all zooming and panning functionalities on the map. 
