@@ -205,7 +205,7 @@
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  filter: drop-shadow(0 0 10px var(--primary-color));
+  filter: drop-shadow(0 0 10px black);
   animation: bump 1s ease-in-out;
 }
 
@@ -214,7 +214,7 @@
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  filter: drop-shadow(0 0 10px var(--primary-color));
+  filter: drop-shadow(0 0 10px black);
   animation: bump 1s ease-in-out;
 }
 
@@ -278,7 +278,7 @@
   padding: 0;
   color: var(--primary-color);
   font-family: var(--main-font-family);
-  filter: drop-shadow(3px 3px 30px white);
+  filter: drop-shadow(0 0 10px white);
   font-weight: bold;
   font-size: var(--marker-font-size);
 }
