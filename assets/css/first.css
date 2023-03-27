@@ -117,11 +117,27 @@ html, body, section, article, h1, h2, p, a, button, ul {
   }
   
   .error {
+    position: absolute;
+    top: 5vh;
     color: var(--main-font-color);
     font-size: var(--country-font-size);
     text-align: center;
     line-height: 3rem;
     margin: 2rem;
+  }
+
+  .errorBtn {
+    position: absolute;
+    top: 35vh;
+    z-index: 1;
+    background-color: var(--transparent-bg-color);
+    font-size: var(--country-font-size);
+    font-weight: 700;
+    color: var(--main-font-color);
+    border: 1px solid var(--main-font-color);
+    cursor: pointer;
+    padding: .7rem 2rem;
+    border-radius: 2rem;
   }
 
   .title {
