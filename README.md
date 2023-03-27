@@ -1,12 +1,17 @@
-<h1>map it!</h1>
+# map it!
 
-> Interactive game built for the web. Fully responsive, written in HTML, CSS, JavaScript and JQuery, utilising the [Mapbox GL JS API](www.mapbox.com).
+> Interactive game built for the web, written in HTML, CSS, JavaScript and JQuery, utilising the [Mapbox GL JS API](www.mapbox.com).
 ---
-## [View the live project here](https://szilvia-csernus.github.io/map-game/)
-![Landing page](readme-images/amiresponsive.jpeg)
+### [View the live project here](https://szilvia-csernus.github.io/map-game/)
+---
 
-> This project was created for [Code Institute](www.codeintitute.net)'s Web Development Course as the Second Milestone Project. The brief was to build an interactive, front-end project using HTML, CSS and JavaScript, optionally using JQuery and/or any APIs.
-<br>
+![Landing page](readme-images/mockup.jpeg)
+
+> This project was created for [Code Institute](www.codeintitute.net)'s Web Development Course as the Second Milestone Project - Interactive Frontend Development Project - for assessment purposes.
+<br><br>
+Not for public use.
+<br><br>
+&copy; 2023 Szilvia Csernusne Berczes. All rights reserved.
 
 ---
 <br>
@@ -40,20 +45,27 @@
 
 # Wireframes
 <br>
-Wireframes were created in [Balsamiq](https://balsamiq.cloud/).
-![main screen](readme-images/wireframe-main.jpeg)
-![game screens](readme-images/wireframe-game.jpeg)
+
+Wireframes were created in [Balsamiq](https://balsamiq.cloud/). <br>
+
+![main screen](readme-images/balsamiq-wireframe-1.jpeg)<br>
+
+![game screens](readme-images/balsamiq-wireframe-2.jpeg)
 <br><br>
 
 ## Colour Scheme
 
-Seven colours were needed to colour the countries on the map. They were chosen to be vibrant to convey playfulness, yet uniform in tone to have a professional feel.
+Seven colours were needed to colour the countries on the map. I chose these vibrant colours to convey playfulness.
 <br>
 Colours for correct and incorrect feedback were chosen for their brightness to raise the player's attention.
 <br><br>
+Map colours: 
 
-![Colour palette:](readme-images/colour-palette.jpeg)
+![Map colours:](readme-images/map-colours.png)
 
+Background and feedback colours: 
+
+![Map colours:](readme-images/more-colours.png)
 <br><br>
 
 ## Typography
@@ -69,7 +81,7 @@ I selected the font named [Nunito](https://fonts.google.com/specimen/Nunito) fro
 ## Icons
 
 **Icons** for the exit and the info buttons as well as the checkmark and cross icons were downloaded from [svgrepo](https://svgrepo.com/). Credits to individual icons are given in the [credits](#credits) section. <br>
-For **favicons**, I created a small version of the intro image in [Figma](https://www.figma.com/) and used the [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/) to convert it to favicons.
+For **favicons**, I created a small logo in [Figma](https://www.figma.com/) and used the [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/) to convert it to favicons.
 
 <br><br>
 
@@ -77,9 +89,9 @@ For **favicons**, I created a small version of the intro image in [Figma](https:
 
 The main data source for this project is [Mapbox's country-boundaries-v1](https://studio.mapbox.com/tilesets/mapbox.country-boundaries-v1) tileset. The tileset's countries and territories are defined in the ISO 3166-1 country code standard, including alternate worldviews. I filter for some of the conflicting worldviews in order to avoid ambiguity. Data in this tileset is based on information obtained from officially recognized local or international entities. The displayed country boundaries, the identification of countries / territories as well as the displayed names over the selected countries are coming from this dataset.
 
-Mapbox does not (freely) allow to download this dataset in a searchable format, so I needed to source this information from elswhere. I used [Annexare Studio's open source data (MIT License, Copyright (c) 2014 Annexare Studio)](https://github.com/annexare/Countries/blob/master/data/countries.json) for this purpose. After having transformed and filtered this data, I use it for asking the 10 random countries from the selected region.
+Mapbox does not (freely) allow to download this dataset in a searchable format, so I needed to source this information from elswhere. I used [Annexare Studio's open source data (MIT License, Copyright (c) 2014 Annexare Studio)](https://github.com/annexare/Countries/blob/master/data/countries.json) for this purpose. After having transformed and filtered this dataset, I use it for asking the 10 random countries from the selected region.
 
-The third dataset used is [another open source dataset assembled by Gavin Rehkemper (MIT Licence, Copyright (c) 2021 Gavin Rehkemper)](https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson). It contains the centroid positions for all countries which I need to display the countries' names over the selected countries as well as to fly the map to this location after an incorrect country choice.
+The third dataset used is [another open source dataset assembled by Gavin Rehkemper (MIT Licence, Copyright (c) 2021 Gavin Rehkemper)](https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson). It contains the centroid positions for all countries which I needed to display the countries' names over the selected countries as well as to fly the map to this location after an incorrect country choice.
 
 <br><br>
 
@@ -219,7 +231,7 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript), 
 
 * [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/)  - to generate favicons.
 
-* [Am I Responsive?](https://ui.dev/amiresponsive)  - to create site visuals for responsive design.
+* [Multi Device Website Mocup](https://techsini.com/multi-mockup/index.php)  - to create site visuals for responsive design.
 
 * [Gyazo](https://gyazo.com)  - for adding `.gif` files to this README file.
 
@@ -306,9 +318,6 @@ http://bboxfinder.com/
 * Clamp() calculator for responsive font sizes:
 https://grizhlie-clamp-calculator.netlify.app/
 
-* For the intro animation I used:
-https://css-tricks.com/animating-with-clip-path/
-
 <br>
 
 ## Icons
@@ -337,6 +346,10 @@ which I also reference in the code.
 * Base code for hovering effect is adapted from [one of Mapbox's example codes](https://docs.mapbox.com/mapbox-gl-js/example/hover-styles/),
 which I also reference in the code.
 
+* For the intro animation I used ideas from:
+https://css-tricks.com/animating-with-clip-path/ - animating with clip-path
+https://www.youtube.com/watch?v=zadj2i5wUyc - animating with gradients by Colt Steele
+
 * Adding drop-shadow filter to svg icons:
 https://css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filters/
 <br><br>
@@ -362,8 +375,8 @@ I would like to thank the following contributors:
 ##  Disclaimer
 <br>
 
-This project was created for Code Institute's web application development course as the Second Milestone Project - Interactive Frontend Development Project - for assessment purposes. 
+This project was created for Code Institute's web application development course as the Second Milestone Project - Interactive Frontend Development Project - for assessment purposes. All parts of the project form the intellectual property of the developer.
 <br><br>
 Not for public use.
 <br><br>
-&copy; All rights reserved. Szilvia Csernusne Berczes, March 2023.
+&copy;2023 Szilvia Csernusne Berczes. All rights reserved. 
