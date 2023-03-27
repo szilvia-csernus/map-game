@@ -16,10 +16,18 @@ export const showHighScores = (map) => {
     $('#highScoresBackground').append(`<div id="highScoresCanvas" class="highScoresCanvas"></div>`);
     $('#highScoresCanvas').append(`<div id="highScoresTitle" class="highScoresTitle">Your best scores:</div>`);
 
-    europe && $('#highScoresCanvas').append(`<p class="score scoreEurope">Europe:  ${europe}</p>`);
-    asia && $('#highScoresCanvas').append(`<p class="score scoreAsia">Asia:  ${asia}</p>`);
-    africa && $('#highScoresCanvas').append(`<p class="score scoreAfrica">Africa:  ${africa}</p>`);
-    americas && $('#highScoresCanvas').append(`<p class="score scoreAmericas">Americas: ${americas}</p>`);
+    if (europe) {
+        $('#highScoresCanvas').append(`<p class="score scoreEurope">Europe:  ${europe}</p>`);
+    }
+    if (asia) {
+        $('#highScoresCanvas').append(`<p class="score scoreAsia">Asia:  ${asia}</p>`);
+    }
+    if (africa) {
+        $('#highScoresCanvas').append(`<p class="score scoreAfrica">Africa:  ${africa}</p>`);
+    }
+    if (americas) {
+        $('#highScoresCanvas').append(`<p class="score scoreAmericas">Americas: ${americas}</p>`);
+    }
     
     $('#highScoresCanvas').append($(`<button id="highScoresOkay" class="highScoresOkay">OK</button>`));
     $('#highScoresOkay').click(() => {

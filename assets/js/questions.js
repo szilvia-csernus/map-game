@@ -12,7 +12,7 @@ import {
 
 import { isMobile } from './buttons.js';
 import TimeOut from './timeout.js';
-import { disableMapInteraction, restartGame } from './exit.js';
+import { disableMapInteraction } from './exit.js';
 
 let score = 0;
 
@@ -42,8 +42,6 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
         clickEventHandler(event);
 
         // if clicked item has no id then we just ignore it.
-        console.log(event);
-        console.log(clickedCountryCode);
 
         if (clickedCountryCode) {
             map.off('dblclick', 'country-hover', setDblClickFeedbackLayer);
@@ -76,7 +74,6 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 
         // the distance btw the start and end of the touch action
         const distance = ((endX - startX) ** 2 + (startY - endY) ** 2) ** (1 / 2);
-        console.log('end event', endEvent);
         
         if (
             // if touch ended  with one finger only
@@ -89,12 +86,9 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
 
         {
             clickEventHandler(endEvent);
-            
-            console.log('taphold', clickedCountryCode, endTime - startTime);
 
             // if the tap was on a valid country
             if (clickedCountryCode) {
-                console.log(clickedCountryCode)
                 // don't listen to furter touches until next question
                 map.off('touchstart', 'country-touch', touchStartFunction);
 
@@ -105,7 +99,6 @@ const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback)
     };
 
     touchStartFunction = (startEvent) => {
-        console.log('start event', startEvent);
         const moreFingersTouch = (startEvent.originalEvent.touches.length > 1);
 
         startX = startEvent.point.x;
@@ -138,7 +131,9 @@ const getRandomCountryCodes = (countries, num) => {
     let randomCountryCodeIndex;
     while (codes.length < num) {
         randomCountryCodeIndex = Math.floor(Math.random() * countries.length);
-        !codes.includes(countries[randomCountryCodeIndex]) && codes.push(countries[randomCountryCodeIndex]);
+        if (!codes.includes(countries[randomCountryCodeIndex])) {
+            codes.push(countries[randomCountryCodeIndex]);
+        }
     }
     return codes;
 };
@@ -153,7 +148,7 @@ export const getQuestions = (region, num) => {
         const country = data[region][code];
         questions.push([code, country]);
     }
-    console.log(questions);
+
     return questions;
 };
 
@@ -162,7 +157,7 @@ const enableMapInteraction = (map) => {
     map.dragPan.enable();
     map.scrollZoom.enable();
     map.touchZoomRotate.enable();
-}
+};
 
 
 const oneQuestion = (map, code, country, region, callback) => {

@@ -14,7 +14,6 @@ export const firewall = callback => {
             // error message could be sent from here
         } else {
             fetchResponse.json().then(data => {
-                console.log(data.value);
                 if (data.value > 49000) {
                     window.location.href = '../error.html';
                     return;

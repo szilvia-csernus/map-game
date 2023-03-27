@@ -8,7 +8,7 @@ export const addPlayBtn = (callback) => {
     isMobile = false;
     $('body').append('<div id="playBtn" class="playBtn">PLAY</div>');
     $('#playBtn').click(callback);
-    $('#playBtn').on('touchstart', () => isMobile = true)
+    $('#playBtn').on('touchstart', () => isMobile = true);
 };
 
 export const removePlayBtn = () => {

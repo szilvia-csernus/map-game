@@ -28,7 +28,6 @@ export const addHowToPlayIcon = (isMobile) => {
         $('#questionMark').click(function () {
             // remove the icon so that user can't click it again when instructions are already rendered on the page.
             $('#questionMark').remove();
-            console.log('click event listener');
             addHowToPlay(isMobile, true);
         });
     }
