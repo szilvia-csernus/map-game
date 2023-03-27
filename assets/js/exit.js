@@ -31,7 +31,9 @@ export const resetMap = (map) => {
     map.off('touchstart','country-touch', touchStartFunction);
     map.off('touchend','country-touch', touchEndFunction);
 
-    marker && marker.remove();
+    if (marker) {
+        marker.remove();
+    }
 
     map.easeTo({
         zoom: initialZoom(),

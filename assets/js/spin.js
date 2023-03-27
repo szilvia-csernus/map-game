@@ -7,7 +7,7 @@ export const addRotation = (map) => {
     // from an example by mapbox.com:
     // https://docs.mapbox.com/mapbox-gl-js/example/globe-spin/
 
-    const secondsPerRevolution = 150; 
+    const secondsPerRevolution = 100; 
     spinEnabled = true;
 
     // keep rotating as long as stopSpin() gets fired which happens 

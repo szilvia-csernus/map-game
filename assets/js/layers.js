@@ -253,21 +253,17 @@ export const removeFeedbackLayer = (map) => {
     }
 
     // if there is already a marker on the map then remove it
-    marker && marker.remove();
+    if (marker) {
+        marker.remove();
+    }
 };
 
 export const clickEventHandler = (e) => {
     // if clicked item has no id the click won't register a clicked country.
-    console.log(e);
     if (e.features) {
         // filter for Crimea, Western Sahara and Falkland Islands that would otherwise incorrectly show up as part of Russia/Morocco/Argentina.
         clickedCountryCode = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].properties.iso_3166_1 : e.features[0].properties.iso_3166_1;
         clickedCountryName = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].properties.name_en : e.features[0].properties.name_en;
-
-        console.log(e.features, clickedCountryCode, clickedCountryName);
-    } else {
-        // resetClickedCountryCode()
-        console.log('there were no e.features ', e, clickedCountryCode);
     }
 };
 
