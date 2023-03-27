@@ -46,9 +46,15 @@ const addClickListenersToRegionBtns = (map) => {
             });
 
             // clear previous filters if any
-            if (map.getLayer('country-hover')) { map.setFilter('country-hover', null);}
-            if (map.getLayer('country-touch')) { map.setFilter('country-touch', null);}
-            if (map.getLayer('country-blur')) { map.setFilter('country-blur', null);}
+            if (map.getLayer('country-hover')) { 
+                map.setFilter('country-hover', null);
+            }
+            if (map.getLayer('country-touch')) { 
+                map.setFilter('country-touch', null);
+            }
+            if (map.getLayer('country-blur')) { 
+                map.setFilter('country-blur', null);
+            }
 
             // set hoverable filter for region and blur filter outside region
             if (map.getLayer('country-hover')) {
