@@ -65,27 +65,29 @@ html, body, section, article, h1, h2, p, a, button, ul {
     margin: 0;
   }
 
+  /* For the intro animation I used ideas from:
+  https://css-tricks.com/animating-with-clip-path/ - animating with clip-path
+  https://www.youtube.com/watch?v=zadj2i5wUyc - animating with gradients by Colt Steele */
+
+  /* creates a circle shaped "window"*/
   .preMapContainer {
     position: absolute;
     align-self: center;
     width: 18rem;
     height: 18rem;
-    
     clip-path: circle(50% at 50% 50%);
-    
   }
 
+  /* has oversized background */
   .preMap {
     position: absolute;
     top: -5rem;
     right: 0;
     width: 100vw;
     height: 100vh;
-    
     background: radial-gradient(circle, white 5%, var(--primary-color) 50%);
-    background-size: 500%;
+    background-size: 420%;
     animation: moveBackground 10s ease-in-out infinite;
-
   }
 
   @media screen and (min-width: 414px) {
@@ -102,6 +104,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
     }
   }
 
+  /* moving the oversized background */
   @keyframes moveBackground {
     0% {
       background-position: right;
@@ -201,9 +204,5 @@ html, body, section, article, h1, h2, p, a, button, ul {
 .developer {
   color: rgba(0,0,0,.75)
 }
-
-/* .mapbox-improve-map {
-  display: none;
-} */
   
   
