@@ -90,31 +90,82 @@
 ![visual-impairment-7](testing-images/visual-impairment-7.jpeg)
 ![visual-impairment-8](testing-images/visual-impairment-8.jpeg)
 
+<br><br>
 
-# Test Cases
-
-## Functionality
-
-## Appearence
-
-## Touch functions
-
-## Mouse functions
-
-## Performance
+# Manual Test Cases
 
 
-# Browser Tests
+| Test case code | load | click PLAY | click Exit | click Info | click any region | select any country 10x | select any country 5x | click Exit | click Info | click high scores | click New Game |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 001 | &check; | &check; | | | &check; | &check; | | | &check; | &check; | &check; |
+| 002 | &check; | &check; | | | &check; | | &check; | | &check; | | |
+| 003 |  | &check; | | | &check; | | &check; |  &check; | | | | 
+| 004 |  | &check; | &check; | | | | | | | | | | | | | 
+| 005 | | &check; | | | &check; | | | &check; | | | |
+| 006 |  | &check; | | | &check; | | | | &check; | | |
+| 007 | &check; | &check; | | &check; | | | | | 
 
+<br><br>
 
-| Browser | Version | Expected Behaviour |
-| :---: | :---: | :---: |
-| Chrome | 108.0.5359.124 |  &check; |
-| Chrome | 109.0.5414.83 |  &check; |
-| Safari | 15.6.1 | &check; |
-| Safari | iOS 16.1.1 | &check; |
-| Firefox | 108.1 (24234) |  &check; |
-| Edge | 108.0.1462.62 | &check; |
+| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
+| :---: | :---: | :---: | :---: | :---: | :---: | 
+| Chrome | 111.0.5563.110 | 001 | &check; | &check; | | 
+||| 002 |  &check; | &check; | |
+||| 003 |  &check; | &check; | |
+||| 004 |  &check; | &check; | |
+||| 005 |  &check; | &check; | |
+||| 006 |  &check; | &check; | |
+||| 007 |  &check; | &check; | |
+
+<br><br>
+
+| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
+| :---: | :---: | :---: | :---: | :---: | :---: | 
+| Safari | 15.6.1 | 001 | &check; | &check; | High scores OK button hover state is different. | 
+||| 002 |  &check; | &check; | High scores OK button hover state is different. |
+||| 003 |  &check; | &check; | |
+||| 004 |  &check; | &check; | |
+||| 005 |  &check; | &check; | |
+||| 006 |  &check; | &check; | |
+||| 007 |  &check; | &check; | |
+
+<br><br>
+
+| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
+| :---: | :---: | :---: | :---: | :---: | :---: | 
+| Safari | iOS 16.3.1 | 001 | &check; | &check; | | 
+||| 002 |  &check; | &check; | |
+||| 003 |  &check; | &check; | |
+||| 004 |  &check; | &check; | |
+||| 005 |  &check; | &check; | |
+||| 006 |  &check; | &check; | |
+||| 007 |  &check; | &check; | |
+
+<br><br>
+
+| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
+| :---: | :---: | :---: | :---: | :---: | :---: | 
+| Firefox | 111.1 (29556) | 001 | &check; | &check; | | 
+||| 002 |  &check; | &check; | |
+||| 003 |  &check; | &check; | |
+||| 004 |  &check; | &check; | |
+||| 005 |  &check; | &check; | |
+||| 006 |  &check; | &check; | |
+||| 007 |  &check; | &check; | |
+
+<br><br>
+
+| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
+| :---: | :---: | :---: | :---: | :---: | :---: | 
+| Edge | 111.0.1661.50 | 001 | &check; | &check; | | 
+||| 002 |  &check; | &check; | |
+||| 003 |  &check; | &check; | |
+||| 004 |  &check; | &check; | |
+||| 005 |  &check; | &check; | |
+||| 006 |  &check; | &check; | |
+||| 007 |  &check; | &check; | |
+
+<br><br>
 
 - - -
 <br><br>
@@ -143,9 +194,6 @@ Responsiveness was tested using [Google Dev Tools](https://developer.chrome.com/
 - - -
 <br><br>
 
-
-# Accessibility tests
-
 <br><br>
 
 # Lighthouse tests
@@ -156,13 +204,13 @@ Results:
 
 | Device | Result | 
 | :---: | :---: |
-| Mobile |  ![Result-mobile]()|
-| Desktop | ![Result-desktop]()|
+| Mobile |  ![Result-mobile](testing-images/lighthouse-mobile.jpeg)|
+| Desktop | ![Result-desktop](testing-images/lighthouse-desktop.jpeg)|
 
 
-The lower performance scores were mainly caused by the way Bootstrap loads before the first render:
+The lower performance scores are caused by the Mapbox GL JS API's loading time:
 
-![bootstrap-performance-issue](assets/images/testing-images/bootstrap-issue.jpeg)
+![performance-issue](testing-images/lighthouse-mobile-error.jpeg)
 - - -
 <br><br>
 
