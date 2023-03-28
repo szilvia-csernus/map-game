@@ -93,7 +93,7 @@ The main data source for this project is [Mapbox's country-boundaries-v1](https:
 
 Mapbox does not (freely) allow to download this dataset in a searchable format, so I needed to source this information from elswhere. I used [Annexare Studio's open source data (MIT License, Copyright (c) 2014 Annexare Studio)](https://github.com/annexare/Countries/blob/master/data/countries.json) for this purpose. Independent territories, Crown Dependencies, other dependent territories as well as micro countries / islands were excluded from the lists of countries. After having transformed and filtered this dataset, 166 countries remained that can be asked randomly, 10 in one round, from the user.
 
-The third dataset used is [another open source dataset assembled by Gavin Rehkemper (MIT Licence, Copyright (c) 2021 Gavin Rehkemper)](https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson). It contains the centroid positions for all countries which I needed to display the countries' names over the selected countries as well as to fly the map to this location after an incorrect country choice.
+The third dataset used is another [open source dataset assembled by Gavin Rehkemper (MIT Licence, Copyright (c) 2021 Gavin Rehkemper)](https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson). It contains the centroid positions for all countries which I needed to display the countries' names over the selected countries as well as to fly the map to this location after an incorrect country choice.
 
 <br><br>
 
@@ -107,6 +107,7 @@ When visiting the first time, it takes a while (depending on network speed) to l
 ![loaded-page](readme-images/map-it-mobile.jpeg) 
 <hr>
 <br><br>
+
 ## Instructions
 
 The first time a user visits the site, an animation gives brief instructions on how to play the game. Later on, the animation will not show again but the instructions will be available when clicking the question mark icon in the top right corner. In case the user clears up the site's localStorage, the animation will show again as if they were visiting for the first time.
@@ -163,7 +164,7 @@ Three types of error messages can be deivered to the user depending on the issue
 
 ## Cross-platform usability
 
-The game supports both desktop and mobile device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on 'touchscreen only' devices the user can only select countries through touch methods. This differenciation was needed in order to allow all zooming and panning functionalities on the map. 
+The game supports desktop, laptop, tablet and mobile phone device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on 'touchscreen only' devices the user can only select countries through touch methods. This differenciation was needed in order to allow multi-touch zooming and panning, tapping, double clicking, click-and-panning as well as scroll zooming functionalities on the map. 
 
 In case of the presence of a mouse/trackpad: 
 * a hovering effect is being applied, 
@@ -174,7 +175,7 @@ In case of the presence of a mouse/trackpad:
 
 In case of a mouse/trackpad not being available, it is assumed that the device is a touchscreen. In this case:
 * a firm tap or a slightly longer than usual (50ms long) tap is required to select a country.
-* zooming in and out as well as panning the map is available in the usual ways.
+* zooming in and out as well as panning the map is available in the usual ways:
   - zooming in and out with two or more fingers,
   - panning and rotating the map with sustained and moving touch with one or more fingers.
 
@@ -183,13 +184,14 @@ In case of a mouse/trackpad not being available, it is assumed that the device i
 
 ## Future Implementations
 <br>
-This project could be converted into a React project or into native mobile apps to bring it in line with industry standards. These would improve the app's performance as well.
+This project could be converted into a React project or native mobile app to bring it in line with industry standards. These would improve the app's performance as well.
 <br><br>
 Automatic testing with Cypress, to which support is provided by Mapbox. 
 <br><br>
 There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. Worldviews could be a dynamic feature depending on location of the user. A new option with the US states could be part of the game too.
 
 <br>
+
 ---
 
 ## Accessibility
@@ -247,8 +249,10 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript), 
 
 * [Google Dev Tools](https://developer.chrome.com/docs/devtools/)  - for testing and troubleshooting.
 
-<br><br>
+
 ---
+
+<br><br>
 
 # Deployment and Local Development
 <br>
