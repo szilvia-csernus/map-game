@@ -50,11 +50,12 @@ html, body, section, article, h1, h2, p, a, button, ul {
     --yellow: #FFC75F;
     --correct: #4EFE4E;
     --incorrect: #FB3535;
+    --ocean: #60bef2;
   }
   
   html {
     font-family: var(--main-font-family);
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
   }
   
   body {
@@ -196,7 +197,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
 
   .playBtn {
     position: absolute;
-    bottom: 6vh;
+    bottom: 12vh;
     background-color: var(--transparent-bg-color);
     font-size: var(--button-font-size);
     font-weight: 700;
