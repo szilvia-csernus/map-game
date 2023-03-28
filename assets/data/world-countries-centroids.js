@@ -16,6 +16,10 @@
 
 
 export const countryCoordinates = {
+    "EH": {
+        "countryName": "Western Sahara",
+        "coordinates": [-13.250885,24.827871]
+    },
     "XS": {
         "countryName": "Sovereign Base Areas of Akrotiri and Dhekelia",
         "coordinates": [33.017167,34.577040]
