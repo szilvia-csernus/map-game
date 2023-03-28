@@ -7,7 +7,7 @@ const minZoom = (map) => map.getMinZoom() - 0.1;
 const maxZoom = (map) => map.getMaxZoom() + 0.5;
 
 export let clickedCountryCode = null;
-export let clickedCountryName = null;
+// export let clickedCountryName = null;
 
 export const resetClickedCountryCode = () => clickedCountryCode = null;
 
@@ -119,9 +119,11 @@ export let marker;
 
 const addMarker = (map, code) => {
     if (countryCoordinates[code]) {
-        // $('body').append(`<div id="marker" className="marker" >${countryCoordinates[code].coordinates}</div>`);
+        // it doesn't like JQuery
         const el = document.createElement('div');
         el.className = 'marker';
+        // I'm using the local dataset to display country names because in case of an incorrect country was clicked
+        // the correct country's data can't be reached through the event.features property (as it wasn't clicked!).
         el.textContent = countryCoordinates[code].countryName;
         
         marker = new mapboxgl.Marker(el)
@@ -262,8 +264,11 @@ export const clickEventHandler = (e) => {
     // if clicked item has no id the click won't register a clicked country.
     if (e.features) {
         // filter for Crimea, Western Sahara and Falkland Islands that would otherwise incorrectly show up as part of Russia/Morocco/Argentina.
+        if (e.features[1] && e.features[1].properties.name_en === "Western Sahara") {
+            clickedCountryCode = e.features[1].properties.iso_3166_1;
+        } else {
         clickedCountryCode = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].properties.iso_3166_1 : e.features[0].properties.iso_3166_1;
-        clickedCountryName = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].properties.name_en : e.features[0].properties.name_en;
+        }
     }
 };
 
