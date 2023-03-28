@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" >
+    <meta charset="utf-8">
     <title>map it!</title>
-    <meta name="author" content="Szilvia Csernusne Berczes" >
-    <meta name="description" content="map it! - Interactive game" >
+    <meta name="author" content="Szilvia Csernusne Berczes">
+    <meta name="description" content="map it! - Interactive game">
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=6"
     >
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700"
-      rel="stylesheet"
+      as="font"
+      type="font/ttf"
+      crossorigin
     >
+
     <link
       rel="icon"
       type="image/svg+xml"
       href="./assets/favicons/favicon.svg"
     >
-    <link rel="icon" type="image/png" href="./assets/favicons/favicon.png" >
+    <link rel="icon" type="image/png" href="./assets/favicons/favicon.png">
 
-    <link rel="stylesheet" href="./assets/css/first.css" >
+    <link rel="stylesheet" href="./assets/css/first.css">
 
     <link rel="preconnect" href="https://api.mapbox.com" crossorigin >
     <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin >
@@ -49,10 +52,12 @@
   <body>
     <h1 class="title">map it!</h1>
 
-    <div id="preMapContainer" class="preMapContainer"><div class="preMap"></div></div>
+    <div id="preMapContainer" class="preMapContainer">
+      <div class="preMap"></div>
+    </div>
     <div id="map" class="map"></div>
 
-    <link rel="stylesheet" href="./assets/css/style.css" >
+    <link rel="stylesheet" href="./assets/css/style.css">
 
     <script src="./assets/js/index.js" type="module"></script>
   </body>
