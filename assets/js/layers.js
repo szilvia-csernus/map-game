@@ -50,6 +50,7 @@ export const addHoverLayer = (map) => {
 /** remove hover layer and its filters if they exist */
 export const removeHoverLayer = (map) => {
     if (map.getLayer('country-hover')) {
+        map.setPaintProperty('country-hover', 'fill-color', 'hsla(0, 0%, 100%, 0)');
         map.setFilter('country-hover', null);
         map.removeLayer('country-hover');
     }
