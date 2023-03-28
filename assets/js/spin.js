@@ -31,4 +31,7 @@ export const addRotation = (map) => {
         }
     }
     spinGlobe();
+
+    /* removed this tag as otherwise it would update itself with new http request in every second */
+    $('.mapbox-improve-map').remove();
 };
