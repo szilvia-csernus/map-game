@@ -278,7 +278,7 @@
   padding: 0;
   color: var(--primary-color);
   font-family: var(--main-font-family);
-  filter: drop-shadow(0 0 10px white);
+  text-shadow: 0 0 1px white;
   font-weight: bold;
   font-size: var(--marker-font-size);
 }
@@ -392,7 +392,7 @@
 }
 
 .scoreAfrica {
-  color: var(--yellow)
+  color: var(--ocean)
 }
 
 .scoreAmericas {
@@ -425,7 +425,3 @@
 .mapboxgl-canvas-container.mapboxgl-interactive {
   cursor: default;
 }
-
-
-
-
