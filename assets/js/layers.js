@@ -264,11 +264,7 @@ export const clickEventHandler = (e) => {
     // if clicked item has no id the click won't register a clicked country.
     if (e.features) {
         // filter for Crimea, Western Sahara and Falkland Islands that would otherwise incorrectly show up as part of Russia/Morocco/Argentina.
-        if (e.features[1] && e.features[1].properties.name_en === "Western Sahara") {
-            clickedCountryCode = e.features[1].properties.iso_3166_1;
-        } else {
         clickedCountryCode = (e.features[0].id === 12128447 || e.features[0].id === 9965705 || e.features[0].id === 659466) ? e.features[1].properties.iso_3166_1 : e.features[0].properties.iso_3166_1;
-        }
     }
 };
 
