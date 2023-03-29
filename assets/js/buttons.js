@@ -44,3 +44,10 @@ export const addHighScoresBtn = (map) => {
         this.remove();
     });
 };
+
+export const addStarIcon = (map) => {
+    $('body').append('<img id="star" class="star" src="./assets/icons/star.svg" alt="high scores">');
+    $('#star').click( function() {
+        showHighScores(map);
+    });
+};

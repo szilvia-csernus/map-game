@@ -166,7 +166,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
   .exit {
     position: absolute;
     top: 1.5vh;
-    left: 2vw;
+    left: 3vw;
     z-index: 1;
     font-weight: bold;
     width: 1.9rem;
@@ -179,10 +179,24 @@ html, body, section, article, h1, h2, p, a, button, ul {
     animation: appear .2s ease-in forwards;
   }
 
+  .star {
+    position: absolute;
+    top: 1.8vh;
+    left: 9vw;
+    z-index: 1;
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    filter: drop-shadow(0 0 10px black);
+    cursor: pointer;
+    opacity: 0;
+    animation: appear .2s ease-in forwards;
+  }
+
   .questionMark {
     position: absolute;
     top: 1.5vh;
-    right: 2vw;
+    right: 3vw;
     z-index: 1;
     font-weight: bold;
     width: 1.9rem;

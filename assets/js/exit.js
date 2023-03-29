@@ -58,6 +58,7 @@ const updateElements = () => {
     $('#highScoresBtn').remove();
     $('#newGame').remove();
     $('#exit').remove();
+    $('#star').remove();
 
     timeOutForShowScore.clearTimeOutFunction();
     timeOutForCorrectFeedback.clearTimeOutFunction();
@@ -78,7 +79,7 @@ export const restartGame = (map) => {
 };
 
 const addExitBtn = (map) => {
-    $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg" alt="exit icon"></img>');
+    $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg" alt="exit">');
     $('#exit').click( () => {
         stopSpin();
         restartGame(map);
