@@ -345,6 +345,9 @@ https://www.svgrepo.com/svg/470906/times
 * Question mark icon:
 https://www.svgrepo.com/svg/491697/question-circle
 
+* Star icon:
+https://www.svgrepo.com/svg/509256/star
+
 <br><br>
 
 ## Other credits - incorporated ideas and solutions

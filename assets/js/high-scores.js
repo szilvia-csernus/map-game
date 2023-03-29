@@ -1,6 +1,4 @@
-import { restartGame } from "./exit.js";
-
-export const showHighScores = (map) => {
+export const showHighScores = () => {
 
     // only safe input gets loaded from localStorage
     const asiaNr = Number(window.localStorage.getItem('Asia'));
@@ -32,7 +30,6 @@ export const showHighScores = (map) => {
     $('#highScoresCanvas').append($(`<button id="highScoresOkay" class="highScoresOkay">OK</button>`));
     $('#highScoresOkay').click(() => {
         $('#highScoresBackground').remove();
-        restartGame(map);
     });
 };
 
