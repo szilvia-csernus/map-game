@@ -50,7 +50,14 @@ export const addHoverLayer = (map) => {
 /** remove hover layer and its filters if they exist */
 export const removeHoverLayer = (map) => {
     if (map.getLayer('country-hover')) {
-        map.setPaintProperty('country-hover', 'fill-color', 'hsla(0, 0%, 100%, 0)');
+        map.setFeatureState({
+            source: 'country-boundaries',
+            sourceLayer: 'country_boundaries',
+            id: hoveredStateId
+        }, {
+            hover: false
+        });
+        // map.setPaintProperty('country-hover', 'fill-color', 'hsla(0, 0%, 100%, 0)');
         map.setFilter('country-hover', null);
         map.removeLayer('country-hover');
     }
@@ -272,10 +279,12 @@ export const clickEventHandler = (e) => {
 let hoveredStateId = null;
 
 export function mouseMoveHoverEventListenerHandler(e) {
+    
+    this.getCanvas().style.cursor = 'pointer';
+
     // when the user moves the mouse over the state-fill layer, 
     // we'll update the feature state for the feature under the mouse.
     // non-touch devices only.
-    this.getCanvas().style.cursor = 'pointer';
     if (e.features.length > 0) {
         if (hoveredStateId) {
 
