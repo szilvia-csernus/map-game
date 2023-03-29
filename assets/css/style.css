@@ -13,6 +13,54 @@
   animation: appear 1s forwards;
 }
 
+/* -------------    utilities ----------- */
+
+.exit {
+  position: absolute;
+  top: 1.5vh;
+  left: 1rem;
+  z-index: 1;
+  font-weight: bold;
+  width: 1.9rem;
+  height: 2.4rem;
+  color: var(--main-font-color);
+  filter: drop-shadow( 0 0 10px var(--primary-color));
+  font-family: var(--main-font-family);
+  cursor: pointer;
+  opacity: 0;
+  animation: appear .2s ease-in forwards;
+}
+
+.star {
+  position: absolute;
+  top: 1.8vh;
+  left: 3.3rem;
+  z-index: 1;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0 0 10px black);
+  cursor: pointer;
+  opacity: 0;
+  animation: appear .2s ease-in forwards;
+}
+
+.questionMark {
+  position: absolute;
+  top: 1.5vh;
+  right: 1rem;
+  z-index: 1;
+  font-weight: bold;
+  width: 1.9rem;
+  height: 2.4rem;
+  color: var(--main-font-color);
+  filter: drop-shadow( 0 0 10px var(--primary-color));
+  font-family: var(--main-font-family);
+  cursor: pointer;
+  opacity: 0;
+  animation: appear .2s ease-in forwards;
+}
+
 /* ---------- How To Play --------------- */
 
 .howToPlayBackground {
@@ -110,7 +158,7 @@
 
 .choose {
   position: absolute;
-  top: 6vh;
+  top: 4rem;
   z-index: 1;
   font-weight: bold;
   color: var(--main-font-color);
@@ -183,7 +231,7 @@
 
 .question {
   position: absolute;
-  top: 6.5vh;
+  top: 3.5rem;
   z-index: 1;
   font-weight: bold;
   color: var(--main-font-color);
@@ -195,7 +243,7 @@
 
 .checkmarks {
   position: absolute;
-  top: 12vh;
+  top: 6rem;
   z-index: 1;
   display: flex;
 }
@@ -220,7 +268,7 @@
 
 .country {
   position: absolute;
-  top: 17vh;
+  top: 8.5rem;
   z-index: 1;
   background-color: var(--secondary-bg-color);
   font-size: var(--country-font-size);
@@ -310,7 +358,7 @@
 
 .highScoresBtn {
   position: absolute;
-  top: 13vh;
+  top: 8rem;
   z-index: 1;
   background-color: var(--secondary-bg-color);
   font-size: var(--high-score-btn-font-size);
@@ -424,4 +472,30 @@
 
 .mapboxgl-canvas-container.mapboxgl-interactive {
   cursor: default;
+}
+
+/* error page styling  */
+
+.error {
+  position: absolute;
+  top: 5vh;
+  color: var(--main-font-color);
+  font-size: var(--country-font-size);
+  text-align: center;
+  line-height: 3rem;
+  margin: 2rem;
+}
+
+.errorBtn {
+  position: absolute;
+  top: 35vh;
+  z-index: 1;
+  background-color: var(--transparent-bg-color);
+  font-size: var(--country-font-size);
+  font-weight: 700;
+  color: var(--main-font-color);
+  border: 1px solid var(--main-font-color);
+  cursor: pointer;
+  padding: .7rem 2rem;
+  border-radius: 2rem;
 }
