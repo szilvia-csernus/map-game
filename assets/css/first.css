@@ -33,8 +33,8 @@ html, body, section, article, h1, h2, p, a, button, ul {
     --alternative-bg-color: rgba(255, 255, 255, 0.6);
     --button-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
     --title-font-size: clamp(3rem, 2.8519rem + 0.7407vw, 3.5rem);
-    --choose-font-size: clamp(2.2rem, 2.0571rem + 0.7143vw, 2.7rem);
-    --question-font-size: clamp(1.7rem, 1.486rem + 0.571vw, 2rem);
+    --choose-font-size: clamp(1.8rem, 1.6519rem + 0.7407vw, 2.3rem);
+    --question-font-size: clamp(1.49rem, 1.3685rem + 0.6074vw, 1.9rem);
     --country-font-size: clamp(1.2rem, 1.1407rem + 0.2963vw, 1.4rem);
     --high-score-btn-font-size: clamp(1.1rem, 1.0429rem + 0.2857vw, 1.3rem);
     --marker-font-size: clamp(1.1rem, 1.0429rem + 0.2857vw, 1.3rem);
@@ -55,7 +55,7 @@ html, body, section, article, h1, h2, p, a, button, ul {
   
   html {
     font-family: var(--main-font-family);
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
   }
   
   body {
@@ -116,30 +116,6 @@ html, body, section, article, h1, h2, p, a, button, ul {
     }
     
   }
-  
-  .error {
-    position: absolute;
-    top: 5vh;
-    color: var(--main-font-color);
-    font-size: var(--country-font-size);
-    text-align: center;
-    line-height: 3rem;
-    margin: 2rem;
-  }
-
-  .errorBtn {
-    position: absolute;
-    top: 35vh;
-    z-index: 1;
-    background-color: var(--transparent-bg-color);
-    font-size: var(--country-font-size);
-    font-weight: 700;
-    color: var(--main-font-color);
-    border: 1px solid var(--main-font-color);
-    cursor: pointer;
-    padding: .7rem 2rem;
-    border-radius: 2rem;
-  }
 
   .title {
     position: absolute;
@@ -163,55 +139,9 @@ html, body, section, article, h1, h2, p, a, button, ul {
     }
   }
 
-  .exit {
-    position: absolute;
-    top: 1.5vh;
-    left: 3vw;
-    z-index: 1;
-    font-weight: bold;
-    width: 1.9rem;
-    height: 2.4rem;
-    color: var(--main-font-color);
-    filter: drop-shadow( 0 0 10px var(--primary-color));
-    font-family: var(--main-font-family);
-    cursor: pointer;
-    opacity: 0;
-    animation: appear .2s ease-in forwards;
-  }
-
-  .star {
-    position: absolute;
-    top: 1.8vh;
-    left: 9vw;
-    z-index: 1;
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-    filter: drop-shadow(0 0 10px black);
-    cursor: pointer;
-    opacity: 0;
-    animation: appear .2s ease-in forwards;
-  }
-
-  .questionMark {
-    position: absolute;
-    top: 1.5vh;
-    right: 3vw;
-    z-index: 1;
-    font-weight: bold;
-    width: 1.9rem;
-    height: 2.4rem;
-    color: var(--main-font-color);
-    filter: drop-shadow( 0 0 10px var(--primary-color));
-    font-family: var(--main-font-family);
-    cursor: pointer;
-    opacity: 0;
-    animation: appear .2s ease-in forwards;
-  }
-
   .playBtn {
     position: absolute;
-    bottom: 12vh;
+    bottom: 4rem;
     background-color: var(--transparent-bg-color);
     font-size: var(--button-font-size);
     font-weight: 700;
