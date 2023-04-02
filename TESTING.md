@@ -95,77 +95,120 @@
 # Manual Test Cases
 
 
-| Test case code | load | click PLAY | click Exit | click Info | click any region | select any country 10x | select any country 5x | click Exit | click Info | click high scores | click New Game |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 001 | &check; | &check; | | | &check; | &check; | | | &check; | &check; | &check; |
-| 002 | &check; | &check; | | | &check; | | &check; | | &check; | | |
-| 003 |  | &check; | | | &check; | | &check; |  &check; | | | | 
-| 004 |  | &check; | &check; | | | | | | | | | | | | | 
-| 005 | | &check; | | | &check; | | | &check; | | | |
-| 006 |  | &check; | | | &check; | | | | &check; | | |
-| 007 | &check; | &check; | | &check; | | | | | 
+| Test case code | load | click PLAY | click a region | select any country 10x | select any country 5x | click Exit | click Info | click high scores | click New Game |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
+| 001 | &check; | &check; | Europe | &check; | | | | &check; | &check; |
+| 002 | | &check; | Americas | &check; | | | | &check; | &check; |
+| 003 | | &check; | Africa | &check; | | | | &check; | &check; |
+| 004 | | &check; | Asia | &check; | | | | &check; | &check; |
+| 005 | | &check; | any | &check; | | &check; | | | |
+| 006 | | &check; | any | | &check; | &check; | | | |
+| 007 | | &check; | | | | &check; | | | | | | | | 
+| 008 | | &check; | | | | | &check; | &check; | |
+| 009 | &check; | &check; | any | | | | &check; | &check; | |
+| 010 | &check; | &check; | any | |  &check; | | &check; | &check; | |
 
 <br><br>
 
-| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
-| :---: | :---: | :---: | :---: | :---: | :---: | 
-| Chrome | 111.0.5563.110 | 001 | &check; | &check; | | 
-||| 002 |  &check; | &check; | |
-||| 003 |  &check; | &check; | |
-||| 004 |  &check; | &check; | |
-||| 005 |  &check; | &check; | |
-||| 006 |  &check; | &check; | |
-||| 007 |  &check; | &check; | |
+Browser & Version: Chrome 111.0.5563.110
+<br>
+| Test case | Expected look | Expected behaviour | Notes |
+| :---: | :---: | :---: | :---: | 
+| 001 | &check; | &check; | | 
+| 002 | &check; | &check; | |
+| 003 | &check; | &check; | |
+| 004 | &check; | &check; | |
+| 005 | &check; | &check; | |
+| 006 | &check; | &check; | |
+| 007 | &check; | &check; | |
+| 008 | &check; | &check; | |
+| 009 | &check; | &check; | |
+| 010 | &check; | &check; | |
 
 <br><br>
 
-| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
-| :---: | :---: | :---: | :---: | :---: | :---: | 
-| Safari | 15.6.1 | 001 | &check; | &check; | High scores OK button hover state is different. | 
-||| 002 |  &check; | &check; | High scores OK button hover state is different. |
-||| 003 |  &check; | &check; | |
-||| 004 |  &check; | &check; | |
-||| 005 |  &check; | &check; | |
-||| 006 |  &check; | &check; | |
-||| 007 |  &check; | &check; | |
+Browser & Version: Safari 15.6.1 
+
+| Test case | Expected look | Expected behaviour | Notes |
+| :---: | :---: | :---: | :---: | 
+| 001 | &#9587; | &check; | High scores OK button hover state is different. | 
+| 002 | &#9587; | &check; | High scores OK button hover state is different. |
+| 003 | &#9587; | &check; | High scores OK button hover state is different. |
+| 004 | &#9587; | &check; | High scores OK button hover state is different. |
+| 005 | &check; | &check; | |
+| 006 | &check; | &check; | |
+| 007 | &check; | &check; | |
+| 008 | &check; | &check; | |
+| 009 | &check; | &check; | |
+| 010 | &check; | &check; | |
 
 <br><br>
 
-| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
-| :---: | :---: | :---: | :---: | :---: | :---: | 
-| Safari | iOS 16.3.1 | 001 | &check; | &check; | | 
-||| 002 |  &check; | &check; | |
-||| 003 |  &check; | &check; | |
-||| 004 |  &check; | &check; | |
-||| 005 |  &check; | &check; | |
-||| 006 |  &check; | &check; | |
-||| 007 |  &check; | &check; | |
+Browser & Version: Safari iOS 16.3.1
+<br>
+| Test case | Expected look | Expected behaviour | Notes |
+| :---: | :---: | :---: | :---: | 
+| 001 | &check; | &check; | | 
+| 002 | &check; | &check; | |
+| 003 | &check; | &check; | |
+| 004 | &#9587; | &#9587; | Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
+| 005 | &check; | &check; | |
+| 006 | &check; | &check; | |
+| 007 | &check; | &check; | |
+| 008 | &check; | &check; | |
+| 009 | &check; | &check; | |
+| 010 | &check; | &check; | |
 
 <br><br>
 
-| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
-| :---: | :---: | :---: | :---: | :---: | :---: | 
-| Firefox | 111.1 (29556) | 001 | &check; | &check; | | 
-||| 002 |  &check; | &check; | |
-||| 003 |  &check; | &check; | |
-||| 004 |  &check; | &check; | |
-||| 005 |  &check; | &check; | |
-||| 006 |  &check; | &check; | |
-||| 007 |  &check; | &check; | |
+Browser & Version: Firefox 111.1 (29556)
+<br>
+| Test case | Expected look | Expected behaviour | Notes |
+| :---: | :---: | :---: | :---: | 
+| 001 | &check; | &check; | | 
+| 002 | &check; | &check; | |
+| 003 | &check; | &check; | |
+| 004 | &check; | &check; | |
+| 005 | &check; | &check; | |
+| 006 | &check; | &check; | |
+| 007 | &check; | &check; | |
+| 008 | &check; | &check; | |
+| 009 | &check; | &check; | |
+| 010 | &check; | &check; | |
 
 <br><br>
 
-| Browser | Version | Test case | Expected look | Expected behaviour | Additional notes |
-| :---: | :---: | :---: | :---: | :---: | :---: | 
-| Edge | 111.0.1661.50 | 001 | &check; | &check; | | 
-||| 002 |  &check; | &check; | |
-||| 003 |  &check; | &check; | |
-||| 004 |  &check; | &check; | |
-||| 005 |  &check; | &check; | |
-||| 006 |  &check; | &check; | |
-||| 007 |  &check; | &check; | |
+Browser & Version: Edge 111.0.1661.50
+<br>
+| Test case | Expected look | Expected behaviour | Notes |
+| :---: | :---: | :---: | :---: | 
+| 001 | &check; | &check; | | 
+| 002 | &check; | &check; | |
+| 003 | &check; | &check; | |
+| 004 | &check; | &check; | |
+| 005 | &check; | &check; | |
+| 006 | &check; | &check; | |
+| 007 | &check; | &check; | |
+| 008 | &check; | &check; | |
+| 009 | &check; | &check; | |
+| 010 | &check; | &check; | |
 
 <br><br>
+
+Browser & Version: Chrome 111.0.5563.101
+<br>
+| Test case | Expected look | Expected behaviour | Notes |
+| :---: | :---: | :---: | :---: | 
+| 001 | &check; | &check; | | 
+| 002 | &check; | &check; | |
+| 003 | &check; | &check; | |
+| 004 | &check; | &check; | |
+| 005 | &check; | &check; | |
+| 006 | &check; | &check; | |
+| 007 | &check; | &check; | |
+| 008 | &check; | &check; | |
+| 009 | &check; | &check; | |
+| 010 | &check; | &check; | |
 
 - - -
 <br><br>
