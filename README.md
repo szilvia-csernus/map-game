@@ -164,16 +164,16 @@ Three types of error messages can be deivered to the user depending on the issue
 
 ## Cross-platform usability
 
-The game supports desktop, laptop, tablet and mobile phone device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on 'touchscreen only' devices the user can only select countries through touch methods. This differentiation was needed to allow multi-touch zooming and panning, tapping, double-clicking, click-and-panning as well as scroll zooming functionalities on the map. 
+The game supports desktop, laptop, tablet and mobile phone device interactions. The first click on the `PLAY` button determines whether mouse/trackpad or touch interactions get enabled.  This differentiation was needed to allow multi-touch zooming and panning, tapping, double-clicking, click-and-panning as well as scroll zooming functionalities on the map. 
 
-In case of the presence of a mouse/trackpad: 
+If `PLAY` button was clicked with a mouse or trackpad: 
 * a hovering effect is being applied, 
 * double clicking / double tapping is required to select a country, 
 * zooming in and out of the map as well as panning is available depending on the tool used: 
   - scrolling to zoom and grab-and-pan with a mouse, 
   - two-finger zoom and double-tap-pan with a trackpad.
 
-In case of a mouse/trackpad not being available, it is assumed that the device is a touchscreen. In this case:
+If `PLAY` button was clicked on a touch device:
 * a firm tap or a slightly longer than usual (50ms long) tap is required to select a country.
 * zooming in and out as well as panning the map is available in the usual ways:
   - zooming in and out with two or more fingers,
