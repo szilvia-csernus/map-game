@@ -110,7 +110,7 @@
 
 <br><br>
 
-**Expected look definitions:**
+**"Expected look" definitions:**
 
 a.  "map it!" title, globe and "PLAY" button are visible
 
@@ -133,7 +133,7 @@ i.  Instructions are visible while the background is blurred.
 j.  Best scores are visible while the background is blurred.
 <br><br>
 
-**Expected behaviour definitions:**
+**"Expected behaviour" definitions:**
 
 a. globe is slowly rotating, "PLAY" button is clickable
 
@@ -260,7 +260,7 @@ Browser & Version: Chrome 111.0.5563.101 (on mobile phone)
 | 009 | b. d. f. | b. d. f. j. k. | &check; | |
 | 010 | b. d. f. | b. d. f. g. h. j. k. | &check; | |
 
-- - -
+
 <br><br>
 
 # Responsiveness Testing
@@ -282,8 +282,7 @@ Responsiveness was tested using [Google Dev Tools](https://developer.chrome.com/
 | Samsung Galaxy A51/71 | &check; | &check; | &check; | &check; | &check; | &check; |
 | Nest Hub | &check; | &check; | &check; | &check; | &check; | &check; |
 | Nest Hub Max | &check; | &check; | &check; | &check; | &check; | &check; |
-- - -
-<br><br>
+
 
 <br><br>
 
@@ -301,7 +300,8 @@ The lower performance scores are caused by the Mapbox GL JS API's loading time:
 
 ![performance-issue](testing-images/lighthouse-mobile-error1.jpeg)
 ![performance-issue](testing-images/lighthouse-mobile-error2.jpeg)
-- - -
+
+---
 
 <br><br>
 
@@ -310,8 +310,3 @@ The lower performance scores are caused by the Mapbox GL JS API's loading time:
 * On a desktop in Safari v15.6.1, at the Best Scores list, the OK button's hover state is different from how it's supposed to look. This issue was not noticed in other browsers. <br> ![OK button but](testing-images/OK-button-bug.jpeg) <br> ![OK button normal](testing-images/OK-button.jpeg)
 
 * In Safari iOS v16.3.1, (on iPhones) maximum 3 high scores get registered. This issue was not noticed in other browsers and is probably due to Safari's limited local storage allowance. The image below shows the Best Scores after a game on Europe. Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)
-
-
-
-
-
