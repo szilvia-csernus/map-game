@@ -183,15 +183,15 @@ Browser & Version: Safari 15.6.1 (on desktop)
 | Test case | Expected look | Expected behaviour | Pass | Notes |
 | :---: | :--- | :--- | :--- | :--- |
 | 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
-| 002 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
-| 003 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
-| 004 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | |
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | |
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | |
 | 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
 | 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
 | 007 | b. d. | b. d. l. | &check; | |
-| 008 | b. d. | b. d. *j. k. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
-| 009 | b. d. f. | b. d. f. *j. k. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
-| 010 | b. d. f. | b. d. f. g. h. *j. k. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
+| 008 | b. d. | b. d. *j. k. | &check; | |
+| 009 | b. d. f. | b. d. f. *j. k. | &check; | |
+| 010 | b. d. f. | b. d. f. g. h. *j. k. | &check; | |
 
 <br><br>
 
@@ -306,7 +306,5 @@ The lower performance scores are caused by the Mapbox GL JS API's loading time:
 <br><br>
 
 # Bugs
-
-* On a desktop in Safari v15.6.1, at the Best Scores list, the OK button's hover state is different from how it's supposed to look. This issue was not noticed in other browsers. <br> ![OK button but](testing-images/OK-button-bug.jpeg) <br> ![OK button normal](testing-images/OK-button.jpeg)
 
 * In Safari iOS v16.3.1, (on iPhones) maximum 3 high scores get registered. This issue was not noticed in other browsers and is probably due to Safari's limited local storage allowance. The image below shows the Best Scores after a game on Europe. Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)
