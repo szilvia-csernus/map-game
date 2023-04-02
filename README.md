@@ -1,4 +1,4 @@
-# map it!
+# map it! &#127758;
 
 Interactive front-end game built for the web, written in HTML, CSS, JavaScript and JQuery, utilising the [Mapbox GL JS API](www.mapbox.com).
 
@@ -22,7 +22,7 @@ Not for public use.
 
 ## Site Owner's Goals
 
-* The game should test the players' knowledge on the world's countries.
+* The game should test the players' knowledge of the world's countries.
 * The game should be visually appealing.
 * It should give simple, clear instructions.
 * The countries should be visually distinguishable.
@@ -150,7 +150,7 @@ After 10 countries have been chosen, the score is displayed. For the first time,
 ## Error pages
 
 Three types of error messages can be deivered to the user depending on the issue 
-* a `404 (not found) page` in case of an invalid url was typed in, 
+* a `404 (not found) page` in case of an invalid URL was typed in, 
 * a `no-support page` in case the user uses an old browser that does not support Mapbox GL GS,
 * an `error page` in case there is a problem with the connection to the Mapbox API. 
 <br>
@@ -164,7 +164,7 @@ Three types of error messages can be deivered to the user depending on the issue
 
 ## Cross-platform usability
 
-The game supports desktop, laptop, tablet and mobile phone device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on 'touchscreen only' devices the user can only select countries through touch methods. This differenciation was needed in order to allow multi-touch zooming and panning, tapping, double clicking, click-and-panning as well as scroll zooming functionalities on the map. 
+The game supports desktop, laptop, tablet and mobile phone device interactions. For devices that have both mouse/trackpad as well as touchscreen available, the mouse/trackpad interactions get enabled, while on 'touchscreen only' devices the user can only select countries through touch methods. This differentiation was needed to allow multi-touch zooming and panning, tapping, double-clicking, click-and-panning as well as scroll zooming functionalities on the map. 
 
 In case of the presence of a mouse/trackpad: 
 * a hovering effect is being applied, 
