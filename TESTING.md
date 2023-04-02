@@ -97,7 +97,7 @@
 
 | Test case code | load | click PLAY | click a region | select any country 10x | select any country 5x | click Exit | click Info | click high scores | click New Game |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| 001 | &check; | &check; | Europe | &check; | | | | &check; | &check; |
+| 001 | &check; | &check; | Europe | &check; | | | | | &check; |
 | 002 | | &check; | Americas | &check; | | | | &check; | &check; |
 | 003 | | &check; | Africa | &check; | | | | &check; | &check; |
 | 004 | | &check; | Asia | &check; | | | | &check; | &check; |
@@ -110,130 +110,178 @@
 
 <br><br>
 
-Browser & Version: Chrome 111.0.5563.110
-<br>
-| Test case | Expected look | Expected behaviour | Notes |
-| :---: | :---: | :---: | :---: | 
-| 001 | &check; | &check; | | 
-| 002 | &check; | &check; | |
-| 003 | &check; | &check; | |
-| 004 | &check; | &check; | |
-| 005 | &check; | &check; | |
-| 006 | &check; | &check; | |
-| 007 | &check; | &check; | |
-| 008 | &check; | &check; | |
-| 009 | &check; | &check; | |
-| 010 | &check; | &check; | |
+**Expected look definitions:**
+
+a.  "map it!" title, globe and "PLAY" button are visible
+
+b.  "map it!" title, globe, "PLAY" button and info icon are visible
+
+c.  "Choose a region!" title, globe, 4 region buttons, info and exit icons are visible
+
+d.  "Choose a region!" title, globe, 4 region buttons, info, exit and star icons are visible
+
+e.  "Find the country on the map" title, a country name, info and exit icons are visible
+
+f.  "Find the country on the map" title, a country name, info, exit and star icons are visible
+
+g.  "Your score:" or "HIGH score", "New Game" button, info and exit icons are visible
+
+h.  "Your score:" or "HIGH score", "New Game" button, "View your best scores here" button, info, exit and star icons are visible
+
+i.  Instructions are visible while the background is blurred.
+
+j.  Best scores are visible while the background is blurred.
+<br><br>
+
+**Expected behaviour definitions:**
+
+a. globe is slowly rotating, "PLAY" button is clickable
+
+b. globe is slowly rotating, "PLAY" button and info icon are clickable
+
+c. globe is slowly rotating, the 4 regions' buttons, info and exit icons are clickable
+
+d. globe is slowly rotating, the 4 regions' buttons, info, exit and star icons are clickable
+
+e. animation flies to selected region, regions'countries are selectable, other regions are blurred and unselectable, info and exit icons are clickable
+
+f. animation flies to selected region, regions'countries are selectable, other regions are blurred and unselectable, info, exit and star icons are clickable
+
+g. the selected country's colour turns green, its name and a green checkmark appears if selection was correct
+
+h. The selected country's colour turns red, its name and a red cross appears, an animation flies the map to the correct country. The correct country's name and a green contour appears.
+
+i. "HIGH score" appears if the score was higher than any previous attempt in that region otherwise "Your score" appears. The number shows the right scores.
+
+j. "Best scores" list shows all the correct high scores.
+
+k. The game instructions show "Double click to select a country" on all devices where a mouse or touchpad was used to start the game, otherwise "Touch to select a country" is shown.
+
+l. Game restarts uneventfully.
 
 <br><br>
 
-Browser & Version: Safari 15.6.1 
-
-| Test case | Expected look | Expected behaviour | Notes |
-| :---: | :---: | :---: | :---: | 
-| 001 | &#9587; | &check; | High scores OK button hover state is different. | 
-| 002 | &#9587; | &check; | High scores OK button hover state is different. |
-| 003 | &#9587; | &check; | High scores OK button hover state is different. |
-| 004 | &#9587; | &check; | High scores OK button hover state is different. |
-| 005 | &check; | &check; | |
-| 006 | &check; | &check; | |
-| 007 | &check; | &check; | |
-| 008 | &check; | &check; | |
-| 009 | &check; | &check; | |
-| 010 | &check; | &check; | |
+Browser & Version: Chrome 111.0.5563.110 (on desktop and laptop)
+<br>
+| Test case | Expected look | Expected behaviour | Pass | Notes |
+| :---: | :--- | :--- | :--- | :--- |
+| 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 007 | b. d. | b. d. l. | &check; | |
+| 008 | b. d. | b. d. j. k. | &check; | |
+| 009 | b. d. f. | b. d. f. j. k. | &check; | |
+| 010 | b. d. f. | b. d. f. g. h. j. k. | &check; | |
 
 <br><br>
 
-Browser & Version: Safari iOS 16.3.1
-<br>
-| Test case | Expected look | Expected behaviour | Notes |
-| :---: | :---: | :---: | :---: | 
-| 001 | &check; | &check; | | 
-| 002 | &check; | &check; | |
-| 003 | &check; | &check; | |
-| 004 | &#9587; | &#9587; | Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
-| 005 | &check; | &check; | |
-| 006 | &check; | &check; | |
-| 007 | &check; | &check; | |
-| 008 | &check; | &check; | |
-| 009 | &check; | &check; | |
-| 010 | &check; | &check; | |
+Browser & Version: Safari 15.6.1 (on desktop)
+
+| Test case | Expected look | Expected behaviour | Pass | Notes |
+| :---: | :--- | :--- | :--- | :--- |
+| 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
+| 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 007 | b. d. | b. d. l. | &check; | |
+| 008 | b. d. | b. d. *j. k. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
+| 009 | b. d. f. | b. d. f. *j. k. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
+| 010 | b. d. f. | b. d. f. g. h. *j. k. | &check; | *High scores OK button hover state is different. More on this in the [Bugs](#bugs) section|
 
 <br><br>
 
-Browser & Version: Firefox 111.1 (29556)
+Browser & Version: Safari iOS 16.3.1 (on mobile phone)
 <br>
-| Test case | Expected look | Expected behaviour | Notes |
-| :---: | :---: | :---: | :---: | 
-| 001 | &check; | &check; | | 
-| 002 | &check; | &check; | |
-| 003 | &check; | &check; | |
-| 004 | &check; | &check; | |
-| 005 | &check; | &check; | |
-| 006 | &check; | &check; | |
-| 007 | &check; | &check; | |
-| 008 | &check; | &check; | |
-| 009 | &check; | &check; | |
-| 010 | &check; | &check; | |
+| Test case | Expected look | Expected behaviour | Pass | Notes |
+| :---: | :--- | :--- | :--- | :--- |
+| 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
+| 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 007 | b. d. | b. d. l. | &check; | |
+| 008 | b. d. | b. d. *j. k. | &#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
+| 009 | b. d. f. | b. d. f. *j. k. |&#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
+| 010 | b. d. f. | b. d. f. g. h. *j. k. | &#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
+<br><br>
+
+Browser & Version: Firefox 111.1 (29556) (on mobile phone)
+<br>
+| Test case | Expected look | Expected behaviour | Pass | Notes |
+| :---: | :--- | :--- | :--- | :--- |
+| 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 007 | b. d. | b. d. l. | &check; | |
+| 008 | b. d. | b. d. j. k. | &check; | |
+| 009 | b. d. f. | b. d. f. j. k. | &check; | |
+| 010 | b. d. f. | b. d. f. g. h. j. k. | &check; | |
 
 <br><br>
 
-Browser & Version: Edge 111.0.1661.50
+Browser & Version: Edge 111.0.1661.50 (on mobile phone)
 <br>
-| Test case | Expected look | Expected behaviour | Notes |
-| :---: | :---: | :---: | :---: | 
-| 001 | &check; | &check; | | 
-| 002 | &check; | &check; | |
-| 003 | &check; | &check; | |
-| 004 | &check; | &check; | |
-| 005 | &check; | &check; | |
-| 006 | &check; | &check; | |
-| 007 | &check; | &check; | |
-| 008 | &check; | &check; | |
-| 009 | &check; | &check; | |
-| 010 | &check; | &check; | |
+| Test case | Expected look | Expected behaviour | Pass | Notes |
+| :---: | :--- | :--- | :--- | :--- |
+| 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 007 | b. d. | b. d. l. | &check; | |
+| 008 | b. d. | b. d. j. k. | &check; | |
+| 009 | b. d. f. | b. d. f. j. k. | &check; | |
+| 010 | b. d. f. | b. d. f. g. h. j. k. | &check; | |
 
 <br><br>
 
-Browser & Version: Chrome 111.0.5563.101
+Browser & Version: Chrome 111.0.5563.101 (on mobile phone)
 <br>
-| Test case | Expected look | Expected behaviour | Notes |
-| :---: | :---: | :---: | :---: | 
-| 001 | &check; | &check; | | 
-| 002 | &check; | &check; | |
-| 003 | &check; | &check; | |
-| 004 | &check; | &check; | |
-| 005 | &check; | &check; | |
-| 006 | &check; | &check; | |
-| 007 | &check; | &check; | |
-| 008 | &check; | &check; | |
-| 009 | &check; | &check; | |
-| 010 | &check; | &check; | |
+| Test case | Expected look | Expected behaviour | Pass | Notes |
+| :---: | :--- | :--- | :--- | :--- |
+| 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 007 | b. d. | b. d. l. | &check; | |
+| 008 | b. d. | b. d. j. k. | &check; | |
+| 009 | b. d. f. | b. d. f. j. k. | &check; | |
+| 010 | b. d. f. | b. d. f. g. h. j. k. | &check; | |
 
 - - -
 <br><br>
 
 # Responsiveness Testing
 
-Responsiveness was tested using [Google Dev Tools](https://developer.chrome.com/docs/devtools/).
+Responsiveness was tested using [Google Dev Tools](https://developer.chrome.com/docs/devtools/). With these tests, I checked if the layout of the game is consistent and if all elements appear in the right place.
 <br><br>
 
-| Device | | Expected Look | 
-| :---: | :---: | :---: | 
-| iPhone SE  |  |&check; |
-| iPhone XR |  |&check; |
-| iPhone 12 Pro |  |&check; |
-| Pixel 5 |  |&check; |
-| Samsung Galaxy S8+ |  |&check; |
-| Samsung Galaxy S20 Ultra |  |&check; |
-| iPad Air |  |&check; |
-| iPad Mini |  |&check; |
-| Surface Pro 7 |  |&check; |
-| Surface Duo |  |&check; |
-| Galaxy Fold |  | &check; |
-| Samsung Galaxy A51/71 |  |&check; |
-| Nest Hub | |&check; |
-| Nest Hub Max |  |&check; |
+| Device | "map it!" page | "Choose a region" page | main game | instructions | best scores | score / new game page | 
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | 
+| iPhone SE  | &check; | &check; | &check; | &check; | &check; | &check; |
+| iPhone XR | &check; | &check; | &check; | &check; | &check; | &check; |
+| iPhone 12 Pro | &check; | &check; | &check; | &check; | &check; | &check; |
+| Pixel 5 | &check; | &check; | &check; | &check; | &check; | &check; |
+| Samsung Galaxy S8+ |&check; | &check; | &check; | &check; | &check; | &check; |
+| Samsung Galaxy S20 Ultra | &check; | &check; | &check; | &check; | &check; | &check; |
+| iPad Air | &check; | &check; | &check; | &check; | &check; | &check; |
+| iPad Mini | &check; | &check; | &check; | &check; | &check; | &check; |
+| Surface Pro 7 | &check; | &check; | &check; | &check; | &check; | &check; |
+| Samsung Galaxy A51/71 | &check; | &check; | &check; | &check; | &check; | &check; |
+| Nest Hub | &check; | &check; | &check; | &check; | &check; | &check; |
+| Nest Hub Max | &check; | &check; | &check; | &check; | &check; | &check; |
 - - -
 <br><br>
 
@@ -245,25 +293,24 @@ Performance, Accessibility, Best Practices and SEO tests were carried out with [
 
 Results:
 
-| Device | Result | 
-| :---: | :---: |
-| Mobile |  ![Result-mobile](testing-images/lighthouse-mobile.jpeg)|
-| Desktop | ![Result-desktop](testing-images/lighthouse-desktop.jpeg)|
+![Result-mobile](testing-images/lighthouse-mobile.jpeg)
+![Result-desktop](testing-images/lighthouse-desktop.jpeg)
 
 
 The lower performance scores are caused by the Mapbox GL JS API's loading time:
 
-![performance-issue](testing-images/lighthouse-mobile-error.jpeg)
+![performance-issue](testing-images/lighthouse-mobile-error1.jpeg)
+![performance-issue](testing-images/lighthouse-mobile-error2.jpeg)
 - - -
-<br><br>
 
-# Peer Review
-
-
-- - -
 <br><br>
 
 # Bugs
+
+* On a desktop in Safari v15.6.1, at the Best Scores list, the OK button's hover state is different from how it's supposed to look. This issue was not noticed in other browsers. <br> ![OK button but](testing-images/OK-button-bug.jpeg) <br> ![OK button normal](testing-images/OK-button.jpeg)
+
+* In Safari iOS v16.3.1, (on iPhones) maximum 3 high scores get registered. This issue was not noticed in other browsers and is probably due to Safari's limited local storage allowance. The image below shows the Best Scores after a game on Europe. Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)
+
 
 
 
