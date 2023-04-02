@@ -465,6 +465,8 @@
   background-color: var(--primary-color-hover);
   box-shadow: 2px 2px 5px var(--main-font-color) inset,
     5px 5px 15px var(--primary-color);
+  -webkit-box-shadow: 2px 2px 5px var(--main-font-color) inset,
+  5px 5px 15px var(--primary-color);
   border: 2px solid var(--main-font-color)
 }
 
