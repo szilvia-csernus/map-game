@@ -21,8 +21,7 @@ import { stopSpin } from './spin.js';
 import { isMobile } from './buttons.js';
 
 // safely use localStorage item.
-export const visitedBefore = window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
-const playedBefore = window.localStorage.getItem('playedBefore') === 'true' ? true : false;
+const visitedBefore = window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
 
 const centerCoordinates = {
     europe: [14.213562, 53.541532],
@@ -96,7 +95,7 @@ const showChooseRegionTitle = () => {
 };
 
 export const game = (map) => {
-
+    const playedBefore = window.localStorage.getItem('playedBefore') === 'true' ? true : false;
     const continueFunction = () => {
         if (playedBefore) {
             addStarIcon(map);
