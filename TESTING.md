@@ -290,16 +290,20 @@ Responsiveness was tested using [Google Dev Tools](https://developer.chrome.com/
 
 Performance, Accessibility, Best Practices and SEO tests were carried out with [Google Dev Tools](https://developer.chrome.com/docs/devtools/)' **Lighthouse** tool in `Incognito` mode. Results are not 100% consistent, there is always a few percent variation at each performed test.
 
-Results:
+Results for mobile:
+<br>
 
 ![Result-mobile](testing-images/lighthouse-mobile.jpeg)
-![Result-desktop](testing-images/lighthouse-desktop.jpeg)
-
 
 The lower performance scores are caused by the Mapbox GL JS API's loading time:
 
-![performance-issue](testing-images/lighthouse-mobile-error1.jpeg)
-![performance-issue](testing-images/lighthouse-mobile-error2.jpeg)
+![performance-issue](testing-images/lighthouse-mobile-error.jpeg)
+
+Results for desktop:
+<br>
+
+![Result-desktop](testing-images/lighthouse-desktop.jpeg)
+
 
 ---
 
@@ -307,4 +311,4 @@ The lower performance scores are caused by the Mapbox GL JS API's loading time:
 
 # Bugs
 
-* In Safari iOS v16.3.1, (on iPhones) maximum 3 high scores get registered. This issue was not noticed in other browsers and is probably due to Safari's limited local storage allowance. The image below shows the Best Scores after a game on Europe. Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)
+* In Safari iOS v16.3.1, (on iPhones) maximum 3 high scores get registered. This issue was not noticed in other browsers and is probably due to Safari iOS's limited local storage allowance. The image below shows the Best Scores after a game on Europe. Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)
