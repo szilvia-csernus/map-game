@@ -139,12 +139,18 @@ The player has to select the country that appears in the top. If the selection i
 
 ## Scores
 
-After 10 countries have been chosen, the score is displayed. For the first time, this is all the feedback the user is given but from the second round on, a `View your best scores here` button appears which can be clicked to display the user's best scores. The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores would be lost.
-<br><br>
+After 10 countries have been chosen, the score is displayed. For the first time, this is all the feedback the user is given. 
+<br> 
 
 ![your-score](readme-images/your-score.jpeg)
+<br><br>
+From the second round on, at the end of the round, a `View your best scores here` button appears which can be clicked to display the user's best scores. From this time on, the best scores can be reached anytime throughout the game via the star icon. <br>
+<br>
+
+![high-score](readme-images/high-score.jpeg)
 ![best-scores](readme-images/best-scores.jpeg)
 <br><br>
+The scores are stored in localStorage, so if the localStorage gets cleared, the highest scores would be lost.
 <hr>
 
 ## Error pages
