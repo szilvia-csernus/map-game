@@ -387,7 +387,7 @@ I would like to thank the following contributors:
 
 * My family and friends for taking the time to test the game.
 
-* The Slack Community for continuous support.
+* [Code Institute](www.codeintitute.net)'s Slack Community for continuous support.
 
 <br><br>
 
