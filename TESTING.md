@@ -311,4 +311,9 @@ Results for desktop:
 
 # Bugs
 
-* In Safari iOS v16.3.1, (on iPhones) maximum 3 high scores get registered. This issue was not noticed in other browsers and is probably due to Safari iOS's limited local storage allowance. The image below shows the Best Scores after a game on Europe. Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)
+* In Safari iOS v16.3.1, (on iPhone) maximum 3 high scores get registered. This issue was only noticed on my phone and only in Safari iOS. The image below shows the Best Scores after a game on Europe. Note that Europe is not listed among the high scores. 
+<br> 
+
+![Safari IOS bug](testing-images/safari-ios-bug.jpg) 
+<br><br>
+Further testing would be required to establish how common this issue is. The reason for it is the way how Safari iOS handles `localStorage` limits. For more information, see [MDN's documentation for the Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria).
