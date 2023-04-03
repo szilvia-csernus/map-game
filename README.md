@@ -383,7 +383,7 @@ https://css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filters/
 <br>
 I would like to thank the following contributors:
 
-* My mentor [Elaine Broche](https://github.com/elainebroche-dev) for giving useful feedback throughout the development and testing process.
+* [Tim Nelson](https://github.com/TravelTimN), [Manuel Perez Romero](https://www.linkedin.com/in/manuel-perez-romero-460063176/) and [Elaine Broche](https://github.com/elainebroche-dev) for giving useful feedback throughout the development and testing process.
 
 * My family and friends for taking the time to test the game.
 
