@@ -7,7 +7,6 @@ const minZoom = (map) => map.getMinZoom() - 0.1;
 const maxZoom = (map) => map.getMaxZoom() + 0.5;
 
 export let clickedCountryCode = null;
-// export let clickedCountryName = null;
 
 export const resetClickedCountryCode = () => clickedCountryCode = null;
 
@@ -57,7 +56,6 @@ export const removeHoverLayer = (map) => {
         }, {
             hover: false
         });
-        // map.setPaintProperty('country-hover', 'fill-color', 'hsla(0, 0%, 100%, 0)');
         map.setFilter('country-hover', null);
         map.removeLayer('country-hover');
     }
@@ -127,7 +125,7 @@ export let marker;
 
 const addMarker = (map, code) => {
     if (countryCoordinates[code]) {
-        // it doesn't like JQuery
+
         const el = document.createElement('div');
         el.className = 'marker';
         // I'm using the local dataset to display country names because in case of an incorrect country was clicked
