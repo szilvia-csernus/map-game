@@ -15,6 +15,7 @@
 | [timeout.js file validation](testing-images/jshint-timeout-js.jpeg)| No warnings. |
 | [buttons.js file validation](testing-images/jshint-buttons-js.jpeg)| No warnings. |
 | [exit.js file validation](testing-images/jshint-exit-js.jpeg)| No warnings. |
+
 <br><br>
 
 | W3C Result | Passed without errors |
@@ -241,6 +242,7 @@ Browser & Version: Safari iOS 16.3.1 (on an iPhone XR 64GB iOS 16.3.1)
 | 008 | b. d. | b. d. *j. k. | &#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
 | 009 | b. d. f. | b. d. f. *j. k. | &#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
 | 010 | b. d. f. | b. d. f. g. h. *j. k. | &#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
+
 <br><br>
 
 Browser & Version: Firefox 111.1 (29556) (on an iPhone XR 64GB iOS 16.3.1)
@@ -292,7 +294,6 @@ Browser & Version: Chrome 111.0.5563.101 (on an iPhone XR 64GB iOS 16.3.1)
 | 009 | b. d. f. | b. d. f. j. k. | &check; | |
 | 010 | b. d. f. | b. d. f. g. h. j. k. | &check; | |
 
-
 <br><br>
 
 # Responsiveness Testing
@@ -314,7 +315,6 @@ Responsiveness was tested using [Google Dev Tools](https://developer.chrome.com/
 | Samsung Galaxy A51/71 | &check; | &check; | &check; | &check; | &check; | &check; |
 | Nest Hub | &check; | &check; | &check; | &check; | &check; | &check; |
 | Nest Hub Max | &check; | &check; | &check; | &check; | &check; | &check; |
-
 
 <br><br>
 
@@ -343,6 +343,4 @@ Results for desktop:
 
 # Bugs
 
-* On one testing device, an iPhone XR 64GB iOS 16.3.1, in the Safari browser, maximum 3 high scores get registered. The image below shows the Best Scores after a game on Europe. <br> Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg) 
-<br> 
-The whole testing process was repeated on this device after clearing all website data stored by Safari, and the issue did not occur again. Also, it was specifically tested on 2 more phones, neither of them experienced the same problem. These were (iPhone X 64Gb iOS v16.3.1 and iPhone11 64GB iOS 16.2). Further testing would be required to establish the cause of the issue. Upon research, it might be the way browsers allocate storage size to websites. See [MDN's article on this here](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria).  
+* On one testing device, an iPhone XR 64GB iOS 16.3.1, in the Safari browser, maximum 3 high scores get registered. The image below shows the Best Scores after a game on Europe. <br> Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)<br>The testing process was repeated on this device after clearing all website data stored by Safari, and the issue did not occur again. Also, it was specifically tested on 2 more phones, neither of them experienced the same problem. These were (iPhone X 64Gb iOS v16.3.1 and iPhone11 64GB iOS 16.2). Further testing would be required to establish the cause of the issue. Upon research, it might be the way browsers allocate storage size to websites. See [MDN's article on this here](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria).  
