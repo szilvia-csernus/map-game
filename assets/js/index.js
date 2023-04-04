@@ -122,8 +122,7 @@ window.document.onload =
     // only create map object if within Mapbox allowance.
     firewall( () => {
         // If another event cancels the touch event the default would be to jump back within the code when the player returns.
-        // This default behaviour messes up the event listeners & game flow.
-        // Tried to prevent this with preventDefault() and while it works in most cases doesn't always work for unknown reasons. 
+        // This default behaviour would mess up the event listeners & game flow, that's the reason for preventDefault(). 
         $('body').on('touchcancel', e => e.preventDefault());
         createMapObject((map) => {
             addMapIntroAnimation();

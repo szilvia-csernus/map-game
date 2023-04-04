@@ -16,7 +16,7 @@ import { disableMapInteraction } from './exit.js';
 
 let score = 0;
 
-// this function gets fired in the 'addFeedback' when user chooses the right answer.
+// this function gets fired in 'addFeedback' when user chooses the right answer.
 const increaseScore = () => ++score;
 
 export const resetScore = () => score = 0;
