@@ -127,7 +127,7 @@ window.document.onload =
         $('body').on('touchcancel', e => e.preventDefault());
         createMapObject((map) => {
             addMapIntroAnimation();
-            // stop showing animation 
+            // stop showing previous animation 
             $('#preMapContainer').remove();
             startGame(map);
         });
