@@ -52,7 +52,7 @@ const createMapObject = (callback) => {
             'pk.eyJ1Ijoic3ppbHZpMSIsImEiOiJjbGR4Z2M5YzEwaDVkNDBwaGcwOWIzcHg4In0.PTFFlTTPfA3PnnA01vzcZw';
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/szilvi1/cldvz9vlb000y01qrbvjld10b?optimize=true',
+            style: 'mapbox://styles/szilvi1/cldvz9vlb000y01qrbvjld10b',
             projection: 'globe', // Display the map as a globe
             zoom: initialZoom(),
             minZoom: 1,
