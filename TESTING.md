@@ -26,8 +26,6 @@
 | [first.css file validation](testing-images/W3C-first-css.pdf) | &check; |
 | [style.css file validation](testing-images/W3C-style-css.pdf) | &check; |
 
-
-- - -
 <br><br>
 
 
@@ -155,13 +153,13 @@ i. "HIGH score" appears if the score was higher than any previous attempt in tha
 
 j. "Best scores" list shows all the correct high scores.
 
-k. The game instructions show "Double click to select a country" on all devices where a mouse or touchpad was used to start the game, otherwise "Touch to select a country" is shown.
+k. The game instructions show "Double click / Double tap to select a country" on all devices where a mouse or touchpad was used to start the game, otherwise "Tap to select a country" is shown.
 
 l. Game restarts uneventfully.
 
 <br><br>
 
-Browser & Version: Chrome 111.0.5563.110 (on desktop and laptop)
+Browser & Version: Chrome 111.0.5563.110 (on Desktop, macOS Catalina version 10.15.7)
 <br>
 | Test case | Expected look | Expected behaviour | Pass | Notes |
 | :---: | :--- | :--- | :--- | :--- |
@@ -178,24 +176,58 @@ Browser & Version: Chrome 111.0.5563.110 (on desktop and laptop)
 
 <br><br>
 
-Browser & Version: Safari 15.6.1 (on desktop)
+Browser & Version: Chrome 111.0.5563.147 (Official Build 64-bit) (on Laptop, Windows 11 Home)
+<br>
+| Test case | Expected look | Expected behaviour | Pass | Notes |
+| :---: | :--- | :--- | :--- | :--- |
+| 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 007 | b. d. | b. d. l. | &check; | |
+| 008 | b. d. | b. d. j. k. | &check; | |
+| 009 | b. d. f. | b. d. f. j. k. | &check; | |
+| 010 | b. d. f. | b. d. f. g. h. j. k. | &check; | |
+
+<br><br>
+
+Browser & Version: Safari 15.6.1 (15613.3.9.1.16, 15613) (on Desktop, macOS Catalina version 10.15.7)
 
 | Test case | Expected look | Expected behaviour | Pass | Notes |
 | :---: | :--- | :--- | :--- | :--- |
 | 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
-| 002 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | |
-| 003 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | |
-| 004 | b. d. f. h. j. | b. d. f. g. h. i. *j. l. | &check; | |
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
 | 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
 | 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
 | 007 | b. d. | b. d. l. | &check; | |
-| 008 | b. d. | b. d. *j. k. | &check; | |
-| 009 | b. d. f. | b. d. f. *j. k. | &check; | |
-| 010 | b. d. f. | b. d. f. g. h. *j. k. | &check; | |
+| 008 | b. d. | b. d. j. k. | &check; | |
+| 009 | b. d. f. | b. d. f. j. k. | &check; | |
+| 010 | b. d. f. | b. d. f. g. h. j. k. | &check; | |
 
 <br><br>
 
-Browser & Version: Safari iOS 16.3.1 (on mobile phone)
+Browser & Version: Safari 16.4 (on iPad Pro 10.5-inch, iPadOS 16.4)
+
+| Test case | Expected look | Expected behaviour | Pass | Notes |
+| :---: | :--- | :--- | :--- | :--- |
+| 001 | a. i. c. e. g. | a. k. c. e. g. h. i. l. | &check; | |
+| 002 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 003 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 004 | b. d. f. h. j. | b. d. f. g. h. i. j. l. | &check; | |
+| 005 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
+| 007 | b. d. | b. d. l. | &check; | |
+| 008 | b. d. | b. d. j. k. | &check; | |
+| 009 | b. d. f. | b. d. f. j. k. | &check; | |
+| 010 | b. d. f. | b. d. f. g. h. j. k. | &check; | |
+
+<br><br>
+
+Browser & Version: Safari iOS 16.3.1 (on an iPhone XR 64GB iOS 16.3.1)
 <br>
 | Test case | Expected look | Expected behaviour | Pass | Notes |
 | :---: | :--- | :--- | :--- | :--- |
@@ -207,11 +239,11 @@ Browser & Version: Safari iOS 16.3.1 (on mobile phone)
 | 006 | b. d. f. | b. d. f. g. h. l. | &check; | |
 | 007 | b. d. | b. d. l. | &check; | |
 | 008 | b. d. | b. d. *j. k. | &#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
-| 009 | b. d. f. | b. d. f. *j. k. |&#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
+| 009 | b. d. f. | b. d. f. *j. k. | &#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
 | 010 | b. d. f. | b. d. f. g. h. *j. k. | &#9587; | *Only 3 high scores are visible. More on this in the [Bugs](#bugs) section|
 <br><br>
 
-Browser & Version: Firefox 111.1 (29556) (on mobile phone)
+Browser & Version: Firefox 111.1 (29556) (on an iPhone XR 64GB iOS 16.3.1)
 <br>
 | Test case | Expected look | Expected behaviour | Pass | Notes |
 | :---: | :--- | :--- | :--- | :--- |
@@ -228,7 +260,7 @@ Browser & Version: Firefox 111.1 (29556) (on mobile phone)
 
 <br><br>
 
-Browser & Version: Edge 111.0.1661.50 (on mobile phone)
+Browser & Version: Edge 111.0.1661.50 (on an iPhone XR 64GB iOS 16.3.1)
 <br>
 | Test case | Expected look | Expected behaviour | Pass | Notes |
 | :---: | :--- | :--- | :--- | :--- |
@@ -245,7 +277,7 @@ Browser & Version: Edge 111.0.1661.50 (on mobile phone)
 
 <br><br>
 
-Browser & Version: Chrome 111.0.5563.101 (on mobile phone)
+Browser & Version: Chrome 111.0.5563.101 (on an iPhone XR 64GB iOS 16.3.1)
 <br>
 | Test case | Expected look | Expected behaviour | Pass | Notes |
 | :---: | :--- | :--- | :--- | :--- |
@@ -311,4 +343,6 @@ Results for desktop:
 
 # Bugs
 
-* In Safari iOS v16.3.1, (on iPhones) maximum 3 high scores get registered. This issue was not noticed in other browsers and is probably due to Safari iOS's limited local storage allowance. The image below shows the Best Scores after a game on Europe. Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)
+* On one testing device, an iPhone XR 64GB iOS 16.3.1, in the Safari browser, maximum 3 high scores get registered. The image below shows the Best Scores after a game on Europe. <br> Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg) 
+<br> 
+The whole testing process was repeated on this device after clearing all website data stored by Safari, and the issue did not occur again. Also, it was specifically tested on 2 more phones, neither of them experienced the same problem. These were (iPhone X 64Gb iOS v16.3.1 and iPhone11 64GB iOS 16.2). Further testing would be required to establish the cause of the issue. Upon research, it might be the way browsers allocate storage size to websites. See [MDN's article on this here](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria).  
