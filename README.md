@@ -42,7 +42,6 @@ Not for public use.
 * It should retain high scores.
 * The game should look well and run on a wide range of devices.
 
----
 <br>
 
 # Wireframes
@@ -101,7 +100,7 @@ The third dataset used is another [open source dataset assembled by Gavin Rehkem
 
 ## Landing Page
 
-When visiting the first time, it takes a while (depending on network speed) to load all source code and tilesets from Mapbox. While waiting for loading, a subtle animation is used to fill the time. Once the map is ready, it appears on the sceen and the game can be started with the `PLAY` button.
+When visiting the first time, it takes a while (depending on network speed) to load all source code and tilesets from Mapbox. While waiting for loading, a subtle animation is used to fill the time. Once the map is ready, it appears on the screen and the game can be started with the `PLAY` button.
 <br><br>
 ![loading-image](readme-images/loading.jpeg) 
 ![loaded-page](readme-images/map-it-mobile.jpeg) 
@@ -383,7 +382,7 @@ https://css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filters/
 <br>
 I would like to thank the following contributors:
 
-* [Tim Nelson](https://github.com/TravelTimN), [Manuel Perez Romero](https://www.linkedin.com/in/manuel-perez-romero-460063176/) and [Elaine Broche](https://github.com/elainebroche-dev) for giving useful feedback throughout the development and testing process.
+* [Tim Nelson](https://github.com/TravelTimN), [Manuel Perez Romero](https://www.linkedin.com/in/manuel-perez-romero-460063176/) and [Elaine Broche](https://github.com/elainebroche-dev) for giving useful feedback throughout the development and testing processes.
 
 * My family and friends for taking the time to test the game.
 
