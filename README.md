@@ -88,9 +88,9 @@ For **favicons**, I created a small logo in [Figma](https://www.figma.com/) and 
 
 # Data
 
-The main data source for this project is [Mapbox's country-boundaries-v1](https://studio.mapbox.com/tilesets/mapbox.country-boundaries-v1) tileset. The tileset's countries and territories are defined in the ISO 3166-1 country code standard, including alternate worldviews. I filter for some of the conflicting worldviews in order to avoid ambiguity. Data in this tileset is based on information obtained from officially recognized local or international entities. The displayed country boundaries, the identification of countries / territories are coming from this dataset.
+The main data source for this project is [Mapbox's country-boundaries-v1](https://studio.mapbox.com/tilesets/mapbox.country-boundaries-v1) tileset. The tileset's countries and territories are defined in the ISO 3166-1 country code standard, including alternate worldviews. I filter for some of the conflicting worldviews to avoid ambiguity. Data in this tileset is based on information obtained from officially recognized local or international entities. The displayed country boundaries and the identification of countries / territories are coming from this dataset.
 
-Mapbox does not (freely) allow to download this dataset in a searchable format, so I needed to source this information from elswhere. I used [Annexare Studio's open source data (MIT License, Copyright (c) 2014 Annexare Studio)](https://github.com/annexare/Countries/blob/master/data/countries.json) for this purpose. Independent territories, Crown Dependencies, other dependent territories as well as micro countries / islands were excluded from the lists of countries. After having transformed and filtered this dataset, 166 countries remained that can be asked randomly, 10 in one round, from the user.
+Mapbox does not (freely) allow to download this dataset in a searchable format, so I needed to source this information from elsewhere. I used [Annexare Studio's open source data (MIT License, Copyright (c) 2014 Annexare Studio)](https://github.com/annexare/Countries/blob/master/data/countries.json) for this purpose. Independent territories, Crown Dependencies, other dependent territories as well as micro countries / islands were excluded from the lists of countries. After having transformed and filtered this dataset, 166 countries remained that can be asked randomly, 10 in one round, from the user.
 
 The third dataset used is another [open source dataset assembled by Gavin Rehkemper (MIT Licence, Copyright (c) 2021 Gavin Rehkemper)](https://github.com/gavinr/world-countries-centroids/blob/master/dist/countries.geojson). It contains the centroid positions for all countries which I needed to display the countries' names over the selected countries as well as to fly the map to this location after an incorrect country choice.
 
@@ -128,7 +128,7 @@ The first step in the game is to choose which region the player wants to test th
 
 ## Choosing a country
 
-The player has to select the country that appears in the top. If the selection is correct, the country is coloured green and a green checkmark signals that the score has been registered. In case the selection is incorrect, the country becomes red and an animation flies the map to the correct country. This feedback allows the player to improve their knowledge.
+The player has to select the country that appears at the top. If the selection is correct, the country is coloured green and a green checkmark signals that the score has been registered. In case the selection is incorrect, the country becomes red and an animation flies the map to the correct country. This feedback allows the player to improve their knowledge.
 <br><br>
 ![correct-country](readme-images/correct-country.gif)
 ![incorrect-country](readme-images/incorrect-country.gif)
@@ -154,7 +154,7 @@ The scores are stored in localStorage, so if the localStorage gets cleared, the 
 
 ## Error pages
 
-Three types of error messages can be deivered to the user depending on the issue 
+Three types of error messages can be delivered to the user depending on the issue 
 * a `404 (not found) page` in case of an invalid URL was typed in, 
 * a `no-support page` in case the user uses an old browser that does not support Mapbox GL GS,
 * an `error page` in case there is a problem with the connection to the Mapbox API. 
@@ -171,14 +171,14 @@ Three types of error messages can be deivered to the user depending on the issue
 
 The game supports desktop, laptop, tablet and mobile phone device interactions. The first click on the `PLAY` button determines whether mouse/trackpad or touch interactions get enabled.  This differentiation was needed to allow multi-touch zooming and panning, tapping, double-clicking, click-and-panning as well as scroll zooming functionalities on the map. 
 
-If `PLAY` button was clicked with a mouse or trackpad: 
+If the `PLAY` button was clicked with a mouse or trackpad: 
 * a hovering effect is being applied, 
 * double clicking / double tapping is required to select a country, 
 * zooming in and out of the map as well as panning is available depending on the tool used: 
   - scrolling to zoom and grab-and-pan with a mouse, 
   - two-finger zoom and double-tap-pan with a trackpad.
 
-If `PLAY` button was clicked on a touch device:
+If the `PLAY` button was clicked on a touch device:
 * a firm tap or a slightly longer than usual (50ms long) tap is required to select a country.
 * zooming in and out as well as panning the map is available in the usual ways:
   - zooming in and out with two or more fingers,
@@ -189,7 +189,7 @@ If `PLAY` button was clicked on a touch device:
 
 ## Future Implementations
 
-* There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. Worldviews could be a dynamic feature depending on location of the user. A new option with the US states could be part of the game too.
+* There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Antarctica could be included as well as small islands and micro countries. Worldviews could be a dynamic feature depending on the location of the user. A new option with the US states could be part of the game too.
 
 * Automatic testing with Cypress, to which support is provided by Mapbox. 
 <br><br>
@@ -199,13 +199,13 @@ If `PLAY` button was clicked on a touch device:
 ## Accessibility
 <br>
 
-* Fonts were chosen to have clean contours and simple design to maximize legibility. 
-* For font sizes, `rem` was used throughout the site to allow the text to scale according to the users' preferred default font-size.
+* The font was chosen for having a simple design and clean contours to maximise legibility. 
+* For font sizes, `rem` was used throughout the site to allow the text to scale according to the users' preferred default font size.
 * The map can be zoomed in and out when the player has to find a country to cater for easier access.
 * Images have `alt` labels and svg tags are marked with `aria` labels.
 * Chrome Dev Tools' Lighthouse score is 100% for accessibility for both mobile and desktop devices. 
 
-* [Mapbox Studio](https://studio.mapbox.com/) allows to test map designs for 8 types of visual impairments. The result of these tests can be found in [TESTING.md](./TESTING.md#accessibility).
+* [Mapbox Studio](https://studio.mapbox.com/) allows testing map designs for 8 types of visual impairments. The result of these tests can be found in [TESTING.md](./TESTING.md#accessibility).
 
 <br><br>
 
@@ -237,7 +237,7 @@ The site was built with [JavaScript](https://en.wikipedia.org/wiki/JavaScript), 
 
 * [Balsamiq](https://balsamiq.cloud/)  - to create wireframes.
 
-* [Figma](https://www.figma.com/)  - to create colour palette and image for favicon.
+* [Figma](https://www.figma.com/)  - to create colour palette and image for favicons.
 
 * [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/)  - to generate favicons.
 
@@ -311,7 +311,7 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 # Testing
 
-Deatiled testing processes are documented in [TESTING.md](TESTING.md).
+Detailed testing processes are documented in [TESTING.md](TESTING.md).
 
 ---
 <br><br>
