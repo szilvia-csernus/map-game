@@ -81,7 +81,7 @@ I selected the font named [Nunito](https://fonts.google.com/specimen/Nunito) fro
 
 ## Icons
 
-**Icons** for the exit and the info buttons as well as the checkmark and cross icons were downloaded from [svgrepo](https://svgrepo.com/). Credits to individual icons are given in the [credits](#credits) section. <br>
+The exit, info, checkmark, cross and star icons were all downloaded from [svgrepo](https://svgrepo.com/). Credits to individual icons are given in the [credits](#credits) section. <br>
 For **favicons**, I created a small logo in [Figma](https://www.figma.com/) and used the [RealFaviconGenerator](https://realfavicongenerator.net/svg-favicon/) to convert it to favicons.
 
 <br><br>
@@ -100,7 +100,7 @@ The third dataset used is another [open source dataset assembled by Gavin Rehkem
 
 ## Landing Page
 
-When visiting the first time, it takes a while (depending on network speed) to load all source code and tilesets from Mapbox. While waiting for loading, a subtle animation is used to fill the time. Once the map is ready, it appears on the screen and the game can be started with the `PLAY` button.
+When visiting the first time, it takes a while (depending on network speed) to load all source code and tilesets from Mapbox. While waiting for loading, an animation is used to fill the time. Once the map is ready, it appears on the screen and the game can be started with the `PLAY` button.
 <br><br>
 ![loading-image](readme-images/loading.jpeg) 
 ![loaded-page](readme-images/map-it-mobile.jpeg) 
@@ -188,14 +188,11 @@ If `PLAY` button was clicked on a touch device:
 <hr>
 
 ## Future Implementations
-<br>
-This project could be converted into a React project or native mobile app to bring it in line with industry standards. These would improve the app's performance as well.
-<br><br>
-Automatic testing with Cypress, to which support is provided by Mapbox. 
-<br><br>
-There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. Worldviews could be a dynamic feature depending on location of the user. A new option with the US states could be part of the game too.
 
-<br>
+* There are many options to widen the game's functionality. Capital cities, flags and more regions - Australia, Oceania and Anctarctica could be included as well as small islands and micro countries. Worldviews could be a dynamic feature depending on location of the user. A new option with the US states could be part of the game too.
+
+* Automatic testing with Cypress, to which support is provided by Mapbox. 
+<br><br>
 
 ---
 
@@ -205,7 +202,7 @@ There are many options to widen the game's functionality. Capital cities, flags 
 * Fonts were chosen to have clean contours and simple design to maximize legibility. 
 * For font sizes, `rem` was used throughout the site to allow the text to scale according to the users' preferred default font-size.
 * The map can be zoomed in and out when the player has to find a country to cater for easier access.
-* Icons are labelled with `aria-labels`.
+* Images have `alt` labels and svg tags are marked with `aria` labels.
 * Chrome Dev Tools' Lighthouse score is 100% for accessibility for both mobile and desktop devices. 
 
 * [Mapbox Studio](https://studio.mapbox.com/) allows to test map designs for 8 types of visual impairments. The result of these tests can be found in [TESTING.md](./TESTING.md#accessibility).
