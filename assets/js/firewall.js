@@ -1,3 +1,8 @@
+// This function was needed to keep track of Mapbox's load count.
+// Count API (https://countapi.xyz/) is used to count load numbers. 
+// It sends updates via email - using the EmailJS API (https://www.emailjs.com/)  
+// and only allows to load the map if count does not exceed 49000.
+
 export const firewall = callback => {
     emailjs.init("sZPW9YDqBsCM52fA-");
 

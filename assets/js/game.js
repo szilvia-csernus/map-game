@@ -23,6 +23,7 @@ import { isMobile } from './buttons.js';
 // safely use localStorage item.
 const visitedBefore = window.localStorage.getItem('visitedBefore') === 'true' ? true : false;
 
+// used to center the flying animation the middle of the regions.
 const centerCoordinates = {
     europe: [14.213562, 53.541532],
     asia: [77.367783, 32.174450],
@@ -32,6 +33,7 @@ const centerCoordinates = {
 
 let firstTime = true;
 
+// region button click listeners.
 const addClickListenersToRegionBtns = (map) => {
     
     const addFlyOnClick = (button, region, center, zoom) => {
@@ -94,6 +96,7 @@ const showChooseRegionTitle = () => {
     $('h1').removeClass('title').addClass('choose').fadeIn('slow').text('Choose a region!');
 };
 
+// Starts the game.
 export const game = (map) => {
     const playedBefore = window.localStorage.getItem('playedBefore') === 'true' ? true : false;
     const continueFunction = () => {

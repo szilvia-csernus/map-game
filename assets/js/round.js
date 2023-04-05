@@ -18,9 +18,11 @@ export const restartRound = (map) => {
     restartGame(map);
 };
 
+/** displays score and stores high score */
 const showScore = (map, score, region, num) => {
     resetMap(map);
 
+    // safely retrieve region data from localStorage
     const previousScoreExists = !!window.localStorage.getItem(region);
     const highScore = Number(window.localStorage.getItem(region));
 
@@ -31,16 +33,18 @@ const showScore = (map, score, region, num) => {
         text = "Your";
     }
 
+    // update high score in localStorage
     if (highScore < score) {
         window.localStorage.setItem(region, score);
     }
 
+    // remove previous texts and display score
     $('h1').empty().removeClass('question').addClass('choose').text(`${text} Score: ${score} / ${num}`);
     $('#countryLabel').remove();
     $('#checkmarks').remove();
 
+    // logic to display high scores button
     const playedBefore = window.localStorage.getItem('playedBefore') === 'true' ? true : false;
-
     if (playedBefore) {
         addHighScoresBtn(map);
     } else {
@@ -50,6 +54,7 @@ const showScore = (map, score, region, num) => {
     addNewGameBtn(map);
 };
 
+// export these timeOut functions so we can clear them up on exit
 export const timeOutForMinZoom = new TimeOut();
 export const timeOutForQuestion = new TimeOut();
 export const timeOutForCountry = new TimeOut();
@@ -57,6 +62,8 @@ export const timeOutForCountry = new TimeOut();
 let questions;
 export const clearQuestions = () => questions = null;
 
+
+/** start one round ('num' questions) on the given region */
 export const startRound = (map, region, num) => {
     resetScore();
 
