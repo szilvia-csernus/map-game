@@ -150,7 +150,7 @@ g. the selected country's colour turns green, its name and a green checkmark app
 
 h. The selected country's colour turns red, its name and a red cross appears, an animation flies the map to the correct country. The correct country's name and a green contour appears.
 
-i. "HIGH score" appears if the score was higher than any previous attempt in that region otherwise "Your score" appears. The number shows the right scores.
+i. "HIGH score" appears if the score was higher than any previous attempt in that region otherwise "Your score" appears. The number shows the correct score.
 
 j. "Best scores" list shows all the correct high scores.
 
@@ -343,4 +343,4 @@ Results for desktop:
 
 # Bugs
 
-* On one testing device, an iPhone XR 64GB iOS 16.3.1, in the Safari browser, maximum 3 high scores get registered. The image below shows the Best Scores after a game on Europe. <br> Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)<br>The testing process was repeated on this device after clearing all website data stored by Safari, and the issue did not occur again. Also, it was specifically tested on 2 more phones, neither of them experienced the same problem. These were (iPhone X 64Gb iOS v16.3.1 and iPhone11 64GB iOS 16.2). Further testing would be required to establish the cause of the issue. Upon research, it might be the way browsers allocate storage size to websites. See [MDN's article on this here](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria).  
+* On one testing device, an iPhone XR 64GB iOS 16.3.1, in the Safari browser, maximum 3 high scores get registered. The image below shows the Best Scores after a game on Europe. <br> Note that Europe is not listed among the high scores. <br> ![Safari IOS bug](testing-images/safari-ios-bug.jpg)<br>The testing process was repeated on this device after clearing all website data stored by Safari, and the issue did not occur again. Also, it was specifically tested on 2 more phones, neither of them experienced the same problem. These were iPhone X 64Gb iOS v16.3.1 and iPhone11 64GB iOS 16.2. Further testing would be required to establish the cause of the issue. Upon research, it might be the way browsers allocate storage size to websites. See [MDN's article on this here](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria).  
