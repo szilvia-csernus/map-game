@@ -10,10 +10,12 @@ export const showHighScores = () => {
     const americasNr = Number(window.localStorage.getItem('Americas'));
     const americas = (americasNr <= 10 && americasNr > 0) ? americasNr : false;
 
+    // adds background & canvas
     $('body').append('<div id="highScoresBackground" class="highScoresBackground"></div>');
     $('#highScoresBackground').append(`<div id="highScoresCanvas" class="highScoresCanvas"></div>`);
     $('#highScoresCanvas').append(`<div id="highScoresTitle" class="highScoresTitle">Your best scores:</div>`);
 
+    // adds region scores
     if (europe) {
         $('#highScoresCanvas').append(`<p class="score scoreEurope">Europe:  ${europe}</p>`);
     }
@@ -27,6 +29,7 @@ export const showHighScores = () => {
         $('#highScoresCanvas').append(`<p class="score scoreAmericas">Americas: ${americas}</p>`);
     }
     
+    // adds 'OK' button & click event listener
     $('#highScoresCanvas').append($(`<button id="highScoresOkay" class="highScoresOkay">OK</button>`));
     $('#highScoresOkay').click(() => {
         $('#highScoresBackground').remove();

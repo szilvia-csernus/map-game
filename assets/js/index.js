@@ -9,6 +9,7 @@ import {
     addRotation
 } from './spin.js';
 
+// globe zoom level depending on screen size
 export const initialZoom = () => {
     if (window.innerWidth < 600) {
         return 1;
@@ -76,6 +77,7 @@ const createMapObject = (callback) => {
             callback(map);
         });
 
+        // if connection fails go to the error page
         map.on('error', () => {
             window.location.href = '../error.html';
         });
@@ -96,6 +98,7 @@ const addTilesetSource = (map) => {
     });
 };
 
+// the loaded map fades in with animation
 const addMapIntroAnimation = () => {
     $('.map').addClass('animate-appear-map');
 };

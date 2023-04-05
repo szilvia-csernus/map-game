@@ -1,3 +1,4 @@
+// renders instructions screen & click event listener on "OK" button
 export const addHowToPlay = (isMobile, fast, callback = () => {}) => {
     // remove the icon so that user can't click it again when instructions are already rendered on the page.
     $('#questionMark').remove();
@@ -22,6 +23,7 @@ export const removeHowToPlay = () => {
     $('#howToPlayBackground').remove();
 };
 
+// adds instructions (question mark) icon & click event listener
 export const addHowToPlayIcon = (isMobile) => {
     if (!document.getElementById('questionMark')) {
         $('body').append('<img id="questionMark" class="questionMark" src="./assets/icons/questionMark.svg" alt="how to play icon"></img>');

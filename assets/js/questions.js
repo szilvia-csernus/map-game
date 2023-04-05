@@ -21,6 +21,7 @@ const increaseScore = () => ++score;
 
 export const resetScore = () => score = 0;
 
+/** handels all tasks regarding feedback: score, layers, checkmarks */
 const addFeedback = (map, countryCode, increaseScore, callback) => {
     disableMapInteraction(map);
     const correct = countryCode === clickedCountryCode ? true : false;
@@ -33,8 +34,11 @@ const addFeedback = (map, countryCode, increaseScore, callback) => {
     }
 };
 
+// we define this function on the global scope so that we can reference it in exit.js 
+// when it needs to be removed
 export let setDblClickFeedbackLayer = () => {};
 
+/** double click event listener for selecting a country  */
 const setClickSelectEventListeners = (map, countryCode, increaseScore, callback) => {
 
     setDblClickFeedbackLayer = (event) => {
@@ -42,7 +46,6 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
         clickEventHandler(event);
 
         // if clicked item has no id then we just ignore it.
-
         if (clickedCountryCode) {
             map.off('dblclick', 'country-hover', setDblClickFeedbackLayer);
             removeFeedbackLayer(map);
@@ -50,14 +53,16 @@ const setClickSelectEventListeners = (map, countryCode, increaseScore, callback)
         }
         
     };
+
     map.on('dblclick', 'country-hover', setDblClickFeedbackLayer);
 };
 
-// define these functions on the global scope so later can be referenced in exit.js when we
+// we define these functions on the global scope so later can be referenced in exit.js when we
 // want to remove them from the event listeners.
 export let touchStartFunction = () => {};
 export let touchEndFunction = () => {};
 
+/** touch event listener for selecting a country */
 const setTouchSelectEventListeners = (map, countryCode, increaseScore, callback) => {
     const setTapHoldFeedbackLayer = () => {
         removeFeedbackLayer(map);
@@ -138,6 +143,7 @@ const getRandomCountryCodes = (countries, num) => {
     return codes;
 };
 
+/** generates an array of unique countries in the region */
 export const getQuestions = (region, num) => {
     const allCodesInRegion = Object.keys(data[region]);
 
@@ -159,7 +165,7 @@ const enableMapInteraction = (map) => {
     map.touchZoomRotate.enable();
 };
 
-
+/** logic for asking one country */
 const oneQuestion = (map, code, country, region, callback) => {
     enableMapInteraction(map);
     resetClickedCountryCode();

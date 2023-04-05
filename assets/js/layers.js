@@ -117,12 +117,14 @@ export const removeBlurLayer = (map) => {
     }
 };
 
+// timeout functions to allow time for feedback and flying animations.
 export const timeOutForCorrectFeedback = new TimeOut();
 export const timeOutForIncorrectFeedback = new TimeOut();
 export const timeOutForFlyAnimation = new TimeOut();
 
 export let marker;
 
+/** adds the name of the country */
 const addMarker = (map, code) => {
     if (countryCoordinates[code]) {
 
@@ -209,6 +211,7 @@ export const addFeedbackLayer = (map, correct, correctCountryCode, callback) => 
     }
 };
 
+/** if a wrong answer was clicked, we fly the map to the correct country */
 const flyToCorrectCountry = (map, code) => {
     removeFeedbackLayer(map);
 
@@ -276,6 +279,7 @@ export const clickEventHandler = (e) => {
 
 let hoveredStateId = null;
 
+/** if a mouse is hovered over a country, set its 'hover' feature true  */
 export function mouseMoveHoverEventListenerHandler(e) {
     
     this.getCanvas().style.cursor = 'pointer';
@@ -306,6 +310,7 @@ export function mouseMoveHoverEventListenerHandler(e) {
     }
 }
 
+/** if the mouse leaves the country, update the 'hover' state feature (set to false) */
 export function mouseLeaveHoverEventListenerHandler() {
     if (hoveredStateId) {
         // When the mouse leaves the state-fill layer, update the feature state of the
@@ -323,6 +328,7 @@ export function mouseLeaveHoverEventListenerHandler() {
     this.getCanvas().style.cursor = '';
 }
 
+/** adds hover effect onto the map */
 export const addDesktopEventListeners = (map) => {
 
     if (map.getLayer('country-hover') && !isMobile) {

@@ -7,13 +7,14 @@ import { resetScore, setDblClickFeedbackLayer, timeOutForShowScore, touchEndFunc
 import { stopSpin } from "./spin.js";
 import { clearQuestions, timeOutForCountry, timeOutForMinZoom, timeOutForQuestion } from "./round.js";
 
-
+/** disables dragging, scrolling and zooming on the map */
 export const disableMapInteraction = (map) => {
     map.dragPan.disable();
     map.scrollZoom.disable();
     map.touchZoomRotate.disable();
 };
 
+/** removes all the layers, markers, event listeners, disables map interactions and flies back to initial projection & zoom level */
 export const resetMap = (map) => {
 
     removeHoverLayer(map);
@@ -43,6 +44,7 @@ export const resetMap = (map) => {
     });
 };
 
+/** reset score, remove all buttons, icons, clear up timeout functions and questions */
 const updateElements = () => {
     resetScore();
 
@@ -71,6 +73,9 @@ const updateElements = () => {
     clearQuestions();
 };
 
+/** updates elements, resetting map and after allowing the globe to fly back to 
+ * its original place and zoom level, restarts game.
+ */
 export const restartGame = (map) => {
     updateElements();
     resetMap(map);
@@ -78,6 +83,7 @@ export const restartGame = (map) => {
     setTimeout( () => startGame(map), 500);
 };
 
+/** adds exit icon and event listener to it. Also stops spinning animation */
 const addExitBtn = (map) => {
     $('body').append('<img id="exit" class="exit" src="./assets/icons/exit.svg" alt="exit">');
     $('#exit').click( () => {
