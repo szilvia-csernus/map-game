@@ -2,9 +2,9 @@ import {
     addPlayBtn,
     removePlayBtn
 } from './buttons.js';
-import {
-    firewall
-} from './firewall.js';
+// import {
+//     firewall
+// } from './firewall.js';
 import {
     addRotation
 } from './spin.js';
@@ -123,7 +123,11 @@ export const startGame = (map) => {
 
 window.document.onload = 
     // only create map object if within Mapbox allowance.
-    firewall( () => {
+    // UPDATE 15/Nov/2023: Unfortunately, the COUNT API, which I was using to count page loads, has been taken off the internet 
+    // by its new owner. As this API acted as my "firewall" which allowed loading the map only if it was within the free tier 
+    // with Mapbox, the game stopped loading as it never passed through my firewall. For this reason, to allow the map and game 
+    // to load again, I disabled my firewall function until I find another API to serve this purpose.
+    //firewall( () => {
         // If another event cancels the touch event the default would be to jump back within the code when the player returns.
         // This default behaviour would mess up the event listeners & game flow, that's the reason for preventDefault(). 
         $('body').on('touchcancel', e => e.preventDefault());
@@ -132,5 +136,5 @@ window.document.onload =
             // stop showing previous animation 
             $('#preMapContainer').remove();
             startGame(map);
-        });
+    //    });
 });
